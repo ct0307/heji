@@ -1,0 +1,169 @@
+{
+  "date": "2026-11-19",
+  "scope": "经用户本轮授权的heji_dev 004迁移和真实多连接测试",
+  "status": "migration_and_database_test_passed",
+  "authorization": "上一轮明确列出迁移与新多连接测试、保留虚构数据后，用户回复继续完成",
+  "database": "heji_dev",
+  "preflight": {
+    "projectServicesListening": false,
+    "otherDatabaseConnections": 0,
+    "windowTableExists": false,
+    "appliedMigrations": [
+      {
+        "name": "001_m1.sql",
+        "checksum": "58cd31b090c5c7dd40fdcef9cc5f3dc46d24095960c2b2eda381a61297f218e1"
+      },
+      {
+        "name": "002_m2.sql",
+        "checksum": "fe252167e397ba27f3b738b3f540ce0977fb1992125520151577651556fa8286"
+      },
+      {
+        "name": "003_finance_summaries.sql",
+        "checksum": "0817f3f6a6ac2396509eb75aaa2bfdf3d6259088568743c1d3e3910ab278daff"
+      }
+    ],
+    "counts": {
+      "books": "470",
+      "book_members": "1539",
+      "expenses": "502",
+      "expense_versions": "711",
+      "expense_shares": "1360",
+      "transfer_requests": "300",
+      "confirmed_transfers": "264",
+      "audit_events": "3380",
+      "financial_audit_details": "1405",
+      "idempotency_records": "3196"
+    },
+    "versions": {
+      "bookCount": "470",
+      "financialVersionSum": "1675"
+    }
+  },
+  "migration": {
+    "executed": true,
+    "completedAt": "2026-11-19T02:06:58.372Z",
+    "evidenceFile": "m4-window-migration-2026-11-19T02-06-33-832Z.json",
+    "name": "004_settlement_windows.sql",
+    "checksum": "6448464c6b7d1660911953f835505d2f1538d804a2e47273e1829cdf3026345f",
+    "oldFactCountsUnchanged": true,
+    "oldFinancialVersionSumUnchanged": true,
+    "countsAfterMigration": {
+      "books": "470",
+      "book_members": "1539",
+      "expenses": "502",
+      "expense_versions": "711",
+      "expense_shares": "1360",
+      "transfer_requests": "300",
+      "confirmed_transfers": "264",
+      "audit_events": "3380",
+      "financial_audit_details": "1405",
+      "idempotency_records": "3196"
+    },
+    "constraints": [
+      {
+        "type": "PRIMARY KEY",
+        "count": "1"
+      },
+      {
+        "type": "UNIQUE",
+        "count": "1"
+      },
+      {
+        "type": "FOREIGN KEY",
+        "count": "4"
+      },
+      {
+        "type": "CHECK",
+        "count": "3"
+      }
+    ],
+    "windowRowsBeforeTest": "0"
+  },
+  "databaseTest": {
+    "executed": true,
+    "command": "npm run test:db:windows",
+    "passed": 5,
+    "includesParentTest": true,
+    "failed": 0,
+    "skipped": 0,
+    "elapsedMs": 60742.295,
+    "completedAt": "2026-11-19T02:11:07.876Z",
+    "sourceSha256": "6ad5abfaac1495be03e9690d4f5b70b6e1ada020cd6c1a73e0d13d0f3b866fc6",
+    "cases": [
+      "competing_acquisitions_and_write_guards_and_confirmation_replay",
+      "cancel_and_reject_close_window",
+      "natural_expiry_cooldown_old_id_and_request_replay",
+      "preview_failure_rollback"
+    ],
+    "accountsRetained": 3,
+    "booksRetained": 5,
+    "countsAfterTest": {
+      "books": "475",
+      "book_members": "1550",
+      "expenses": "511",
+      "expense_versions": "720",
+      "expense_shares": "1378",
+      "transfer_requests": "305",
+      "confirmed_transfers": "265",
+      "audit_events": "3427",
+      "financial_audit_details": "1434",
+      "idempotency_records": "3222"
+    },
+    "delta": {
+      "books": "5",
+      "book_members": "11",
+      "expenses": "9",
+      "expense_versions": "9",
+      "expense_shares": "18",
+      "transfer_requests": "5",
+      "confirmed_transfers": "1",
+      "audit_events": "47",
+      "financial_audit_details": "29",
+      "idempotency_records": "26"
+    },
+    "versionsAfterTest": {
+      "bookCount": "475",
+      "financialVersionSum": "1691"
+    },
+    "windowsAfterTest": {
+      "total": "5",
+      "active": "0",
+      "closed": "5"
+    },
+    "lifecycleAudit": [
+      {
+        "eventType": "SETTLEMENT_WINDOW_CLOSED",
+        "count": "5"
+      },
+      {
+        "eventType": "SETTLEMENT_WINDOW_EXPIRED",
+        "count": "1"
+      },
+      {
+        "eventType": "SETTLEMENT_WINDOW_OPENED",
+        "count": "6"
+      }
+    ],
+    "migrationMarkers": [
+      {
+        "name": "001_m1.sql",
+        "checksum": "58cd31b090c5c7dd40fdcef9cc5f3dc46d24095960c2b2eda381a61297f218e1"
+      },
+      {
+        "name": "002_m2.sql",
+        "checksum": "fe252167e397ba27f3b738b3f540ce0977fb1992125520151577651556fa8286"
+      },
+      {
+        "name": "003_finance_summaries.sql",
+        "checksum": "0817f3f6a6ac2396509eb75aaa2bfdf3d6259088568743c1d3e3910ab278daff"
+      },
+      {
+        "name": "004_settlement_windows.sql",
+        "checksum": "6448464c6b7d1660911953f835505d2f1538d804a2e47273e1829cdf3026345f"
+      }
+    ]
+  },
+  "windowBrowserFlowVerified": false,
+  "newLoadExecuted": false,
+  "cleanupExecuted": false
+}

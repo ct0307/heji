@@ -1,0 +1,8 @@
+{
+  "sql": "SELECT s.expenseId,s.revision,s.memberId,s.amountFen FROM expense_shares s JOIN expenses e ON e.id=s.expenseId WHERE s.bookId=? AND s.revision=e.currentRevision ORDER BY s.memberId",
+  "plan": [
+    {
+      "EXPLAIN": "-> Nested loop inner join  (cost=206595.18 rows=39966) (actual time=9.667..26562.153 rows=301350 loops=1)\n    -> Index lookup on s using ix_share_member (bookId='4ede160d-d966-4bc3-8421-4af324bfa4cc')  (cost=66715.23 rows=399657) (actual time=9.658..26064.095 rows=361350 loops=1)\n    -> Filter: (e.currentRevision = s.revision)  (cost=0.25 rows=0.1) (actual time=0.001..0.001 rows=1 loops=361350)\n        -> Single-row index lookup on e using PRIMARY (id=s.expenseId)  (cost=0.25 rows=1) (actual time=0.001..0.001 rows=1 loops=361350)\n"
+    }
+  ]
+}

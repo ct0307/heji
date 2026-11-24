@@ -1,0 +1,463 @@
+{
+  "startedAt": "2026-11-18T03:47:03.444Z",
+  "completedAt": "2026-11-18T03:47:17.480Z",
+  "environment": {
+    "node": "v24.14.1",
+    "os": "win32 10.0.26200",
+    "cpu": "AMD Ryzen 9 7940HX with Radeon Graphics        ",
+    "logicalCpus": 32,
+    "memoryBytes": 16340414464,
+    "mysql": {
+      "version": "8.0.32",
+      "sqlMode": "IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION",
+      "isolationLevel": "REPEATABLE-READ"
+    },
+    "mysqlSettings": [
+      {
+        "bufferPoolBytes": "134217728",
+        "maxConnections": "151"
+      }
+    ],
+    "poolConnections": 8
+  },
+  "options": {
+    "users": 2,
+    "warmupMs": 1000,
+    "durationMs": 3000,
+    "rounds": 1,
+    "smoke": true
+  },
+  "actualScaleAtGroupStart": {
+    "expenses": "50204",
+    "versions": "54004",
+    "shares": "1620120",
+    "confirmed": "1897",
+    "requests": "3465"
+  },
+  "group": {
+    "mode": "read",
+    "distribution": "same-book",
+    "round": 1,
+    "workflows": {
+      "total": 2,
+      "p50": 5742.0470000000005,
+      "p95": 6199.609,
+      "max": 6199.609,
+      "expectedConflicts": 0,
+      "failures": 0,
+      "failureRate": 0,
+      "sql": 17
+    },
+    "httpReads": {
+      "total": 2,
+      "p50": 5742.0285,
+      "p95": 6199.5911,
+      "max": 6199.5911,
+      "expectedConflicts": 0,
+      "failures": 0,
+      "failureRate": 0,
+      "sql": 17
+    },
+    "httpWrites": null
+  },
+  "workflowSamples": [
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 253.39139999999998,
+        "status": 200,
+        "sql": 9,
+        "timings": {
+          "acquireMs": 0.01470000000017535,
+          "sqlMs": 237.23430000000053,
+          "bookLockMs": 0,
+          "bookLockHeldMs": 0,
+          "aggregateMs": 0,
+          "shareInsertMs": 0,
+          "bookVersion": "26248"
+        },
+        "operation": "page",
+        "endpoint": "expense"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 258.80229999999983,
+        "status": 200,
+        "sql": 9,
+        "timings": {
+          "acquireMs": 0.08669999999983702,
+          "sqlMs": 238.1846999999998,
+          "bookLockMs": 0,
+          "bookLockHeldMs": 0,
+          "aggregateMs": 0,
+          "shareInsertMs": 0,
+          "bookVersion": "26248"
+        },
+        "operation": "page",
+        "endpoint": "expense"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 46.16110000000026,
+        "status": 200,
+        "sql": 9,
+        "timings": {
+          "acquireMs": 0.011400000000321597,
+          "sqlMs": 38.01580000000058,
+          "bookLockMs": 0,
+          "bookLockHeldMs": 0,
+          "aggregateMs": 0,
+          "shareInsertMs": 0,
+          "bookVersion": "26248"
+        },
+        "operation": "page",
+        "endpoint": "expense"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 45.88599999999997,
+        "status": 200,
+        "sql": 9,
+        "timings": {
+          "acquireMs": 0.015000000000327418,
+          "sqlMs": 40.27680000000055,
+          "bookLockMs": 0,
+          "bookLockHeldMs": 0,
+          "aggregateMs": 0,
+          "shareInsertMs": 0,
+          "bookVersion": "26248"
+        },
+        "operation": "page",
+        "endpoint": "expense"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 41.37819999999965,
+        "status": 200,
+        "sql": 9,
+        "timings": {
+          "acquireMs": 0.03170000000000073,
+          "sqlMs": 37.77019999999948,
+          "bookLockMs": 0,
+          "bookLockHeldMs": 0,
+          "aggregateMs": 0,
+          "shareInsertMs": 0,
+          "bookVersion": "26248"
+        },
+        "operation": "page",
+        "endpoint": "expense"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 5986.0803,
+        "status": 200,
+        "sql": 9,
+        "timings": {
+          "acquireMs": 0.01999999999998181,
+          "sqlMs": 5980.0133000000005,
+          "bookLockMs": 0,
+          "bookLockHeldMs": 0,
+          "aggregateMs": 5950.8357000000005,
+          "shareInsertMs": 0,
+          "bookVersion": "26248"
+        },
+        "operation": "balance",
+        "endpoint": "balance"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 5946.334599999999,
+        "status": 200,
+        "sql": 9,
+        "timings": {
+          "acquireMs": 0.013000000000374712,
+          "sqlMs": 5942.4187,
+          "bookLockMs": 0,
+          "bookLockHeldMs": 0,
+          "aggregateMs": 5934.142900000001,
+          "shareInsertMs": 0,
+          "bookVersion": "26248"
+        },
+        "operation": "balance",
+        "endpoint": "balance"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 5742.0470000000005,
+        "status": 200,
+        "sql": 9,
+        "timings": {
+          "acquireMs": 0.014299999998911517,
+          "sqlMs": 5736.878200000001,
+          "bookLockMs": 0,
+          "bookLockHeldMs": 0,
+          "aggregateMs": 5687.9467,
+          "shareInsertMs": 0,
+          "bookVersion": "26248"
+        },
+        "operation": "balance",
+        "endpoint": "balance"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 6199.609,
+        "status": 200,
+        "sql": 8,
+        "timings": {
+          "acquireMs": 0.013500000000931323,
+          "sqlMs": 6196.905700000001,
+          "bookLockMs": 0,
+          "bookLockHeldMs": 0,
+          "aggregateMs": 6191.7847,
+          "shareInsertMs": 0,
+          "bookVersion": "26248"
+        },
+        "operation": "report",
+        "endpoint": "report"
+      }
+    }
+  ],
+  "httpSamples": [
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 253.36209999999983,
+        "status": 200,
+        "sql": 9,
+        "timings": {
+          "acquireMs": 0.01470000000017535,
+          "sqlMs": 237.23430000000053,
+          "bookLockMs": 0,
+          "bookLockHeldMs": 0,
+          "aggregateMs": 0,
+          "shareInsertMs": 0,
+          "bookVersion": "26248"
+        },
+        "operation": "read",
+        "endpoint": "expense"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 258.7222999999999,
+        "status": 200,
+        "sql": 9,
+        "timings": {
+          "acquireMs": 0.08669999999983702,
+          "sqlMs": 238.1846999999998,
+          "bookLockMs": 0,
+          "bookLockHeldMs": 0,
+          "aggregateMs": 0,
+          "shareInsertMs": 0,
+          "bookVersion": "26248"
+        },
+        "operation": "read",
+        "endpoint": "expense"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 46.135499999999865,
+        "status": 200,
+        "sql": 9,
+        "timings": {
+          "acquireMs": 0.011400000000321597,
+          "sqlMs": 38.01580000000058,
+          "bookLockMs": 0,
+          "bookLockHeldMs": 0,
+          "aggregateMs": 0,
+          "shareInsertMs": 0,
+          "bookVersion": "26248"
+        },
+        "operation": "read",
+        "endpoint": "expense"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 45.8761999999997,
+        "status": 200,
+        "sql": 9,
+        "timings": {
+          "acquireMs": 0.015000000000327418,
+          "sqlMs": 40.27680000000055,
+          "bookLockMs": 0,
+          "bookLockHeldMs": 0,
+          "aggregateMs": 0,
+          "shareInsertMs": 0,
+          "bookVersion": "26248"
+        },
+        "operation": "read",
+        "endpoint": "expense"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 41.36299999999983,
+        "status": 200,
+        "sql": 9,
+        "timings": {
+          "acquireMs": 0.03170000000000073,
+          "sqlMs": 37.77019999999948,
+          "bookLockMs": 0,
+          "bookLockHeldMs": 0,
+          "aggregateMs": 0,
+          "shareInsertMs": 0,
+          "bookVersion": "26248"
+        },
+        "operation": "read",
+        "endpoint": "expense"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 5986.0658,
+        "status": 200,
+        "sql": 9,
+        "timings": {
+          "acquireMs": 0.01999999999998181,
+          "sqlMs": 5980.0133000000005,
+          "bookLockMs": 0,
+          "bookLockHeldMs": 0,
+          "aggregateMs": 5950.8357000000005,
+          "shareInsertMs": 0,
+          "bookVersion": "26248"
+        },
+        "operation": "read",
+        "endpoint": "balance"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 5946.325500000001,
+        "status": 200,
+        "sql": 9,
+        "timings": {
+          "acquireMs": 0.013000000000374712,
+          "sqlMs": 5942.4187,
+          "bookLockMs": 0,
+          "bookLockHeldMs": 0,
+          "aggregateMs": 5934.142900000001,
+          "shareInsertMs": 0,
+          "bookVersion": "26248"
+        },
+        "operation": "read",
+        "endpoint": "balance"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 5742.0285,
+        "status": 200,
+        "sql": 9,
+        "timings": {
+          "acquireMs": 0.014299999998911517,
+          "sqlMs": 5736.878200000001,
+          "bookLockMs": 0,
+          "bookLockHeldMs": 0,
+          "aggregateMs": 5687.9467,
+          "shareInsertMs": 0,
+          "bookVersion": "26248"
+        },
+        "operation": "read",
+        "endpoint": "balance"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 6199.5911,
+        "status": 200,
+        "sql": 8,
+        "timings": {
+          "acquireMs": 0.013500000000931323,
+          "sqlMs": 6196.905700000001,
+          "bookLockMs": 0,
+          "bookLockHeldMs": 0,
+          "aggregateMs": 6191.7847,
+          "shareInsertMs": 0,
+          "bookVersion": "26248"
+        },
+        "operation": "read",
+        "endpoint": "report"
+      }
+    }
+  ]
+}

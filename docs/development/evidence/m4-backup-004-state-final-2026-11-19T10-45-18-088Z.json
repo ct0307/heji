@@ -1,0 +1,74 @@
+{
+  "format": "heji-m4-backup-004-state-v1",
+  "stage": "final",
+  "at": "2026-11-19T10:45:18.088Z",
+  "database": "heji_m4_bench",
+  "counts": {
+    "audit_events": "260444",
+    "book_members": "300",
+    "books": "10",
+    "confirmed_transfers": "6963",
+    "expense_shares": "5345104",
+    "expense_versions": "233843",
+    "expenses": "230043",
+    "finance_daily_categories": "850",
+    "finance_daily_members": "25500",
+    "finance_member_totals": "300",
+    "financial_audit_details": "241444",
+    "idempotency_records": "241444",
+    "invitations": "0",
+    "m4_fixture_meta": "1",
+    "rate_limits": "0",
+    "schema_migrations": "4",
+    "sessions": "240",
+    "settlement_windows": "0",
+    "transfer_requests": "23438",
+    "users": "30"
+  },
+  "financialVersionHash": "031f6da4f7de472311c1ae748d2534ab905d94f36e4fa50c647650669bb0cc09",
+  "financialVersionTotal": "240806",
+  "migrations": [
+    {
+      "name": "001_m1.sql",
+      "checksum": "58cd31b090c5c7dd40fdcef9cc5f3dc46d24095960c2b2eda381a61297f218e1"
+    },
+    {
+      "name": "002_m2.sql",
+      "checksum": "fe252167e397ba27f3b738b3f540ce0977fb1992125520151577651556fa8286"
+    },
+    {
+      "name": "003_finance_summaries.sql",
+      "checksum": "0817f3f6a6ac2396509eb75aaa2bfdf3d6259088568743c1d3e3910ab278daff"
+    },
+    {
+      "name": "004_settlement_windows.sql",
+      "checksum": "6448464c6b7d1660911953f835505d2f1538d804a2e47273e1829cdf3026345f"
+    }
+  ],
+  "restoreTargets": [
+    "heji_m4_restore",
+    "heji_m4_restore_003",
+    "heji_m4_restore_004"
+  ],
+  "constraints": [
+    {
+      "type": "CHECK",
+      "count": "3"
+    },
+    {
+      "type": "FOREIGN KEY",
+      "count": "4"
+    },
+    {
+      "type": "PRIMARY KEY",
+      "count": "1"
+    },
+    {
+      "type": "UNIQUE",
+      "count": "1"
+    }
+  ],
+  "activeWindows": "0",
+  "otherConnections": 0,
+  "reference": "m4-backup-004-state-before-2026-11-19T09-58-25-861Z.json"
+}

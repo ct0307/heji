@@ -1,0 +1,2743 @@
+{
+  "scope": "真实Vue界面，全部API/WS隔离模拟；不创建账号、不写数据库",
+  "status": "passed",
+  "smoke": false,
+  "passed": [
+    "新浏览器默认A且设置入口可用",
+    "A/B即时切换且刷新恢复当前浏览器选择",
+    "唯一记账主入口且新建表单自动聚焦金额",
+    "金额与备注草稿跨主题保留且没有额外业务请求",
+    "Escape关闭设置并恢复入口焦点",
+    "界面A筛选默认收起、键盘展开、桌面日期同排且按实际条件筛选",
+    "界面A已展开筛选、输入及应用结果跨主题保留",
+    "界面A非法日期保留输入并阻止请求",
+    "界面B筛选默认收起、键盘展开、桌面日期同排且按实际条件筛选",
+    "界面B已展开筛选、输入及应用结果跨主题保留",
+    "界面B非法日期保留输入并阻止请求",
+    "390px设置卡片预览区域可点、单选项箭头键切换及Escape焦点恢复",
+    "1440px设置卡片预览区域可点、单选项箭头键切换及Escape焦点恢复",
+    "偏好降级：invalid默认A且仍可切换B",
+    "偏好降级：read-denied默认A且仍可切换B",
+    "偏好降级：write-denied默认A且仍可切换B",
+    "偏好降级：denied默认A且仍可切换B",
+    "普通结算预览与核对勾选切换后保留且无额外请求",
+    "短时窗口及核对勾选切换保留且仅一次主动模拟窗口POST",
+    "界面A在360px的明细、结算、设置无横向溢出",
+    "界面A在390px的明细、结算、统计、成员、设置无横向溢出",
+    "界面A在768px的明细、结算、设置无横向溢出",
+    "界面A在1440px的明细、结算、统计、成员、设置无横向溢出",
+    "界面B在360px的明细、结算、设置无横向溢出",
+    "界面B在390px的明细、结算、统计、成员、设置无横向溢出",
+    "界面B在768px的明细、结算、设置无横向溢出",
+    "界面B在1440px的明细、结算、统计、成员、设置无横向溢出",
+    "界面A桌面首屏完整显示首条账目、主CTA唯一且触控区域至少44px",
+    "界面A390px手机首条日期进入首屏有效区域",
+    "界面B桌面首屏完整显示首条账目、主CTA唯一且触控区域至少44px",
+    "界面B390px手机首条日期进入首屏有效区域",
+    "界面A的empty状态与手机/桌面布局",
+    "界面B的empty状态与手机/桌面布局",
+    "界面A的error状态与手机/桌面布局",
+    "界面B的error状态与手机/桌面布局",
+    "界面A在360px的40字符昵称、单笔最高金额、累计余额与分摊/确认预览无溢出或重叠",
+    "界面A在390px的40字符昵称、单笔最高金额、累计余额与分摊/确认预览无溢出或重叠",
+    "界面B在360px的40字符昵称、单笔最高金额、累计余额与分摊/确认预览无溢出或重叠",
+    "界面B在390px的40字符昵称、单笔最高金额、累计余额与分摊/确认预览无溢出或重叠"
+  ],
+  "screenshots": [
+    "docs/development/evidence/ui-refinement-2026-11-19/a-filters-1440.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/b-filters-1440.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/a-expenses-390.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/a-settlement-preview-390.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/a-reports-390.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/a-members-390.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/a-settings-390.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/a-expenses-1440.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/a-settlement-preview-1440.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/a-reports-1440.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/a-members-1440.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/a-settings-1440.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/b-expenses-390.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/b-settlement-preview-390.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/b-reports-390.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/b-members-390.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/b-settings-390.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/b-expenses-1440.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/b-settlement-preview-1440.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/b-reports-1440.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/b-members-1440.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/b-settings-1440.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/a-filters-390.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/b-filters-390.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/a-empty-expenses-390.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/a-empty-settlement-390.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/a-empty-expenses-1440.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/a-empty-settlement-1440.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/b-empty-expenses-390.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/b-empty-settlement-390.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/b-empty-expenses-1440.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/b-empty-settlement-1440.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/a-error-390.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/a-error-1440.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/b-error-390.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/b-error-1440.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/a-long-names-preview-390.png",
+    "docs/development/evidence/ui-refinement-2026-11-19/b-long-names-preview-390.png"
+  ],
+  "layouts": [
+    {
+      "interface": "a",
+      "viewport": 360,
+      "page": "expenses",
+      "width": 360,
+      "scroll": 360,
+      "body": 360
+    },
+    {
+      "interface": "a",
+      "viewport": 360,
+      "page": "settlement",
+      "width": 360,
+      "scroll": 360,
+      "body": 360
+    },
+    {
+      "interface": "a",
+      "viewport": 390,
+      "page": "expenses",
+      "width": 390,
+      "scroll": 390,
+      "body": 390
+    },
+    {
+      "interface": "a",
+      "viewport": 390,
+      "page": "settlement",
+      "width": 390,
+      "scroll": 390,
+      "body": 390
+    },
+    {
+      "interface": "a",
+      "viewport": 390,
+      "page": "reports",
+      "width": 390,
+      "scroll": 390,
+      "body": 390
+    },
+    {
+      "interface": "a",
+      "viewport": 390,
+      "page": "members",
+      "width": 390,
+      "scroll": 390,
+      "body": 390
+    },
+    {
+      "interface": "a",
+      "viewport": 768,
+      "page": "expenses",
+      "width": 768,
+      "scroll": 768,
+      "body": 768
+    },
+    {
+      "interface": "a",
+      "viewport": 768,
+      "page": "settlement",
+      "width": 768,
+      "scroll": 768,
+      "body": 768
+    },
+    {
+      "interface": "a",
+      "viewport": 1440,
+      "page": "expenses",
+      "width": 1440,
+      "scroll": 1440,
+      "body": 1440
+    },
+    {
+      "interface": "a",
+      "viewport": 1440,
+      "page": "settlement",
+      "width": 1440,
+      "scroll": 1440,
+      "body": 1440
+    },
+    {
+      "interface": "a",
+      "viewport": 1440,
+      "page": "reports",
+      "width": 1440,
+      "scroll": 1440,
+      "body": 1440
+    },
+    {
+      "interface": "a",
+      "viewport": 1440,
+      "page": "members",
+      "width": 1440,
+      "scroll": 1440,
+      "body": 1440
+    },
+    {
+      "interface": "b",
+      "viewport": 360,
+      "page": "expenses",
+      "width": 360,
+      "scroll": 360,
+      "body": 360
+    },
+    {
+      "interface": "b",
+      "viewport": 360,
+      "page": "settlement",
+      "width": 360,
+      "scroll": 360,
+      "body": 360
+    },
+    {
+      "interface": "b",
+      "viewport": 390,
+      "page": "expenses",
+      "width": 390,
+      "scroll": 390,
+      "body": 390
+    },
+    {
+      "interface": "b",
+      "viewport": 390,
+      "page": "settlement",
+      "width": 390,
+      "scroll": 390,
+      "body": 390
+    },
+    {
+      "interface": "b",
+      "viewport": 390,
+      "page": "reports",
+      "width": 390,
+      "scroll": 390,
+      "body": 390
+    },
+    {
+      "interface": "b",
+      "viewport": 390,
+      "page": "members",
+      "width": 390,
+      "scroll": 390,
+      "body": 390
+    },
+    {
+      "interface": "b",
+      "viewport": 768,
+      "page": "expenses",
+      "width": 768,
+      "scroll": 768,
+      "body": 768
+    },
+    {
+      "interface": "b",
+      "viewport": 768,
+      "page": "settlement",
+      "width": 768,
+      "scroll": 768,
+      "body": 768
+    },
+    {
+      "interface": "b",
+      "viewport": 1440,
+      "page": "expenses",
+      "width": 1440,
+      "scroll": 1440,
+      "body": 1440
+    },
+    {
+      "interface": "b",
+      "viewport": 1440,
+      "page": "settlement",
+      "width": 1440,
+      "scroll": 1440,
+      "body": 1440
+    },
+    {
+      "interface": "b",
+      "viewport": 1440,
+      "page": "reports",
+      "width": 1440,
+      "scroll": 1440,
+      "body": 1440
+    },
+    {
+      "interface": "b",
+      "viewport": 1440,
+      "page": "members",
+      "width": 1440,
+      "scroll": 1440,
+      "body": 1440
+    },
+    {
+      "interface": "a",
+      "viewport": 360,
+      "page": "expanded-filters",
+      "width": 360,
+      "scroll": 360,
+      "body": 360
+    },
+    {
+      "interface": "a",
+      "viewport": 390,
+      "page": "expanded-filters",
+      "width": 390,
+      "scroll": 390,
+      "body": 390
+    },
+    {
+      "interface": "a",
+      "viewport": 768,
+      "page": "expanded-filters",
+      "width": 768,
+      "scroll": 768,
+      "body": 768
+    },
+    {
+      "interface": "a",
+      "viewport": 1440,
+      "page": "expanded-filters",
+      "width": 1440,
+      "scroll": 1440,
+      "body": 1440
+    },
+    {
+      "interface": "b",
+      "viewport": 360,
+      "page": "expanded-filters",
+      "width": 360,
+      "scroll": 360,
+      "body": 360
+    },
+    {
+      "interface": "b",
+      "viewport": 390,
+      "page": "expanded-filters",
+      "width": 390,
+      "scroll": 390,
+      "body": 390
+    },
+    {
+      "interface": "b",
+      "viewport": 768,
+      "page": "expanded-filters",
+      "width": 768,
+      "scroll": 768,
+      "body": 768
+    },
+    {
+      "interface": "b",
+      "viewport": 1440,
+      "page": "expanded-filters",
+      "width": 1440,
+      "scroll": 1440,
+      "body": 1440
+    },
+    {
+      "interface": "a",
+      "viewport": 360,
+      "page": "long-names-max-amount",
+      "width": 360,
+      "scroll": 360,
+      "body": 360
+    },
+    {
+      "interface": "a",
+      "viewport": 390,
+      "page": "long-names-max-amount",
+      "width": 390,
+      "scroll": 390,
+      "body": 390
+    },
+    {
+      "interface": "b",
+      "viewport": 360,
+      "page": "long-names-max-amount",
+      "width": 360,
+      "scroll": 360,
+      "body": 360
+    },
+    {
+      "interface": "b",
+      "viewport": 390,
+      "page": "long-names-max-amount",
+      "width": 390,
+      "scroll": 390,
+      "body": 390
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/auth/csrf"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/me"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/csrf"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/me"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/csrf"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/me"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/csrf"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/me"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/csrf"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/me"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/csrf"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/me"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/csrf"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/me"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/csrf"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/me"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/csrf"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/me"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/csrf"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/me"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/csrf"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/me"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests/00000000-0000-4000-8000-000000000201/preview"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "POST",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests/00000000-0000-4000-8000-000000000201/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/csrf"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/me"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests/00000000-0000-4000-8000-000000000201/preview"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests/00000000-0000-4000-8000-000000000201/preview"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests/00000000-0000-4000-8000-000000000201/preview"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests/00000000-0000-4000-8000-000000000201/preview"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/csrf"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/me"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/csrf"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/me"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/csrf"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/me"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/csrf"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/me"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/csrf"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/me"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/csrf"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/me"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/csrf"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/me"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests/00000000-0000-4000-8000-000000000201/preview"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/csrf"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/me"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests/00000000-0000-4000-8000-000000000201/preview"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/csrf"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/me"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests/00000000-0000-4000-8000-000000000201/preview"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/csrf"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/me"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/members"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/balances"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/expenses"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfers"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/reports"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/audit-events"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests/00000000-0000-4000-8000-000000000201/preview"
+    },
+    {
+      "method": "GET",
+      "path": "/books/00000000-0000-4000-8000-000000000010/settlement-window"
+    }
+  ],
+  "history": [
+    {
+      "status": "failed",
+      "smoke": false,
+      "summary": {
+        "passed": 5,
+        "screenshots": 0,
+        "layoutChecks": 0,
+        "apiRequests": 119,
+        "businessMutations": []
+      },
+      "failedCheck": "默认/切换/草稿",
+      "errorType": "TimeoutError",
+      "reason": "Locator.select_option: Timeout 3500ms exceeded.\nCall log:\n  - waiting for locator(\"details.expense-filter-disclosure\").locator(\"form.expense-filters\").get_by_label(\"分类筛选\", exact=True)\n",
+      "finishedAt": "2026-11-19T03:55:08.628816+00:00"
+    },
+    {
+      "status": "failed",
+      "smoke": false,
+      "summary": {
+        "passed": 3,
+        "screenshots": 0,
+        "layoutChecks": 0,
+        "apiRequests": 78,
+        "businessMutations": []
+      },
+      "failedCheck": "默认/切换/草稿",
+      "errorType": "AssertionError",
+      "reason": "主题切换触发业务请求",
+      "finishedAt": "2026-11-19T03:56:58.332200+00:00"
+    },
+    {
+      "status": "failed",
+      "smoke": false,
+      "summary": {
+        "passed": 6,
+        "screenshots": 0,
+        "layoutChecks": 0,
+        "apiRequests": 102,
+        "businessMutations": []
+      },
+      "failedCheck": "默认/切换/草稿",
+      "errorType": "AssertionError",
+      "reason": "主题切换重新提交或读取筛选结果: [{'method': 'GET', 'path': '/books/00000000-0000-4000-8000-000000000010'}, {'method': 'GET', 'path': '/books/00000000-0000-4000-8000-000000000010/members'}, {'method': 'GET', 'path': '/books/00000000-0000-4000-8000-000000000010/balances'}, {'method': 'GET', 'path': '/books/00000000-0000-4000-8000-000000000010/expenses'}, {'method': 'GET', 'path': '/books/00000000-0000-4000-8000-000000000010/transfer-requests'}, {'method': 'GET', 'path': '/books/00000000-0000-4000-8000-000000000010/transfers'}, {'method': 'GET', 'path': '/books/00000000-0000-4000-8000-000000000010/settlement-window'}, {'method': 'GET', 'path': '/books/00000000-0000-4000-8000-000000000010/reports'}, {'method': 'GET', 'path': '/books/00000000-0000-4000-8000-000000000010/audit-events'}]",
+      "finishedAt": "2026-11-19T03:57:35.822040+00:00"
+    },
+    {
+      "status": "failed",
+      "smoke": false,
+      "summary": {
+        "passed": 11,
+        "screenshots": 2,
+        "layoutChecks": 0,
+        "apiRequests": 142,
+        "businessMutations": []
+      },
+      "failedCheck": "默认/切换/草稿",
+      "errorType": "TimeoutError",
+      "reason": "Locator.bounding_box: Timeout 3500ms exceeded.\nCall log:\n  - waiting for get_by_role(\"dialog\", name=\"界面设置\", exact=True).locator(\".appearance-option\").filter(has=get_by_role(\"dialog\", name=\"界面设置\", exact=True).locator(\"input[value='b']\"))\n",
+      "finishedAt": "2026-11-19T04:04:51.669119+00:00"
+    }
+  ],
+  "visualChecks": [
+    {
+      "interface": "a",
+      "viewport": 1440,
+      "firstExpense": {
+        "x": 281,
+        "y": 636.046875,
+        "width": 1086,
+        "height": 99.390625
+      },
+      "primaryAction": {
+        "x": 1289.828125,
+        "y": 107.484375,
+        "width": 106.171875,
+        "height": 44
+      }
+    },
+    {
+      "interface": "a",
+      "viewport": 390,
+      "firstDate": {
+        "x": 41,
+        "y": 759.25,
+        "width": 308,
+        "height": 20.390625
+      },
+      "usableHeight": 779
+    },
+    {
+      "interface": "b",
+      "viewport": 1440,
+      "firstExpense": {
+        "x": 156,
+        "y": 532.359375,
+        "width": 847,
+        "height": 95.390625
+      },
+      "primaryAction": {
+        "x": 1233.828125,
+        "y": 175.484375,
+        "width": 106.171875,
+        "height": 44
+      }
+    },
+    {
+      "interface": "b",
+      "viewport": 390,
+      "firstDate": {
+        "x": 63,
+        "y": 831.25,
+        "width": 286,
+        "height": 20.390625
+      },
+      "usableHeight": 844
+    }
+  ],
+  "financialReadability": [
+    {
+      "interface": "a",
+      "viewport": 360,
+      "personalAmountNumericLines": [
+        1
+      ],
+      "expenseTotalLabelLines": [
+        1
+      ],
+      "memberBalanceNumericLines": [
+        1,
+        1
+      ]
+    },
+    {
+      "interface": "a",
+      "viewport": 390,
+      "personalAmountNumericLines": [
+        1
+      ],
+      "expenseTotalLabelLines": [
+        1
+      ],
+      "memberBalanceNumericLines": [
+        1,
+        1
+      ]
+    },
+    {
+      "interface": "b",
+      "viewport": 360,
+      "personalAmountNumericLines": [
+        1
+      ],
+      "expenseTotalLabelLines": [
+        1
+      ],
+      "memberBalanceNumericLines": [
+        1,
+        1
+      ]
+    },
+    {
+      "interface": "b",
+      "viewport": 390,
+      "personalAmountNumericLines": [
+        1
+      ],
+      "expenseTotalLabelLines": [
+        1
+      ],
+      "memberBalanceNumericLines": [
+        1,
+        1
+      ]
+    }
+  ],
+  "finishedAt": "2026-11-19T04:10:53.311198+00:00",
+  "summary": {
+    "passed": 39,
+    "screenshots": 38,
+    "layoutChecks": 36,
+    "apiRequests": 521,
+    "businessMutations": [
+      {
+        "method": "POST",
+        "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests/00000000-0000-4000-8000-000000000201/settlement-window"
+      }
+    ]
+  },
+  "mockModel": {
+    "expenseCount": 5,
+    "expenseTotalFen": "83000",
+    "ownPaidFen": "55400",
+    "otherPaidFen": "27600",
+    "eachShareFen": "41500",
+    "ownReceivableFen": "13900",
+    "confirmationAmountFen": "13900",
+    "confirmedBalancesFen": [
+      "0",
+      "0"
+    ],
+    "subscription": "SUBSCRIBE → SUBSCRIBED，保持隔离模拟连接在线"
+  },
+  "harnessCorrections": [
+    {
+      "failure": "分类筛选定位超时",
+      "cause": "嵌套选择项参与get_by_label文本匹配",
+      "correction": "先读取实际aria_snapshot，改用combobox精确可访问名称定位；产品标签保持"
+    },
+    {
+      "failure": "两轮主题切换无额外请求断言失败",
+      "cause": "旧模拟WS主动关闭触发生产实时同步的重连补查",
+      "correction": "改为模拟真实订阅握手并保持连接，等待live及networkidle后基线；无额外请求断言保持"
+    },
+    {
+      "failure": "新增设置预览区域定位超时",
+      "cause": "has内部定位器包含dialog作用域，无法相对于候选label匹配",
+      "correction": "改为在选项内按input[value=b]定位，卡片真实点击与键盘检查保留"
+    }
+  ],
+  "productCorrections": [
+    {
+      "failure": "40字符连续拉丁昵称使手机明细横向溢出",
+      "observedScrollWidths": {
+        "a360": 523,
+        "a390": 529,
+        "b360": 545,
+        "b390": 551
+      },
+      "correction": "姓名与分摊/确认预览子元素允许收缩和断行；最终同轮边界检查无溢出或金额重叠"
+    },
+    {
+      "failure": "手机大金额完整保留但小数分行，共同消费标签被挤成竖排",
+      "correction": "手机概览按空间整块换行，并用Range行数检查金额数字和标签保持单行"
+    }
+  ],
+  "boundaryModel": {
+    "memberNicknameLength": 40,
+    "expenseCount": 5,
+    "eachExpenseFen": "100000000",
+    "expenseTotalFen": "500000000",
+    "ownPaidFen": "300000000",
+    "otherPaidFen": "200000000",
+    "eachShareFen": "250000000",
+    "ownReceivableFen": "50000000"
+  },
+  "sourceModifiedAtUtc": {
+    "apps/web/src/appearance.css": "2026-11-19T04:09:44.883975+00:00",
+    "apps/web/src/App.vue": "2026-11-19T03:53:34.496997+00:00",
+    "apps/web/src/components/AppearanceSettings.vue": "2026-11-19T03:53:34.498359+00:00",
+    "apps/web/src/views/BookView.vue": "2026-11-19T03:50:54.460584+00:00",
+    "apps/web/src/components/ExpensePanel.vue": "2026-11-19T03:50:54.461795+00:00"
+  },
+  "earlierSuccessfulRuns": [
+    {
+      "status": "passed",
+      "summary": {
+        "passed": 31,
+        "screenshots": 36,
+        "layoutChecks": 32,
+        "apiRequests": 394
+      },
+      "source": "同一会话首轮完整执行命令输出；最终验收以顶层结果为准"
+    },
+    {
+      "status": "passed",
+      "summary": {
+        "passed": 39,
+        "screenshots": 38,
+        "layoutChecks": 36,
+        "apiRequests": 521,
+        "businessMutations": [
+          {
+            "method": "POST",
+            "path": "/books/00000000-0000-4000-8000-000000000010/transfer-requests/00000000-0000-4000-8000-000000000201/settlement-window"
+          }
+        ]
+      },
+      "finishedAt": "2026-11-19T04:05:59.761720+00:00"
+    }
+  ]
+}

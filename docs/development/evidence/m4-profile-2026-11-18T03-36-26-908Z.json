@@ -1,0 +1,1114 @@
+{
+  "scope": "固定隔离库只读诊断，非HTTP正式基准",
+  "environment": {
+    "version": "8.0.32",
+    "sqlMode": "IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION",
+    "isolationLevel": "REPEATABLE-READ"
+  },
+  "scale": [
+    {
+      "expenses": "50204",
+      "versions": "54004",
+      "shares": "1620120"
+    }
+  ],
+  "traces": [
+    {
+      "view": "expenses",
+      "totalMs": 229.26150000000007,
+      "acquireMs": 0.12090000000011969,
+      "sql": [
+        {
+          "sql": "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ",
+          "ms": 0.4619000000000142,
+          "rows": null
+        },
+        {
+          "sql": "START TRANSACTION READ ONLY",
+          "ms": 0.2518999999999778,
+          "rows": null
+        },
+        {
+          "sql": "SELECT * FROM books WHERE id=?",
+          "ms": 2.1679999999998927,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT * FROM book_members WHERE bookId=? AND userId=? AND status='ACTIVE'",
+          "ms": 1.748299999999972,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT e.id FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId\n      WHERE e.bookId=? ORDER BY v.occurredOn DESC,e.id DESC LIMIT 21",
+          "ms": 185.1541000000002,
+          "rows": 21
+        },
+        {
+          "sql": "SELECT e.id,e.createdByMemberId,v.* FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision\n    WHERE e.bookId=?  AND e.id IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ORDER BY v.occurredOn DESC,e.id DESC",
+          "ms": 9.366299999999683,
+          "rows": 20
+        },
+        {
+          "sql": "SELECT s.expenseId,s.revision,s.memberId,s.amountFen FROM expense_shares s JOIN expenses e ON e.id=s.expenseId\n    WHERE s.bookId=? AND s.revision=e.currentRevision  AND e.id IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ORDER BY s.memberId",
+          "ms": 26.487500000000182,
+          "rows": 600
+        }
+      ]
+    },
+    {
+      "view": "snapshot",
+      "totalMs": 5894.475,
+      "acquireMs": 0.029299999999693682,
+      "sql": [
+        {
+          "sql": "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ",
+          "ms": 0.4135000000001128,
+          "rows": null
+        },
+        {
+          "sql": "START TRANSACTION READ ONLY",
+          "ms": 0.25549999999975626,
+          "rows": null
+        },
+        {
+          "sql": "SELECT * FROM books WHERE id=?",
+          "ms": 0.471400000000358,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT * FROM book_members WHERE bookId=? AND userId=? AND status='ACTIVE'",
+          "ms": 0.2962000000002263,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT m.id,m.userId,m.status,u.displayName FROM book_members m JOIN users u ON u.id=m.userId WHERE m.bookId=? ORDER BY m.id",
+          "ms": 3.989100000000235,
+          "rows": 30
+        },
+        {
+          "sql": "SELECT r.*,t.id AS confirmedTransferId FROM transfer_requests r LEFT JOIN confirmed_transfers t ON t.requestId=r.id\n    WHERE r.bookId=?  AND r.status='PENDING' ORDER BY r.createdAt DESC,r.id DESC ",
+          "ms": 47.51499999999987,
+          "rows": 1562
+        },
+        {
+          "sql": "WITH current_expenses AS (\n    SELECT e.id,e.currentRevision,v.paidByMemberId,v.amountFen FROM expenses e\n    JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId\n    WHERE e.bookId=? AND v.isVoided=0\n  ), paid AS (SELECT paidByMemberId memberId,SUM(amountFen) paidFen FROM current_expenses GROUP BY paidByMemberId),\n  shares AS (SELECT s.memberId,SUM(s.amountFen) shareFen FROM current_expenses v\n    JOIN expense_shares s ON s.expenseId=v.id AND s.revision=v.currentRevision AND s.bookId=? GROUP BY s.memberId),\n  outgoing AS (SELECT fromMemberId memberId,SUM(amountFen) outgoingFen FROM confirmed_transfers WHERE bookId=? GROUP BY fromMemberId),\n  incoming AS (SELECT toMemberId memberId,SUM(amountFen) incomingFen FROM confirmed_transfers WHERE bookId=? GROUP BY toMemberId)\n  SELECT m.id memberId,COALESCE(p.paidFen,0) paidFen,COALESCE(s.shareFen,0) shareFen,\n    COALESCE(o.outgoingFen,0) outgoingFen,COALESCE(i.incomingFen,0) incomingFen\n  FROM book_members m LEFT JOIN paid p ON p.memberId=m.id LEFT JOIN shares s ON s.memberId=m.id\n    LEFT JOIN outgoing o ON o.memberId=m.id LEFT JOIN incoming i ON i.memberId=m.id WHERE m.bookId=? ORDER BY m.id",
+          "ms": 5838.4064,
+          "rows": 30
+        }
+      ]
+    },
+    {
+      "view": "report",
+      "totalMs": 6272.9884,
+      "acquireMs": 0.02599999999983993,
+      "sql": [
+        {
+          "sql": "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ",
+          "ms": 0.19530000000031578,
+          "rows": null
+        },
+        {
+          "sql": "START TRANSACTION READ ONLY",
+          "ms": 0.21500000000014552,
+          "rows": null
+        },
+        {
+          "sql": "SELECT * FROM books WHERE id=?",
+          "ms": 0.7288000000007742,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT * FROM book_members WHERE bookId=? AND userId=? AND status='ACTIVE'",
+          "ms": 0.846400000000358,
+          "rows": 1
+        },
+        {
+          "sql": "WITH current_expenses AS (SELECT v.* FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId WHERE e.bookId=? AND v.isVoided=0) SELECT category,SUM(amountFen) amountFen FROM current_expenses GROUP BY category",
+          "ms": 392.33759999999984,
+          "rows": 4
+        },
+        {
+          "sql": "WITH current_expenses AS (SELECT v.* FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId WHERE e.bookId=? AND v.isVoided=0),\n    shares AS (SELECT s.memberId,SUM(s.amountFen) shareFen FROM current_expenses v JOIN expense_shares s ON s.bookId=v.bookId AND s.expenseId=v.expenseId AND s.revision=v.revision GROUP BY s.memberId),\n    paid AS (SELECT paidByMemberId memberId,SUM(amountFen) paidFen FROM current_expenses GROUP BY paidByMemberId)\n    SELECT m.id memberId,COALESCE(p.paidFen,0) paidFen,COALESCE(s.shareFen,0) shareFen,\n      DENSE_RANK() OVER (ORDER BY COALESCE(s.shareFen,0) DESC) rankNo\n    FROM book_members m LEFT JOIN shares s ON s.memberId=m.id LEFT JOIN paid p ON p.memberId=m.id\n    WHERE m.bookId=? ORDER BY rankNo,m.id",
+          "ms": 5877.8351,
+          "rows": 30
+        }
+      ]
+    },
+    {
+      "view": "expenses",
+      "totalMs": 202.78549999999996,
+      "acquireMs": 5.924999999999272,
+      "sql": [
+        {
+          "sql": "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ",
+          "ms": 1.6692999999995664,
+          "rows": null
+        },
+        {
+          "sql": "START TRANSACTION READ ONLY",
+          "ms": 0.8189000000002125,
+          "rows": null
+        },
+        {
+          "sql": "SELECT * FROM books WHERE id=?",
+          "ms": 1.3426999999992404,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT * FROM book_members WHERE bookId=? AND userId=? AND status='ACTIVE'",
+          "ms": 1.278599999999642,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT e.id FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId\n      WHERE e.bookId=? ORDER BY v.occurredOn DESC,e.id DESC LIMIT 21",
+          "ms": 162.6833999999999,
+          "rows": 21
+        },
+        {
+          "sql": "SELECT e.id,e.createdByMemberId,v.* FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision\n    WHERE e.bookId=?  AND e.id IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ORDER BY v.occurredOn DESC,e.id DESC",
+          "ms": 4.851599999999962,
+          "rows": 20
+        },
+        {
+          "sql": "SELECT s.expenseId,s.revision,s.memberId,s.amountFen FROM expense_shares s JOIN expenses e ON e.id=s.expenseId\n    WHERE s.bookId=? AND s.revision=e.currentRevision  AND e.id IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ORDER BY s.memberId",
+          "ms": 22.269800000000032,
+          "rows": 600
+        }
+      ]
+    },
+    {
+      "view": "expenses",
+      "totalMs": 200.91610000000037,
+      "acquireMs": 5.475400000001173,
+      "sql": [
+        {
+          "sql": "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ",
+          "ms": 1.3905000000013388,
+          "rows": null
+        },
+        {
+          "sql": "START TRANSACTION READ ONLY",
+          "ms": 0.5882000000001426,
+          "rows": null
+        },
+        {
+          "sql": "SELECT * FROM books WHERE id=?",
+          "ms": 1.0864999999994325,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT * FROM book_members WHERE bookId=? AND userId=? AND status='ACTIVE'",
+          "ms": 1.0516999999999825,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT e.id FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId\n      WHERE e.bookId=? ORDER BY v.occurredOn DESC,e.id DESC LIMIT 21",
+          "ms": 169.04249999999956,
+          "rows": 21
+        },
+        {
+          "sql": "SELECT e.id,e.createdByMemberId,v.* FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision\n    WHERE e.bookId=?  AND e.id IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ORDER BY v.occurredOn DESC,e.id DESC",
+          "ms": 0.9567999999999302,
+          "rows": 20
+        },
+        {
+          "sql": "SELECT s.expenseId,s.revision,s.memberId,s.amountFen FROM expense_shares s JOIN expenses e ON e.id=s.expenseId\n    WHERE s.bookId=? AND s.revision=e.currentRevision  AND e.id IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ORDER BY s.memberId",
+          "ms": 17.956199999998717,
+          "rows": 600
+        }
+      ]
+    },
+    {
+      "view": "expenses",
+      "totalMs": 202.96119999999974,
+      "acquireMs": 8.082300000000032,
+      "sql": [
+        {
+          "sql": "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ",
+          "ms": 1.1794999999983702,
+          "rows": null
+        },
+        {
+          "sql": "START TRANSACTION READ ONLY",
+          "ms": 0.6545999999998457,
+          "rows": null
+        },
+        {
+          "sql": "SELECT * FROM books WHERE id=?",
+          "ms": 0.8752999999996973,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT * FROM book_members WHERE bookId=? AND userId=? AND status='ACTIVE'",
+          "ms": 1.1617000000005646,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT e.id FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId\n      WHERE e.bookId=? ORDER BY v.occurredOn DESC,e.id DESC LIMIT 21",
+          "ms": 162.77039999999943,
+          "rows": 21
+        },
+        {
+          "sql": "SELECT e.id,e.createdByMemberId,v.* FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision\n    WHERE e.bookId=?  AND e.id IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ORDER BY v.occurredOn DESC,e.id DESC",
+          "ms": 4.069100000000617,
+          "rows": 20
+        },
+        {
+          "sql": "SELECT s.expenseId,s.revision,s.memberId,s.amountFen FROM expense_shares s JOIN expenses e ON e.id=s.expenseId\n    WHERE s.bookId=? AND s.revision=e.currentRevision  AND e.id IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ORDER BY s.memberId",
+          "ms": 21.554299999999785,
+          "rows": 600
+        }
+      ]
+    },
+    {
+      "view": "expenses",
+      "totalMs": 202.452299999999,
+      "acquireMs": 6.709199999999328,
+      "sql": [
+        {
+          "sql": "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ",
+          "ms": 0.9828999999990629,
+          "rows": null
+        },
+        {
+          "sql": "START TRANSACTION READ ONLY",
+          "ms": 0.7877000000007683,
+          "rows": null
+        },
+        {
+          "sql": "SELECT * FROM books WHERE id=?",
+          "ms": 1.2811000000001513,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT * FROM book_members WHERE bookId=? AND userId=? AND status='ACTIVE'",
+          "ms": 1.3320000000003347,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT e.id FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId\n      WHERE e.bookId=? ORDER BY v.occurredOn DESC,e.id DESC LIMIT 21",
+          "ms": 169.04060000000027,
+          "rows": 21
+        },
+        {
+          "sql": "SELECT e.id,e.createdByMemberId,v.* FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision\n    WHERE e.bookId=?  AND e.id IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ORDER BY v.occurredOn DESC,e.id DESC",
+          "ms": 1.9319999999988795,
+          "rows": 20
+        },
+        {
+          "sql": "SELECT s.expenseId,s.revision,s.memberId,s.amountFen FROM expense_shares s JOIN expenses e ON e.id=s.expenseId\n    WHERE s.bookId=? AND s.revision=e.currentRevision  AND e.id IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ORDER BY s.memberId",
+          "ms": 19.035899999998946,
+          "rows": 600
+        }
+      ]
+    },
+    {
+      "view": "expenses",
+      "totalMs": 201.45400000000154,
+      "acquireMs": 6.513600000000224,
+      "sql": [
+        {
+          "sql": "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ",
+          "ms": 0.8010000000012951,
+          "rows": null
+        },
+        {
+          "sql": "START TRANSACTION READ ONLY",
+          "ms": 0.5588999999999942,
+          "rows": null
+        },
+        {
+          "sql": "SELECT * FROM books WHERE id=?",
+          "ms": 1.1553000000003522,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT * FROM book_members WHERE bookId=? AND userId=? AND status='ACTIVE'",
+          "ms": 1.367500000000291,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT e.id FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId\n      WHERE e.bookId=? ORDER BY v.occurredOn DESC,e.id DESC LIMIT 21",
+          "ms": 162.44560000000092,
+          "rows": 21
+        },
+        {
+          "sql": "SELECT e.id,e.createdByMemberId,v.* FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision\n    WHERE e.bookId=?  AND e.id IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ORDER BY v.occurredOn DESC,e.id DESC",
+          "ms": 3.662500000000364,
+          "rows": 20
+        },
+        {
+          "sql": "SELECT s.expenseId,s.revision,s.memberId,s.amountFen FROM expense_shares s JOIN expenses e ON e.id=s.expenseId\n    WHERE s.bookId=? AND s.revision=e.currentRevision  AND e.id IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ORDER BY s.memberId",
+          "ms": 24.002599999999802,
+          "rows": 600
+        }
+      ]
+    },
+    {
+      "view": "expenses",
+      "totalMs": 323.3852999999999,
+      "acquireMs": 198.73680000000058,
+      "sql": [
+        {
+          "sql": "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ",
+          "ms": 0.35599999999976717,
+          "rows": null
+        },
+        {
+          "sql": "START TRANSACTION READ ONLY",
+          "ms": 0.4555000000000291,
+          "rows": null
+        },
+        {
+          "sql": "SELECT * FROM books WHERE id=?",
+          "ms": 0.47229999999944994,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT * FROM book_members WHERE bookId=? AND userId=? AND status='ACTIVE'",
+          "ms": 0.5110999999997148,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT e.id FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId\n      WHERE e.bookId=? ORDER BY v.occurredOn DESC,e.id DESC LIMIT 21",
+          "ms": 114.66129999999976,
+          "rows": 21
+        },
+        {
+          "sql": "SELECT e.id,e.createdByMemberId,v.* FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision\n    WHERE e.bookId=?  AND e.id IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ORDER BY v.occurredOn DESC,e.id DESC",
+          "ms": 1.1132999999990716,
+          "rows": 20
+        },
+        {
+          "sql": "SELECT s.expenseId,s.revision,s.memberId,s.amountFen FROM expense_shares s JOIN expenses e ON e.id=s.expenseId\n    WHERE s.bookId=? AND s.revision=e.currentRevision  AND e.id IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ORDER BY s.memberId",
+          "ms": 5.2369999999991705,
+          "rows": 600
+        }
+      ]
+    },
+    {
+      "view": "expenses",
+      "totalMs": 323.52419999999984,
+      "acquireMs": 198.65990000000056,
+      "sql": [
+        {
+          "sql": "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ",
+          "ms": 0.3773000000001048,
+          "rows": null
+        },
+        {
+          "sql": "START TRANSACTION READ ONLY",
+          "ms": 0.4482000000007247,
+          "rows": null
+        },
+        {
+          "sql": "SELECT * FROM books WHERE id=?",
+          "ms": 0.46090000000003783,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT * FROM book_members WHERE bookId=? AND userId=? AND status='ACTIVE'",
+          "ms": 0.3896999999997206,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT e.id FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId\n      WHERE e.bookId=? ORDER BY v.occurredOn DESC,e.id DESC LIMIT 21",
+          "ms": 115.34020000000055,
+          "rows": 21
+        },
+        {
+          "sql": "SELECT e.id,e.createdByMemberId,v.* FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision\n    WHERE e.bookId=?  AND e.id IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ORDER BY v.occurredOn DESC,e.id DESC",
+          "ms": 1.253999999998996,
+          "rows": 20
+        },
+        {
+          "sql": "SELECT s.expenseId,s.revision,s.memberId,s.amountFen FROM expense_shares s JOIN expenses e ON e.id=s.expenseId\n    WHERE s.bookId=? AND s.revision=e.currentRevision  AND e.id IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ORDER BY s.memberId",
+          "ms": 5.301900000000387,
+          "rows": 600
+        }
+      ]
+    },
+    {
+      "view": "expenses",
+      "totalMs": 323.64580000000024,
+      "acquireMs": 198.59679999999935,
+      "sql": [
+        {
+          "sql": "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ",
+          "ms": 0.3989000000001397,
+          "rows": null
+        },
+        {
+          "sql": "START TRANSACTION READ ONLY",
+          "ms": 0.4276999999983673,
+          "rows": null
+        },
+        {
+          "sql": "SELECT * FROM books WHERE id=?",
+          "ms": 0.4657999999999447,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT * FROM book_members WHERE bookId=? AND userId=? AND status='ACTIVE'",
+          "ms": 0.3539999999993597,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT e.id FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId\n      WHERE e.bookId=? ORDER BY v.occurredOn DESC,e.id DESC LIMIT 21",
+          "ms": 115.29730000000018,
+          "rows": 21
+        },
+        {
+          "sql": "SELECT e.id,e.createdByMemberId,v.* FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision\n    WHERE e.bookId=?  AND e.id IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ORDER BY v.occurredOn DESC,e.id DESC",
+          "ms": 1.2165999999997439,
+          "rows": 20
+        },
+        {
+          "sql": "SELECT s.expenseId,s.revision,s.memberId,s.amountFen FROM expense_shares s JOIN expenses e ON e.id=s.expenseId\n    WHERE s.bookId=? AND s.revision=e.currentRevision  AND e.id IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ORDER BY s.memberId",
+          "ms": 6.19800000000032,
+          "rows": 600
+        }
+      ]
+    },
+    {
+      "view": "expenses",
+      "totalMs": 528.6944000000003,
+      "acquireMs": 323.4853000000003,
+      "sql": [
+        {
+          "sql": "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ",
+          "ms": 0.33469999999942956,
+          "rows": null
+        },
+        {
+          "sql": "START TRANSACTION READ ONLY",
+          "ms": 0.24569999999948777,
+          "rows": null
+        },
+        {
+          "sql": "SELECT * FROM books WHERE id=?",
+          "ms": 0.4437999999991007,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT * FROM book_members WHERE bookId=? AND userId=? AND status='ACTIVE'",
+          "ms": 0.3158999999996013,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT e.id FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId\n      WHERE e.bookId=? ORDER BY v.occurredOn DESC,e.id DESC LIMIT 21",
+          "ms": 170.45629999999983,
+          "rows": 21
+        },
+        {
+          "sql": "SELECT e.id,e.createdByMemberId,v.* FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision\n    WHERE e.bookId=?  AND e.id IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ORDER BY v.occurredOn DESC,e.id DESC",
+          "ms": 8.267700000000332,
+          "rows": 20
+        },
+        {
+          "sql": "SELECT s.expenseId,s.revision,s.memberId,s.amountFen FROM expense_shares s JOIN expenses e ON e.id=s.expenseId\n    WHERE s.bookId=? AND s.revision=e.currentRevision  AND e.id IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ORDER BY s.memberId",
+          "ms": 24.230799999999363,
+          "rows": 600
+        }
+      ]
+    },
+    {
+      "view": "expenses",
+      "totalMs": 528.7996999999996,
+      "acquireMs": 323.3829000000005,
+      "sql": [
+        {
+          "sql": "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ",
+          "ms": 0.28880000000026484,
+          "rows": null
+        },
+        {
+          "sql": "START TRANSACTION READ ONLY",
+          "ms": 0.3080000000009022,
+          "rows": null
+        },
+        {
+          "sql": "SELECT * FROM books WHERE id=?",
+          "ms": 0.43959999999970023,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT * FROM book_members WHERE bookId=? AND userId=? AND status='ACTIVE'",
+          "ms": 0.2698999999993248,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT e.id FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId\n      WHERE e.bookId=? ORDER BY v.occurredOn DESC,e.id DESC LIMIT 21",
+          "ms": 170.9520999999986,
+          "rows": 21
+        },
+        {
+          "sql": "SELECT e.id,e.createdByMemberId,v.* FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision\n    WHERE e.bookId=?  AND e.id IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ORDER BY v.occurredOn DESC,e.id DESC",
+          "ms": 8.101700000001074,
+          "rows": 20
+        },
+        {
+          "sql": "SELECT s.expenseId,s.revision,s.memberId,s.amountFen FROM expense_shares s JOIN expenses e ON e.id=s.expenseId\n    WHERE s.bookId=? AND s.revision=e.currentRevision  AND e.id IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ORDER BY s.memberId",
+          "ms": 24.556300000000192,
+          "rows": 600
+        }
+      ]
+    },
+    {
+      "view": "snapshot",
+      "totalMs": 5566.5426000000025,
+      "acquireMs": 4.862199999999575,
+      "sql": [
+        {
+          "sql": "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ",
+          "ms": 0.5723999999991065,
+          "rows": null
+        },
+        {
+          "sql": "START TRANSACTION READ ONLY",
+          "ms": 0.6275999999998021,
+          "rows": null
+        },
+        {
+          "sql": "SELECT * FROM books WHERE id=?",
+          "ms": 1.0931000000000495,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT * FROM book_members WHERE bookId=? AND userId=? AND status='ACTIVE'",
+          "ms": 1.212100000000646,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT m.id,m.userId,m.status,u.displayName FROM book_members m JOIN users u ON u.id=m.userId WHERE m.bookId=? ORDER BY m.id",
+          "ms": 1.3644999999996799,
+          "rows": 30
+        },
+        {
+          "sql": "SELECT r.*,t.id AS confirmedTransferId FROM transfer_requests r LEFT JOIN confirmed_transfers t ON t.requestId=r.id\n    WHERE r.bookId=?  AND r.status='PENDING' ORDER BY r.createdAt DESC,r.id DESC ",
+          "ms": 54.3195999999989,
+          "rows": 1562
+        },
+        {
+          "sql": "WITH current_expenses AS (\n    SELECT e.id,e.currentRevision,v.paidByMemberId,v.amountFen FROM expenses e\n    JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId\n    WHERE e.bookId=? AND v.isVoided=0\n  ), paid AS (SELECT paidByMemberId memberId,SUM(amountFen) paidFen FROM current_expenses GROUP BY paidByMemberId),\n  shares AS (SELECT s.memberId,SUM(s.amountFen) shareFen FROM current_expenses v\n    JOIN expense_shares s ON s.expenseId=v.id AND s.revision=v.currentRevision AND s.bookId=? GROUP BY s.memberId),\n  outgoing AS (SELECT fromMemberId memberId,SUM(amountFen) outgoingFen FROM confirmed_transfers WHERE bookId=? GROUP BY fromMemberId),\n  incoming AS (SELECT toMemberId memberId,SUM(amountFen) incomingFen FROM confirmed_transfers WHERE bookId=? GROUP BY toMemberId)\n  SELECT m.id memberId,COALESCE(p.paidFen,0) paidFen,COALESCE(s.shareFen,0) shareFen,\n    COALESCE(o.outgoingFen,0) outgoingFen,COALESCE(i.incomingFen,0) incomingFen\n  FROM book_members m LEFT JOIN paid p ON p.memberId=m.id LEFT JOIN shares s ON s.memberId=m.id\n    LEFT JOIN outgoing o ON o.memberId=m.id LEFT JOIN incoming i ON i.memberId=m.id WHERE m.bookId=? ORDER BY m.id",
+          "ms": 5499.824900000001,
+          "rows": 30
+        }
+      ]
+    },
+    {
+      "view": "snapshot",
+      "totalMs": 5568.372799999999,
+      "acquireMs": 6.2466999999996915,
+      "sql": [
+        {
+          "sql": "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ",
+          "ms": 0.5725999999995111,
+          "rows": null
+        },
+        {
+          "sql": "START TRANSACTION READ ONLY",
+          "ms": 0.45830000000023574,
+          "rows": null
+        },
+        {
+          "sql": "SELECT * FROM books WHERE id=?",
+          "ms": 1.0021000000015192,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT * FROM book_members WHERE bookId=? AND userId=? AND status='ACTIVE'",
+          "ms": 1.1764000000002852,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT m.id,m.userId,m.status,u.displayName FROM book_members m JOIN users u ON u.id=m.userId WHERE m.bookId=? ORDER BY m.id",
+          "ms": 1.818199999999706,
+          "rows": 30
+        },
+        {
+          "sql": "SELECT r.*,t.id AS confirmedTransferId FROM transfer_requests r LEFT JOIN confirmed_transfers t ON t.requestId=r.id\n    WHERE r.bookId=?  AND r.status='PENDING' ORDER BY r.createdAt DESC,r.id DESC ",
+          "ms": 58.5663999999997,
+          "rows": 1562
+        },
+        {
+          "sql": "WITH current_expenses AS (\n    SELECT e.id,e.currentRevision,v.paidByMemberId,v.amountFen FROM expenses e\n    JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId\n    WHERE e.bookId=? AND v.isVoided=0\n  ), paid AS (SELECT paidByMemberId memberId,SUM(amountFen) paidFen FROM current_expenses GROUP BY paidByMemberId),\n  shares AS (SELECT s.memberId,SUM(s.amountFen) shareFen FROM current_expenses v\n    JOIN expense_shares s ON s.expenseId=v.id AND s.revision=v.currentRevision AND s.bookId=? GROUP BY s.memberId),\n  outgoing AS (SELECT fromMemberId memberId,SUM(amountFen) outgoingFen FROM confirmed_transfers WHERE bookId=? GROUP BY fromMemberId),\n  incoming AS (SELECT toMemberId memberId,SUM(amountFen) incomingFen FROM confirmed_transfers WHERE bookId=? GROUP BY toMemberId)\n  SELECT m.id memberId,COALESCE(p.paidFen,0) paidFen,COALESCE(s.shareFen,0) shareFen,\n    COALESCE(o.outgoingFen,0) outgoingFen,COALESCE(i.incomingFen,0) incomingFen\n  FROM book_members m LEFT JOIN paid p ON p.memberId=m.id LEFT JOIN shares s ON s.memberId=m.id\n    LEFT JOIN outgoing o ON o.memberId=m.id LEFT JOIN incoming i ON i.memberId=m.id WHERE m.bookId=? ORDER BY m.id",
+          "ms": 5496.202400000002,
+          "rows": 30
+        }
+      ]
+    },
+    {
+      "view": "snapshot",
+      "totalMs": 5566.946400000001,
+      "acquireMs": 4.854199999999764,
+      "sql": [
+        {
+          "sql": "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ",
+          "ms": 0.6167000000004919,
+          "rows": null
+        },
+        {
+          "sql": "START TRANSACTION READ ONLY",
+          "ms": 0.644800000000032,
+          "rows": null
+        },
+        {
+          "sql": "SELECT * FROM books WHERE id=?",
+          "ms": 0.9490999999998166,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT * FROM book_members WHERE bookId=? AND userId=? AND status='ACTIVE'",
+          "ms": 1.2629000000015367,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT m.id,m.userId,m.status,u.displayName FROM book_members m JOIN users u ON u.id=m.userId WHERE m.bookId=? ORDER BY m.id",
+          "ms": 1.272399999999834,
+          "rows": 30
+        },
+        {
+          "sql": "SELECT r.*,t.id AS confirmedTransferId FROM transfer_requests r LEFT JOIN confirmed_transfers t ON t.requestId=r.id\n    WHERE r.bookId=?  AND r.status='PENDING' ORDER BY r.createdAt DESC,r.id DESC ",
+          "ms": 49.87249999999949,
+          "rows": 1562
+        },
+        {
+          "sql": "WITH current_expenses AS (\n    SELECT e.id,e.currentRevision,v.paidByMemberId,v.amountFen FROM expenses e\n    JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId\n    WHERE e.bookId=? AND v.isVoided=0\n  ), paid AS (SELECT paidByMemberId memberId,SUM(amountFen) paidFen FROM current_expenses GROUP BY paidByMemberId),\n  shares AS (SELECT s.memberId,SUM(s.amountFen) shareFen FROM current_expenses v\n    JOIN expense_shares s ON s.expenseId=v.id AND s.revision=v.currentRevision AND s.bookId=? GROUP BY s.memberId),\n  outgoing AS (SELECT fromMemberId memberId,SUM(amountFen) outgoingFen FROM confirmed_transfers WHERE bookId=? GROUP BY fromMemberId),\n  incoming AS (SELECT toMemberId memberId,SUM(amountFen) incomingFen FROM confirmed_transfers WHERE bookId=? GROUP BY toMemberId)\n  SELECT m.id memberId,COALESCE(p.paidFen,0) paidFen,COALESCE(s.shareFen,0) shareFen,\n    COALESCE(o.outgoingFen,0) outgoingFen,COALESCE(i.incomingFen,0) incomingFen\n  FROM book_members m LEFT JOIN paid p ON p.memberId=m.id LEFT JOIN shares s ON s.memberId=m.id\n    LEFT JOIN outgoing o ON o.memberId=m.id LEFT JOIN incoming i ON i.memberId=m.id WHERE m.bookId=? ORDER BY m.id",
+          "ms": 5505.336800000001,
+          "rows": 30
+        }
+      ]
+    },
+    {
+      "view": "snapshot",
+      "totalMs": 6000.434099999999,
+      "acquireMs": 528.7638000000006,
+      "sql": [
+        {
+          "sql": "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ",
+          "ms": 0.12739999999939755,
+          "rows": null
+        },
+        {
+          "sql": "START TRANSACTION READ ONLY",
+          "ms": 0.1488999999983207,
+          "rows": null
+        },
+        {
+          "sql": "SELECT * FROM books WHERE id=?",
+          "ms": 0.45759999999972933,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT * FROM book_members WHERE bookId=? AND userId=? AND status='ACTIVE'",
+          "ms": 1.17870000000039,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT m.id,m.userId,m.status,u.displayName FROM book_members m JOIN users u ON u.id=m.userId WHERE m.bookId=? ORDER BY m.id",
+          "ms": 1.6325999999990017,
+          "rows": 30
+        },
+        {
+          "sql": "SELECT r.*,t.id AS confirmedTransferId FROM transfer_requests r LEFT JOIN confirmed_transfers t ON t.requestId=r.id\n    WHERE r.bookId=?  AND r.status='PENDING' ORDER BY r.createdAt DESC,r.id DESC ",
+          "ms": 51.4367000000002,
+          "rows": 1562
+        },
+        {
+          "sql": "WITH current_expenses AS (\n    SELECT e.id,e.currentRevision,v.paidByMemberId,v.amountFen FROM expenses e\n    JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId\n    WHERE e.bookId=? AND v.isVoided=0\n  ), paid AS (SELECT paidByMemberId memberId,SUM(amountFen) paidFen FROM current_expenses GROUP BY paidByMemberId),\n  shares AS (SELECT s.memberId,SUM(s.amountFen) shareFen FROM current_expenses v\n    JOIN expense_shares s ON s.expenseId=v.id AND s.revision=v.currentRevision AND s.bookId=? GROUP BY s.memberId),\n  outgoing AS (SELECT fromMemberId memberId,SUM(amountFen) outgoingFen FROM confirmed_transfers WHERE bookId=? GROUP BY fromMemberId),\n  incoming AS (SELECT toMemberId memberId,SUM(amountFen) incomingFen FROM confirmed_transfers WHERE bookId=? GROUP BY toMemberId)\n  SELECT m.id memberId,COALESCE(p.paidFen,0) paidFen,COALESCE(s.shareFen,0) shareFen,\n    COALESCE(o.outgoingFen,0) outgoingFen,COALESCE(i.incomingFen,0) incomingFen\n  FROM book_members m LEFT JOIN paid p ON p.memberId=m.id LEFT JOIN shares s ON s.memberId=m.id\n    LEFT JOIN outgoing o ON o.memberId=m.id LEFT JOIN incoming i ON i.memberId=m.id WHERE m.bookId=? ORDER BY m.id",
+          "ms": 5414.177500000002,
+          "rows": 30
+        }
+      ]
+    },
+    {
+      "view": "snapshot",
+      "totalMs": 6000.472300000001,
+      "acquireMs": 323.5743999999995,
+      "sql": [
+        {
+          "sql": "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ",
+          "ms": 0.3271000000004278,
+          "rows": null
+        },
+        {
+          "sql": "START TRANSACTION READ ONLY",
+          "ms": 0.22639999999955762,
+          "rows": null
+        },
+        {
+          "sql": "SELECT * FROM books WHERE id=?",
+          "ms": 0.17859999999927823,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT * FROM book_members WHERE bookId=? AND userId=? AND status='ACTIVE'",
+          "ms": 0.281699999999546,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT m.id,m.userId,m.status,u.displayName FROM book_members m JOIN users u ON u.id=m.userId WHERE m.bookId=? ORDER BY m.id",
+          "ms": 0.6844999999993888,
+          "rows": 30
+        },
+        {
+          "sql": "SELECT r.*,t.id AS confirmedTransferId FROM transfer_requests r LEFT JOIN confirmed_transfers t ON t.requestId=r.id\n    WHERE r.bookId=?  AND r.status='PENDING' ORDER BY r.createdAt DESC,r.id DESC ",
+          "ms": 12.847600000000966,
+          "rows": 1562
+        },
+        {
+          "sql": "WITH current_expenses AS (\n    SELECT e.id,e.currentRevision,v.paidByMemberId,v.amountFen FROM expenses e\n    JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId\n    WHERE e.bookId=? AND v.isVoided=0\n  ), paid AS (SELECT paidByMemberId memberId,SUM(amountFen) paidFen FROM current_expenses GROUP BY paidByMemberId),\n  shares AS (SELECT s.memberId,SUM(s.amountFen) shareFen FROM current_expenses v\n    JOIN expense_shares s ON s.expenseId=v.id AND s.revision=v.currentRevision AND s.bookId=? GROUP BY s.memberId),\n  outgoing AS (SELECT fromMemberId memberId,SUM(amountFen) outgoingFen FROM confirmed_transfers WHERE bookId=? GROUP BY fromMemberId),\n  incoming AS (SELECT toMemberId memberId,SUM(amountFen) incomingFen FROM confirmed_transfers WHERE bookId=? GROUP BY toMemberId)\n  SELECT m.id memberId,COALESCE(p.paidFen,0) paidFen,COALESCE(s.shareFen,0) shareFen,\n    COALESCE(o.outgoingFen,0) outgoingFen,COALESCE(i.incomingFen,0) incomingFen\n  FROM book_members m LEFT JOIN paid p ON p.memberId=m.id LEFT JOIN shares s ON s.memberId=m.id\n    LEFT JOIN outgoing o ON o.memberId=m.id LEFT JOIN incoming i ON i.memberId=m.id WHERE m.bookId=? ORDER BY m.id",
+          "ms": 5659.9285,
+          "rows": 30
+        }
+      ]
+    },
+    {
+      "view": "snapshot",
+      "totalMs": 6000.484800000002,
+      "acquireMs": 528.6844000000001,
+      "sql": [
+        {
+          "sql": "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ",
+          "ms": 0.15099999999983993,
+          "rows": null
+        },
+        {
+          "sql": "START TRANSACTION READ ONLY",
+          "ms": 0.11779999999998836,
+          "rows": null
+        },
+        {
+          "sql": "SELECT * FROM books WHERE id=?",
+          "ms": 0.6504999999997381,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT * FROM book_members WHERE bookId=? AND userId=? AND status='ACTIVE'",
+          "ms": 0.9730999999992491,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT m.id,m.userId,m.status,u.displayName FROM book_members m JOIN users u ON u.id=m.userId WHERE m.bookId=? ORDER BY m.id",
+          "ms": 1.6120000000009895,
+          "rows": 30
+        },
+        {
+          "sql": "SELECT r.*,t.id AS confirmedTransferId FROM transfer_requests r LEFT JOIN confirmed_transfers t ON t.requestId=r.id\n    WHERE r.bookId=?  AND r.status='PENDING' ORDER BY r.createdAt DESC,r.id DESC ",
+          "ms": 48.65430000000015,
+          "rows": 1562
+        },
+        {
+          "sql": "WITH current_expenses AS (\n    SELECT e.id,e.currentRevision,v.paidByMemberId,v.amountFen FROM expenses e\n    JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId\n    WHERE e.bookId=? AND v.isVoided=0\n  ), paid AS (SELECT paidByMemberId memberId,SUM(amountFen) paidFen FROM current_expenses GROUP BY paidByMemberId),\n  shares AS (SELECT s.memberId,SUM(s.amountFen) shareFen FROM current_expenses v\n    JOIN expense_shares s ON s.expenseId=v.id AND s.revision=v.currentRevision AND s.bookId=? GROUP BY s.memberId),\n  outgoing AS (SELECT fromMemberId memberId,SUM(amountFen) outgoingFen FROM confirmed_transfers WHERE bookId=? GROUP BY fromMemberId),\n  incoming AS (SELECT toMemberId memberId,SUM(amountFen) incomingFen FROM confirmed_transfers WHERE bookId=? GROUP BY toMemberId)\n  SELECT m.id memberId,COALESCE(p.paidFen,0) paidFen,COALESCE(s.shareFen,0) shareFen,\n    COALESCE(o.outgoingFen,0) outgoingFen,COALESCE(i.incomingFen,0) incomingFen\n  FROM book_members m LEFT JOIN paid p ON p.memberId=m.id LEFT JOIN shares s ON s.memberId=m.id\n    LEFT JOIN outgoing o ON o.memberId=m.id LEFT JOIN incoming i ON i.memberId=m.id WHERE m.bookId=? ORDER BY m.id",
+          "ms": 5417.7191,
+          "rows": 30
+        }
+      ]
+    },
+    {
+      "view": "report",
+      "totalMs": 6224.238000000001,
+      "acquireMs": 198.53629999999976,
+      "sql": [
+        {
+          "sql": "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ",
+          "ms": 0.41309999999975844,
+          "rows": null
+        },
+        {
+          "sql": "START TRANSACTION READ ONLY",
+          "ms": 0.3763999999991938,
+          "rows": null
+        },
+        {
+          "sql": "SELECT * FROM books WHERE id=?",
+          "ms": 0.4997000000003027,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT * FROM book_members WHERE bookId=? AND userId=? AND status='ACTIVE'",
+          "ms": 0.6640000000006694,
+          "rows": 1
+        },
+        {
+          "sql": "WITH current_expenses AS (SELECT v.* FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId WHERE e.bookId=? AND v.isVoided=0) SELECT category,SUM(amountFen) amountFen FROM current_expenses GROUP BY category",
+          "ms": 163.96670000000086,
+          "rows": 4
+        },
+        {
+          "sql": "WITH current_expenses AS (SELECT v.* FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId WHERE e.bookId=? AND v.isVoided=0),\n    shares AS (SELECT s.memberId,SUM(s.amountFen) shareFen FROM current_expenses v JOIN expense_shares s ON s.bookId=v.bookId AND s.expenseId=v.expenseId AND s.revision=v.revision GROUP BY s.memberId),\n    paid AS (SELECT paidByMemberId memberId,SUM(amountFen) paidFen FROM current_expenses GROUP BY paidByMemberId)\n    SELECT m.id memberId,COALESCE(p.paidFen,0) paidFen,COALESCE(s.shareFen,0) shareFen,\n      DENSE_RANK() OVER (ORDER BY COALESCE(s.shareFen,0) DESC) rankNo\n    FROM book_members m LEFT JOIN shares s ON s.memberId=m.id LEFT JOIN paid p ON p.memberId=m.id\n    WHERE m.bookId=? ORDER BY rankNo,m.id",
+          "ms": 5859.2505,
+          "rows": 30
+        }
+      ]
+    },
+    {
+      "view": "report",
+      "totalMs": 6224.316199999999,
+      "acquireMs": 198.45220000000154,
+      "sql": [
+        {
+          "sql": "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ",
+          "ms": 0.4500000000007276,
+          "rows": null
+        },
+        {
+          "sql": "START TRANSACTION READ ONLY",
+          "ms": 0.3400000000001455,
+          "rows": null
+        },
+        {
+          "sql": "SELECT * FROM books WHERE id=?",
+          "ms": 0.4815999999991618,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT * FROM book_members WHERE bookId=? AND userId=? AND status='ACTIVE'",
+          "ms": 0.45049999999901047,
+          "rows": 1
+        },
+        {
+          "sql": "WITH current_expenses AS (SELECT v.* FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId WHERE e.bookId=? AND v.isVoided=0) SELECT category,SUM(amountFen) amountFen FROM current_expenses GROUP BY category",
+          "ms": 164.49339999999938,
+          "rows": 4
+        },
+        {
+          "sql": "WITH current_expenses AS (SELECT v.* FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId WHERE e.bookId=? AND v.isVoided=0),\n    shares AS (SELECT s.memberId,SUM(s.amountFen) shareFen FROM current_expenses v JOIN expense_shares s ON s.bookId=v.bookId AND s.expenseId=v.expenseId AND s.revision=v.revision GROUP BY s.memberId),\n    paid AS (SELECT paidByMemberId memberId,SUM(amountFen) paidFen FROM current_expenses GROUP BY paidByMemberId)\n    SELECT m.id memberId,COALESCE(p.paidFen,0) paidFen,COALESCE(s.shareFen,0) shareFen,\n      DENSE_RANK() OVER (ORDER BY COALESCE(s.shareFen,0) DESC) rankNo\n    FROM book_members m LEFT JOIN shares s ON s.memberId=m.id LEFT JOIN paid p ON p.memberId=m.id\n    WHERE m.bookId=? ORDER BY rankNo,m.id",
+          "ms": 5859.388999999999,
+          "rows": 30
+        }
+      ]
+    },
+    {
+      "view": "report",
+      "totalMs": 11747.755899999998,
+      "acquireMs": 5566.159500000002,
+      "sql": [
+        {
+          "sql": "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ",
+          "ms": 0.20279999999911524,
+          "rows": null
+        },
+        {
+          "sql": "START TRANSACTION READ ONLY",
+          "ms": 0.1467000000011467,
+          "rows": null
+        },
+        {
+          "sql": "SELECT * FROM books WHERE id=?",
+          "ms": 0.7616000000016356,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT * FROM book_members WHERE bookId=? AND userId=? AND status='ACTIVE'",
+          "ms": 0.7944000000024971,
+          "rows": 1
+        },
+        {
+          "sql": "WITH current_expenses AS (SELECT v.* FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId WHERE e.bookId=? AND v.isVoided=0) SELECT category,SUM(amountFen) amountFen FROM current_expenses GROUP BY category",
+          "ms": 216.6264999999985,
+          "rows": 4
+        },
+        {
+          "sql": "WITH current_expenses AS (SELECT v.* FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId WHERE e.bookId=? AND v.isVoided=0),\n    shares AS (SELECT s.memberId,SUM(s.amountFen) shareFen FROM current_expenses v JOIN expense_shares s ON s.bookId=v.bookId AND s.expenseId=v.expenseId AND s.revision=v.revision GROUP BY s.memberId),\n    paid AS (SELECT paidByMemberId memberId,SUM(amountFen) paidFen FROM current_expenses GROUP BY paidByMemberId)\n    SELECT m.id memberId,COALESCE(p.paidFen,0) paidFen,COALESCE(s.shareFen,0) shareFen,\n      DENSE_RANK() OVER (ORDER BY COALESCE(s.shareFen,0) DESC) rankNo\n    FROM book_members m LEFT JOIN shares s ON s.memberId=m.id LEFT JOIN paid p ON p.memberId=m.id\n    WHERE m.bookId=? ORDER BY rankNo,m.id",
+          "ms": 5962.6889999999985,
+          "rows": 30
+        }
+      ]
+    },
+    {
+      "view": "report",
+      "totalMs": 11747.795800000002,
+      "acquireMs": 5566.267,
+      "sql": [
+        {
+          "sql": "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ",
+          "ms": 0.17289999999775318,
+          "rows": null
+        },
+        {
+          "sql": "START TRANSACTION READ ONLY",
+          "ms": 0.15729999999894062,
+          "rows": null
+        },
+        {
+          "sql": "SELECT * FROM books WHERE id=?",
+          "ms": 0.5640000000021246,
+          "rows": 1
+        },
+        {
+          "sql": "SELECT * FROM book_members WHERE bookId=? AND userId=? AND status='ACTIVE'",
+          "ms": 0.7814999999973224,
+          "rows": 1
+        },
+        {
+          "sql": "WITH current_expenses AS (SELECT v.* FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId WHERE e.bookId=? AND v.isVoided=0) SELECT category,SUM(amountFen) amountFen FROM current_expenses GROUP BY category",
+          "ms": 216.52779999999984,
+          "rows": 4
+        },
+        {
+          "sql": "WITH current_expenses AS (SELECT v.* FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId WHERE e.bookId=? AND v.isVoided=0),\n    shares AS (SELECT s.memberId,SUM(s.amountFen) shareFen FROM current_expenses v JOIN expense_shares s ON s.bookId=v.bookId AND s.expenseId=v.expenseId AND s.revision=v.revision GROUP BY s.memberId),\n    paid AS (SELECT paidByMemberId memberId,SUM(amountFen) paidFen FROM current_expenses GROUP BY paidByMemberId)\n    SELECT m.id memberId,COALESCE(p.paidFen,0) paidFen,COALESCE(s.shareFen,0) shareFen,\n      DENSE_RANK() OVER (ORDER BY COALESCE(s.shareFen,0) DESC) rankNo\n    FROM book_members m LEFT JOIN shares s ON s.memberId=m.id LEFT JOIN paid p ON p.memberId=m.id\n    WHERE m.bookId=? ORDER BY rankNo,m.id",
+          "ms": 5963.1062999999995,
+          "rows": 30
+        }
+      ]
+    }
+  ],
+  "concurrent": [
+    {
+      "view": "expenses",
+      "totalMs": 202.78549999999996,
+      "acquireMs": 5.924999999999272,
+      "sqlMs": 194.91429999999855
+    },
+    {
+      "view": "expenses",
+      "totalMs": 200.91610000000037,
+      "acquireMs": 5.475400000001173,
+      "sqlMs": 192.0723999999991
+    },
+    {
+      "view": "expenses",
+      "totalMs": 202.96119999999974,
+      "acquireMs": 8.082300000000032,
+      "sqlMs": 192.2648999999983
+    },
+    {
+      "view": "expenses",
+      "totalMs": 202.452299999999,
+      "acquireMs": 6.709199999999328,
+      "sqlMs": 194.3921999999984
+    },
+    {
+      "view": "expenses",
+      "totalMs": 201.45400000000154,
+      "acquireMs": 6.513600000000224,
+      "sqlMs": 193.99340000000302
+    },
+    {
+      "view": "expenses",
+      "totalMs": 323.3852999999999,
+      "acquireMs": 198.73680000000058,
+      "sqlMs": 122.80649999999696
+    },
+    {
+      "view": "expenses",
+      "totalMs": 323.52419999999984,
+      "acquireMs": 198.65990000000056,
+      "sqlMs": 123.57220000000052
+    },
+    {
+      "view": "expenses",
+      "totalMs": 323.64580000000024,
+      "acquireMs": 198.59679999999935,
+      "sqlMs": 124.35829999999805
+    },
+    {
+      "view": "expenses",
+      "totalMs": 528.6944000000003,
+      "acquireMs": 323.4853000000003,
+      "sqlMs": 204.29489999999714
+    },
+    {
+      "view": "expenses",
+      "totalMs": 528.7996999999996,
+      "acquireMs": 323.3829000000005,
+      "sqlMs": 204.91640000000007
+    },
+    {
+      "view": "snapshot",
+      "totalMs": 5566.5426000000025,
+      "acquireMs": 4.862199999999575,
+      "sqlMs": 5559.0142
+    },
+    {
+      "view": "snapshot",
+      "totalMs": 5568.372799999999,
+      "acquireMs": 6.2466999999996915,
+      "sqlMs": 5559.796400000003
+    },
+    {
+      "view": "snapshot",
+      "totalMs": 5566.946400000001,
+      "acquireMs": 4.854199999999764,
+      "sqlMs": 5559.955200000002
+    },
+    {
+      "view": "snapshot",
+      "totalMs": 6000.434099999999,
+      "acquireMs": 528.7638000000006,
+      "sqlMs": 5469.159399999999
+    },
+    {
+      "view": "snapshot",
+      "totalMs": 6000.472300000001,
+      "acquireMs": 323.5743999999995,
+      "sqlMs": 5674.474399999999
+    },
+    {
+      "view": "snapshot",
+      "totalMs": 6000.484800000002,
+      "acquireMs": 528.6844000000001,
+      "sqlMs": 5469.8778
+    },
+    {
+      "view": "report",
+      "totalMs": 6224.238000000001,
+      "acquireMs": 198.53629999999976,
+      "sqlMs": 6025.170400000001
+    },
+    {
+      "view": "report",
+      "totalMs": 6224.316199999999,
+      "acquireMs": 198.45220000000154,
+      "sqlMs": 6025.604499999998
+    },
+    {
+      "view": "report",
+      "totalMs": 11747.755899999998,
+      "acquireMs": 5566.159500000002,
+      "sqlMs": 6181.221000000001
+    },
+    {
+      "view": "report",
+      "totalMs": 11747.795800000002,
+      "acquireMs": 5566.267,
+      "sqlMs": 6181.309799999995
+    }
+  ],
+  "plans": [
+    {
+      "sql": "SELECT e.id FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId\n      WHERE e.bookId=? ORDER BY v.occurredOn DESC,e.id DESC LIMIT 21",
+      "plan": [
+        {
+          "EXPLAIN": "-> Limit: 21 row(s)  (actual time=142.275..142.277 rows=21 loops=1)\n    -> Sort: v.occurredOn DESC, e.id DESC, limit input to 21 row(s) per chunk  (actual time=142.274..142.275 rows=21 loops=1)\n        -> Stream results  (cost=11476.05 rows=12104) (actual time=0.206..136.456 rows=24230 loops=1)\n            -> Nested loop inner join  (cost=11476.05 rows=12104) (actual time=0.201..130.747 rows=24230 loops=1)\n                -> Filter: (e.currentRevision is not null)  (cost=3002.90 rows=24209) (actual time=0.191..75.634 rows=24230 loops=1)\n                    -> Index lookup on e using uq_expense_book_id (bookId='4ede160d-d966-4bc3-8421-4af324bfa4cc')  (cost=3002.90 rows=24209) (actual time=0.190..74.071 rows=24230 loops=1)\n                -> Filter: (v.bookId = '4ede160d-d966-4bc3-8421-4af324bfa4cc')  (cost=0.25 rows=0.5) (actual time=0.002..0.002 rows=1 loops=24230)\n                    -> Single-row index lookup on v using PRIMARY (expenseId=e.id, revision=e.currentRevision)  (cost=0.25 rows=1) (actual time=0.002..0.002 rows=1 loops=24230)\n"
+        }
+      ]
+    },
+    {
+      "sql": "WITH current_expenses AS (\n    SELECT e.id,e.currentRevision,v.paidByMemberId,v.amountFen FROM expenses e\n    JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId\n    WHERE e.bookId=? AND v.isVoided=0\n  ), paid AS (SELECT paidByMemberId memberId,SUM(amountFen) paidFen FROM current_expenses GROUP BY paidByMemberId),\n  shares AS (SELECT s.memberId,SUM(s.amountFen) shareFen FROM current_expenses v\n    JOIN expense_shares s ON s.expenseId=v.id AND s.revision=v.currentRevision AND s.bookId=? GROUP BY s.memberId),\n  outgoing AS (SELECT fromMemberId memberId,SUM(amountFen) outgoingFen FROM confirmed_transfers WHERE bookId=? GROUP BY fromMemberId),\n  incoming AS (SELECT toMemberId memberId,SUM(amountFen) incomingFen FROM confirmed_transfers WHERE bookId=? GROUP BY toMemberId)\n  SELECT m.id memberId,COALESCE(p.paidFen,0) paidFen,COALESCE(s.shareFen,0) shareFen,\n    COALESCE(o.outgoingFen,0) outgoingFen,COALESCE(i.incomingFen,0) incomingFen\n  FROM book_members m LEFT JOIN paid p ON p.memberId=m.id LEFT JOIN shares s ON s.memberId=m.id\n    LEFT JOIN outgoing o ON o.memberId=m.id LEFT JOIN incoming i ON i.memberId=m.id WHERE m.bookId=? ORDER BY m.id",
+      "plan": [
+        {
+          "EXPLAIN": "-> Nested loop left join  (cost=5609.19 rows=0) (actual time=5728.399..5729.120 rows=30 loops=1)\n    -> Nested loop left join  (cost=2470.73 rows=0) (actual time=5727.677..5728.384 rows=30 loops=1)\n        -> Nested loop left join  (cost=901.50 rows=0) (actual time=5724.262..5724.957 rows=30 loops=1)\n            -> Nested loop left join  (cost=116.88 rows=351) (actual time=111.846..112.521 rows=30 loops=1)\n                -> Covering index lookup on m using uq_member_book_id (bookId='4ede160d-d966-4bc3-8421-4af324bfa4cc')  (cost=3.35 rows=30) (actual time=0.014..0.667 rows=30 loops=1)\n                -> Index lookup on p using <auto_key0> (memberId=m.id)  (cost=2137.19..2139.58 rows=10) (actual time=3.728..3.728 rows=1 loops=30)\n                    -> Materialize CTE paid  (cost=2136.93..2136.93 rows=12) (actual time=111.829..111.829 rows=30 loops=1)\n                        -> Group aggregate: sum(v.amountFen)  (cost=2135.77 rows=12) (actual time=5.403..111.777 rows=30 loops=1)\n                            -> Nested loop inner join  (cost=2122.10 rows=137) (actual time=0.099..107.707 rows=24230 loops=1)\n                                -> Filter: (v.isVoided = 0)  (cost=1165.16 rows=2734) (actual time=0.091..59.791 rows=26230 loops=1)\n                                    -> Index lookup on v using bookId (bookId='4ede160d-d966-4bc3-8421-4af324bfa4cc')  (cost=1165.16 rows=27341) (actual time=0.090..57.898 rows=26230 loops=1)\n                                -> Filter: ((e.currentRevision = v.revision) and (e.bookId = '4ede160d-d966-4bc3-8421-4af324bfa4cc'))  (cost=0.25 rows=0.05) (actual time=0.002..0.002 rows=1 loops=26230)\n                                    -> Single-row index lookup on e using PRIMARY (id=v.expenseId)  (cost=0.25 rows=1) (actual time=0.001..0.001 rows=1 loops=26230)\n            -> Index lookup on s using <auto_key0> (memberId=m.id)  (cost=0.25..2.50 rows=10) (actual time=187.081..187.081 rows=1 loops=30)\n                -> Materialize CTE shares  (cost=0.00..0.00 rows=0) (actual time=5612.412..5612.412 rows=30 loops=1)\n                    -> Table scan on <temporary>  (actual time=5612.387..5612.389 rows=30 loops=1)\n                        -> Aggregate using temporary table  (actual time=5612.386..5612.386 rows=30 loops=1)\n                            -> Nested loop inner join  (cost=2680.11 rows=2030) (actual time=0.951..5271.620 rows=726900 loops=1)\n                                -> Nested loop inner join  (cost=2122.10 rows=137) (actual time=0.083..423.481 rows=24230 loops=1)\n                                    -> Filter: (v.isVoided = 0)  (cost=1165.16 rows=2734) (actual time=0.077..277.257 rows=26230 loops=1)\n                                        -> Index lookup on v using uq_version_book_expense_revision (bookId='4ede160d-d966-4bc3-8421-4af324bfa4cc')  (cost=1165.16 rows=27341) (actual time=0.076..271.744 rows=26230 loops=1)\n                                    -> Filter: ((e.bookId = '4ede160d-d966-4bc3-8421-4af324bfa4cc') and (e.currentRevision = v.revision))  (cost=0.25 rows=0.05) (actual time=0.005..0.005 rows=1 loops=26230)\n                                        -> Single-row index lookup on e using PRIMARY (id=v.expenseId)  (cost=0.25 rows=1) (actual time=0.005..0.005 rows=1 loops=26230)\n                                -> Filter: (s.bookId = '4ede160d-d966-4bc3-8421-4af324bfa4cc')  (cost=1.12 rows=15) (actual time=0.189..0.198 rows=30 loops=24230)\n                                    -> Index lookup on s using PRIMARY (expenseId=v.expenseId, revision=v.revision)  (cost=1.12 rows=30) (actual time=0.189..0.195 rows=30 loops=24230)\n        -> Index lookup on o using <auto_key0> (memberId=m.id)  (cost=23.33..23.58 rows=2) (actual time=0.114..0.114 rows=0 loops=30)\n            -> Materialize CTE outgoing  (cost=23.08..23.08 rows=18) (actual time=3.413..3.413 rows=3 loops=1)\n                -> Group aggregate: sum(confirmed_transfers.amountFen)  (cost=21.28 rows=18) (actual time=3.390..3.396 rows=3 loops=1)\n                    -> Index lookup on confirmed_transfers using ix_transfer_from (bookId='4ede160d-d966-4bc3-8421-4af324bfa4cc')  (cost=19.48 rows=18) (actual time=3.382..3.386 rows=18 loops=1)\n    -> Index lookup on i using <auto_key0> (memberId=m.id)  (cost=23.33..23.58 rows=2) (actual time=0.024..0.024 rows=0 loops=30)\n        -> Materialize CTE incoming  (cost=23.08..23.08 rows=18) (actual time=0.718..0.718 rows=3 loops=1)\n            -> Group aggregate: sum(confirmed_transfers.amountFen)  (cost=21.28 rows=18) (actual time=0.701..0.706 rows=3 loops=1)\n                -> Index lookup on confirmed_transfers using ix_transfer_to (bookId='4ede160d-d966-4bc3-8421-4af324bfa4cc')  (cost=19.48 rows=18) (actual time=0.697..0.700 rows=18 loops=1)\n"
+        }
+      ]
+    },
+    {
+      "sql": "WITH current_expenses AS (SELECT v.* FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId WHERE e.bookId=? AND v.isVoided=0) SELECT category,SUM(amountFen) amountFen FROM current_expenses GROUP BY category",
+      "plan": [
+        {
+          "EXPLAIN": "-> Table scan on <temporary>  (actual time=377.323..377.323 rows=4 loops=1)\n    -> Aggregate using temporary table  (actual time=377.322..377.322 rows=4 loops=1)\n        -> Nested loop inner join  (cost=4033.01 rows=137) (actual time=0.909..354.148 rows=24230 loops=1)\n            -> Filter: (v.isVoided = 0)  (cost=2876.26 rows=2734) (actual time=0.460..254.781 rows=26230 loops=1)\n                -> Index lookup on v using uq_version_book_expense_revision (bookId='4ede160d-d966-4bc3-8421-4af324bfa4cc')  (cost=2876.26 rows=27341) (actual time=0.460..252.426 rows=26230 loops=1)\n            -> Filter: ((e.currentRevision = v.revision) and (e.bookId = '4ede160d-d966-4bc3-8421-4af324bfa4cc'))  (cost=0.32 rows=0.05) (actual time=0.004..0.004 rows=1 loops=26230)\n                -> Single-row index lookup on e using PRIMARY (id=v.expenseId)  (cost=0.32 rows=1) (actual time=0.003..0.003 rows=1 loops=26230)\n"
+        }
+      ]
+    },
+    {
+      "sql": "WITH current_expenses AS (SELECT v.* FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId WHERE e.bookId=? AND v.isVoided=0),\n    shares AS (SELECT s.memberId,SUM(s.amountFen) shareFen FROM current_expenses v JOIN expense_shares s ON s.bookId=v.bookId AND s.expenseId=v.expenseId AND s.revision=v.revision GROUP BY s.memberId),\n    paid AS (SELECT paidByMemberId memberId,SUM(amountFen) paidFen FROM current_expenses GROUP BY paidByMemberId)\n    SELECT m.id memberId,COALESCE(p.paidFen,0) paidFen,COALESCE(s.shareFen,0) shareFen,\n      DENSE_RANK() OVER (ORDER BY COALESCE(s.shareFen,0) DESC) rankNo\n    FROM book_members m LEFT JOIN shares s ON s.memberId=m.id LEFT JOIN paid p ON p.memberId=m.id\n    WHERE m.bookId=? ORDER BY rankNo,m.id",
+      "plan": [
+        {
+          "EXPLAIN": "-> Sort: rankNo, m.id  (actual time=5945.802..5945.804 rows=30 loops=1)\n    -> Table scan on <temporary>  (cost=2.50..2.50 rows=0) (actual time=5945.783..5945.785 rows=30 loops=1)\n        -> Temporary table  (cost=0.00..0.00 rows=0) (actual time=5945.782..5945.782 rows=30 loops=1)\n            -> Window aggregate: dense_rank() OVER (ORDER BY coalesce(s.shareFen,0) desc )   (actual time=5945.765..5945.773 rows=30 loops=1)\n                -> Sort: shareFen DESC  (actual time=5945.760..5945.762 rows=30 loops=1)\n                    -> Stream results  (cost=862.96 rows=0) (actual time=5944.989..5945.725 rows=30 loops=1)\n                        -> Nested loop left join  (cost=862.96 rows=0) (actual time=5944.985..5945.710 rows=30 loops=1)\n                            -> Nested loop left join  (cost=78.35 rows=0) (actual time=5565.435..5566.138 rows=30 loops=1)\n                                -> Covering index lookup on m using uq_member_book_id (bookId='4ede160d-d966-4bc3-8421-4af324bfa4cc')  (cost=3.35 rows=30) (actual time=0.013..0.694 rows=30 loops=1)\n                                -> Index lookup on s using <auto_key0> (memberId=m.id)  (cost=0.25..2.53 rows=10) (actual time=185.515..185.515 rows=1 loops=30)\n                                    -> Materialize CTE shares  (cost=0.00..0.00 rows=0) (actual time=5565.419..5565.419 rows=30 loops=1)\n                                        -> Table scan on <temporary>  (actual time=5565.400..5565.403 rows=30 loops=1)\n                                            -> Aggregate using temporary table  (actual time=5565.399..5565.399 rows=30 loops=1)\n                                                -> Nested loop inner join  (cost=2679.14 rows=2030) (actual time=0.925..5228.581 rows=726900 loops=1)\n                                                    -> Nested loop inner join  (cost=2122.10 rows=137) (actual time=0.077..414.985 rows=24230 loops=1)\n                                                        -> Filter: (v.isVoided = 0)  (cost=1165.16 rows=2734) (actual time=0.072..272.371 rows=26230 loops=1)\n                                                            -> Index lookup on v using uq_version_book_expense_revision (bookId='4ede160d-d966-4bc3-8421-4af324bfa4cc')  (cost=1165.16 rows=27341) (actual time=0.071..266.977 rows=26230 loops=1)\n                                                        -> Filter: ((e.currentRevision = v.revision) and (e.bookId = '4ede160d-d966-4bc3-8421-4af324bfa4cc'))  (cost=0.25 rows=0.05) (actual time=0.005..0.005 rows=1 loops=26230)\n                                                            -> Single-row index lookup on e using PRIMARY (id=v.expenseId)  (cost=0.25 rows=1) (actual time=0.005..0.005 rows=1 loops=26230)\n                                                    -> Filter: (s.bookId = '4ede160d-d966-4bc3-8421-4af324bfa4cc')  (cost=1.12 rows=15) (actual time=0.188..0.197 rows=30 loops=24230)\n                                                        -> Index lookup on s using PRIMARY (expenseId=v.expenseId, revision=v.revision)  (cost=1.12 rows=30) (actual time=0.188..0.193 rows=30 loops=24230)\n                            -> Index lookup on p using <auto_key0> (memberId=m.id)  (cost=2137.19..2139.55 rows=10) (actual time=12.652..12.652 rows=1 loops=30)\n                                -> Materialize CTE paid  (cost=2136.93..2136.93 rows=12) (actual time=379.543..379.543 rows=30 loops=1)\n                                    -> Group aggregate: sum(v.amountFen)  (cost=2135.77 rows=12) (actual time=120.813..379.444 rows=30 loops=1)\n                                        -> Nested loop inner join  (cost=2122.10 rows=137) (actual time=2.834..375.397 rows=24230 loops=1)\n                                            -> Filter: (v.isVoided = 0)  (cost=1165.16 rows=2734) (actual time=2.478..274.242 rows=26230 loops=1)\n                                                -> Index lookup on v using bookId (bookId='4ede160d-d966-4bc3-8421-4af324bfa4cc')  (cost=1165.16 rows=27341) (actual time=2.476..272.175 rows=26230 loops=1)\n                                            -> Filter: ((e.currentRevision = v.revision) and (e.bookId = '4ede160d-d966-4bc3-8421-4af324bfa4cc'))  (cost=0.25 rows=0.05) (actual time=0.004..0.004 rows=1 loops=26230)\n                                                -> Single-row index lookup on e using PRIMARY (id=v.expenseId)  (cost=0.25 rows=1) (actual time=0.003..0.003 rows=1 loops=26230)\n"
+        }
+      ]
+    }
+  ]
+}

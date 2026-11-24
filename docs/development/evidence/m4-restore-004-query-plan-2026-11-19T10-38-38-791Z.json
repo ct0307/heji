@@ -1,0 +1,200 @@
+{
+  "format": "heji-m4-restore-plan-observation-v1",
+  "at": "2026-11-19T10:38:38.791Z",
+  "target": "heji_m4_restore_004",
+  "scope": "execution-plan-metadata-only",
+  "observations": [
+    {
+      "path": "root.query_block",
+      "select_id": 1,
+      "cost_info": {
+        "query_cost": "36.25"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.table",
+      "table_name": "balances",
+      "access_type": "ALL",
+      "rows_examined_per_scan": 300,
+      "rows_produced_per_join": 300,
+      "cost_info": {
+        "read_cost": "6.25",
+        "eval_cost": "30.00",
+        "prefix_cost": "36.25",
+        "data_read_per_join": "30K"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.table.materialized_from_subquery",
+      "dependent": false,
+      "cacheable": true
+    },
+    {
+      "path": "root.query_block.grouping_operation.table.materialized_from_subquery.query_block",
+      "select_id": 2,
+      "cost_info": {
+        "query_cost": "34.06"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.table.materialized_from_subquery.query_block.table",
+      "table_name": "m",
+      "access_type": "index",
+      "key": "uq_member_user",
+      "rows_examined_per_scan": 300,
+      "rows_produced_per_join": 300,
+      "cost_info": {
+        "read_cost": "4.06",
+        "eval_cost": "30.00",
+        "prefix_cost": "34.06",
+        "data_read_per_join": "37K"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.table.materialized_from_subquery.query_block.select_list_subqueries.0",
+      "dependent": true,
+      "cacheable": false
+    },
+    {
+      "path": "root.query_block.grouping_operation.table.materialized_from_subquery.query_block.select_list_subqueries.0.query_block",
+      "select_id": 8,
+      "cost_info": {
+        "query_cost": "254.00"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.table.materialized_from_subquery.query_block.select_list_subqueries.0.query_block.table",
+      "table_name": "t",
+      "access_type": "ref",
+      "key": "ix_transfer_to",
+      "rows_examined_per_scan": 232,
+      "rows_produced_per_join": 232,
+      "cost_info": {
+        "read_cost": "230.78",
+        "eval_cost": "23.22",
+        "prefix_cost": "254.00",
+        "data_read_per_join": "63K"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.table.materialized_from_subquery.query_block.select_list_subqueries.1",
+      "dependent": true,
+      "cacheable": false
+    },
+    {
+      "path": "root.query_block.grouping_operation.table.materialized_from_subquery.query_block.select_list_subqueries.1.query_block",
+      "select_id": 7,
+      "cost_info": {
+        "query_cost": "237.61"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.table.materialized_from_subquery.query_block.select_list_subqueries.1.query_block.table",
+      "table_name": "t",
+      "access_type": "ref",
+      "key": "ix_transfer_from",
+      "rows_examined_per_scan": 217,
+      "rows_produced_per_join": 217,
+      "cost_info": {
+        "read_cost": "215.89",
+        "eval_cost": "21.73",
+        "prefix_cost": "237.61",
+        "data_read_per_join": "59K"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.table.materialized_from_subquery.query_block.select_list_subqueries.2",
+      "dependent": true,
+      "cacheable": false
+    },
+    {
+      "path": "root.query_block.grouping_operation.table.materialized_from_subquery.query_block.select_list_subqueries.2.query_block",
+      "select_id": 5,
+      "cost_info": {
+        "query_cost": "214.18"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.table.materialized_from_subquery.query_block.select_list_subqueries.2.query_block.nested_loop.0.table",
+      "table_name": "v",
+      "access_type": "ref",
+      "key": "bookId",
+      "rows_examined_per_scan": 314,
+      "rows_produced_per_join": 31,
+      "cost_info": {
+        "read_cost": "147.01",
+        "eval_cost": "3.14",
+        "prefix_cost": "178.43",
+        "data_read_per_join": "128K"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.table.materialized_from_subquery.query_block.select_list_subqueries.2.query_block.nested_loop.1.table",
+      "table_name": "e",
+      "access_type": "eq_ref",
+      "key": "PRIMARY",
+      "rows_examined_per_scan": 1,
+      "rows_produced_per_join": 1,
+      "cost_info": {
+        "read_cost": "30.91",
+        "eval_cost": "0.16",
+        "prefix_cost": "212.49",
+        "data_read_per_join": "201"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.table.materialized_from_subquery.query_block.select_list_subqueries.2.query_block.nested_loop.2.table",
+      "table_name": "s",
+      "access_type": "eq_ref",
+      "key": "PRIMARY",
+      "rows_examined_per_scan": 1,
+      "rows_produced_per_join": 0,
+      "cost_info": {
+        "read_cost": "1.54",
+        "eval_cost": "0.01",
+        "prefix_cost": "214.18",
+        "data_read_per_join": "10"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.table.materialized_from_subquery.query_block.select_list_subqueries.3",
+      "dependent": true,
+      "cacheable": false
+    },
+    {
+      "path": "root.query_block.grouping_operation.table.materialized_from_subquery.query_block.select_list_subqueries.3.query_block",
+      "select_id": 3,
+      "cost_info": {
+        "query_cost": "77.79"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.table.materialized_from_subquery.query_block.select_list_subqueries.3.query_block.nested_loop.0.table",
+      "table_name": "v",
+      "access_type": "ref",
+      "key": "bookId",
+      "rows_examined_per_scan": 115,
+      "rows_produced_per_join": 11,
+      "cost_info": {
+        "read_cost": "53.82",
+        "eval_cost": "1.15",
+        "prefix_cost": "65.32",
+        "data_read_per_join": "46K"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.table.materialized_from_subquery.query_block.select_list_subqueries.3.query_block.nested_loop.1.table",
+      "table_name": "e",
+      "access_type": "eq_ref",
+      "key": "PRIMARY",
+      "rows_examined_per_scan": 1,
+      "rows_produced_per_join": 0,
+      "cost_info": {
+        "read_cost": "11.32",
+        "eval_cost": "0.06",
+        "prefix_cost": "77.79",
+        "data_read_per_join": "73"
+      }
+    }
+  ]
+}

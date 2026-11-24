@@ -1,0 +1,36 @@
+<script setup lang="ts">
+import { computed,onMounted,ref,watch } from 'vue';
+import { useRouter } from 'vue-router';
+import type { BookDto,MemberDto,FinanceSnapshotDto } from '../../../../packages/contracts/src/index.ts';
+import { api,session } from '../api.ts';
+import { createIntent } from '../finance.ts';
+const props=defineProps<{book:BookDto;members:MemberDto[];snapshot:FinanceSnapshotDto;refreshNumber:number}>(),emit=defineEmits<{changed:[]}>();
+const router=useRouter(),busy=ref(false),error=ref(''),notice=ref(''),newName=ref(props.book.name),invitation=ref<{id:string;link:string}|null>(null),intent=createIntent();
+const owner=computed(()=>props.book.createdByUserId===session.user?.id),path=computed(()=>'/books/'+props.book.id);
+const pendingAction=ref<{path:string;title:string;description:string;leave?:boolean}|null>(null);
+const audit=ref<{id:string;actorUserId:string;eventType:string;createdAt:string}[]>([]),auditError=ref('');
+const eventNames:Record<string,string>={BOOK_CREATED:'创建账本',BOOK_RENAMED:'修改账本名称',INVITATION_CREATED:'创建邀请',INVITATION_REVOKED:'撤销邀请',MEMBER_JOINED:'成员加入',MEMBER_REJOINED:'成员重新加入',EXPENSE_CREATED:'新增开销',EXPENSE_UPDATED:'修改开销',EXPENSE_PATCHED:'修改开销',EXPENSE_VOIDED:'作废开销',TRANSFER_REQUESTED:'登记转账',REQUEST_CREATED:'登记转账',TRANSFER_CONFIRMED:'确认转账',REQUEST_CONFIRMED:'确认转账',TRANSFER_REVERSED:'确认撤销错误登记',REVERSAL_REQUESTED:'请求撤销错误登记',REQUEST_REJECTED:'拒绝登记',REQUEST_CANCELLED:'取消登记',MEMBER_LEFT:'退出账本',MEMBER_REMOVED:'移除成员',BOOK_ARCHIVED:'归档账本',BOOK_RESTORED:'恢复账本'};
+Object.assign(eventNames,{SETTLEMENT_WINDOW_OPENED:'申请短时结算窗口',SETTLEMENT_WINDOW_CLOSED:'关闭短时结算窗口',SETTLEMENT_WINDOW_EXPIRED:'短时结算窗口到期'});
+const actorName=(id:string)=>props.members.find(x=>x.userId===id)?.displayName??'成员';
+async function loadAudit(){try{audit.value=await api<typeof audit.value>(path.value+'/audit-events');auditError.value=''}catch(cause){auditError.value=cause instanceof Error?cause.message:'无法读取操作历史'}}
+async function invite(){if(busy.value)return;busy.value=true;error.value='';try{const result=await api<{id:string;token:string}>(path.value+'/invitations','POST',{});invitation.value={id:result.id,link:location.origin+'/join#'+result.token};notice.value='邀请已生成，24小时内有效。';await loadAudit()}catch(cause){error.value=cause instanceof Error?cause.message:'无法创建邀请'}finally{busy.value=false}}
+async function revoke(){if(!invitation.value||busy.value)return;busy.value=true;error.value='';try{await api(path.value+`/invitations/${invitation.value.id}/revoke`,'POST',{});invitation.value=null;notice.value='邀请已撤销';await loadAudit()}catch(cause){error.value=cause instanceof Error?cause.message:'无法撤销邀请'}finally{busy.value=false}}
+async function copy(){if(!invitation.value)return;try{await navigator.clipboard.writeText(invitation.value.link);notice.value='邀请链接已复制'}catch{notice.value='请选中链接并手动复制'}}
+async function rename(){if(busy.value)return;busy.value=true;error.value='';try{await api(path.value,'PATCH',{name:newName.value});notice.value='账本名称已保存';emit('changed');await loadAudit()}catch(cause){error.value=cause instanceof Error?cause.message:'无法修改名称'}finally{busy.value=false}}
+async function executeAction(){const action=pendingAction.value;if(!action||busy.value)return;busy.value=true;error.value='';try{await api(action.path,'POST',{},intent.headers(action.path,{}));intent.reset();pendingAction.value=null;invitation.value=null;if(action.leave){await router.replace('/books');return}notice.value='操作已保存';emit('changed');await loadAudit()}catch(cause){error.value=cause instanceof Error?cause.message:'操作未完成'}finally{busy.value=false}}
+function askRemove(member:MemberDto){pendingAction.value={path:path.value+`/members/${member.id}/remove`,title:'移除'+member.displayName,description:'仅在该成员余额为零且没有相关待确认登记时允许移除。历史记录继续保留。'}}
+function askArchive(){pendingAction.value={path:path.value+(props.book.isArchived?'/restore':'/archive'),title:props.book.isArchived?'恢复账本':'归档账本',description:props.book.isArchived?'恢复后可以继续共同记账，已有金额保持原样。':'所有成员余额为零且没有待确认登记时才能归档；归档后只读，创建者可以恢复。'}}
+function askLeave(){pendingAction.value={path:path.value+'/members/me/leave',title:'退出账本',description:'余额须为零且没有相关待确认登记。退出后无法查看账本；历史记录保留，重新加入需要新的邀请。',leave:true}}
+watch(()=>props.book.name,(value,previous)=>{if(newName.value===previous)newName.value=value});
+watch(()=>props.refreshNumber,()=>{void loadAudit()});onMounted(loadAudit);
+</script>
+<template>
+  <p v-if="error" class="error" role="alert">{{ error }}</p><p v-if="notice" class="success-note" role="status">{{ notice }}</p>
+  <div class="finance-columns"><section class="panel"><h2>一起记账的人</h2><ul class="member-list"><li v-for="member in members" :key="member.id"><span class="avatar">{{ member.displayName.slice(0,1) }}</span><div><strong>{{ member.displayName }}</strong><p class="muted small">{{ member.userId===book.createdByUserId?'创建者':member.status==='LEFT'?'已退出':'成员' }}{{ member.id===snapshot.memberId?' · 你':'' }}</p></div><button v-if="owner&&!book.isArchived&&member.status==='ACTIVE'&&member.userId!==book.createdByUserId" class="text-button push-right" type="button" :disabled="busy" @click="askRemove(member)">移除成员</button></li></ul></section>
+    <section v-if="owner&&!book.isArchived" class="panel"><p class="eyebrow">一人一条链接</p><h2>邀请朋友加入</h2><p class="muted section-copy">每个邀请供一位新成员使用，默认24小时有效。</p><button v-if="!invitation" class="primary" type="button" :disabled="busy" @click="invite">生成一次性邀请</button><template v-else><label>邀请链接<input :value="invitation.link" readonly aria-label="邀请链接"></label><div class="actions"><button class="primary" type="button" @click="copy">复制链接</button><button class="secondary" type="button" :disabled="busy" @click="revoke">撤销邀请</button></div></template></section>
+  </div>
+  <section v-if="owner" class="panel"><h2>账本设置</h2><form v-if="!book.isArchived" class="inline-form" @submit.prevent="rename"><label>账本名称<input v-model="newName" maxlength="80" required></label><button class="secondary" :disabled="busy">保存名称</button></form><div class="actions"><button class="secondary" type="button" :disabled="busy" @click="askArchive">{{ book.isArchived?'恢复账本':'归档账本' }}</button><span class="muted small">归档须所有余额为零，且无待确认登记。</span></div></section>
+  <section v-else-if="!book.isArchived" class="panel"><h2>成员资格</h2><p class="muted section-copy">退出前先核对余额，并处理涉及你的待确认登记。</p><button class="secondary" type="button" :disabled="busy" @click="askLeave">退出账本</button></section>
+  <section v-if="pendingAction" class="panel confirmation-panel"><h2>{{ pendingAction.title }}</h2><p class="section-copy">{{ pendingAction.description }}</p><div class="actions"><button class="primary" type="button" :disabled="busy" @click="executeAction">确认{{ pendingAction.title }}</button><button class="text-button" type="button" :disabled="busy" @click="pendingAction=null">暂不操作</button></div></section>
+  <section class="panel"><h2>操作历史</h2><p v-if="auditError" class="error">{{ auditError }} <button class="text-button" @click="loadAudit">重新读取历史</button></p><ul class="audit-list"><li v-for="event in audit" :key="event.id"><span>{{ actorName(event.actorUserId) }} · {{ eventNames[event.eventType]??'更新账本记录' }}</span><time>{{ new Date(event.createdAt).toLocaleString('zh-CN',{timeZone:'Asia/Shanghai'}) }}</time></li></ul></section>
+</template>

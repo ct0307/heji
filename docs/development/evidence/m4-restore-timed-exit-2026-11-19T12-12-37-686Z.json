@@ -1,0 +1,9 @@
+{
+  "kind": "restore_exit",
+  "at": "2026-11-19T12:21:01.993Z",
+  "target": "heji_m4_restore_004_timed",
+  "exitCode": 0,
+  "signal": null,
+  "startedAt": "2026-11-19T12:12:37.686Z",
+  "progress": "m4-restore-timed-progress-2026-11-19T12-12-37-686Z.jsonl"
+}

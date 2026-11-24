@@ -1,0 +1,354 @@
+{
+  "format": "heji-m4-balance-query-readonly-v1",
+  "at": "2026-11-19T11:06:46.253Z",
+  "target": "heji_m4_restore_004",
+  "scope": "只读查询验证，不是恢复/迁移/负载或30分钟恢复重测",
+  "transaction": "WITH CONSISTENT SNAPSHOT, READ ONLY; ROLLBACK",
+  "environment": {
+    "version": "8.0.32",
+    "sqlMode": "IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION",
+    "isolationLevel": "REPEATABLE-READ",
+    "maxExecutionTimeMs": "120000"
+  },
+  "counts": {
+    "audit_events": "260444",
+    "book_members": "300",
+    "books": "10",
+    "confirmed_transfers": "6963",
+    "expense_shares": "5345104",
+    "expense_versions": "233843",
+    "expenses": "230043",
+    "finance_daily_categories": "850",
+    "finance_daily_members": "25500",
+    "finance_member_totals": "300",
+    "financial_audit_details": "241444",
+    "idempotency_records": "241444",
+    "invitations": "0",
+    "m4_fixture_meta": "1",
+    "rate_limits": "0",
+    "schema_migrations": "4",
+    "sessions": "240",
+    "settlement_windows": "0",
+    "transfer_requests": "23438",
+    "users": "30"
+  },
+  "financialVersionHash": "031f6da4f7de472311c1ae748d2534ab905d94f36e4fa50c647650669bb0cc09",
+  "migrations": [
+    {
+      "name": "001_m1.sql",
+      "checksum": "58cd31b090c5c7dd40fdcef9cc5f3dc46d24095960c2b2eda381a61297f218e1"
+    },
+    {
+      "name": "002_m2.sql",
+      "checksum": "fe252167e397ba27f3b738b3f540ce0977fb1992125520151577651556fa8286"
+    },
+    {
+      "name": "003_finance_summaries.sql",
+      "checksum": "0817f3f6a6ac2396509eb75aaa2bfdf3d6259088568743c1d3e3910ab278daff"
+    },
+    {
+      "name": "004_settlement_windows.sql",
+      "checksum": "6448464c6b7d1660911953f835505d2f1538d804a2e47273e1829cdf3026345f"
+    }
+  ],
+  "sourceHashes": [
+    {
+      "path": "tests/m4/backup.ts",
+      "sha256": "2628b5b2b538d1340ccbb207a53a535b7c25fdbfcb5668780cd033bf04cb766d"
+    },
+    {
+      "path": "tests/m4/balance-verification.ts",
+      "sha256": "2f3858d6ef22cbaf59ef832e070d214ebcb4378f91cb13c7b6453097ad25e9df"
+    },
+    {
+      "path": "tests/m4/verify-balance-query.ts",
+      "sha256": "9b762c21b70c79684b8f96a66e5590652c88421df00b32518c28eca3331df17e"
+    },
+    {
+      "path": "tests/integration/m4-balance-verification.test.ts",
+      "sha256": "5227ec95296800af03148764163c932e47bf43d7e313aabbec788b1dfcd5f11f"
+    }
+  ],
+  "plan": [
+    {
+      "path": "root.query_block",
+      "select_id": 1,
+      "cost_info": {
+        "query_cost": "3166125.15"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation",
+      "using_filesort": false
+    },
+    {
+      "path": "root.query_block.grouping_operation.nested_loop.0.table",
+      "table_name": "m",
+      "access_type": "index",
+      "key": "uq_member_user",
+      "rows_examined_per_scan": 300,
+      "rows_produced_per_join": 300,
+      "cost_info": {
+        "read_cost": "4.06",
+        "eval_cost": "30.00",
+        "prefix_cost": "34.06",
+        "data_read_per_join": "37K"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.nested_loop.1.table",
+      "table_name": "p",
+      "access_type": "ref",
+      "key": "<auto_key0>",
+      "rows_examined_per_scan": 10,
+      "rows_produced_per_join": 3007,
+      "cost_info": {
+        "read_cost": "751.96",
+        "eval_cost": "300.78",
+        "prefix_cost": "1086.80",
+        "data_read_per_join": "305K"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.nested_loop.1.table.materialized_from_subquery",
+      "dependent": false,
+      "cacheable": true,
+      "using_temporary_table": true
+    },
+    {
+      "path": "root.query_block.grouping_operation.nested_loop.1.table.materialized_from_subquery.query_block",
+      "select_id": 3,
+      "cost_info": {
+        "query_cost": "42869.04"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.nested_loop.1.table.materialized_from_subquery.query_block.grouping_operation",
+      "using_temporary_table": true,
+      "using_filesort": false
+    },
+    {
+      "path": "root.query_block.grouping_operation.nested_loop.1.table.materialized_from_subquery.query_block.grouping_operation.nested_loop.0.table",
+      "table_name": "v",
+      "access_type": "ALL",
+      "rows_examined_per_scan": 230650,
+      "rows_produced_per_join": 23065,
+      "cost_info": {
+        "read_cost": "21852.38",
+        "eval_cost": "2306.50",
+        "prefix_cost": "24158.88",
+        "data_read_per_join": "91M"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.nested_loop.1.table.materialized_from_subquery.query_block.grouping_operation.nested_loop.1.table",
+      "table_name": "e",
+      "access_type": "eq_ref",
+      "key": "PRIMARY",
+      "rows_examined_per_scan": 1,
+      "rows_produced_per_join": 1153,
+      "cost_info": {
+        "read_cost": "16403.67",
+        "eval_cost": "115.33",
+        "prefix_cost": "42869.04",
+        "data_read_per_join": "144K"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.nested_loop.2.table",
+      "table_name": "s",
+      "access_type": "ref",
+      "key": "<auto_key0>",
+      "rows_examined_per_scan": 5,
+      "rows_produced_per_join": 17144,
+      "cost_info": {
+        "read_cost": "4286.15",
+        "eval_cost": "1714.46",
+        "prefix_cost": "7087.41",
+        "data_read_per_join": "1M"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.nested_loop.2.table.materialized_from_subquery",
+      "dependent": false,
+      "cacheable": true,
+      "using_temporary_table": true
+    },
+    {
+      "path": "root.query_block.grouping_operation.nested_loop.2.table.materialized_from_subquery.query_block",
+      "select_id": 5,
+      "cost_info": {
+        "query_cost": "46873.32"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.nested_loop.2.table.materialized_from_subquery.query_block.grouping_operation",
+      "using_temporary_table": true,
+      "using_filesort": false
+    },
+    {
+      "path": "root.query_block.grouping_operation.nested_loop.2.table.materialized_from_subquery.query_block.grouping_operation.nested_loop.0.table",
+      "table_name": "v",
+      "access_type": "ALL",
+      "rows_examined_per_scan": 230650,
+      "rows_produced_per_join": 23065,
+      "cost_info": {
+        "read_cost": "21852.38",
+        "eval_cost": "2306.50",
+        "prefix_cost": "24158.88",
+        "data_read_per_join": "91M"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.nested_loop.2.table.materialized_from_subquery.query_block.grouping_operation.nested_loop.1.table",
+      "table_name": "e",
+      "access_type": "eq_ref",
+      "key": "PRIMARY",
+      "rows_examined_per_scan": 1,
+      "rows_produced_per_join": 1153,
+      "cost_info": {
+        "read_cost": "16403.67",
+        "eval_cost": "115.33",
+        "prefix_cost": "42869.04",
+        "data_read_per_join": "144K"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.nested_loop.2.table.materialized_from_subquery.query_block.grouping_operation.nested_loop.2.table",
+      "table_name": "s",
+      "access_type": "ref",
+      "key": "PRIMARY",
+      "rows_examined_per_scan": 23,
+      "rows_produced_per_join": 57,
+      "cost_info": {
+        "read_cost": "1265.88",
+        "eval_cost": "5.77",
+        "prefix_cost": "46873.32",
+        "data_read_per_join": "7K"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.nested_loop.3.table",
+      "table_name": "t",
+      "access_type": "ref",
+      "key": "<auto_key0>",
+      "rows_examined_per_scan": 22,
+      "rows_produced_per_join": 384896,
+      "cost_info": {
+        "read_cost": "96224.12",
+        "eval_cost": "38489.65",
+        "prefix_cost": "141801.18",
+        "data_read_per_join": "38M"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.nested_loop.3.table.materialized_from_subquery",
+      "dependent": false,
+      "cacheable": true,
+      "using_temporary_table": true
+    },
+    {
+      "path": "root.query_block.grouping_operation.nested_loop.3.table.materialized_from_subquery.query_block",
+      "select_id": 7,
+      "cost_info": {
+        "query_cost": "833.48"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.nested_loop.3.table.materialized_from_subquery.query_block.grouping_operation",
+      "using_filesort": false
+    },
+    {
+      "path": "root.query_block.grouping_operation.nested_loop.3.table.materialized_from_subquery.query_block.grouping_operation.table",
+      "table_name": "confirmed_transfers",
+      "access_type": "index",
+      "key": "ix_transfer_from",
+      "rows_examined_per_scan": 6735,
+      "rows_produced_per_join": 6735,
+      "cost_info": {
+        "read_cost": "159.99",
+        "eval_cost": "673.50",
+        "prefix_cost": "833.49",
+        "data_read_per_join": "1M"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.nested_loop.4.table",
+      "table_name": "r",
+      "access_type": "ref",
+      "key": "<auto_key0>",
+      "rows_examined_per_scan": 22,
+      "rows_produced_per_join": 8640925,
+      "cost_info": {
+        "read_cost": "2160231.41",
+        "eval_cost": "864092.56",
+        "prefix_cost": "3166125.15",
+        "data_read_per_join": "857M"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.nested_loop.4.table.materialized_from_subquery",
+      "dependent": false,
+      "cacheable": true,
+      "using_temporary_table": true
+    },
+    {
+      "path": "root.query_block.grouping_operation.nested_loop.4.table.materialized_from_subquery.query_block",
+      "select_id": 8,
+      "cost_info": {
+        "query_cost": "833.48"
+      }
+    },
+    {
+      "path": "root.query_block.grouping_operation.nested_loop.4.table.materialized_from_subquery.query_block.grouping_operation",
+      "using_filesort": false
+    },
+    {
+      "path": "root.query_block.grouping_operation.nested_loop.4.table.materialized_from_subquery.query_block.grouping_operation.table",
+      "table_name": "confirmed_transfers",
+      "access_type": "index",
+      "key": "ix_transfer_to",
+      "rows_examined_per_scan": 6735,
+      "rows_produced_per_join": 6735,
+      "cost_info": {
+        "read_cost": "159.99",
+        "eval_cost": "673.50",
+        "prefix_cost": "833.49",
+        "data_read_per_join": "1M"
+      }
+    }
+  ],
+  "timings": [
+    {
+      "stage": "historical_share_conservation",
+      "elapsedMs": 4622.5726,
+      "returnedRows": 0
+    },
+    {
+      "stage": "current_revision_present",
+      "elapsedMs": 80.42430000000058,
+      "returnedRows": 0
+    },
+    {
+      "stage": "balance_conservation",
+      "elapsedMs": 10448.7131,
+      "returnedRows": 0
+    }
+  ],
+  "memberComparison": {
+    "rows": 300,
+    "books": 10,
+    "elapsedMs": 10693.125699999997,
+    "matched": true,
+    "sha256": "71bf304bc641ebe8d08eb31e5d9440714146f62ae10db5c36290bde23aefecc1"
+  },
+  "historicalRestore": {
+    "elapsedMs": 2480515.1644,
+    "within30Minutes": false
+  },
+  "limitations": [
+    "未重跑原慢查询；仅比较原执行计划/已记录耗时下界",
+    "未重跑完整恢复，不能据单查询结果认定30分钟目标通过",
+    "SQLite离线语义不代替MySQL；本证据单独记录MySQL实测"
+  ]
+}

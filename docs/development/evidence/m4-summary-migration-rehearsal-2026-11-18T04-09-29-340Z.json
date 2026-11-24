@@ -1,0 +1,72 @@
+{
+  "scope": "连接级临时表执行真实迁移算法，标记抑制且最终回滚；不是实际003迁移",
+  "executedPersistentDdl": false,
+  "activationWritten": false,
+  "transactionCommitted": false,
+  "markerChecked": true,
+  "report": {
+    "scope": "M4 finance summaries initial migration",
+    "database": "heji_m4_bench",
+    "startedAt": "2026-11-18T04:07:49.820Z",
+    "completedAt": "2026-11-18T04:09:29.335Z",
+    "elapsedMs": 99525.57329999999,
+    "proposal": {
+      "name": "003_finance_summaries.sql",
+      "checksum": "0817f3f6a6ac2396509eb75aaa2bfdf3d6259088568743c1d3e3910ab278daff"
+    },
+    "baseline": [
+      {
+        "name": "001_m1.sql",
+        "checksum": "58cd31b090c5c7dd40fdcef9cc5f3dc46d24095960c2b2eda381a61297f218e1"
+      },
+      {
+        "name": "002_m2.sql",
+        "checksum": "fe252167e397ba27f3b738b3f540ce0977fb1992125520151577651556fa8286"
+      }
+    ],
+    "factsBefore": {
+      "counts": {
+        "books": "10",
+        "book_members": "300",
+        "expenses": "50294",
+        "expense_versions": "54094",
+        "expense_shares": "1622820",
+        "transfer_requests": "3475",
+        "confirmed_transfers": "1905",
+        "audit_events": "55674",
+        "financial_audit_details": "36674",
+        "idempotency_records": "36674"
+      },
+      "financialVersionHash": "eb50aa5aca2e4ad07d23196bb7beb4413511b50086f42c6ca3e914f5b4fbf566"
+    },
+    "factsAfter": {
+      "counts": {
+        "books": "10",
+        "book_members": "300",
+        "expenses": "50294",
+        "expense_versions": "54094",
+        "expense_shares": "1622820",
+        "transfer_requests": "3475",
+        "confirmed_transfers": "1905",
+        "audit_events": "55674",
+        "financial_audit_details": "36674",
+        "idempotency_records": "36674"
+      },
+      "financialVersionHash": "eb50aa5aca2e4ad07d23196bb7beb4413511b50086f42c6ca3e914f5b4fbf566"
+    },
+    "summaryCounts": {
+      "finance_member_totals": "300",
+      "finance_daily_members": "25500",
+      "finance_daily_categories": "850"
+    },
+    "reconciliation": {
+      "checkedBooks": 10,
+      "checkedPeriods": 130,
+      "balancesEqual": true,
+      "periodReportsEqual": true,
+      "conservation": true,
+      "nonnegative": true
+    },
+    "retainedOnFailure": true
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-18",
+  "scope": "本机回环 HTTPS 浏览器 UI 验收；不代表公网或生产环境",
+  "authorization": "用户明确批准按 m4-browser-https-ui-plan.md 临时导入现有证书并按指纹回滚",
+  "certificate": {
+    "sha256": "C2556F99C180CE6F953A1DD86C008ADAF41F586D249EE020DE06023D1E0E20AB",
+    "sha1": "67C08981841F71B21D9EA9F76D4AC063348C8077",
+    "sans": ["127.0.0.1", "localhost"],
+    "ca": false,
+    "temporaryCurrentUserRootImport": "PASS",
+    "rollbackByExactSha1": "PASS",
+    "postRollbackStoreMatchCount": 0,
+    "postRollbackRegistryKeyPresent": false
+  },
+  "preflight": {
+    "nginxConfigTest": "PASS",
+    "apiReady": "PASS",
+    "edgeCertificateWarning": false
+  },
+  "browserChecks": {
+    "httpsLoginAndRegistrationPages": "PASS",
+    "registerFictionalAccount": "PASS",
+    "createFictionalBook": "PASS",
+    "saveExpenseAmountFen": "1234",
+    "expenseAppearsInLedger": "PASS",
+    "ledgerRealtimeStatusObserved": "live",
+    "viewportWidth": 375,
+    "documentClientWidth": 375,
+    "documentScrollWidth": 375,
+    "horizontalOverflow": false,
+    "previewStaleFlow": {
+      "status": "PASS",
+      "refreshPreviewOnce": true,
+      "clearOldConfirmation": true,
+      "automaticConfirmationRetry": false,
+      "userReconfirmedAfterReview": true
+    }
+  },
+  "cleanup": {
+    "apiAndNginxStopped": true,
+    "listeningPorts3001_8088_8443": [],
+    "temporaryCertificateTrustRemoved": true,
+    "fictionalAcceptanceDataRetained": true
+  },
+  "limitations": [
+    "内置浏览器不信任 Windows 当前用户证书存储；检测到证书告警后立即停止该浏览器导航，没有绕过告警。",
+    "现有 Node Nginx HTTPS/WSS 客户端验收另有 32/32 证据；本文件只记录浏览器页面和 PREVIEW_STALE 流程。",
+    "公网域名、受信 CA、生产部署及性能未在本次验收范围。"
+  ],
+  "sensitiveValuesRecorded": false
+}

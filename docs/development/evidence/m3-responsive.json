@@ -1,0 +1,114 @@
+[
+  {
+    "requestedWidth": 360,
+    "tab": "明细",
+    "actualWidth": 360,
+    "bodyWidth": 345,
+    "documentWidth": 345
+  },
+  {
+    "requestedWidth": 360,
+    "tab": "结算",
+    "actualWidth": 360,
+    "bodyWidth": 345,
+    "documentWidth": 345
+  },
+  {
+    "requestedWidth": 360,
+    "tab": "统计",
+    "actualWidth": 360,
+    "bodyWidth": 345,
+    "documentWidth": 345
+  },
+  {
+    "requestedWidth": 360,
+    "tab": "成员",
+    "actualWidth": 360,
+    "bodyWidth": 345,
+    "documentWidth": 345
+  },
+  {
+    "requestedWidth": 390,
+    "tab": "明细",
+    "actualWidth": 390,
+    "bodyWidth": 375,
+    "documentWidth": 375
+  },
+  {
+    "requestedWidth": 390,
+    "tab": "结算",
+    "actualWidth": 390,
+    "bodyWidth": 375,
+    "documentWidth": 375
+  },
+  {
+    "requestedWidth": 390,
+    "tab": "统计",
+    "actualWidth": 390,
+    "bodyWidth": 375,
+    "documentWidth": 375
+  },
+  {
+    "requestedWidth": 390,
+    "tab": "成员",
+    "actualWidth": 390,
+    "bodyWidth": 375,
+    "documentWidth": 375
+  },
+  {
+    "requestedWidth": 768,
+    "tab": "明细",
+    "actualWidth": 768,
+    "bodyWidth": 753,
+    "documentWidth": 753
+  },
+  {
+    "requestedWidth": 768,
+    "tab": "结算",
+    "actualWidth": 768,
+    "bodyWidth": 753,
+    "documentWidth": 753
+  },
+  {
+    "requestedWidth": 768,
+    "tab": "统计",
+    "actualWidth": 768,
+    "bodyWidth": 753,
+    "documentWidth": 753
+  },
+  {
+    "requestedWidth": 768,
+    "tab": "成员",
+    "actualWidth": 768,
+    "bodyWidth": 753,
+    "documentWidth": 753
+  },
+  {
+    "requestedWidth": 1440,
+    "tab": "明细",
+    "actualWidth": 1440,
+    "bodyWidth": 1425,
+    "documentWidth": 1425
+  },
+  {
+    "requestedWidth": 1440,
+    "tab": "结算",
+    "actualWidth": 1440,
+    "bodyWidth": 1425,
+    "documentWidth": 1425
+  },
+  {
+    "requestedWidth": 1440,
+    "tab": "统计",
+    "actualWidth": 1440,
+    "bodyWidth": 1425,
+    "documentWidth": 1425
+  },
+  {
+    "requestedWidth": 1440,
+    "tab": "成员",
+    "actualWidth": 1440,
+    "bodyWidth": 1425,
+    "documentWidth": 1425
+  }
+]

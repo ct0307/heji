@@ -1,0 +1,11 @@
+{
+  "format": "heji-m4-restore-observation-v1",
+  "target": "heji_m4_restore_004",
+  "at": "2026-11-19T10:31:06.498Z",
+  "verificationStage": "balance_conservation",
+  "queryElapsedSeconds": 1321,
+  "state": "executing",
+  "committed": false,
+  "scope": "只读校验步骤分类与时间，不输出SQL文本或业务行；不是完成证明",
+  "diagnosticEncoding": "首次中文步骤名受PowerShell管道编码影响，改用ASCII分类后只读重查；未重跑恢复"
+}

@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-19",
+  "scope": "短时结算窗口代码实现与离线验证",
+  "designApproved": true,
+  "checks": {
+    "npmTest": { "passed": 130, "failed": 0, "skipped": 0, "newWindowTests": 26 },
+    "build": { "apiTypecheck": true, "vueTypecheck": true, "viteBuild": true },
+    "openApi": { "httpOperations": 41, "internalReferences": 503, "externalValidator": false },
+    "documentation": { "utf8FilesChecked": 13, "localLinksChecked": 46, "evidenceJsonParsed": true, "migrationChecksumMatched": true },
+    "legacyMigrationPlan": { "connected": false, "names": ["001_m1.sql", "002_m2.sql"] },
+    "windowMigrationPlan": { "connected": false, "name": "004_settlement_windows.sql", "sha256": "6448464c6b7d1660911953f835505d2f1538d804a2e47273e1829cdf3026345f" },
+    "codeReview": { "mode": "只读", "p2Found": 1, "p2FixedAndRechecked": 1, "remainingP1P2Found": 0 },
+    "browser": { "url": "http://127.0.0.1:5174/", "surface": "入口错误状态与重试", "apiStarted": false, "loggedIn": false, "frameworkOverlay": false, "relevantConsoleErrors": 0, "mobileWidth": 390, "mobileScrollWidth": 390, "settlementWindowFlowVerified": false }
+  },
+  "notExecuted": ["004实际迁移", "真实MySQL多连接测试", "结算窗口正常/空/错/手机UI验收", "新负载", "备份或恢复", "部署"],
+  "realDatabaseTest": { "file": "tests/windows/mysql.test.ts", "typechecked": true, "executed": false, "requires": "004标记、本机heji_dev和另获本轮写入许可后临时设置HEJI_ALLOW_WINDOW_TEST=yes" },
+  "limitations": ["离线事务模拟不代表MySQL锁与外键已经实测", "窗口尚未激活，热点P1仍开放", "旧M4备份格式明确拒绝004", "无依赖安装或敏感配置读取"]
+}

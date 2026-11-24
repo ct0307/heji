@@ -1,0 +1,134 @@
+{
+  "format": "heji-m4-window-benchmark-independent-acceptance-v1",
+  "runId": "2026-11-20T11-39-24-152Z",
+  "target": "heji_m4_bench",
+  "status": "passed_independent_verification",
+  "startedAt": "2026-11-20T11:39:30.158Z",
+  "runnerStoppedAt": "2026-11-20T13:56:44.899Z",
+  "recordedOn": "2026-11-20",
+  "progressEvidence": {
+    "path": "m4-window-benchmark-2026-11-20T11-39-24-152Z.jsonl",
+    "bytes": 16169587,
+    "sha256": "9cfeb66c572a3d970d0b74fe9a24a0b00239580d66285bd52fce6c684acf4cc3",
+    "terminal": "stopped by the runner's final delta assertion; no retry or resume"
+  },
+  "tiers": [
+    {
+      "waitMs": 5000,
+      "samples": 60,
+      "successes": 60,
+      "successRate": 1,
+      "systemFailures": 0,
+      "confirmP95Ms": 138.7337,
+      "requestCreateP95Ms": 14.0421,
+      "windowOpenP95Ms": 117.2069,
+      "sideWrites": 5706,
+      "sideWritesBlocked": 5706,
+      "sideWriteP95Ms": 41.8424
+    },
+    {
+      "waitMs": 15000,
+      "samples": 60,
+      "successes": 60,
+      "successRate": 1,
+      "systemFailures": 0,
+      "confirmP95Ms": 129.3791,
+      "requestCreateP95Ms": 10.6164,
+      "windowOpenP95Ms": 117.3273,
+      "sideWrites": 17118,
+      "sideWritesBlocked": 17118,
+      "sideWriteP95Ms": 30.1953
+    },
+    {
+      "waitMs": 25000,
+      "samples": 60,
+      "successes": 60,
+      "successRate": 1,
+      "systemFailures": 0,
+      "confirmP95Ms": 125.907,
+      "requestCreateP95Ms": 11.2998,
+      "windowOpenP95Ms": 116.7233,
+      "sideWrites": 28512,
+      "sideWritesBlocked": 28512,
+      "sideWriteP95Ms": 25.9823
+    }
+  ],
+  "naturalExpiryBoundary": {
+    "status": "passed_by_runner_control_flow_and_final_database_state",
+    "expiredWindowConfirm": { "httpStatus": 409, "code": "SETTLEMENT_WINDOW_EXPIRED" },
+    "ordinaryWriteAfterExpiry": { "httpStatus": 201 },
+    "httpResponsesPersistedDirectly": false,
+    "evidenceNote": "The runner would stop with a distinct expiry-boundary error before final counts if this classifier failed. It reached the final delta assertion. The database contains the extra ordinary expense, a closed-at-expiry pending request, and no active or cooling window."
+  },
+  "databaseVerification": {
+    "readOnlyConsistentSnapshot": true,
+    "transactionRolledBack": true,
+    "otherConnections": 0,
+    "migrationChecksumsMatched": true,
+    "tableCounts": {
+      "schema_migrations": "4",
+      "m4_fixture_meta": "1",
+      "users": "30",
+      "sessions": "280",
+      "books": "10",
+      "book_members": "300",
+      "invitations": "0",
+      "audit_events": "261679",
+      "rate_limits": "0",
+      "expenses": "230044",
+      "expense_versions": "233844",
+      "expense_shares": "5345134",
+      "transfer_requests": "23747",
+      "confirmed_transfers": "7270",
+      "idempotency_records": "242370",
+      "financial_audit_details": "242679",
+      "finance_member_totals": "300",
+      "finance_daily_members": "25500",
+      "finance_daily_categories": "851",
+      "settlement_windows": "1"
+    },
+    "tableDeltas": {
+      "sessions": "20",
+      "audit_events": "725",
+      "expenses": "1",
+      "expense_versions": "1",
+      "expense_shares": "30",
+      "transfer_requests": "181",
+      "confirmed_transfers": "180",
+      "idempotency_records": "543",
+      "financial_audit_details": "725",
+      "finance_daily_categories": "1",
+      "settlement_windows": "0",
+      "allOtherTables": "0"
+    },
+    "deltaExplanation": {
+      "auditEventsAndDetails": "725 = 544 + 180 successful confirmations + 1 expiry audit for the pre-existing expired window",
+      "settlementWindows": "0 because the existing hot-book row was updated in place under the bookId primary key",
+      "dailyCategories": "1 because the expiry-boundary ordinary expense creates one category/day aggregate"
+    },
+    "financialVersionTotal": "241114",
+    "hotBookVersionBefore": "165707",
+    "hotBookVersionAfter": "165888",
+    "hotBookVersionDelta": "181",
+    "windowState": {
+      "rows": 1,
+      "active": 0,
+      "expiredUnclosed": 0,
+      "cooling": 0,
+      "expiredPendingRequests": 1
+    },
+    "fullHistoricalShareAndBalanceConservation": "passed",
+    "rawMemberBalancesComparedWith003": { "rows": 300, "result": "matched" }
+  },
+  "runnerAssertionCause": "The runner assumed a new settlement_windows row and exactly 544+S audit/detail rows, ignoring the existing hot-book window row and its one-time expiry audit. Independent verification matched every actual table delta to the applicable prior state.",
+  "followUpOfflineFix": {
+    "files": [
+      "tests/m4/window-benchmark-policy.ts",
+      "tests/m4/window-benchmark.ts",
+      "tests/integration/m4-window-benchmark.test.ts"
+    ],
+    "behavior": "Preflight records whether the hot-book row exists and whether it is expired but unclosed; final expected deltas account for row upsert and the one-time expiry audit.",
+    "databaseChangedByFix": false
+  },
+  "acceptance": "All three tiers passed the sample, side-write protection, latency, and system-failure gates. Full financial integrity and the natural-expiry recovery state passed independent read-only verification. This evidence applies to the local heji_m4_bench run only."
+}

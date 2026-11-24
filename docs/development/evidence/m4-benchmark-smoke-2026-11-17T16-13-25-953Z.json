@@ -1,0 +1,6402 @@
+{
+  "scope": "本机隔离HTTP应用基准，不含Nginx/TLS/WS扇出；不外推2核4GB",
+  "seed": "heji-fixed-m4-20261117",
+  "initialScale": {
+    "books": 10,
+    "membersPerBook": 30,
+    "targetCurrentExpenses": 10000,
+    "otherBooksCurrentExpenses": 1000,
+    "historicalRatio": 0.2
+  },
+  "environment": {
+    "node": "v24.14.1",
+    "os": "win32 10.0.26200",
+    "cpu": "AMD Ryzen 9 7940HX with Radeon Graphics        ",
+    "logicalCpus": 32,
+    "memoryBytes": 16340414464,
+    "mysql": {
+      "version": "8.0.32",
+      "sqlMode": "IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION",
+      "isolationLevel": "REPEATABLE-READ"
+    }
+  },
+  "options": {
+    "users": 2,
+    "warmupMs": 1000,
+    "durationMs": 3000,
+    "rounds": 1,
+    "smoke": true
+  },
+  "groups": [
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "workflows": {
+        "total": 9,
+        "p50": 50.870099999999184,
+        "p95": 1843.4191999999998,
+        "max": 1843.4191999999998,
+        "expectedConflicts": 0,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 79
+      },
+      "httpReads": {
+        "total": 9,
+        "p50": 50.85319999999956,
+        "p95": 1843.4091999999996,
+        "max": 1843.4091999999996,
+        "expectedConflicts": 0,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 79
+      },
+      "httpWrites": null
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "workflows": {
+        "total": 38,
+        "p50": 35.16849999999977,
+        "p95": 1553.4022999999997,
+        "max": 1553.5679999999993,
+        "expectedConflicts": 0,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 334
+      },
+      "httpReads": {
+        "total": 38,
+        "p50": 35.16109999999935,
+        "p95": 1553.3940000000002,
+        "max": 1553.5645000000004,
+        "expectedConflicts": 0,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 334
+      },
+      "httpWrites": null
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "workflows": {
+        "total": 21,
+        "p50": 26.006999999999607,
+        "p95": 1588.8335000000006,
+        "max": 2858.4917000000005,
+        "expectedConflicts": 1,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 921
+      },
+      "httpReads": {
+        "total": 2,
+        "p50": 1398.3585999999996,
+        "p95": 1552.5280000000002,
+        "max": 1552.5280000000002,
+        "expectedConflicts": 0,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 20
+      },
+      "httpWrites": {
+        "total": 23,
+        "p50": 25.669099999999162,
+        "p95": 1454.1934,
+        "max": 1471.379499999999,
+        "expectedConflicts": 1,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 947
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "workflows": {
+        "total": 110,
+        "p50": 18.41359999999986,
+        "p95": 288.2331000000013,
+        "max": 3462.839100000001,
+        "expectedConflicts": 0,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 4873
+      },
+      "httpReads": {
+        "total": 11,
+        "p50": 226.87840000000142,
+        "p95": 1738.3217000000004,
+        "max": 1738.3217000000004,
+        "expectedConflicts": 0,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 110
+      },
+      "httpWrites": {
+        "total": 121,
+        "p50": 17.94970000000103,
+        "p95": 50.8775999999998,
+        "max": 1717.5229,
+        "expectedConflicts": 0,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 5016
+      }
+    }
+  ],
+  "workflowSamples": [
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 87.04569999999995,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 85.69209999999998,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 31.179899999999975,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 29.823500000000024,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 24.15039999999999,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 1969.0116000000003,
+        "status": 200,
+        "sql": 9,
+        "operation": "balance"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 1992.5502000000001,
+        "status": 200,
+        "sql": 9,
+        "operation": "balance"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 1843.0028000000002,
+        "status": 200,
+        "sql": 9,
+        "operation": "balance"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 1843.4191999999998,
+        "status": 200,
+        "sql": 8,
+        "operation": "report"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 50.870099999999184,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 21.41740000000027,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 49.40179999999964,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 39.664999999999964,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 32.41489999999976,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 1594.3238000000001,
+        "status": 200,
+        "sql": 9,
+        "operation": "balance"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 1789.1373999999996,
+        "status": 200,
+        "sql": 8,
+        "operation": "report"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 52.65869999999995,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 52.83460000000014,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 23.75,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 24.84400000000005,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 22.003700000000208,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 1582.2294999999995,
+        "status": 200,
+        "sql": 9,
+        "operation": "balance"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 1604.0593000000008,
+        "status": 200,
+        "sql": 9,
+        "operation": "balance"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 1553.4022999999997,
+        "status": 200,
+        "sql": 9,
+        "operation": "balance"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 1553.5679999999993,
+        "status": 200,
+        "sql": 8,
+        "operation": "report"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 47.86249999999927,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 10.662600000001476,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 9.722100000000864,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 10.934899999998379,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 10.455500000000029,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 230.1841000000004,
+        "status": 200,
+        "sql": 9,
+        "operation": "balance"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 54.050100000000384,
+        "status": 200,
+        "sql": 9,
+        "operation": "balance"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 106.93539999999848,
+        "status": 200,
+        "sql": 9,
+        "operation": "balance"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 36.72470000000067,
+        "status": 200,
+        "sql": 8,
+        "operation": "report"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 34.70800000000054,
+        "status": 200,
+        "sql": 8,
+        "operation": "report"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 41.1841000000004,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 13.206099999999424,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 11.372400000000198,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 13.781399999999849,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 11.60950000000048,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 149.2391000000007,
+        "status": 200,
+        "sql": 9,
+        "operation": "balance"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 50.22350000000006,
+        "status": 200,
+        "sql": 9,
+        "operation": "balance"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 34.62329999999929,
+        "status": 200,
+        "sql": 9,
+        "operation": "balance"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 46.31830000000082,
+        "status": 200,
+        "sql": 8,
+        "operation": "report"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 35.465799999999945,
+        "status": 200,
+        "sql": 8,
+        "operation": "report"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 43.25619999999981,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 12.69419999999991,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 10.391700000000128,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 9.51640000000043,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 9.588600000000952,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 157.96650000000045,
+        "status": 200,
+        "sql": 9,
+        "operation": "balance"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 48.22519999999895,
+        "status": 200,
+        "sql": 9,
+        "operation": "balance"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 35.16849999999977,
+        "status": 200,
+        "sql": 9,
+        "operation": "balance"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 37.468699999999444,
+        "status": 200,
+        "sql": 8,
+        "operation": "report"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 44.57999999999993,
+        "status": 200,
+        "sql": 8,
+        "operation": "report"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 40.53369999999995,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 9.77679999999964,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 9.283499999999549,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 10.41229999999996,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 7.841599999999744,
+        "status": 200,
+        "sql": 9,
+        "operation": "page"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 1543.5493999999999,
+        "status": 200,
+        "sql": 8,
+        "operation": "report"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 38.8020000000015,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 58.388600000000224,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 37.85319999999956,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 34.06460000000152,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 36.470799999999144,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 36.85070000000087,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 34.92270000000099,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 34.506900000000314,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 34.963700000000244,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 23.179400000000896,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 17.511899999999514,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 17.206300000001647,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 16.674999999999272,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 18.927800000001298,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 16.181400000001304,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 15.314400000001115,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 15.983100000001286,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 15.444700000000012,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 1592.0927999999985,
+        "status": 409,
+        "sql": 8,
+        "code": "PREVIEW_STALE",
+        "operation": "confirm"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 2925.759400000001,
+        "status": 200,
+        "sql": 20,
+        "operation": "confirm"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 26.833700000001045,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 41.79399999999987,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 39.16769999999997,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 37.20520000000033,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 25.749799999999595,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 26.006999999999607,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 30.094699999999648,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 29.766600000000835,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 36.877300000000105,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 21.348500000000058,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.061100000000806,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 18.01560000000063,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 15.996799999998984,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.061499999999796,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 15.272899999999936,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 15.889899999998306,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.455799999999726,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.066600000000108,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 1588.8335000000006,
+        "status": 409,
+        "sql": 8,
+        "code": "PREVIEW_STALE",
+        "operation": "confirm"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 2858.4917000000005,
+        "status": 200,
+        "sql": 20,
+        "operation": "confirm"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 1471.5411999999978,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 18.89979999999923,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 31.76050000000032,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 24.926899999998568,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 24.75040000000081,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 25.46429999999964,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 24.87880000000223,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 25.585800000000745,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 26.078699999998207,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 23.929299999999785,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 23.85280000000057,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 15.406200000001263,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 16.362199999999575,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 15.91870000000199,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 16.801899999998568,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 16.495999999999185,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 16.65729999999894,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 17.832099999999627,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 16.580399999998917,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 409.8845000000001,
+        "status": 200,
+        "sql": 20,
+        "operation": "confirm"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 26.016599999999016,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 18.048000000002503,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 17.99880000000121,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 16.965800000001764,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 18.34740000000238,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 16.627900000003137,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 21.15689999999813,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 20.14770000000135,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 17.643299999999726,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 320.9333999999981,
+        "status": 200,
+        "sql": 20,
+        "operation": "confirm"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 3109.4392000000007,
+        "status": 200,
+        "sql": 20,
+        "operation": "confirm"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 26.026400000002468,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 42.28600000000006,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 31.42029999999795,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 30.065999999998894,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 28.071099999997386,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 26.280500000000757,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 28.41189999999915,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 30.097900000000664,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 30.53399999999965,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 24.000599999999395,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 28.259799999999814,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.96270000000004,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.16830000000118,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 18.083599999998114,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 18.99250000000029,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 19.785799999997835,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 18.995200000001205,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.74330000000191,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 335.29109999999855,
+        "status": 200,
+        "sql": 20,
+        "operation": "confirm"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 24.067299999998795,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 18.864800000003015,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 20.156199999997625,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.63970000000336,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.18709999999919,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 242.03380000000107,
+        "status": 200,
+        "sql": 20,
+        "operation": "confirm"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 19.574900000003254,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 26.610899999999674,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 27.616699999998673,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 26.323700000000827,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 20.068699999999808,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 15.884499999996478,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.276699999998527,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 15.073199999998906,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 15.1404999999977,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 14.946799999997893,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 32.196899999999005,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 26.13590000000113,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 24.58650000000125,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 292.27059999999983,
+        "status": 200,
+        "sql": 20,
+        "operation": "confirm"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 25.800100000000384,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 18.38249999999971,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.17369999999937,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 18.20049999999901,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.35269999999946,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 19.446599999999307,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.653800000000047,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 18.41359999999986,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 15.177100000000792,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 288.2331000000013,
+        "status": 200,
+        "sql": 20,
+        "operation": "confirm"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 40.089200000002165,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 32.95639999999912,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 18.433600000000297,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 15.389800000000832,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 15.63760000000184,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.477100000000064,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 13.443799999997282,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 13.286000000000058,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 14.522499999999127,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 284.5627999999997,
+        "status": 200,
+        "sql": 20,
+        "operation": "confirm"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 39.68130000000019,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 25.512800000000425,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 18.041799999999057,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.248399999996764,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.15559999999823,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 15.583499999997002,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.16319999999905,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 15.599500000000262,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.118099999999686,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 307.0678999999982,
+        "status": 200,
+        "sql": 20,
+        "operation": "confirm"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 49.31789999999819,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 29.26510000000053,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 20.112600000000384,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 18.49120000000039,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 18.222099999999045,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.154700000002777,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 21.03849999999875,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 31.109700000000885,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.408900000002177,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 270.61599999999817,
+        "status": 200,
+        "sql": 20,
+        "operation": "confirm"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 22.81290000000081,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.70969999999943,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.742299999998068,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.37619999999879,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.64310000000114,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 18.687000000001717,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.365399999998772,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.09150000000227,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.482700000000477,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 372.79239999999845,
+        "status": 200,
+        "sql": 20,
+        "operation": "confirm"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 22.138699999999517,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.854699999999866,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.69210000000021,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 15.503199999999197,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.21689999999944,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 13.837400000000343,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 14.187200000000303,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 12.16479999999865,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 14.517800000001444,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 269.148799999999,
+        "status": 200,
+        "sql": 20,
+        "operation": "confirm"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 25.977100000000064,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.73569999999745,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 19.362499999999272,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 38.61750000000029,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.953099999998813,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.529799999996612,
+        "status": 201,
+        "sql": 47,
+        "operation": "equal"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.833800000000338,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.14010000000053,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.78490000000238,
+        "status": 201,
+        "sql": 47,
+        "operation": "exact"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 254.6258999999991,
+        "status": 200,
+        "sql": 20,
+        "operation": "confirm"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 3462.839100000001,
+        "status": 200,
+        "sql": 20,
+        "operation": "confirm"
+      }
+    }
+  ],
+  "httpSamples": [
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 86.96029999999996,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 85.6825,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 31.16999999999996,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 29.815799999999967,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 24.13869999999997,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 1969.0013,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 1992.5427,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 1842.9919,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 1843.4091999999996,
+        "status": 200,
+        "sql": 8,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 50.85319999999956,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 21.407200000000557,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 49.39550000000054,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 39.657099999999446,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 32.40679999999975,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 1594.3165,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 1789.1341000000002,
+        "status": 200,
+        "sql": 8,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 52.65279999999984,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 52.830699999999524,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 23.744799999999486,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 24.840700000000652,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 21.9979000000003,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 1582.2210999999998,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 1604.0554000000002,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 1553.3940000000002,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 1553.5645000000004,
+        "status": 200,
+        "sql": 8,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 47.85599999999977,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 10.656600000000253,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 9.717500000000655,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 10.898800000000847,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 10.449399999999514,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 230.17479999999887,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 54.03860000000168,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 106.92669999999998,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 36.71650000000045,
+        "status": 200,
+        "sql": 8,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 34.70050000000083,
+        "status": 200,
+        "sql": 8,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 41.17480000000069,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 13.1895999999997,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 11.36120000000119,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 13.774000000001251,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 11.603700000001481,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 149.23090000000047,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 50.217099999999846,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 34.61490000000049,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 46.31129999999939,
+        "status": 200,
+        "sql": 8,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 35.458300000000236,
+        "status": 200,
+        "sql": 8,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 43.25,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 12.687900000000809,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 10.386599999999817,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 9.506100000000515,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 9.582300000000032,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 157.95739999999932,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 48.21780000000035,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 35.16109999999935,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 37.46340000000055,
+        "status": 200,
+        "sql": 8,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 44.57440000000133,
+        "status": 200,
+        "sql": 8,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 40.52889999999934,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 9.769200000000637,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 9.275900000000547,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 10.406000000000859,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 7.836900000000242,
+        "status": 200,
+        "sql": 9,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 1543.5383000000002,
+        "status": 200,
+        "sql": 8,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 38.61340000000018,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 58.248499999999694,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 37.73149999999987,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 33.960800000000745,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 36.365499999999884,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 36.73030000000108,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 34.67000000000007,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 34.302700000000186,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 34.81419999999889,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 24.43760000000111,
+        "status": 201,
+        "sql": 13,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 23.006100000000515,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 17.398700000001554,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 17.096400000000358,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 16.521500000000742,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 18.735500000000684,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 16.02729999999974,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 15.200799999998708,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 15.827899999998408,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 15.262099999999919,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 5.77639999999883,
+        "status": 201,
+        "sql": 13,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 1560.8132999999998,
+        "status": 200,
+        "sql": 10,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 1405.5085999999992,
+        "status": 200,
+        "sql": 10,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 6.779499999998734,
+        "status": 409,
+        "sql": 8,
+        "code": "PREVIEW_STALE",
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 1514.4496,
+        "status": 200,
+        "sql": 20,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 26.746499999999287,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 41.71190000000024,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 39.088700000000244,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 37.1302999999989,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 25.669099999999162,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 25.91139999999905,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 29.995300000000498,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 29.644200000000637,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 36.64170000000013,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 28.921299999999974,
+        "status": 201,
+        "sql": 13,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 21.186999999999898,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.889799999999013,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.863800000000992,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 15.864700000000084,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.92370000000119,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 15.139500000001135,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 15.769599999999627,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.228100000000268,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.95980000000054,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 5.917599999998856,
+        "status": 201,
+        "sql": 13,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 1552.5280000000002,
+        "status": 200,
+        "sql": 10,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 1398.3585999999996,
+        "status": 200,
+        "sql": 10,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 7.347999999999956,
+        "status": 409,
+        "sql": 8,
+        "code": "PREVIEW_STALE",
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 1454.1934,
+        "status": 200,
+        "sql": 20,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 1471.379499999999,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 18.8041000000012,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 31.66399999999703,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 24.844300000000658,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 24.654999999998836,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 25.369200000001,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 24.752400000001217,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 25.487700000001496,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 25.977499999997235,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 23.825699999997596,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 15.857599999999366,
+        "status": 201,
+        "sql": 13,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 23.7484000000004,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 15.315700000002835,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 16.25500000000102,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 15.759099999999307,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 16.707500000000437,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 16.352100000000064,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 16.505799999999,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 17.715399999997317,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 16.41649999999936,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 6.262399999999616,
+        "status": 201,
+        "sql": 13,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 326.8938999999991,
+        "status": 200,
+        "sql": 10,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 76.70019999999931,
+        "status": 200,
+        "sql": 20,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 25.818999999999505,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 17.953999999997905,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 17.867099999999482,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 16.833999999998923,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 18.190599999998085,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 16.486899999999878,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 21.0154999999977,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 19.926500000001397,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 17.44720000000234,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 6.919600000001083,
+        "status": 201,
+        "sql": 13,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 181.16619999999966,
+        "status": 200,
+        "sql": 10,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 132.81800000000294,
+        "status": 200,
+        "sql": 20,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 1535.8342999999986,
+        "status": 200,
+        "sql": 10,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "warmup",
+      "sample": {
+        "ms": 1557.7243000000017,
+        "status": 200,
+        "sql": 20,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 25.900100000002567,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 42.20060000000012,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 31.31550000000061,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 29.980499999997846,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 27.985099999998056,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 26.147099999998318,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 28.30240000000049,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 29.936900000000605,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 30.316499999997177,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 19.998999999999796,
+        "status": 201,
+        "sql": 13,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 23.837499999997817,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 28.118500000000495,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.796800000000076,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.026300000001356,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.9362000000001,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 18.848599999997532,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 19.662500000002183,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 18.762699999999313,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.62720000000263,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 6.186799999999494,
+        "status": 201,
+        "sql": 13,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 202.04299999999785,
+        "status": 200,
+        "sql": 10,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 113.22739999999976,
+        "status": 200,
+        "sql": 20,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 23.97200000000157,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 18.761200000000827,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 20.056300000000192,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 200.4311000000016,
+        "status": 200,
+        "sql": 10,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.530800000000454,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.09780000000319,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 35.39519999999902,
+        "status": 200,
+        "sql": 20,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 19.476400000003196,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 26.511899999997695,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 27.470400000001973,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 26.138600000002043,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.561099999998987,
+        "status": 201,
+        "sql": 13,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 19.982199999998556,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 15.77929999999833,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.142100000000937,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 14.983500000002095,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 15.04200000000128,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 14.854200000001583,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 32.08209999999963,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 26.01629999999932,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 24.476299999998446,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 6.312900000000809,
+        "status": 201,
+        "sql": 13,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 226.87840000000142,
+        "status": 200,
+        "sql": 10,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 48.809799999999086,
+        "status": 200,
+        "sql": 20,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 25.70550000000003,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 18.280399999999645,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.083700000002864,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 18.100499999996828,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.255699999997887,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 19.34929999999804,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.506600000000617,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 227.80159999999887,
+        "status": 200,
+        "sql": 10,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 18.286299999999756,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 15.068900000002031,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 5.261999999998807,
+        "status": 201,
+        "sql": 13,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 54.09730000000127,
+        "status": 200,
+        "sql": 20,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 39.992200000000594,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 32.86119999999937,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 18.327399999998306,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 15.300500000001193,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 15.546999999998661,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.390800000001036,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 13.33350000000064,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 13.172099999999773,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 14.415100000001985,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 7.641100000000733,
+        "status": 201,
+        "sql": 13,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 243.33480000000054,
+        "status": 200,
+        "sql": 10,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 35.94520000000193,
+        "status": 200,
+        "sql": 20,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 39.58569999999963,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 25.420900000000984,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.94970000000103,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.160100000000966,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.055700000000797,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 15.485199999999168,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.057699999997567,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 15.492699999998877,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 248.51889999999912,
+        "status": 200,
+        "sql": 10,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.010599999997794,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 6.873500000001513,
+        "status": 201,
+        "sql": 13,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 50.8775999999998,
+        "status": 200,
+        "sql": 20,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 49.22160000000076,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 29.168399999998655,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 20.00879999999961,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 18.274999999997817,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 18.049199999997654,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.064399999999296,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 20.924399999999878,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 219.41400000000067,
+        "status": 200,
+        "sql": 10,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 30.913899999999558,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.28979999999865,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 44.27730000000156,
+        "status": 200,
+        "sql": 20,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 6.973099999999249,
+        "status": 201,
+        "sql": 13,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 22.71940000000177,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.616900000000896,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.53740000000107,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.209999999999127,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.54449999999997,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 18.588800000001356,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.21480000000156,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 15.97820000000138,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.367299999998068,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 6.148499999999331,
+        "status": 201,
+        "sql": 13,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 272.4887999999992,
+        "status": 200,
+        "sql": 10,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 94.12329999999929,
+        "status": 200,
+        "sql": 20,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 22.047699999999168,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.74620000000141,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.55210000000079,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 15.41070000000036,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.10989999999947,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 13.652999999998428,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 14.000899999999092,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 12.068100000000413,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 14.422999999998865,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 5.519100000001345,
+        "status": 201,
+        "sql": 13,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 195.12609999999768,
+        "status": 200,
+        "sql": 10,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 68.4806000000026,
+        "status": 200,
+        "sql": 20,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 25.863099999998667,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.56750000000102,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 19.25920000000042,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 38.515800000001036,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.852100000000064,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.42699999999968,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.650100000002567,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 16.006600000000617,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 17.66649999999936,
+        "status": 201,
+        "sql": 47,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 6.439399999999296,
+        "status": 201,
+        "sql": 13,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 182.80769999999757,
+        "status": 200,
+        "sql": 10,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 65.35380000000077,
+        "status": 200,
+        "sql": 20,
+        "operation": "write"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 1738.3217000000004,
+        "status": 200,
+        "sql": 10,
+        "operation": "read"
+      }
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "phase": "measure",
+      "sample": {
+        "ms": 1717.5229,
+        "status": 200,
+        "sql": 20,
+        "operation": "write"
+      }
+    }
+  ]
+}

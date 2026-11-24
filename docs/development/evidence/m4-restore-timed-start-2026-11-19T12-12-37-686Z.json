@@ -1,0 +1,14 @@
+{
+  "format": "heji-m4-restore-timed-run-v1",
+  "at": "2026-11-19T12:12:37.686Z",
+  "target": "heji_m4_restore_004_timed",
+  "backup": "heji-m4-1c2d9ba6-c94f-4936-9b80-f313596a14fc.jsonl.gz",
+  "progress": "m4-restore-timed-progress-2026-11-19T12-12-37-686Z.jsonl",
+  "baselineReports": [
+    "restore-b463c218-5dd3-400c-9a4b-a61e39067640.json",
+    "restore-c30bd155-3c70-48ba-bfad-c0efebe0faab.json",
+    "restore-ddd26dd8-72e8-4178-b563-c14791d3f3e5.json",
+    "restore-timed-004-once.json"
+  ],
+  "preflight": "m4-restore-timed-preflight-2026-11-19T12-10-58-271Z.json"
+}

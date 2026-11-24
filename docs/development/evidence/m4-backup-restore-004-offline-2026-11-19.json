@@ -1,0 +1,79 @@
+{
+  "format": "heji-m4-backup-004-offline-verification-v1",
+  "verifiedAt": "2026-11-19T07:25:06.630Z",
+  "scope": "offline-code-only",
+  "tests": {
+    "total": 144,
+    "passed": 144,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 1198.6401
+  },
+  "build": {
+    "exitCode": 0,
+    "apiTypecheck": true,
+    "vueTypecheck": true,
+    "modules": 59
+  },
+  "offlinePlans": {
+    "m4": 0,
+    "windowMigration": 0
+  },
+  "databaseConnected": false,
+  "migrationExecuted": false,
+  "backupCreated": false,
+  "restoreExecuted": false,
+  "newLoadExecuted": false,
+  "uiChanged": false,
+  "sourceHashes": [
+    {
+      "path": "tests/m4/policy.ts",
+      "sha256": "14eb5082f538049931f82d7d9dfac92a073ac36394121b26a4e91dc8fc571a60"
+    },
+    {
+      "path": "tests/m4/backup-format.ts",
+      "sha256": "44648e46707e89c66c355da865f583f9064c9c69804209117234eb28fbee66b9"
+    },
+    {
+      "path": "tests/m4/backup-preflight.ts",
+      "sha256": "e7fad1eb3ca5d97b7ca555e4dbb78edabd93d6bdb4b89597fdb36c8604c952cd"
+    },
+    {
+      "path": "tests/m4/backup.ts",
+      "sha256": "73def958d48420a0ff3131fa2019e33924f7de242f72cc8d698ca30ea772511d"
+    },
+    {
+      "path": "tests/m4/database.ts",
+      "sha256": "97c05f2f1b89e3ae91df14cedf9e2b0946a98768a7e922998c1ca421dc4ebedf"
+    },
+    {
+      "path": "tests/m4/cli.ts",
+      "sha256": "9a3d2ee33323ae10217f59455c478ebdd2cca47ae037844fc99aa0281e4b198f"
+    },
+    {
+      "path": "database/scripts/migrate-windows.ts",
+      "sha256": "323692e6c6c65f4a22f6dd05c8dfe5146c6f496c5d85e1649fe2515f3dc741c3"
+    },
+    {
+      "path": "tests/integration/m4-backup-format.test.ts",
+      "sha256": "f968cc78bf6c9c1c4ccd3374cae505e2954598920f788af623a92eef1a35ea73"
+    },
+    {
+      "path": "tests/integration/m4-backup-restore-004.test.ts",
+      "sha256": "b0e4fb530b3da6ecc067501a209f4c58074d366ef64abdb6f0d2b16d21ea9a5e"
+    },
+    {
+      "path": "tests/integration/m4-benchmark.test.ts",
+      "sha256": "87540b51bdda32a74a5b8aeddffe9cb37de1580b1ebdf72e7119c653538ce51a"
+    },
+    {
+      "path": "tests/integration/m4-summary-backup.test.ts",
+      "sha256": "51702fb58b6b5e6b9e8ab52df6357ea866ba3378f303ba5acc47c5e9cd3be2cc"
+    },
+    {
+      "path": "tests/integration/m4-window-migration.test.ts",
+      "sha256": "1080ca69e9b559469c343e678dc8a81d370667a56faa778288c840f15a50f622"
+    }
+  ],
+  "documentLinksChecked": 40
+}

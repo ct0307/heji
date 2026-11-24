@@ -1,0 +1,825 @@
+{
+  "format": "heji-m4-restore-verification-v1",
+  "backupFormat": "heji-m4-backup-v2",
+  "backup": "heji-m4-1c2d9ba6-c94f-4936-9b80-f313596a14fc.jsonl.gz",
+  "rows": 6609958,
+  "checksum": "73ca22949ff144dd7a6d0e69cfc8383aad74aa362698c126cfa63c4637933cfe",
+  "restoredDatabase": "heji_m4_restore_004_timed",
+  "restoredAt": "2026-11-19T12:21:01.978Z",
+  "elapsedMs": 503957.8391,
+  "within30Minutes": true,
+  "elapsedScope": "入口至成功commit返回；含文件/流式预检、架构、导入、逐表摘要及全部恢复完整性核验；不含报告写入/连接收尾/安装",
+  "timing": {
+    "format": "heji-m4-restore-timing-v1",
+    "elapsedMs": 503957.8391,
+    "unmeasuredMs": 3.0458999999100342,
+    "stages": [
+      {
+        "id": 1,
+        "parentId": null,
+        "stage": "file_verification",
+        "status": "completed",
+        "startedOffsetMs": 0.1875,
+        "elapsedMs": 138.57999999999998
+      },
+      {
+        "id": 2,
+        "parentId": null,
+        "stage": "stream_preflight",
+        "status": "completed",
+        "startedOffsetMs": 138.86839999999995,
+        "elapsedMs": 17443.3841
+      },
+      {
+        "id": 3,
+        "parentId": null,
+        "stage": "schema_creation",
+        "status": "completed",
+        "startedOffsetMs": 17582.5268,
+        "elapsedMs": 517.6170999999995
+      },
+      {
+        "id": 4,
+        "parentId": null,
+        "stage": "database_connection",
+        "status": "completed",
+        "startedOffsetMs": 18100.2189,
+        "elapsedMs": 2.780300000002171
+      },
+      {
+        "id": 5,
+        "parentId": null,
+        "stage": "target_schema",
+        "status": "completed",
+        "startedOffsetMs": 18103.0474,
+        "elapsedMs": 36.07640000000174
+      },
+      {
+        "id": 6,
+        "parentId": null,
+        "stage": "import",
+        "status": "completed",
+        "startedOffsetMs": 18139.2017,
+        "elapsedMs": 180088.69049999997
+      },
+      {
+        "id": 7,
+        "parentId": null,
+        "stage": "table_digests",
+        "status": "completed",
+        "startedOffsetMs": 198228.09889999998,
+        "elapsedMs": 32108.466000000015
+      },
+      {
+        "id": 8,
+        "parentId": 7,
+        "stage": "table_digest",
+        "status": "completed",
+        "startedOffsetMs": 198228.2105,
+        "elapsedMs": 1138.727899999998,
+        "table": "audit_events"
+      },
+      {
+        "id": 9,
+        "parentId": 7,
+        "stage": "table_digest",
+        "status": "completed",
+        "startedOffsetMs": 199367.05089999997,
+        "elapsedMs": 3.1264000000082888,
+        "table": "book_members"
+      },
+      {
+        "id": 10,
+        "parentId": 7,
+        "stage": "table_digest",
+        "status": "completed",
+        "startedOffsetMs": 199370.23599999998,
+        "elapsedMs": 1.2857000000076368,
+        "table": "books"
+      },
+      {
+        "id": 11,
+        "parentId": 7,
+        "stage": "table_digest",
+        "status": "completed",
+        "startedOffsetMs": 199371.60619999998,
+        "elapsedMs": 57.40679999999702,
+        "table": "confirmed_transfers"
+      },
+      {
+        "id": 12,
+        "parentId": 7,
+        "stage": "table_digest",
+        "status": "completed",
+        "startedOffsetMs": 199429.1268,
+        "elapsedMs": 15114.265199999994,
+        "table": "expense_shares"
+      },
+      {
+        "id": 13,
+        "parentId": 7,
+        "stage": "table_digest",
+        "status": "completed",
+        "startedOffsetMs": 214543.4587,
+        "elapsedMs": 1491.833500000008,
+        "table": "expense_versions"
+      },
+      {
+        "id": 14,
+        "parentId": 7,
+        "stage": "table_digest",
+        "status": "completed",
+        "startedOffsetMs": 216035.362,
+        "elapsedMs": 938.6661000000022,
+        "table": "expenses"
+      },
+      {
+        "id": 15,
+        "parentId": 7,
+        "stage": "table_digest",
+        "status": "completed",
+        "startedOffsetMs": 216974.12759999998,
+        "elapsedMs": 5.161099999997532,
+        "table": "finance_daily_categories"
+      },
+      {
+        "id": 16,
+        "parentId": 7,
+        "stage": "table_digest",
+        "status": "completed",
+        "startedOffsetMs": 216979.33539999998,
+        "elapsedMs": 118.6585999999952,
+        "table": "finance_daily_members"
+      },
+      {
+        "id": 17,
+        "parentId": 7,
+        "stage": "table_digest",
+        "status": "completed",
+        "startedOffsetMs": 217098.0685,
+        "elapsedMs": 2.6136999999871477,
+        "table": "finance_member_totals"
+      },
+      {
+        "id": 18,
+        "parentId": 7,
+        "stage": "table_digest",
+        "status": "completed",
+        "startedOffsetMs": 217100.72009999998,
+        "elapsedMs": 1463.2895000000135,
+        "table": "financial_audit_details"
+      },
+      {
+        "id": 19,
+        "parentId": 7,
+        "stage": "table_digest",
+        "status": "completed",
+        "startedOffsetMs": 218564.07929999998,
+        "elapsedMs": 11600.885600000009,
+        "table": "idempotency_records"
+      },
+      {
+        "id": 20,
+        "parentId": 7,
+        "stage": "table_digest",
+        "status": "completed",
+        "startedOffsetMs": 230165.0421,
+        "elapsedMs": 3.7409999999799766,
+        "table": "invitations"
+      },
+      {
+        "id": 21,
+        "parentId": 7,
+        "stage": "table_digest",
+        "status": "completed",
+        "startedOffsetMs": 230168.8302,
+        "elapsedMs": 0.9049999999988358,
+        "table": "m4_fixture_meta"
+      },
+      {
+        "id": 22,
+        "parentId": 7,
+        "stage": "table_digest",
+        "status": "completed",
+        "startedOffsetMs": 230169.77269999997,
+        "elapsedMs": 2.790900000021793,
+        "table": "rate_limits"
+      },
+      {
+        "id": 23,
+        "parentId": 7,
+        "stage": "table_digest",
+        "status": "completed",
+        "startedOffsetMs": 230172.6008,
+        "elapsedMs": 0.8910000000032596,
+        "table": "schema_migrations"
+      },
+      {
+        "id": 24,
+        "parentId": 7,
+        "stage": "table_digest",
+        "status": "completed",
+        "startedOffsetMs": 230173.5236,
+        "elapsedMs": 2.4161000000021886,
+        "table": "sessions"
+      },
+      {
+        "id": 25,
+        "parentId": 7,
+        "stage": "table_digest",
+        "status": "completed",
+        "startedOffsetMs": 230175.9703,
+        "elapsedMs": 3.2031999999890104,
+        "table": "settlement_windows"
+      },
+      {
+        "id": 26,
+        "parentId": 7,
+        "stage": "table_digest",
+        "status": "completed",
+        "startedOffsetMs": 230179.2111,
+        "elapsedMs": 155.89420000000973,
+        "table": "transfer_requests"
+      },
+      {
+        "id": 27,
+        "parentId": 7,
+        "stage": "table_digest",
+        "status": "completed",
+        "startedOffsetMs": 230335.1793,
+        "elapsedMs": 1.346400000009453,
+        "table": "users"
+      },
+      {
+        "id": 28,
+        "parentId": null,
+        "stage": "migration_metadata",
+        "status": "completed",
+        "startedOffsetMs": 230336.731,
+        "elapsedMs": 5.454799999977695
+      },
+      {
+        "id": 29,
+        "parentId": null,
+        "stage": "foreign_keys",
+        "status": "completed",
+        "startedOffsetMs": 230342.21879999997,
+        "elapsedMs": 119891.92520000006
+      },
+      {
+        "id": 30,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 230345.04909999997,
+        "elapsedMs": 673.8545000000158,
+        "constraintIndex": 1
+      },
+      {
+        "id": 31,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 231018.98609999998,
+        "elapsedMs": 527.2478000000119,
+        "constraintIndex": 2
+      },
+      {
+        "id": 32,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 231546.3418,
+        "elapsedMs": 2.0007000000041444,
+        "constraintIndex": 3
+      },
+      {
+        "id": 33,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 231548.3986,
+        "elapsedMs": 0.43690000000060536,
+        "constraintIndex": 4
+      },
+      {
+        "id": 34,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 231548.8652,
+        "elapsedMs": 0.3734999999869615,
+        "constraintIndex": 5
+      },
+      {
+        "id": 35,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 231549.27,
+        "elapsedMs": 45.374500000005355,
+        "constraintIndex": 6
+      },
+      {
+        "id": 36,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 231594.71769999998,
+        "elapsedMs": 24.917400000005728,
+        "constraintIndex": 7
+      },
+      {
+        "id": 37,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 231619.7351,
+        "elapsedMs": 21.28630000000703,
+        "constraintIndex": 8
+      },
+      {
+        "id": 38,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 231641.10419999997,
+        "elapsedMs": 23.106200000009267,
+        "constraintIndex": 9
+      },
+      {
+        "id": 39,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 231664.2865,
+        "elapsedMs": 1.8268999999854714,
+        "constraintIndex": 10
+      },
+      {
+        "id": 40,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 231666.161,
+        "elapsedMs": 98036.20190000001,
+        "constraintIndex": 11
+      },
+      {
+        "id": 41,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 329702.4513,
+        "elapsedMs": 14366.786299999978,
+        "constraintIndex": 12
+      },
+      {
+        "id": 42,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 344069.315,
+        "elapsedMs": 2119.914300000004,
+        "constraintIndex": 13
+      },
+      {
+        "id": 43,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 346189.3074,
+        "elapsedMs": 544.1716000000015,
+        "constraintIndex": 14
+      },
+      {
+        "id": 44,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 346733.588,
+        "elapsedMs": 630.3691000000108,
+        "constraintIndex": 15
+      },
+      {
+        "id": 45,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 347364.06210000004,
+        "elapsedMs": 585.2780999999959,
+        "constraintIndex": 16
+      },
+      {
+        "id": 46,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 347949.4184,
+        "elapsedMs": 667.8113000000012,
+        "constraintIndex": 17
+      },
+      {
+        "id": 47,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 348617.3351,
+        "elapsedMs": 690.0757999999914,
+        "constraintIndex": 18
+      },
+      {
+        "id": 48,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 349307.4907,
+        "elapsedMs": 591.2988999999943,
+        "constraintIndex": 19
+      },
+      {
+        "id": 49,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 349898.8665,
+        "elapsedMs": 163.9884000000311,
+        "constraintIndex": 20
+      },
+      {
+        "id": 50,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 350062.9281,
+        "elapsedMs": 1.080599999986589,
+        "constraintIndex": 21
+      },
+      {
+        "id": 51,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 350064.0569,
+        "elapsedMs": 0.6394999999902211,
+        "constraintIndex": 22
+      },
+      {
+        "id": 52,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 350064.7344,
+        "elapsedMs": 0.2709000000031665,
+        "constraintIndex": 23
+      },
+      {
+        "id": 53,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 350065.0349,
+        "elapsedMs": 1.009699999995064,
+        "constraintIndex": 24
+      },
+      {
+        "id": 54,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 350066.0752,
+        "elapsedMs": 0.708600000012666,
+        "constraintIndex": 25
+      },
+      {
+        "id": 55,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 350066.8151,
+        "elapsedMs": 0.4738000000361353,
+        "constraintIndex": 26
+      },
+      {
+        "id": 56,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 350067.31570000004,
+        "elapsedMs": 0.39600000000791624,
+        "constraintIndex": 27
+      },
+      {
+        "id": 57,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 350067.7364,
+        "elapsedMs": 0.41610000003129244,
+        "constraintIndex": 28
+      },
+      {
+        "id": 58,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 350068.17980000004,
+        "elapsedMs": 13.820699999982025,
+        "constraintIndex": 29
+      },
+      {
+        "id": 59,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 350082.04130000004,
+        "elapsedMs": 37.54349999997066,
+        "constraintIndex": 30
+      },
+      {
+        "id": 60,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 350119.65890000004,
+        "elapsedMs": 32.367499999993015,
+        "constraintIndex": 31
+      },
+      {
+        "id": 61,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 350152.0942,
+        "elapsedMs": 39.49440000002505,
+        "constraintIndex": 32
+      },
+      {
+        "id": 62,
+        "parentId": 29,
+        "stage": "foreign_key",
+        "status": "completed",
+        "startedOffsetMs": 350191.68220000004,
+        "elapsedMs": 42.40579999994952,
+        "constraintIndex": 33
+      },
+      {
+        "id": 63,
+        "parentId": null,
+        "stage": "historical_share_conservation",
+        "status": "completed",
+        "startedOffsetMs": 350235.4769,
+        "elapsedMs": 5684.281699999992
+      },
+      {
+        "id": 64,
+        "parentId": null,
+        "stage": "current_revision_present",
+        "status": "completed",
+        "startedOffsetMs": 355919.8273,
+        "elapsedMs": 84.2274000000325
+      },
+      {
+        "id": 65,
+        "parentId": null,
+        "stage": "balance_conservation",
+        "status": "completed",
+        "startedOffsetMs": 356004.1202,
+        "elapsedMs": 10583.79759999999
+      },
+      {
+        "id": 66,
+        "parentId": null,
+        "stage": "derived_reconciliation",
+        "status": "completed",
+        "startedOffsetMs": 366587.9805,
+        "elapsedMs": 124534.21480000002
+      },
+      {
+        "id": 67,
+        "parentId": 66,
+        "stage": "derived_balance",
+        "status": "completed",
+        "startedOffsetMs": 366590.37830000004,
+        "elapsedMs": 4026.400399999984,
+        "bookIndex": 1
+      },
+      {
+        "id": 68,
+        "parentId": 66,
+        "stage": "derived_report",
+        "status": "completed",
+        "startedOffsetMs": 370616.8435,
+        "elapsedMs": 4626.462799999979,
+        "bookIndex": 1
+      },
+      {
+        "id": 69,
+        "parentId": 66,
+        "stage": "derived_balance",
+        "status": "completed",
+        "startedOffsetMs": 375243.3852,
+        "elapsedMs": 3943.864100000006,
+        "bookIndex": 2
+      },
+      {
+        "id": 70,
+        "parentId": 66,
+        "stage": "derived_report",
+        "status": "completed",
+        "startedOffsetMs": 379187.3223,
+        "elapsedMs": 4684.363400000031,
+        "bookIndex": 2
+      },
+      {
+        "id": 71,
+        "parentId": 66,
+        "stage": "derived_balance",
+        "status": "completed",
+        "startedOffsetMs": 383871.7953,
+        "elapsedMs": 22144.05700000003,
+        "bookIndex": 3
+      },
+      {
+        "id": 72,
+        "parentId": 66,
+        "stage": "derived_report",
+        "status": "completed",
+        "startedOffsetMs": 406015.94080000004,
+        "elapsedMs": 22314.962099999946,
+        "bookIndex": 3
+      },
+      {
+        "id": 73,
+        "parentId": 66,
+        "stage": "derived_balance",
+        "status": "completed",
+        "startedOffsetMs": 428330.978,
+        "elapsedMs": 5301.1152,
+        "bookIndex": 4
+      },
+      {
+        "id": 74,
+        "parentId": 66,
+        "stage": "derived_report",
+        "status": "completed",
+        "startedOffsetMs": 433632.1794,
+        "elapsedMs": 6325.446799999976,
+        "bookIndex": 4
+      },
+      {
+        "id": 75,
+        "parentId": 66,
+        "stage": "derived_balance",
+        "status": "completed",
+        "startedOffsetMs": 439957.7033,
+        "elapsedMs": 3972.6946999999927,
+        "bookIndex": 5
+      },
+      {
+        "id": 76,
+        "parentId": 66,
+        "stage": "derived_report",
+        "status": "completed",
+        "startedOffsetMs": 443930.4711,
+        "elapsedMs": 4568.501400000008,
+        "bookIndex": 5
+      },
+      {
+        "id": 77,
+        "parentId": 66,
+        "stage": "derived_balance",
+        "status": "completed",
+        "startedOffsetMs": 448499.0714,
+        "elapsedMs": 3949.5972000000183,
+        "bookIndex": 6
+      },
+      {
+        "id": 78,
+        "parentId": 66,
+        "stage": "derived_report",
+        "status": "completed",
+        "startedOffsetMs": 452448.7465,
+        "elapsedMs": 4656.938499999989,
+        "bookIndex": 6
+      },
+      {
+        "id": 79,
+        "parentId": 66,
+        "stage": "derived_balance",
+        "status": "completed",
+        "startedOffsetMs": 457105.7638,
+        "elapsedMs": 3911.5858000000007,
+        "bookIndex": 7
+      },
+      {
+        "id": 80,
+        "parentId": 66,
+        "stage": "derived_report",
+        "status": "completed",
+        "startedOffsetMs": 461017.42490000004,
+        "elapsedMs": 4622.602599999984,
+        "bookIndex": 7
+      },
+      {
+        "id": 81,
+        "parentId": 66,
+        "stage": "derived_balance",
+        "status": "completed",
+        "startedOffsetMs": 465640.1016,
+        "elapsedMs": 3921.7195000000065,
+        "bookIndex": 8
+      },
+      {
+        "id": 82,
+        "parentId": 66,
+        "stage": "derived_report",
+        "status": "completed",
+        "startedOffsetMs": 469561.8945,
+        "elapsedMs": 4584.699500000046,
+        "bookIndex": 8
+      },
+      {
+        "id": 83,
+        "parentId": 66,
+        "stage": "derived_balance",
+        "status": "completed",
+        "startedOffsetMs": 474146.6751,
+        "elapsedMs": 3913.726800000004,
+        "bookIndex": 9
+      },
+      {
+        "id": 84,
+        "parentId": 66,
+        "stage": "derived_report",
+        "status": "completed",
+        "startedOffsetMs": 478060.51170000003,
+        "elapsedMs": 4532.439799999993,
+        "bookIndex": 9
+      },
+      {
+        "id": 85,
+        "parentId": 66,
+        "stage": "derived_balance",
+        "status": "completed",
+        "startedOffsetMs": 482593.0416,
+        "elapsedMs": 3898.2362999999896,
+        "bookIndex": 10
+      },
+      {
+        "id": 86,
+        "parentId": 66,
+        "stage": "derived_report",
+        "status": "completed",
+        "startedOffsetMs": 486491.354,
+        "elapsedMs": 4630.767200000002,
+        "bookIndex": 10
+      },
+      {
+        "id": 87,
+        "parentId": null,
+        "stage": "financial_counts",
+        "status": "completed",
+        "startedOffsetMs": 491122.2157,
+        "elapsedMs": 2278.466300000029
+      },
+      {
+        "id": 88,
+        "parentId": null,
+        "stage": "commit",
+        "status": "completed",
+        "startedOffsetMs": 493400.75700000004,
+        "elapsedMs": 10556.830999999947
+      }
+    ]
+  },
+  "report": {
+    "migrationChecksums": [
+      {
+        "name": "001_m1.sql",
+        "checksum": "58cd31b090c5c7dd40fdcef9cc5f3dc46d24095960c2b2eda381a61297f218e1"
+      },
+      {
+        "name": "002_m2.sql",
+        "checksum": "fe252167e397ba27f3b738b3f540ce0977fb1992125520151577651556fa8286"
+      },
+      {
+        "name": "003_finance_summaries.sql",
+        "checksum": "0817f3f6a6ac2396509eb75aaa2bfdf3d6259088568743c1d3e3910ab278daff"
+      },
+      {
+        "name": "004_settlement_windows.sql",
+        "checksum": "6448464c6b7d1660911953f835505d2f1538d804a2e47273e1829cdf3026345f"
+      }
+    ],
+    "counts": {
+      "books": "10",
+      "members": "300",
+      "currentExpenses": "230043",
+      "versions": "233843",
+      "transfers": "6963",
+      "reversals": "1",
+      "activeWindows": "0"
+    }
+  }
+}

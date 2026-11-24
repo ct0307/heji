@@ -1,0 +1,3344 @@
+{
+  "sourceType": "participant-sensitivity-round-files",
+  "runId": "2026-11-18T11-27-06-199Z",
+  "scope": "本机heji_m4_bench同账本HTTP敏感性实验；不代表真实用户分布，不外推生产容量",
+  "complete": true,
+  "startedAt": "2026-11-18T11:27:10.529Z",
+  "completedAt": "2026-11-18T11:59:47.033Z",
+  "environment": {
+    "node": "v24.14.1",
+    "os": "win32 10.0.26200",
+    "cpu": "AMD Ryzen 9 7940HX with Radeon Graphics        ",
+    "logicalCpus": 32,
+    "memoryBytes": 16340414464,
+    "mysql": {
+      "version": "8.0.32",
+      "sqlMode": "IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION",
+      "isolationLevel": "REPEATABLE-READ"
+    },
+    "mysqlSettings": [
+      {
+        "bufferPoolBytes": "134217728",
+        "maxConnections": "151"
+      }
+    ],
+    "poolConnections": 8
+  },
+  "options": {
+    "users": 20,
+    "warmupMs": 30000,
+    "durationMs": 180000,
+    "rounds": 3,
+    "smoke": false,
+    "participantStudy": true,
+    "participantCounts": [
+      30,
+      4,
+      8
+    ]
+  },
+  "actualScaleAtStart": {
+    "expenses": "131938",
+    "versions": "135738",
+    "shares": "4072140",
+    "confirmed": "6962",
+    "requests": "12542"
+  },
+  "actualScaleAtEnd": {
+    "expenses": "230043",
+    "versions": "233843",
+    "shares": "5345104",
+    "confirmed": "6963",
+    "requests": "23438"
+  },
+  "groups": [
+    {
+      "filename": "m4-round-participant-study-2026-11-18T11-27-06-199Z-p30-1.json",
+      "size": 0,
+      "sha256": "",
+      "startedAt": "2026-11-18T11:27:10.529Z",
+      "completedAt": "2026-11-18T11:30:45.451Z",
+      "environment": {
+        "node": "v24.14.1",
+        "os": "win32 10.0.26200",
+        "cpu": "AMD Ryzen 9 7940HX with Radeon Graphics        ",
+        "logicalCpus": 32,
+        "memoryBytes": 16340414464,
+        "mysql": {
+          "version": "8.0.32",
+          "sqlMode": "IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION",
+          "isolationLevel": "REPEATABLE-READ"
+        },
+        "mysqlSettings": [
+          {
+            "bufferPoolBytes": "134217728",
+            "maxConnections": "151"
+          }
+        ],
+        "poolConnections": 8
+      },
+      "actualScaleAtGroupStart": {
+        "expenses": "131938",
+        "versions": "135738",
+        "shares": "4072140",
+        "confirmed": "6962",
+        "requests": "12542"
+      },
+      "changes": {
+        "expenses": 10136,
+        "requests": 1126,
+        "confirmed": 0,
+        "shares": 304080
+      },
+      "inferredScaleAtEnd": {
+        "expenses": "142074",
+        "versions": "145874",
+        "shares": "4376220",
+        "confirmed": "6962",
+        "requests": "13668"
+      },
+      "completedWorkflowsPerSecond": 51.05555555555556,
+      "financialVersionChanges": 10136,
+      "operationCounts": {
+        "equal": 5514,
+        "exact": 2757,
+        "confirm": 919
+      },
+      "group": {
+        "mode": "write",
+        "distribution": "same-book",
+        "round": 1,
+        "participantCount": 30,
+        "workflows": {
+          "total": 9190,
+          "p50": 294.16130000000703,
+          "p95": 886.2593999999808,
+          "max": 1696.7167999999947,
+          "expectedConflicts": 919,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 190233
+        },
+        "httpReads": {
+          "total": 919,
+          "p50": 183.40140000000247,
+          "p95": 487.46719999999914,
+          "max": 852.6585999999952,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 10109
+        },
+        "httpWrites": {
+          "total": 10109,
+          "p50": 272.56770000001416,
+          "p95": 657.7123999999894,
+          "max": 1191.9464000000153,
+          "expectedConflicts": 919,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 203099
+        },
+        "httpEndpoints": {
+          "expense": {
+            "latency": {
+              "total": 8271,
+              "p50": 273.9261000000115,
+              "p95": 658.3044000000227,
+              "max": 1191.9464000000153,
+              "expectedConflicts": 0,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 181962
+            },
+            "sql": {
+              "count": 8271,
+              "min": 22,
+              "p50": 22,
+              "p95": 22,
+              "max": 22,
+              "total": 181962
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 8271,
+                "min": 1.4249999999956344,
+                "p50": 39.2245999999941,
+                "p95": 139.5439999999944,
+                "max": 546.9916999999987
+              },
+              "sqlMs": {
+                "count": 8271,
+                "min": 12.395199999999022,
+                "p50": 234.16020000000572,
+                "p95": 548.3239999999932,
+                "max": 973.7672000000894
+              },
+              "bookLockMs": {
+                "count": 8271,
+                "min": 0.2555999999967753,
+                "p50": 88.09429999999702,
+                "p95": 294.8061999999918,
+                "max": 682.2862000000023
+              },
+              "bookLockHeldMs": {
+                "count": 8271,
+                "min": 7.915500000002794,
+                "p50": 13.323299999989104,
+                "p95": 57.54809999999998,
+                "max": 169.86419999999634
+              },
+              "aggregateMs": {
+                "count": 8271,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 8271,
+                "min": 1.1092999999818858,
+                "p50": 3.727500000008149,
+                "p95": 22.970000000001164,
+                "max": 90.31100000000151
+              }
+            }
+          },
+          "request": {
+            "latency": {
+              "total": 919,
+              "p50": 262.0581999999995,
+              "p95": 650.3583000000071,
+              "max": 1123.427800000005,
+              "expectedConflicts": 0,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 12866
+            },
+            "sql": {
+              "count": 919,
+              "min": 14,
+              "p50": 14,
+              "p95": 14,
+              "max": 14,
+              "total": 12866
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 919,
+                "min": 1.6731999999974505,
+                "p50": 45.197100000004866,
+                "p95": 138.94190000000526,
+                "max": 335.3176000000094
+              },
+              "sqlMs": {
+                "count": 919,
+                "min": 67.49209999999584,
+                "p50": 221.96790000004694,
+                "p95": 536.1895000000077,
+                "max": 861.6036999999778
+              },
+              "bookLockMs": {
+                "count": 919,
+                "min": 59.65469999999914,
+                "p50": 84.49889999999868,
+                "p95": 299.94550000000163,
+                "max": 550.2940999999992
+              },
+              "bookLockHeldMs": {
+                "count": 919,
+                "min": 3.1181999999971595,
+                "p50": 4.818199999994249,
+                "p95": 23.93279999999504,
+                "max": 82.56029999999737
+              },
+              "aggregateMs": {
+                "count": 919,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 919,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              }
+            }
+          },
+          "preview": {
+            "latency": {
+              "total": 919,
+              "p50": 183.40140000000247,
+              "p95": 487.46719999999914,
+              "max": 852.6585999999952,
+              "expectedConflicts": 0,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 10109
+            },
+            "sql": {
+              "count": 919,
+              "min": 11,
+              "p50": 11,
+              "p95": 11,
+              "max": 11,
+              "total": 10109
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 919,
+                "min": 0.006099999998696148,
+                "p50": 29.24790000001667,
+                "p95": 114.40990000000602,
+                "max": 287.3828999999969
+              },
+              "sqlMs": {
+                "count": 919,
+                "min": 29.319499999954132,
+                "p50": 150.65749999997206,
+                "p95": 420.2538000000204,
+                "max": 820.6748999999254
+              },
+              "bookLockMs": {
+                "count": 919,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "bookLockHeldMs": {
+                "count": 919,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "aggregateMs": {
+                "count": 919,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 919,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              }
+            }
+          },
+          "confirm": {
+            "latency": {
+              "total": 919,
+              "p50": 271.4554000000062,
+              "p95": 668.1834999999992,
+              "max": 1098.4384999999893,
+              "expectedConflicts": 919,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 8271
+            },
+            "sql": {
+              "count": 919,
+              "min": 9,
+              "p50": 9,
+              "p95": 9,
+              "max": 9,
+              "total": 8271
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 919,
+                "min": 0.006999999983236194,
+                "p50": 39.907199999986915,
+                "p95": 113.50149999998393,
+                "max": 235.84779999998864
+              },
+              "sqlMs": {
+                "count": 919,
+                "min": 2.5215999999199994,
+                "p50": 230.89489999992657,
+                "p95": 576.3133999999845,
+                "max": 904.8698999999615
+              },
+              "bookLockMs": {
+                "count": 919,
+                "min": 0.20509999999194406,
+                "p50": 91.48549999998068,
+                "p95": 332.9343000000008,
+                "max": 611.4615000000049
+              },
+              "bookLockHeldMs": {
+                "count": 919,
+                "min": 1.0414999999993597,
+                "p50": 1.72709999998915,
+                "p95": 3.21129999999539,
+                "max": 20.77919999998994
+              },
+              "aggregateMs": {
+                "count": 919,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 919,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              }
+            }
+          }
+        },
+        "confirmationSuccess": {
+          "total": 919,
+          "successes": 0,
+          "successRate": 0,
+          "stale": 919
+        },
+        "confirmationVersionGap": {
+          "total": 919,
+          "min": "2",
+          "p50": "17",
+          "p95": "18",
+          "max": "18"
+        }
+      }
+    },
+    {
+      "filename": "m4-round-participant-study-2026-11-18T11-27-06-199Z-p30-2.json",
+      "size": 0,
+      "sha256": "",
+      "startedAt": "2026-11-18T11:27:10.529Z",
+      "completedAt": "2026-11-18T11:34:21.857Z",
+      "environment": {
+        "node": "v24.14.1",
+        "os": "win32 10.0.26200",
+        "cpu": "AMD Ryzen 9 7940HX with Radeon Graphics        ",
+        "logicalCpus": 32,
+        "memoryBytes": 16340414464,
+        "mysql": {
+          "version": "8.0.32",
+          "sqlMode": "IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION",
+          "isolationLevel": "REPEATABLE-READ"
+        },
+        "mysqlSettings": [
+          {
+            "bufferPoolBytes": "134217728",
+            "maxConnections": "151"
+          }
+        ],
+        "poolConnections": 8
+      },
+      "actualScaleAtGroupStart": {
+        "expenses": "142074",
+        "versions": "145874",
+        "shares": "4376220",
+        "confirmed": "6962",
+        "requests": "13668"
+      },
+      "changes": {
+        "expenses": 9530,
+        "requests": 1058,
+        "confirmed": 0,
+        "shares": 285900
+      },
+      "inferredScaleAtEnd": {
+        "expenses": "151604",
+        "versions": "155404",
+        "shares": "4662120",
+        "confirmed": "6962",
+        "requests": "14726"
+      },
+      "completedWorkflowsPerSecond": 50.28333333333333,
+      "financialVersionChanges": 9530,
+      "operationCounts": {
+        "exact": 2716,
+        "equal": 5430,
+        "confirm": 905
+      },
+      "group": {
+        "mode": "write",
+        "distribution": "same-book",
+        "round": 2,
+        "participantCount": 30,
+        "workflows": {
+          "total": 9051,
+          "p50": 306.9744000000064,
+          "p95": 891.0020999999833,
+          "max": 1766.9057999999495,
+          "expectedConflicts": 905,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 187357
+        },
+        "httpReads": {
+          "total": 905,
+          "p50": 195.34269999997923,
+          "p95": 490.5615000000107,
+          "max": 992.3075000000536,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 9955
+        },
+        "httpWrites": {
+          "total": 9956,
+          "p50": 285.08910000004107,
+          "p95": 661.4629999999888,
+          "max": 1119.5658999999869,
+          "expectedConflicts": 905,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 200027
+        },
+        "httpEndpoints": {
+          "expense": {
+            "latency": {
+              "total": 8146,
+              "p50": 286.6657000000123,
+              "p95": 659.4986999999965,
+              "max": 1119.5658999999869,
+              "expectedConflicts": 0,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 179212
+            },
+            "sql": {
+              "count": 8146,
+              "min": 22,
+              "p50": 22,
+              "p95": 22,
+              "max": 22,
+              "total": 179212
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 8146,
+                "min": 1.5359000000171363,
+                "p50": 43.006400000012945,
+                "p95": 150.09560000000056,
+                "max": 612.390699999989
+              },
+              "sqlMs": {
+                "count": 8146,
+                "min": 15.20740000004298,
+                "p50": 240.10080000007292,
+                "p95": 536.3852000000188,
+                "max": 1095.2963999998756
+              },
+              "bookLockMs": {
+                "count": 8146,
+                "min": 0.630700000008801,
+                "p50": 91.66989999997895,
+                "p95": 282.3164000000106,
+                "max": 776.7864999999874
+              },
+              "bookLockHeldMs": {
+                "count": 8146,
+                "min": 7.608399999968242,
+                "p50": 13.56040000001667,
+                "p95": 56.150299999979325,
+                "max": 272.3132999999798
+              },
+              "aggregateMs": {
+                "count": 8146,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 8146,
+                "min": 1.0143000000389293,
+                "p50": 3.924600000027567,
+                "p95": 22.555300000007264,
+                "max": 237.31630000000587
+              }
+            }
+          },
+          "request": {
+            "latency": {
+              "total": 905,
+              "p50": 269.97259999997914,
+              "p95": 664.5241000000387,
+              "max": 1043.3815000000177,
+              "expectedConflicts": 0,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 12670
+            },
+            "sql": {
+              "count": 905,
+              "min": 14,
+              "p50": 14,
+              "p95": 14,
+              "max": 14,
+              "total": 12670
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 905,
+                "min": 2.454700000002049,
+                "p50": 48.680200000002515,
+                "p95": 126.57970000000205,
+                "max": 369.53630000003614
+              },
+              "sqlMs": {
+                "count": 905,
+                "min": 30.34270000003744,
+                "p50": 223.3847999999416,
+                "p95": 509.6789000001154,
+                "max": 854.5952999998699
+              },
+              "bookLockMs": {
+                "count": 905,
+                "min": 22.322199999995064,
+                "p50": 82.57069999998203,
+                "p95": 308.7470999999787,
+                "max": 709.3500000000349
+              },
+              "bookLockHeldMs": {
+                "count": 905,
+                "min": 3.0388999999850057,
+                "p50": 4.8655000000144355,
+                "p95": 22.56150000001071,
+                "max": 54.87489999999525
+              },
+              "aggregateMs": {
+                "count": 905,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 905,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              }
+            }
+          },
+          "preview": {
+            "latency": {
+              "total": 905,
+              "p50": 195.34269999997923,
+              "p95": 490.5615000000107,
+              "max": 992.3075000000536,
+              "expectedConflicts": 0,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 9955
+            },
+            "sql": {
+              "count": 905,
+              "min": 11,
+              "p50": 11,
+              "p95": 11,
+              "max": 11,
+              "total": 9955
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 905,
+                "min": 0.10690000001341105,
+                "p50": 30.930800000031013,
+                "p95": 117.14919999998529,
+                "max": 377.7649000000092
+              },
+              "sqlMs": {
+                "count": 905,
+                "min": 50.37850000002072,
+                "p50": 159.53919999988284,
+                "p95": 402.02599999995437,
+                "max": 954.4580000001006
+              },
+              "bookLockMs": {
+                "count": 905,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "bookLockHeldMs": {
+                "count": 905,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "aggregateMs": {
+                "count": 905,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 905,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              }
+            }
+          },
+          "confirm": {
+            "latency": {
+              "total": 905,
+              "p50": 283.1382000000449,
+              "p95": 667.5774999999558,
+              "max": 1090.5383000000147,
+              "expectedConflicts": 905,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 8145
+            },
+            "sql": {
+              "count": 905,
+              "min": 9,
+              "p50": 9,
+              "p95": 9,
+              "max": 9,
+              "total": 8145
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 905,
+                "min": 0.007400000002235174,
+                "p50": 44.94519999995828,
+                "p95": 125.0060999999987,
+                "max": 338.11879999999655
+              },
+              "sqlMs": {
+                "count": 905,
+                "min": 90.16619999997783,
+                "p50": 232.04780000000028,
+                "p95": 588.6609000000171,
+                "max": 1007.2498999999953
+              },
+              "bookLockMs": {
+                "count": 905,
+                "min": 64.19200000003912,
+                "p50": 91.91240000003017,
+                "p95": 332.08929999999236,
+                "max": 822.7427000000025
+              },
+              "bookLockHeldMs": {
+                "count": 905,
+                "min": 0.9560000000055879,
+                "p50": 1.7368999999889638,
+                "p95": 3.207200000004377,
+                "max": 27.5289000000339
+              },
+              "aggregateMs": {
+                "count": 905,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 905,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              }
+            }
+          }
+        },
+        "confirmationSuccess": {
+          "total": 905,
+          "successes": 0,
+          "successRate": 0,
+          "stale": 905
+        },
+        "confirmationVersionGap": {
+          "total": 905,
+          "min": "6",
+          "p50": "18",
+          "p95": "18",
+          "max": "19"
+        }
+      }
+    },
+    {
+      "filename": "m4-round-participant-study-2026-11-18T11-27-06-199Z-p30-3.json",
+      "size": 0,
+      "sha256": "",
+      "startedAt": "2026-11-18T11:27:10.529Z",
+      "completedAt": "2026-11-18T11:37:59.622Z",
+      "environment": {
+        "node": "v24.14.1",
+        "os": "win32 10.0.26200",
+        "cpu": "AMD Ryzen 9 7940HX with Radeon Graphics        ",
+        "logicalCpus": 32,
+        "memoryBytes": 16340414464,
+        "mysql": {
+          "version": "8.0.32",
+          "sqlMode": "IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION",
+          "isolationLevel": "REPEATABLE-READ"
+        },
+        "mysqlSettings": [
+          {
+            "bufferPoolBytes": "134217728",
+            "maxConnections": "151"
+          }
+        ],
+        "poolConnections": 8
+      },
+      "actualScaleAtGroupStart": {
+        "expenses": "151604",
+        "versions": "155404",
+        "shares": "4662120",
+        "confirmed": "6962",
+        "requests": "14726"
+      },
+      "changes": {
+        "expenses": 9226,
+        "requests": 1025,
+        "confirmed": 0,
+        "shares": 276780
+      },
+      "inferredScaleAtEnd": {
+        "expenses": "160830",
+        "versions": "164630",
+        "shares": "4938900",
+        "confirmed": "6962",
+        "requests": "15751"
+      },
+      "completedWorkflowsPerSecond": 48.63333333333333,
+      "financialVersionChanges": 9226,
+      "operationCounts": {
+        "exact": 2627,
+        "equal": 5251,
+        "confirm": 876
+      },
+      "group": {
+        "mode": "write",
+        "distribution": "same-book",
+        "round": 3,
+        "participantCount": 30,
+        "workflows": {
+          "total": 8754,
+          "p50": 321.84330000006594,
+          "p95": 911.4576000000234,
+          "max": 1879.6410000000615,
+          "expectedConflicts": 876,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 181200
+        },
+        "httpReads": {
+          "total": 876,
+          "p50": 216.6765000000596,
+          "p95": 503.8609999999171,
+          "max": 1036.0577000000048,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 9636
+        },
+        "httpWrites": {
+          "total": 9630,
+          "p50": 301.2526000000071,
+          "p95": 649.681900000025,
+          "max": 1210.5435999999754,
+          "expectedConflicts": 876,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 193464
+        },
+        "httpEndpoints": {
+          "expense": {
+            "latency": {
+              "total": 7878,
+              "p50": 303.6861000000499,
+              "p95": 652.7735999999568,
+              "max": 1210.5435999999754,
+              "expectedConflicts": 0,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 173316
+            },
+            "sql": {
+              "count": 7878,
+              "min": 22,
+              "p50": 22,
+              "p95": 22,
+              "max": 22,
+              "total": 173316
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 7878,
+                "min": 1.665000000037253,
+                "p50": 44.78759999992326,
+                "p95": 152.4104000000516,
+                "max": 745.5076000000117
+              },
+              "sqlMs": {
+                "count": 7878,
+                "min": 21.224899999971967,
+                "p50": 253.68809999991208,
+                "p95": 536.893400000059,
+                "max": 1133.1834000000963
+              },
+              "bookLockMs": {
+                "count": 7878,
+                "min": 0.17719999997643754,
+                "p50": 98.16159999999218,
+                "p95": 276.85310000000754,
+                "max": 804.1403999999166
+              },
+              "bookLockHeldMs": {
+                "count": 7878,
+                "min": 8.23699999996461,
+                "p50": 13.789400000008754,
+                "p95": 54.513199999928474,
+                "max": 306.1992999999784
+              },
+              "aggregateMs": {
+                "count": 7878,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 7878,
+                "min": 1.1023999999742955,
+                "p50": 3.8928000000305474,
+                "p95": 22.014099999913014,
+                "max": 120.03749999997672
+              }
+            }
+          },
+          "request": {
+            "latency": {
+              "total": 876,
+              "p50": 281.4607000000542,
+              "p95": 621.3796999999322,
+              "max": 1126.293799999985,
+              "expectedConflicts": 0,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 12264
+            },
+            "sql": {
+              "count": 876,
+              "min": 14,
+              "p50": 14,
+              "p95": 14,
+              "max": 14,
+              "total": 12264
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 876,
+                "min": 2.012099999934435,
+                "p50": 52.18370000005234,
+                "p95": 154.3016999999527,
+                "max": 473.14489999995567
+              },
+              "sqlMs": {
+                "count": 876,
+                "min": 63.66880000004312,
+                "p50": 232.81520000007004,
+                "p95": 514.2660000001779,
+                "max": 1023.5283000002382
+              },
+              "bookLockMs": {
+                "count": 876,
+                "min": 48.996599999954924,
+                "p50": 86.65409999998519,
+                "p95": 290.36369999998715,
+                "max": 715.671399999992
+              },
+              "bookLockHeldMs": {
+                "count": 876,
+                "min": 3.2101999999722466,
+                "p50": 5.005000000004657,
+                "p95": 21.12340000004042,
+                "max": 68.76470000005793
+              },
+              "aggregateMs": {
+                "count": 876,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 876,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              }
+            }
+          },
+          "preview": {
+            "latency": {
+              "total": 876,
+              "p50": 216.6765000000596,
+              "p95": 503.8609999999171,
+              "max": 1036.0577000000048,
+              "expectedConflicts": 0,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 9636
+            },
+            "sql": {
+              "count": 876,
+              "min": 11,
+              "p50": 11,
+              "p95": 11,
+              "max": 11,
+              "total": 9636
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 876,
+                "min": 0.015299999970011413,
+                "p50": 31.635799999989104,
+                "p95": 109.43589999998221,
+                "max": 404.21180000004824
+              },
+              "sqlMs": {
+                "count": 876,
+                "min": 48.49190000013914,
+                "p50": 172.38930000003893,
+                "p95": 436.68279999983497,
+                "max": 879.7564000001876
+              },
+              "bookLockMs": {
+                "count": 876,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "bookLockHeldMs": {
+                "count": 876,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "aggregateMs": {
+                "count": 876,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 876,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              }
+            }
+          },
+          "confirm": {
+            "latency": {
+              "total": 876,
+              "p50": 288.3428999999305,
+              "p95": 646.548400000087,
+              "max": 1177.342100000009,
+              "expectedConflicts": 876,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 7884
+            },
+            "sql": {
+              "count": 876,
+              "min": 9,
+              "p50": 9,
+              "p95": 9,
+              "max": 9,
+              "total": 7884
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 876,
+                "min": 0.013900000019930303,
+                "p50": 51.00400000001537,
+                "p95": 130.6186999999918,
+                "max": 552.1884999999311
+              },
+              "sqlMs": {
+                "count": 876,
+                "min": 3.491300000110641,
+                "p50": 232.80570000014268,
+                "p95": 537.0931999997701,
+                "max": 1120.2192999997642
+              },
+              "bookLockMs": {
+                "count": 876,
+                "min": 0.19319999997969717,
+                "p50": 96.20840000000317,
+                "p95": 312.3776000000071,
+                "max": 789.751500000013
+              },
+              "bookLockHeldMs": {
+                "count": 876,
+                "min": 1.0794999999925494,
+                "p50": 1.827999999979511,
+                "p95": 3.240100000053644,
+                "max": 29.746500000008382
+              },
+              "aggregateMs": {
+                "count": 876,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 876,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              }
+            }
+          }
+        },
+        "confirmationSuccess": {
+          "total": 876,
+          "successes": 0,
+          "successRate": 0,
+          "stale": 876
+        },
+        "confirmationVersionGap": {
+          "total": 876,
+          "min": "1",
+          "p50": "18",
+          "p95": "18",
+          "max": "19"
+        }
+      }
+    },
+    {
+      "filename": "m4-round-participant-study-2026-11-18T11-27-06-199Z-p4-1.json",
+      "size": 0,
+      "sha256": "",
+      "startedAt": "2026-11-18T11:27:10.529Z",
+      "completedAt": "2026-11-18T11:41:36.935Z",
+      "environment": {
+        "node": "v24.14.1",
+        "os": "win32 10.0.26200",
+        "cpu": "AMD Ryzen 9 7940HX with Radeon Graphics        ",
+        "logicalCpus": 32,
+        "memoryBytes": 16340414464,
+        "mysql": {
+          "version": "8.0.32",
+          "sqlMode": "IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION",
+          "isolationLevel": "REPEATABLE-READ"
+        },
+        "mysqlSettings": [
+          {
+            "bufferPoolBytes": "134217728",
+            "maxConnections": "151"
+          }
+        ],
+        "poolConnections": 8
+      },
+      "actualScaleAtGroupStart": {
+        "expenses": "160830",
+        "versions": "164630",
+        "shares": "4938900",
+        "confirmed": "6962",
+        "requests": "15751"
+      },
+      "changes": {
+        "expenses": 12751,
+        "requests": 1416,
+        "confirmed": 0,
+        "shares": 51004
+      },
+      "inferredScaleAtEnd": {
+        "expenses": "173581",
+        "versions": "177381",
+        "shares": "4989904",
+        "confirmed": "6962",
+        "requests": "17167"
+      },
+      "completedWorkflowsPerSecond": 67.15555555555555,
+      "financialVersionChanges": 12751,
+      "operationCounts": {
+        "equal": 7254,
+        "exact": 3625,
+        "confirm": 1209
+      },
+      "group": {
+        "mode": "write",
+        "distribution": "same-book",
+        "round": 1,
+        "participantCount": 4,
+        "workflows": {
+          "total": 12088,
+          "p50": 222.49259999999776,
+          "p95": 681.7653000000864,
+          "max": 1341.6829000000143,
+          "expectedConflicts": 1209,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 250219
+        },
+        "httpReads": {
+          "total": 1209,
+          "p50": 185.7573000000557,
+          "p95": 387.62919999996666,
+          "max": 721.6889000000665,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 13299
+        },
+        "httpWrites": {
+          "total": 13297,
+          "p50": 213.62309999996796,
+          "p95": 449.37229999992996,
+          "max": 934.0475000001024,
+          "expectedConflicts": 1209,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 267145
+        },
+        "httpEndpoints": {
+          "expense": {
+            "latency": {
+              "total": 10879,
+              "p50": 216.1408999999985,
+              "p95": 449.9658000000054,
+              "max": 934.0475000001024,
+              "expectedConflicts": 0,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 239338
+            },
+            "sql": {
+              "count": 10879,
+              "min": 22,
+              "p50": 22,
+              "p95": 22,
+              "max": 22,
+              "total": 239338
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 10879,
+                "min": 1.6753999999491498,
+                "p50": 31.668599999975413,
+                "p95": 101.58950000000186,
+                "max": 427.7133000000613
+              },
+              "sqlMs": {
+                "count": 10879,
+                "min": 59.12869999976829,
+                "p50": 184.73320000013337,
+                "p95": 384.5295000000624,
+                "max": 843.5673999998253
+              },
+              "bookLockMs": {
+                "count": 10879,
+                "min": 0.8726999999489635,
+                "p50": 74.69930000009481,
+                "p95": 181.6753000000026,
+                "max": 536.3225000000093
+              },
+              "bookLockHeldMs": {
+                "count": 10879,
+                "min": 5.611600000062026,
+                "p50": 9.792099999962375,
+                "p95": 39.08429999998771,
+                "max": 173.3645999999717
+              },
+              "aggregateMs": {
+                "count": 10879,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 10879,
+                "min": 0.2641000000294298,
+                "p50": 1.274199999985285,
+                "p95": 7.214700000011362,
+                "max": 48.21829999994952
+              }
+            }
+          },
+          "request": {
+            "latency": {
+              "total": 1209,
+              "p50": 201.8586999999825,
+              "p95": 440.64669999992475,
+              "max": 831.4028999999864,
+              "expectedConflicts": 0,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 16926
+            },
+            "sql": {
+              "count": 1209,
+              "min": 14,
+              "p50": 14,
+              "p95": 14,
+              "max": 14,
+              "total": 16926
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 1209,
+                "min": 2.2097000000067055,
+                "p50": 45.713499999954365,
+                "p95": 94.87749999994412,
+                "max": 334.1017999999458
+              },
+              "sqlMs": {
+                "count": 1209,
+                "min": 88.18420000025071,
+                "p50": 158.6526999998605,
+                "p95": 363.2325999996392,
+                "max": 706.6857000000309
+              },
+              "bookLockMs": {
+                "count": 1209,
+                "min": 38.69429999997374,
+                "p50": 62.314300000085495,
+                "p95": 188.05119999998715,
+                "max": 547.0860000000102
+              },
+              "bookLockHeldMs": {
+                "count": 1209,
+                "min": 3.070799999986775,
+                "p50": 4.707700000028126,
+                "p95": 17.649099999922328,
+                "max": 56.63179999997374
+              },
+              "aggregateMs": {
+                "count": 1209,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 1209,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              }
+            }
+          },
+          "preview": {
+            "latency": {
+              "total": 1209,
+              "p50": 185.7573000000557,
+              "p95": 387.62919999996666,
+              "max": 721.6889000000665,
+              "expectedConflicts": 0,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 13299
+            },
+            "sql": {
+              "count": 1209,
+              "min": 11,
+              "p50": 11,
+              "p95": 11,
+              "max": 11,
+              "total": 13299
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 1209,
+                "min": 1.7835999999660999,
+                "p50": 23.786399999982677,
+                "p95": 84.65610000002198,
+                "max": 356.04159999999683
+              },
+              "sqlMs": {
+                "count": 1209,
+                "min": 71.75,
+                "p50": 146.4751000001561,
+                "p95": 315.16079999983776,
+                "max": 664.2363000002224
+              },
+              "bookLockMs": {
+                "count": 1209,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "bookLockHeldMs": {
+                "count": 1209,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "aggregateMs": {
+                "count": 1209,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 1209,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              }
+            }
+          },
+          "confirm": {
+            "latency": {
+              "total": 1209,
+              "p50": 190.63419999997132,
+              "p95": 449.0413000000408,
+              "max": 816.4427999999607,
+              "expectedConflicts": 1209,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 10881
+            },
+            "sql": {
+              "count": 1209,
+              "min": 9,
+              "p50": 9,
+              "p95": 9,
+              "max": 9,
+              "total": 10881
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 1209,
+                "min": 0.009199999971315265,
+                "p50": 41.812900000019,
+                "p95": 99.99499999999534,
+                "max": 324.36699999996927
+              },
+              "sqlMs": {
+                "count": 1209,
+                "min": 23.412300000083633,
+                "p50": 152.2567000000272,
+                "p95": 376.1526999999769,
+                "max": 704.4700999999186
+              },
+              "bookLockMs": {
+                "count": 1209,
+                "min": 19.291100000031292,
+                "p50": 64.86410000000615,
+                "p95": 190.98850000009406,
+                "max": 568.1799999999348
+              },
+              "bookLockHeldMs": {
+                "count": 1209,
+                "min": 0.8888000000733882,
+                "p50": 1.6344999999273568,
+                "p95": 4.571499999961816,
+                "max": 25.420399999944493
+              },
+              "aggregateMs": {
+                "count": 1209,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 1209,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              }
+            }
+          }
+        },
+        "confirmationSuccess": {
+          "total": 1209,
+          "successes": 0,
+          "successRate": 0,
+          "stale": 1209
+        },
+        "confirmationVersionGap": {
+          "total": 1209,
+          "min": "5",
+          "p50": "18",
+          "p95": "20",
+          "max": "22"
+        }
+      }
+    },
+    {
+      "filename": "m4-round-participant-study-2026-11-18T11-27-06-199Z-p4-2.json",
+      "size": 0,
+      "sha256": "",
+      "startedAt": "2026-11-18T11:27:10.529Z",
+      "completedAt": "2026-11-18T11:45:14.056Z",
+      "environment": {
+        "node": "v24.14.1",
+        "os": "win32 10.0.26200",
+        "cpu": "AMD Ryzen 9 7940HX with Radeon Graphics        ",
+        "logicalCpus": 32,
+        "memoryBytes": 16340414464,
+        "mysql": {
+          "version": "8.0.32",
+          "sqlMode": "IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION",
+          "isolationLevel": "REPEATABLE-READ"
+        },
+        "mysqlSettings": [
+          {
+            "bufferPoolBytes": "134217728",
+            "maxConnections": "151"
+          }
+        ],
+        "poolConnections": 8
+      },
+      "actualScaleAtGroupStart": {
+        "expenses": "173581",
+        "versions": "177381",
+        "shares": "4989904",
+        "confirmed": "6962",
+        "requests": "17167"
+      },
+      "changes": {
+        "expenses": 11906,
+        "requests": 1322,
+        "confirmed": 0,
+        "shares": 47624
+      },
+      "inferredScaleAtEnd": {
+        "expenses": "185487",
+        "versions": "189287",
+        "shares": "5037528",
+        "confirmed": "6962",
+        "requests": "18489"
+      },
+      "completedWorkflowsPerSecond": 62.94444444444444,
+      "financialVersionChanges": 11906,
+      "operationCounts": {
+        "exact": 3399,
+        "equal": 6798,
+        "confirm": 1133
+      },
+      "group": {
+        "mode": "write",
+        "distribution": "same-book",
+        "round": 2,
+        "participantCount": 4,
+        "workflows": {
+          "total": 11330,
+          "p50": 229.3008999999147,
+          "p95": 740.4242000000086,
+          "max": 2390.675799999968,
+          "expectedConflicts": 1133,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 234531
+        },
+        "httpReads": {
+          "total": 1133,
+          "p50": 204.0048999999417,
+          "p95": 446.8132999999216,
+          "max": 1466.0081000000937,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 12463
+        },
+        "httpWrites": {
+          "total": 12463,
+          "p50": 222.23179999995045,
+          "p95": 484.0058999999892,
+          "max": 1560.7394000000786,
+          "expectedConflicts": 1133,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 250393
+        },
+        "httpEndpoints": {
+          "expense": {
+            "latency": {
+              "total": 10197,
+              "p50": 224.13300000014715,
+              "p95": 484.97080000001006,
+              "max": 1560.7394000000786,
+              "expectedConflicts": 0,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 224334
+            },
+            "sql": {
+              "count": 10197,
+              "min": 22,
+              "p50": 22,
+              "p95": 22,
+              "max": 22,
+              "total": 224334
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 10197,
+                "min": 2.069000000017695,
+                "p50": 33.073299999930896,
+                "p95": 100.64320000004955,
+                "max": 1104.343300000066
+              },
+              "sqlMs": {
+                "count": 10197,
+                "min": 19.326200000126846,
+                "p50": 193.73279999999795,
+                "p95": 413.603100000415,
+                "max": 1505.080399999977
+              },
+              "bookLockMs": {
+                "count": 10197,
+                "min": 0.9268000000156462,
+                "p50": 76.21889999997802,
+                "p95": 202.59729999990668,
+                "max": 1267.8896999999415
+              },
+              "bookLockHeldMs": {
+                "count": 10197,
+                "min": 5.905099999974482,
+                "p50": 10.247700000065379,
+                "p95": 40.07869999995455,
+                "max": 969.9002000000328
+              },
+              "aggregateMs": {
+                "count": 10197,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 10197,
+                "min": 0.27529999997932464,
+                "p50": 1.2397000000346452,
+                "p95": 7.108899999991991,
+                "max": 84.48750000004657
+              }
+            }
+          },
+          "request": {
+            "latency": {
+              "total": 1133,
+              "p50": 213.9885999999242,
+              "p95": 484.0489000000525,
+              "max": 1534.2924000000348,
+              "expectedConflicts": 0,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 15862
+            },
+            "sql": {
+              "count": 1133,
+              "min": 14,
+              "p50": 14,
+              "p95": 14,
+              "max": 14,
+              "total": 15862
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 1133,
+                "min": 2.4735000000800937,
+                "p50": 41.48569999996107,
+                "p95": 95.99449999991339,
+                "max": 1120.9496000000509
+              },
+              "sqlMs": {
+                "count": 1133,
+                "min": 27.469799999846146,
+                "p50": 177.2559000001056,
+                "p95": 410.8148999999976,
+                "max": 974.241800000309
+              },
+              "bookLockMs": {
+                "count": 1133,
+                "min": 14.662999999942258,
+                "p50": 72.43809999991208,
+                "p95": 213.6502999998629,
+                "max": 709.5071999999927
+              },
+              "bookLockHeldMs": {
+                "count": 1133,
+                "min": 3.23789999994915,
+                "p50": 4.860299999942072,
+                "p95": 17.13860000006389,
+                "max": 64.94330000004265
+              },
+              "aggregateMs": {
+                "count": 1133,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 1133,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              }
+            }
+          },
+          "preview": {
+            "latency": {
+              "total": 1133,
+              "p50": 204.0048999999417,
+              "p95": 446.8132999999216,
+              "max": 1466.0081000000937,
+              "expectedConflicts": 0,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 12463
+            },
+            "sql": {
+              "count": 1133,
+              "min": 11,
+              "p50": 11,
+              "p95": 11,
+              "max": 11,
+              "total": 12463
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 1133,
+                "min": 0.008799999952316284,
+                "p50": 24.746599999954924,
+                "p95": 92.99080000002868,
+                "max": 623.9850999999326
+              },
+              "sqlMs": {
+                "count": 1133,
+                "min": 94.84030000015628,
+                "p50": 162.87770000018645,
+                "p95": 352.3205999999773,
+                "max": 1304.1912999997148
+              },
+              "bookLockMs": {
+                "count": 1133,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "bookLockHeldMs": {
+                "count": 1133,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "aggregateMs": {
+                "count": 1133,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 1133,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              }
+            }
+          },
+          "confirm": {
+            "latency": {
+              "total": 1133,
+              "p50": 198.43989999988116,
+              "p95": 478.7184000000125,
+              "max": 1506.971499999985,
+              "expectedConflicts": 1133,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 10197
+            },
+            "sql": {
+              "count": 1133,
+              "min": 9,
+              "p50": 9,
+              "p95": 9,
+              "max": 9,
+              "total": 10197
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 1133,
+                "min": 0.010399999795481563,
+                "p50": 44.56279999995604,
+                "p95": 101.4936999999918,
+                "max": 1076.3808999999892
+              },
+              "sqlMs": {
+                "count": 1133,
+                "min": 5.948799999896437,
+                "p50": 159.1028000001097,
+                "p95": 397.8145999999251,
+                "max": 1484.157000000123
+              },
+              "bookLockMs": {
+                "count": 1133,
+                "min": 3.943100000033155,
+                "p50": 68.2430999999633,
+                "p95": 205.45939999993425,
+                "max": 736.607799999998
+              },
+              "bookLockHeldMs": {
+                "count": 1133,
+                "min": 0.8173999998252839,
+                "p50": 1.8320999999996275,
+                "p95": 5.919499999959953,
+                "max": 30.769399999990128
+              },
+              "aggregateMs": {
+                "count": 1133,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 1133,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              }
+            }
+          }
+        },
+        "confirmationSuccess": {
+          "total": 1133,
+          "successes": 0,
+          "successRate": 0,
+          "stale": 1133
+        },
+        "confirmationVersionGap": {
+          "total": 1133,
+          "min": "5",
+          "p50": "18",
+          "p95": "21",
+          "max": "24"
+        }
+      }
+    },
+    {
+      "filename": "m4-round-participant-study-2026-11-18T11-27-06-199Z-p4-3.json",
+      "size": 0,
+      "sha256": "",
+      "startedAt": "2026-11-18T11:27:10.529Z",
+      "completedAt": "2026-11-18T11:48:51.987Z",
+      "environment": {
+        "node": "v24.14.1",
+        "os": "win32 10.0.26200",
+        "cpu": "AMD Ryzen 9 7940HX with Radeon Graphics        ",
+        "logicalCpus": 32,
+        "memoryBytes": 16340414464,
+        "mysql": {
+          "version": "8.0.32",
+          "sqlMode": "IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION",
+          "isolationLevel": "REPEATABLE-READ"
+        },
+        "mysqlSettings": [
+          {
+            "bufferPoolBytes": "134217728",
+            "maxConnections": "151"
+          }
+        ],
+        "poolConnections": 8
+      },
+      "actualScaleAtGroupStart": {
+        "expenses": "185487",
+        "versions": "189287",
+        "shares": "5037528",
+        "confirmed": "6962",
+        "requests": "18489"
+      },
+      "changes": {
+        "expenses": 12218,
+        "requests": 1357,
+        "confirmed": 0,
+        "shares": 48872
+      },
+      "inferredScaleAtEnd": {
+        "expenses": "197705",
+        "versions": "201505",
+        "shares": "5086400",
+        "confirmed": "6962",
+        "requests": "19846"
+      },
+      "completedWorkflowsPerSecond": 64.38888888888889,
+      "financialVersionChanges": 12218,
+      "operationCounts": {
+        "equal": 6954,
+        "exact": 3477,
+        "confirm": 1159
+      },
+      "group": {
+        "mode": "write",
+        "distribution": "same-book",
+        "round": 3,
+        "participantCount": 4,
+        "workflows": {
+          "total": 11590,
+          "p50": 234.63179999985732,
+          "p95": 728.1636999999173,
+          "max": 1250.6770999999717,
+          "expectedConflicts": 1159,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 239913
+        },
+        "httpReads": {
+          "total": 1159,
+          "p50": 215.70590000017546,
+          "p95": 434.15979999979027,
+          "max": 650.2748000000138,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 12749
+        },
+        "httpWrites": {
+          "total": 12749,
+          "p50": 227.04670000006445,
+          "p95": 443.65460000000894,
+          "max": 746.2700999998488,
+          "expectedConflicts": 1159,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 256139
+        },
+        "httpEndpoints": {
+          "expense": {
+            "latency": {
+              "total": 10431,
+              "p50": 228.99890000000596,
+              "p95": 445.720500000054,
+              "max": 746.2700999998488,
+              "expectedConflicts": 0,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 229482
+            },
+            "sql": {
+              "count": 10431,
+              "min": 22,
+              "p50": 22,
+              "p95": 22,
+              "max": 22,
+              "total": 229482
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 10431,
+                "min": 1.7264000000432134,
+                "p50": 35.35480000008829,
+                "p95": 96.61740000010468,
+                "max": 403.15280000003986
+              },
+              "sqlMs": {
+                "count": 10431,
+                "min": 12.803400001022965,
+                "p50": 196.7312000002712,
+                "p95": 369.37619999982417,
+                "max": 667.8238000001293
+              },
+              "bookLockMs": {
+                "count": 10431,
+                "min": 0.4574000001884997,
+                "p50": 75.91049999999814,
+                "p95": 173.7328999999445,
+                "max": 450.719000000041
+              },
+              "bookLockHeldMs": {
+                "count": 10431,
+                "min": 5.54769999999553,
+                "p50": 10.22939999983646,
+                "p95": 39.093399999896064,
+                "max": 129.50260000000708
+              },
+              "aggregateMs": {
+                "count": 10431,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 10431,
+                "min": 0.2955000000074506,
+                "p50": 1.2333000001963228,
+                "p95": 7.02170000015758,
+                "max": 52.606399999931455
+              }
+            }
+          },
+          "request": {
+            "latency": {
+              "total": 1159,
+              "p50": 219.45390000008047,
+              "p95": 443.8569000000134,
+              "max": 723.7637000000104,
+              "expectedConflicts": 0,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 16226
+            },
+            "sql": {
+              "count": 1159,
+              "min": 14,
+              "p50": 14,
+              "p95": 14,
+              "max": 14,
+              "total": 16226
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 1159,
+                "min": 1.723299999954179,
+                "p50": 40.72050000005402,
+                "p95": 90.99200000008568,
+                "max": 272.73050000006333
+              },
+              "sqlMs": {
+                "count": 1159,
+                "min": 44.655099999392405,
+                "p50": 183.36810000031255,
+                "p95": 374.6052999999374,
+                "max": 622.1114000000525
+              },
+              "bookLockMs": {
+                "count": 1159,
+                "min": 35.31579999998212,
+                "p50": 77.66330000013113,
+                "p95": 182.9857999999076,
+                "max": 416.9240999999456
+              },
+              "bookLockHeldMs": {
+                "count": 1159,
+                "min": 3.1433999999426305,
+                "p50": 4.782000000122935,
+                "p95": 15.466699999989942,
+                "max": 101.30370000004768
+              },
+              "aggregateMs": {
+                "count": 1159,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 1159,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              }
+            }
+          },
+          "preview": {
+            "latency": {
+              "total": 1159,
+              "p50": 215.70590000017546,
+              "p95": 434.15979999979027,
+              "max": 650.2748000000138,
+              "expectedConflicts": 0,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 12749
+            },
+            "sql": {
+              "count": 1159,
+              "min": 11,
+              "p50": 11,
+              "p95": 11,
+              "max": 11,
+              "total": 12749
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 1159,
+                "min": 0.009599999990314245,
+                "p50": 26.101299999980256,
+                "p95": 91.18479999992996,
+                "max": 355.34530000016093
+              },
+              "sqlMs": {
+                "count": 1159,
+                "min": 91.90310000022873,
+                "p50": 172.34319999977015,
+                "p95": 327.6820000000298,
+                "max": 599.9197999995667
+              },
+              "bookLockMs": {
+                "count": 1159,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "bookLockHeldMs": {
+                "count": 1159,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "aggregateMs": {
+                "count": 1159,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 1159,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              }
+            }
+          },
+          "confirm": {
+            "latency": {
+              "total": 1159,
+              "p50": 203.38999999989755,
+              "p95": 426.4447999999393,
+              "max": 706.184299999848,
+              "expectedConflicts": 1159,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 10431
+            },
+            "sql": {
+              "count": 1159,
+              "min": 9,
+              "p50": 9,
+              "p95": 9,
+              "max": 9,
+              "total": 10431
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 1159,
+                "min": 0.006300000008195639,
+                "p50": 46.682599999941885,
+                "p95": 106.7886999999173,
+                "max": 253.24069999996573
+              },
+              "sqlMs": {
+                "count": 1159,
+                "min": 32.49319999990985,
+                "p50": 162.29759999993257,
+                "p95": 354.10100000025705,
+                "max": 645.1106000000145
+              },
+              "bookLockMs": {
+                "count": 1159,
+                "min": 29.484600000083447,
+                "p50": 69.23300000000745,
+                "p95": 179.1821999999229,
+                "max": 449.15749999997206
+              },
+              "bookLockHeldMs": {
+                "count": 1159,
+                "min": 1.0093000000342727,
+                "p50": 2.6562000000849366,
+                "p95": 6.97179999994114,
+                "max": 31.730299999937415
+              },
+              "aggregateMs": {
+                "count": 1159,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 1159,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              }
+            }
+          }
+        },
+        "confirmationSuccess": {
+          "total": 1159,
+          "successes": 0,
+          "successRate": 0,
+          "stale": 1159
+        },
+        "confirmationVersionGap": {
+          "total": 1159,
+          "min": "4",
+          "p50": "19",
+          "p95": "21",
+          "max": "23"
+        }
+      }
+    },
+    {
+      "filename": "m4-round-participant-study-2026-11-18T11-27-06-199Z-p8-1.json",
+      "size": 0,
+      "sha256": "",
+      "startedAt": "2026-11-18T11:27:10.529Z",
+      "completedAt": "2026-11-18T11:52:30.166Z",
+      "environment": {
+        "node": "v24.14.1",
+        "os": "win32 10.0.26200",
+        "cpu": "AMD Ryzen 9 7940HX with Radeon Graphics        ",
+        "logicalCpus": 32,
+        "memoryBytes": 16340414464,
+        "mysql": {
+          "version": "8.0.32",
+          "sqlMode": "IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION",
+          "isolationLevel": "REPEATABLE-READ"
+        },
+        "mysqlSettings": [
+          {
+            "bufferPoolBytes": "134217728",
+            "maxConnections": "151"
+          }
+        ],
+        "poolConnections": 8
+      },
+      "actualScaleAtGroupStart": {
+        "expenses": "197705",
+        "versions": "201505",
+        "shares": "5086400",
+        "confirmed": "6962",
+        "requests": "19846"
+      },
+      "changes": {
+        "expenses": 11166,
+        "requests": 1240,
+        "confirmed": 0,
+        "shares": 89328
+      },
+      "inferredScaleAtEnd": {
+        "expenses": "208871",
+        "versions": "212671",
+        "shares": "5175728",
+        "confirmed": "6962",
+        "requests": "21086"
+      },
+      "completedWorkflowsPerSecond": 58.577777777777776,
+      "financialVersionChanges": 11166,
+      "operationCounts": {
+        "exact": 3162,
+        "equal": 6328,
+        "confirm": 1054
+      },
+      "group": {
+        "mode": "write",
+        "distribution": "same-book",
+        "round": 1,
+        "participantCount": 8,
+        "workflows": {
+          "total": 10544,
+          "p50": 254.41429999982938,
+          "p95": 813.0875999999698,
+          "max": 1715.997199999867,
+          "expectedConflicts": 1054,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 218266
+        },
+        "httpReads": {
+          "total": 1054,
+          "p50": 234.6304999999702,
+          "p95": 471.50029999995604,
+          "max": 1040.371199999936,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 11594
+        },
+        "httpWrites": {
+          "total": 11598,
+          "p50": 245.52040000003763,
+          "p95": 477.6547000000719,
+          "max": 1255.1469999998808,
+          "expectedConflicts": 1054,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 233022
+        },
+        "httpEndpoints": {
+          "expense": {
+            "latency": {
+              "total": 9490,
+              "p50": 247.86650000000373,
+              "p95": 477.2365999999456,
+              "max": 1255.1469999998808,
+              "expectedConflicts": 0,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 208780
+            },
+            "sql": {
+              "count": 9490,
+              "min": 22,
+              "p50": 22,
+              "p95": 22,
+              "max": 22,
+              "total": 208780
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 9490,
+                "min": 2.246900000143796,
+                "p50": 38.860000000102445,
+                "p95": 109.20439999992959,
+                "max": 498.4529000001494
+              },
+              "sqlMs": {
+                "count": 9490,
+                "min": 30.896600000094622,
+                "p50": 212.14469999982975,
+                "p95": 416.5393000005279,
+                "max": 1238.3084000004455
+              },
+              "bookLockMs": {
+                "count": 9490,
+                "min": 0.6828000000678003,
+                "p50": 80.76129999989644,
+                "p95": 203.4393000002019,
+                "max": 676.7891999999993
+              },
+              "bookLockHeldMs": {
+                "count": 9490,
+                "min": 5.805200000060722,
+                "p50": 11.04009999986738,
+                "p95": 43.693100000033155,
+                "max": 183.55870000016876
+              },
+              "aggregateMs": {
+                "count": 9490,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 9490,
+                "min": 0.4039999998640269,
+                "p50": 1.5943999998271465,
+                "p95": 10.47980000008829,
+                "max": 76.88250000006519
+              }
+            }
+          },
+          "request": {
+            "latency": {
+              "total": 1054,
+              "p50": 239.58689999999478,
+              "p95": 483.74059999990277,
+              "max": 1129.5223000000697,
+              "expectedConflicts": 0,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 14756
+            },
+            "sql": {
+              "count": 1054,
+              "min": 14,
+              "p50": 14,
+              "p95": 14,
+              "max": 14,
+              "total": 14756
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 1054,
+                "min": 3.294099999824539,
+                "p50": 40.619799999985844,
+                "p95": 99.60889999987558,
+                "max": 417.9554000000935
+              },
+              "sqlMs": {
+                "count": 1054,
+                "min": 66.16270000021905,
+                "p50": 203.79850000026636,
+                "p95": 433.321300000418,
+                "max": 896.4276999994181
+              },
+              "bookLockMs": {
+                "count": 1054,
+                "min": 44.64080000016838,
+                "p50": 84.67700000014156,
+                "p95": 256.38810000009835,
+                "max": 652.2501999998931
+              },
+              "bookLockHeldMs": {
+                "count": 1054,
+                "min": 3.0966000000480562,
+                "p50": 4.904899999964982,
+                "p95": 16.01410000002943,
+                "max": 51.49989999993704
+              },
+              "aggregateMs": {
+                "count": 1054,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 1054,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              }
+            }
+          },
+          "preview": {
+            "latency": {
+              "total": 1054,
+              "p50": 234.6304999999702,
+              "p95": 471.50029999995604,
+              "max": 1040.371199999936,
+              "expectedConflicts": 0,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 11594
+            },
+            "sql": {
+              "count": 1054,
+              "min": 11,
+              "p50": 11,
+              "p95": 11,
+              "max": 11,
+              "total": 11594
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 1054,
+                "min": 0.00809999997727573,
+                "p50": 27.91510000010021,
+                "p95": 96.79500000015832,
+                "max": 426.718499999959
+              },
+              "sqlMs": {
+                "count": 1054,
+                "min": 79.8554999998305,
+                "p50": 189.4645000002347,
+                "p95": 384.2016999996267,
+                "max": 846.0933000002988
+              },
+              "bookLockMs": {
+                "count": 1054,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "bookLockHeldMs": {
+                "count": 1054,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "aggregateMs": {
+                "count": 1054,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 1054,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              }
+            }
+          },
+          "confirm": {
+            "latency": {
+              "total": 1054,
+              "p50": 221.3937000001315,
+              "p95": 468.9045000001788,
+              "max": 1234.593799999915,
+              "expectedConflicts": 1054,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 9486
+            },
+            "sql": {
+              "count": 1054,
+              "min": 9,
+              "p50": 9,
+              "p95": 9,
+              "max": 9,
+              "total": 9486
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 1054,
+                "min": 0.005600000033155084,
+                "p50": 49.06259999983013,
+                "p95": 110.51579999993555,
+                "max": 306.93779999995604
+              },
+              "sqlMs": {
+                "count": 1054,
+                "min": 22.848699999507517,
+                "p50": 180.98649999964982,
+                "p95": 398.1622000001371,
+                "max": 1164.7348000002094
+              },
+              "bookLockMs": {
+                "count": 1054,
+                "min": 20.668099999893457,
+                "p50": 77.65159999998286,
+                "p95": 219.65060000005178,
+                "max": 700.5388999998104
+              },
+              "bookLockHeldMs": {
+                "count": 1054,
+                "min": 0.8636000000406057,
+                "p50": 2.8739999998360872,
+                "p95": 7.755799999926239,
+                "max": 58.540599999949336
+              },
+              "aggregateMs": {
+                "count": 1054,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 1054,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              }
+            }
+          }
+        },
+        "confirmationSuccess": {
+          "total": 1054,
+          "successes": 0,
+          "successRate": 0,
+          "stale": 1054
+        },
+        "confirmationVersionGap": {
+          "total": 1054,
+          "min": "4",
+          "p50": "19",
+          "p95": "21",
+          "max": "24"
+        }
+      }
+    },
+    {
+      "filename": "m4-round-participant-study-2026-11-18T11-27-06-199Z-p8-2.json",
+      "size": 0,
+      "sha256": "",
+      "startedAt": "2026-11-18T11:27:10.529Z",
+      "completedAt": "2026-11-18T11:56:08.533Z",
+      "environment": {
+        "node": "v24.14.1",
+        "os": "win32 10.0.26200",
+        "cpu": "AMD Ryzen 9 7940HX with Radeon Graphics        ",
+        "logicalCpus": 32,
+        "memoryBytes": 16340414464,
+        "mysql": {
+          "version": "8.0.32",
+          "sqlMode": "IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION",
+          "isolationLevel": "REPEATABLE-READ"
+        },
+        "mysqlSettings": [
+          {
+            "bufferPoolBytes": "134217728",
+            "maxConnections": "151"
+          }
+        ],
+        "poolConnections": 8
+      },
+      "actualScaleAtGroupStart": {
+        "expenses": "208871",
+        "versions": "212671",
+        "shares": "5175728",
+        "confirmed": "6962",
+        "requests": "21086"
+      },
+      "changes": {
+        "expenses": 10827,
+        "requests": 1203,
+        "confirmed": 1,
+        "shares": 86616
+      },
+      "inferredScaleAtEnd": {
+        "expenses": "219698",
+        "versions": "223498",
+        "shares": "5262344",
+        "confirmed": "6963",
+        "requests": "22289"
+      },
+      "completedWorkflowsPerSecond": 56.861111111111114,
+      "financialVersionChanges": 10828,
+      "operationCounts": {
+        "equal": 6139,
+        "exact": 3072,
+        "confirm": 1024
+      },
+      "group": {
+        "mode": "write",
+        "distribution": "same-book",
+        "round": 2,
+        "participantCount": 8,
+        "workflows": {
+          "total": 10235,
+          "p50": 259.81560000008903,
+          "p95": 842.1175999999978,
+          "max": 1641.0245000000577,
+          "expectedConflicts": 1023,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 211871
+        },
+        "httpReads": {
+          "total": 1024,
+          "p50": 250.45309999980964,
+          "p95": 483.4625999999698,
+          "max": 972.2158000001218,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 11264
+        },
+        "httpWrites": {
+          "total": 11259,
+          "p50": 251.11989999981597,
+          "p95": 496.7299999999814,
+          "max": 1139.6376999998465,
+          "expectedConflicts": 1023,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 226207
+        },
+        "httpEndpoints": {
+          "expense": {
+            "latency": {
+              "total": 9211,
+              "p50": 252.81729999999516,
+              "p95": 497.50869999988936,
+              "max": 1139.6376999998465,
+              "expectedConflicts": 0,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 202642
+            },
+            "sql": {
+              "count": 9211,
+              "min": 22,
+              "p50": 22,
+              "p95": 22,
+              "max": 22,
+              "total": 202642
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 9211,
+                "min": 2.061699999962002,
+                "p50": 42.57070000004023,
+                "p95": 113.14439999987371,
+                "max": 460.23750000004657
+              },
+              "sqlMs": {
+                "count": 9211,
+                "min": 14.027499999152496,
+                "p50": 213.72559999977238,
+                "p95": 425.2526000002399,
+                "max": 1065.155800000066
+              },
+              "bookLockMs": {
+                "count": 9211,
+                "min": 0.7116999998688698,
+                "p50": 81.12529999995604,
+                "p95": 211.30710000009276,
+                "max": 660.348200000124
+              },
+              "bookLockHeldMs": {
+                "count": 9211,
+                "min": 6.227199999848381,
+                "p50": 11.257700000191107,
+                "p95": 47.042099999962375,
+                "max": 169.07790000014938
+              },
+              "aggregateMs": {
+                "count": 9211,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 9211,
+                "min": 0.4157999998424202,
+                "p50": 1.6649999998044223,
+                "p95": 10.802600000053644,
+                "max": 86.35169999999925
+              }
+            }
+          },
+          "request": {
+            "latency": {
+              "total": 1024,
+              "p50": 244.7446999999229,
+              "p95": 496.7299999999814,
+              "max": 1081.9945000000298,
+              "expectedConflicts": 0,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 14336
+            },
+            "sql": {
+              "count": 1024,
+              "min": 14,
+              "p50": 14,
+              "p95": 14,
+              "max": 14,
+              "total": 14336
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 1024,
+                "min": 2.8449999999720603,
+                "p50": 41.964799999957904,
+                "p95": 107.2432999999728,
+                "max": 452.0738999999594
+              },
+              "sqlMs": {
+                "count": 1024,
+                "min": 71.94810000015423,
+                "p50": 209.30070000118576,
+                "p95": 419.35670000035316,
+                "max": 762.0484999998007
+              },
+              "bookLockMs": {
+                "count": 1024,
+                "min": 39.926500000059605,
+                "p50": 88.35910000000149,
+                "p95": 230.5223999998998,
+                "max": 619.0472999999765
+              },
+              "bookLockHeldMs": {
+                "count": 1024,
+                "min": 3.096000000135973,
+                "p50": 4.927099999971688,
+                "p95": 19.480999999912456,
+                "max": 58.42229999997653
+              },
+              "aggregateMs": {
+                "count": 1024,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 1024,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              }
+            }
+          },
+          "preview": {
+            "latency": {
+              "total": 1024,
+              "p50": 250.45309999980964,
+              "p95": 483.4625999999698,
+              "max": 972.2158000001218,
+              "expectedConflicts": 0,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 11264
+            },
+            "sql": {
+              "count": 1024,
+              "min": 11,
+              "p50": 11,
+              "p95": 11,
+              "max": 11,
+              "total": 11264
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 1024,
+                "min": 0.014699999941512942,
+                "p50": 30.782999999821186,
+                "p95": 94.3389999999199,
+                "max": 437.6354000000283
+              },
+              "sqlMs": {
+                "count": 1024,
+                "min": 103.70409999974072,
+                "p50": 198.34290000004694,
+                "p95": 394.2545000000391,
+                "max": 758.5082000005059
+              },
+              "bookLockMs": {
+                "count": 1024,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "bookLockHeldMs": {
+                "count": 1024,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "aggregateMs": {
+                "count": 1024,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 1024,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              }
+            }
+          },
+          "confirm": {
+            "latency": {
+              "total": 1024,
+              "p50": 227.83900000015274,
+              "p95": 481.8310999998357,
+              "max": 1086.7532999999821,
+              "expectedConflicts": 1023,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 9229
+            },
+            "sql": {
+              "count": 1024,
+              "min": 9,
+              "p50": 9,
+              "p95": 9,
+              "max": 22,
+              "total": 9229
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 1024,
+                "min": 0.007599999895319343,
+                "p50": 50.89709999994375,
+                "p95": 116.06970000010915,
+                "max": 460.4436000001151
+              },
+              "sqlMs": {
+                "count": 1024,
+                "min": 6.774100000038743,
+                "p50": 184.91009999951348,
+                "p95": 411.43470000009984,
+                "max": 1009.4099000003189
+              },
+              "bookLockMs": {
+                "count": 1024,
+                "min": 0.218299999833107,
+                "p50": 81.91940000001341,
+                "p95": 209.19079999998212,
+                "max": 529.8441999999341
+              },
+              "bookLockHeldMs": {
+                "count": 1024,
+                "min": 1.0165999999735504,
+                "p50": 2.7964999999385327,
+                "p95": 12.758099999977276,
+                "max": 160.4993999998551
+              },
+              "aggregateMs": {
+                "count": 1024,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 1024,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              }
+            }
+          }
+        },
+        "confirmationSuccess": {
+          "total": 1024,
+          "successes": 1,
+          "successRate": 0.0009765625,
+          "stale": 1023
+        },
+        "confirmationVersionGap": {
+          "total": 1024,
+          "min": "0",
+          "p50": "20",
+          "p95": "22",
+          "max": "24"
+        }
+      }
+    },
+    {
+      "filename": "m4-round-participant-study-2026-11-18T11-27-06-199Z-p8-3.json",
+      "size": 0,
+      "sha256": "",
+      "startedAt": "2026-11-18T11:27:10.529Z",
+      "completedAt": "2026-11-18T11:59:46.964Z",
+      "environment": {
+        "node": "v24.14.1",
+        "os": "win32 10.0.26200",
+        "cpu": "AMD Ryzen 9 7940HX with Radeon Graphics        ",
+        "logicalCpus": 32,
+        "memoryBytes": 16340414464,
+        "mysql": {
+          "version": "8.0.32",
+          "sqlMode": "IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION",
+          "isolationLevel": "REPEATABLE-READ"
+        },
+        "mysqlSettings": [
+          {
+            "bufferPoolBytes": "134217728",
+            "maxConnections": "151"
+          }
+        ],
+        "poolConnections": 8
+      },
+      "actualScaleAtGroupStart": {
+        "expenses": "219698",
+        "versions": "223498",
+        "shares": "5262344",
+        "confirmed": "6963",
+        "requests": "22289"
+      },
+      "changes": {
+        "expenses": 10345,
+        "requests": 1149,
+        "confirmed": 0,
+        "shares": 82760
+      },
+      "inferredScaleAtEnd": {
+        "expenses": "230043",
+        "versions": "233843",
+        "shares": "5345104",
+        "confirmed": "6963",
+        "requests": "23438"
+      },
+      "completedWorkflowsPerSecond": 54.422222222222224,
+      "financialVersionChanges": 10345,
+      "operationCounts": {
+        "exact": 2938,
+        "equal": 5878,
+        "confirm": 980
+      },
+      "group": {
+        "mode": "write",
+        "distribution": "same-book",
+        "round": 3,
+        "participantCount": 8,
+        "workflows": {
+          "total": 9796,
+          "p50": 275.4655999999959,
+          "p95": 880.7997999999207,
+          "max": 1959.2993999999017,
+          "expectedConflicts": 980,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 202772
+        },
+        "httpReads": {
+          "total": 980,
+          "p50": 259.752400000114,
+          "p95": 501.530299999984,
+          "max": 980.7317000001203,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 10780
+        },
+        "httpWrites": {
+          "total": 10776,
+          "p50": 263.92439999990165,
+          "p95": 532.376500000013,
+          "max": 1209.4375,
+          "expectedConflicts": 980,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 216492
+        },
+        "httpEndpoints": {
+          "request": {
+            "latency": {
+              "total": 980,
+              "p50": 259.86490000016056,
+              "p95": 526.9551999999676,
+              "max": 1093.6914999999572,
+              "expectedConflicts": 0,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 13720
+            },
+            "sql": {
+              "count": 980,
+              "min": 14,
+              "p50": 14,
+              "p95": 14,
+              "max": 14,
+              "total": 13720
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 980,
+                "min": 2.581000000005588,
+                "p50": 41.25969999982044,
+                "p95": 124.02569999988191,
+                "max": 571.0101000000723
+              },
+              "sqlMs": {
+                "count": 980,
+                "min": 13.797300000442192,
+                "p50": 214.51829999964684,
+                "p95": 435.2931999992579,
+                "max": 1055.4068000002299
+              },
+              "bookLockMs": {
+                "count": 980,
+                "min": 0.6733999999705702,
+                "p50": 92.13610000000335,
+                "p95": 254.1123999999836,
+                "max": 679.4355000001378
+              },
+              "bookLockHeldMs": {
+                "count": 980,
+                "min": 3.2444000001996756,
+                "p50": 4.841599999926984,
+                "p95": 20.394400000106543,
+                "max": 87.5688000000082
+              },
+              "aggregateMs": {
+                "count": 980,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 980,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              }
+            }
+          },
+          "expense": {
+            "latency": {
+              "total": 8816,
+              "p50": 266.23910000012256,
+              "p95": 532.7924999999814,
+              "max": 1209.4375,
+              "expectedConflicts": 0,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 193952
+            },
+            "sql": {
+              "count": 8816,
+              "min": 22,
+              "p50": 22,
+              "p95": 22,
+              "max": 22,
+              "total": 193952
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 8816,
+                "min": 1.2009000000543892,
+                "p50": 40.978499999968335,
+                "p95": 125.93239999981597,
+                "max": 592.1117000000086
+              },
+              "sqlMs": {
+                "count": 8816,
+                "min": 27.399000000208616,
+                "p50": 226.589199999813,
+                "p95": 444.50159999961033,
+                "max": 1099.7893999998923
+              },
+              "bookLockMs": {
+                "count": 8816,
+                "min": 7.273899999912828,
+                "p50": 84.86970000015572,
+                "p95": 232.72930000000633,
+                "max": 695.9457000000402
+              },
+              "bookLockHeldMs": {
+                "count": 8816,
+                "min": 6.051199999870732,
+                "p50": 11.312000000150874,
+                "p95": 53.55209999997169,
+                "max": 204.6561999998521
+              },
+              "aggregateMs": {
+                "count": 8816,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 8816,
+                "min": 0.41780000017024577,
+                "p50": 1.6488000000827014,
+                "p95": 11.435199999948964,
+                "max": 95.93570000003092
+              }
+            }
+          },
+          "preview": {
+            "latency": {
+              "total": 980,
+              "p50": 259.752400000114,
+              "p95": 501.530299999984,
+              "max": 980.7317000001203,
+              "expectedConflicts": 0,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 10780
+            },
+            "sql": {
+              "count": 980,
+              "min": 11,
+              "p50": 11,
+              "p95": 11,
+              "max": 11,
+              "total": 10780
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 980,
+                "min": 0.006300000008195639,
+                "p50": 27.584700000006706,
+                "p95": 120.7856000000611,
+                "max": 432.91740000015125
+              },
+              "sqlMs": {
+                "count": 980,
+                "min": 90.05759999947622,
+                "p50": 207.80730000021867,
+                "p95": 412.19570000004023,
+                "max": 821.4022999999579
+              },
+              "bookLockMs": {
+                "count": 980,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "bookLockHeldMs": {
+                "count": 980,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "aggregateMs": {
+                "count": 980,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 980,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              }
+            }
+          },
+          "confirm": {
+            "latency": {
+              "total": 980,
+              "p50": 237.22359999991022,
+              "p95": 525.4413000000641,
+              "max": 1030.5881000000518,
+              "expectedConflicts": 980,
+              "failures": 0,
+              "failureRate": 0,
+              "sql": 8820
+            },
+            "sql": {
+              "count": 980,
+              "min": 9,
+              "p50": 9,
+              "p95": 9,
+              "max": 9,
+              "total": 8820
+            },
+            "timings": {
+              "acquireMs": {
+                "count": 980,
+                "min": 0.007299999939277768,
+                "p50": 52.367199999978766,
+                "p95": 143.4605000000447,
+                "max": 383.1003999998793
+              },
+              "sqlMs": {
+                "count": 980,
+                "min": 15.431399999884889,
+                "p50": 190.20169999985956,
+                "p95": 434.7561000001151,
+                "max": 913.5418999996036
+              },
+              "bookLockMs": {
+                "count": 980,
+                "min": 12.800000000046566,
+                "p50": 83.95699999993667,
+                "p95": 253.3526000001002,
+                "max": 645.7053999998607
+              },
+              "bookLockHeldMs": {
+                "count": 980,
+                "min": 0.9439999999012798,
+                "p50": 2.529300000052899,
+                "p95": 8.796899999957532,
+                "max": 54.53650000016205
+              },
+              "aggregateMs": {
+                "count": 980,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              },
+              "shareInsertMs": {
+                "count": 980,
+                "min": 0,
+                "p50": 0,
+                "p95": 0,
+                "max": 0
+              }
+            }
+          }
+        },
+        "confirmationSuccess": {
+          "total": 980,
+          "successes": 0,
+          "successRate": 0,
+          "stale": 980
+        },
+        "confirmationVersionGap": {
+          "total": 980,
+          "min": "3",
+          "p50": "20",
+          "p95": "22",
+          "max": "25"
+        }
+      }
+    }
+  ],
+  "sourceFiles": [
+    {
+      "filename": "m4-round-participant-study-2026-11-18T11-27-06-199Z-p30-1.json",
+      "size": 14576216,
+      "sha256": "e0c98eda5bb3a4cd792d25fc00e5d6785670429ba06b2ed8113ec6fbbfb98919"
+    },
+    {
+      "filename": "m4-round-participant-study-2026-11-18T11-27-06-199Z-p30-2.json",
+      "size": 13704256,
+      "sha256": "d85580eb7de241332b1ce2109d7680ad3fe96a2cb20772cc30d38260ba692c03"
+    },
+    {
+      "filename": "m4-round-participant-study-2026-11-18T11-27-06-199Z-p30-3.json",
+      "size": 13269423,
+      "sha256": "3c52fcd1310ec9873031b646c591926ec458ab298f0d510489b3dafaf535cdde"
+    },
+    {
+      "filename": "m4-round-participant-study-2026-11-18T11-27-06-199Z-p4-1.json",
+      "size": 18362761,
+      "sha256": "9c360b4e76b7621ab0e8dd789418290d3163f5b36b3ec96ad6cc79526c0dc134"
+    },
+    {
+      "filename": "m4-round-participant-study-2026-11-18T11-27-06-199Z-p4-2.json",
+      "size": 17153512,
+      "sha256": "5e299d12f832cfe82f4c670ce485f488abfb07d7d3401717f53ad87ffc57f5f3"
+    },
+    {
+      "filename": "m4-round-participant-study-2026-11-18T11-27-06-199Z-p4-3.json",
+      "size": 17603435,
+      "sha256": "ba7340c0b8f76eb593f9369fc34c0b6162f339b44ecea55343334684d4a20688"
+    },
+    {
+      "filename": "m4-round-participant-study-2026-11-18T11-27-06-199Z-p8-1.json",
+      "size": 16085939,
+      "sha256": "e2fb91581d2de9130f7730b4660a883e60f910b35d583cc7c4db392c2d79f15a"
+    },
+    {
+      "filename": "m4-round-participant-study-2026-11-18T11-27-06-199Z-p8-2.json",
+      "size": 15598020,
+      "sha256": "83ddc573ac392b93ce22ab5659a732a2044838b5316dbb994b04d069b53139b5"
+    },
+    {
+      "filename": "m4-round-participant-study-2026-11-18T11-27-06-199Z-p8-3.json",
+      "size": 14904771,
+      "sha256": "188dd360c3ce4d49213a76348ddb502d5c15d2296842c5283b1f297648f5858d"
+    }
+  ],
+  "createdAt": "2026-11-18T12:09:22.809Z"
+}

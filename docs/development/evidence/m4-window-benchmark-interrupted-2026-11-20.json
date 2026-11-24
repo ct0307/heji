@@ -1,0 +1,72 @@
+{
+  "format": "heji-m4-window-benchmark-interruption-verification-v1",
+  "runId": "2026-11-19T14-33-09-734Z",
+  "target": "heji_m4_bench",
+  "status": "interrupted",
+  "startedAt": "2026-11-19T14:33:15.544Z",
+  "lastEvidenceAt": "2026-11-19T16:00:35.104Z",
+  "checkedAt": "2026-11-20T11:18:02.026Z",
+  "execution": {
+    "backgroundWindowBenchmarkProcesses": 0,
+    "originalSessionAvailable": false,
+    "summaryReportExists": false,
+    "progressJsonlEndsWithNewline": true,
+    "progressJsonlBytes": 8373190,
+    "progressJsonlSha256": "d8864498e628d95d0d25787dc6e39726eda9b758792a7c24b2180154af8dd781",
+    "lastEvent": "side_write in the 25-second tier; no completed or stopped event"
+  },
+  "runtimeSourceHashesBeforeOfflineFix": [
+    { "path": "tests/m4/window-benchmark.ts", "sha256": "76d4e17cf4750cbeda764063d2f4b9b01344b58f4d353d49ec9ed4a8e663ec29" },
+    { "path": "tests/m4/window-benchmark-policy.ts", "sha256": "38fe077324642a1663a3a08c6302c3624e6a686795a59f6230661d04dbe8a9a0" },
+    { "path": "tests/m4/cli.ts", "sha256": "1a2f77db66267436377b3517be2633b2ac597b97481332c2ce261f744079bae8" },
+    { "path": "tests/m4/balance-verification.ts", "sha256": "0ffe4f1d20b4a078a19e47558cda43d2fa6d64b5989cd51bab363fdfbf254da6" },
+    { "path": "apps/api/src/shared/settlement-window.ts", "sha256": "39cd3df3f829af93e0b2c58ddf64cf9c6f028006a5b2f3041489a7d5921ca89b" },
+    { "path": "apps/api/src/modules/finance/mysql-store.ts", "sha256": "1ceed480ce3c1e9fd3610bb9dfebb473b5cac72d26ec24b20ac828544695e09b" },
+    { "path": "docs/development/proposals/004_settlement_windows.sql", "sha256": "6448464c6b7d1660911953f835505d2f1538d804a2e47273e1829cdf3026345f" }
+  ],
+  "preflight": {
+    "target": "heji_m4_bench",
+    "otherConnections": 0,
+    "activeWindows": 0,
+    "coolingWindows": 0,
+    "migrationChecksum": "6448464c6b7d1660911953f835505d2f1538d804a2e47273e1829cdf3026345f"
+  },
+  "samples": [
+    { "waitMs": 5000, "total": 60, "successes": 60, "expired": 0, "sideWritesInCompletedSamples": 5700, "sideWritesBlocked": 5700 },
+    { "waitMs": 15000, "total": 60, "successes": 60, "expired": 0, "sideWritesInCompletedSamples": 17104, "sideWritesBlocked": 17104 },
+    { "waitMs": 25000, "total": 7, "successes": 7, "expired": 0, "sideWritesInCompletedSamples": 3325, "sideWritesBlocked": 3325 }
+  ],
+  "incompleteTail": {
+    "additionalSideWriteEvents": 456,
+    "blockedAsExpected": 456,
+    "nonExpectedResponses": 0,
+    "note": "These events have no completed sample record and are excluded from the tier denominator."
+  },
+  "readOnlyDatabaseCheck": {
+    "source": "m4-backup-004-state-final-2026-11-19T10-45-18-088Z.json",
+    "tableCounts": {
+      "audit_events": "260954", "book_members": "300", "books": "10", "confirmed_transfers": "7090",
+      "expense_shares": "5345104", "expense_versions": "233843", "expenses": "230043",
+      "finance_daily_categories": "850", "finance_daily_members": "25500", "finance_member_totals": "300",
+      "financial_audit_details": "241954", "idempotency_records": "241827", "invitations": "0",
+      "m4_fixture_meta": "1", "rate_limits": "0", "schema_migrations": "4", "sessions": "260",
+      "settlement_windows": "1", "transfer_requests": "23566", "users": "30"
+    },
+    "tableDeltas": {
+      "audit_events": "510", "book_members": "0", "books": "0", "confirmed_transfers": "127",
+      "expense_shares": "0", "expense_versions": "0", "expenses": "0", "finance_daily_categories": "0",
+      "finance_daily_members": "0", "finance_member_totals": "0", "financial_audit_details": "510",
+      "idempotency_records": "383", "invitations": "0", "m4_fixture_meta": "0", "rate_limits": "0",
+      "schema_migrations": "0", "sessions": "20", "settlement_windows": "1", "transfer_requests": "128", "users": "0"
+    },
+    "financialVersionTotal": "240933",
+    "hotBookVersionDelta": "127",
+    "pendingHotBookRequests": "16470",
+    "settlementWindow": { "count": 1, "active": 0, "expiredUnclosed": 1, "cooling": 0 },
+    "migrationChecksumsMatched": true,
+    "fullHistoricalShareAndBalanceConservation": "passed",
+    "rawMemberBalancesComparedWith003": { "rows": 300, "result": "matched" },
+    "transaction": "READ ONLY consistent snapshot followed by ROLLBACK"
+  },
+  "conclusion": "The 5-second and 15-second tiers met their thresholds. The 25-second tier and natural-expiry recovery scenario are incomplete; this run is not an acceptance pass. One pending request and one naturally expired, unclosed window remain. Preserve all data and evidence; do not resume, rerun, or clean up."
+}

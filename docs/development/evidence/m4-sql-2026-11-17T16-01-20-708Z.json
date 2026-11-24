@@ -1,0 +1,134 @@
+{
+  "environment": {
+    "version": "8.0.32",
+    "sqlMode": "IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION",
+    "isolationLevel": "REPEATABLE-READ"
+  },
+  "rows": 10000,
+  "returned": 20,
+  "identicalResults": true,
+  "evidence": [
+    {
+      "table": "m4_audit_baseline",
+      "sql": "SELECT id,bookId,createdAt FROM m4_audit_baseline WHERE bookId=? AND (createdAt,id)<(?,?) ORDER BY createdAt DESC,id DESC LIMIT 20",
+      "params": [
+        "4ede160d-d966-4bc3-8421-4af324bfa4cc",
+        "2026-12-28 12:00:00.000",
+        "ffffffff-ffff-4fff-8fff-ffffffffffff"
+      ],
+      "estimate": [
+        {
+          "EXPLAIN": "{\n  \"query_block\": {\n    \"select_id\": 1,\n    \"cost_info\": {\n      \"query_cost\": \"1117.20\"\n    },\n    \"ordering_operation\": {\n      \"using_filesort\": true,\n      \"table\": {\n        \"table_name\": \"m4_audit_baseline\",\n        \"access_type\": \"ALL\",\n        \"rows_examined_per_scan\": 10202,\n        \"rows_produced_per_join\": 1020,\n        \"filtered\": \"10.00\",\n        \"cost_info\": {\n          \"read_cost\": \"1015.18\",\n          \"eval_cost\": \"102.02\",\n          \"prefix_cost\": \"1117.20\",\n          \"data_read_per_join\": \"87K\"\n        },\n        \"used_columns\": [\n          \"id\",\n          \"bookId\",\n          \"createdAt\"\n        ],\n        \"attached_condition\": \"((`heji_m4_bench`.`m4_audit_baseline`.`bookId` = '4ede160d-d966-4bc3-8421-4af324bfa4cc') and ((`heji_m4_bench`.`m4_audit_baseline`.`createdAt`,`heji_m4_bench`.`m4_audit_baseline`.`id`) < ('2026-12-28 12:00:00.000','ffffffff-ffff-4fff-8fff-ffffffffffff')))\"\n      }\n    }\n  }\n}"
+        }
+      ],
+      "actual": [
+        {
+          "round": 1,
+          "elapsedMs": 3.6801999999999566,
+          "plan": [
+            {
+              "EXPLAIN": "-> Limit: 20 row(s)  (cost=1117.20 rows=20) (actual time=3.252..3.253 rows=20 loops=1)\n    -> Sort: m4_audit_baseline.createdAt DESC, m4_audit_baseline.id DESC, limit input to 20 row(s) per chunk  (cost=1117.20 rows=10202) (actual time=3.252..3.252 rows=20 loops=1)\n        -> Filter: ((m4_audit_baseline.bookId = '4ede160d-d966-4bc3-8421-4af324bfa4cc') and ((m4_audit_baseline.createdAt,m4_audit_baseline.id) < ('2026-12-28 12:00:00.000','ffffffff-ffff-4fff-8fff-ffffffffffff')))  (cost=1117.20 rows=10202) (actual time=0.017..2.256 rows=10000 loops=1)\n            -> Table scan on m4_audit_baseline  (cost=1117.20 rows=10202) (actual time=0.015..1.340 rows=10000 loops=1)\n"
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "elapsedMs": 3.907000000000039,
+          "plan": [
+            {
+              "EXPLAIN": "-> Limit: 20 row(s)  (cost=1117.20 rows=20) (actual time=3.497..3.498 rows=20 loops=1)\n    -> Sort: m4_audit_baseline.createdAt DESC, m4_audit_baseline.id DESC, limit input to 20 row(s) per chunk  (cost=1117.20 rows=10202) (actual time=3.497..3.497 rows=20 loops=1)\n        -> Filter: ((m4_audit_baseline.bookId = '4ede160d-d966-4bc3-8421-4af324bfa4cc') and ((m4_audit_baseline.createdAt,m4_audit_baseline.id) < ('2026-12-28 12:00:00.000','ffffffff-ffff-4fff-8fff-ffffffffffff')))  (cost=1117.20 rows=10202) (actual time=0.025..2.454 rows=10000 loops=1)\n            -> Table scan on m4_audit_baseline  (cost=1117.20 rows=10202) (actual time=0.024..1.425 rows=10000 loops=1)\n"
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "elapsedMs": 3.796699999999987,
+          "plan": [
+            {
+              "EXPLAIN": "-> Limit: 20 row(s)  (cost=1117.20 rows=20) (actual time=3.484..3.486 rows=20 loops=1)\n    -> Sort: m4_audit_baseline.createdAt DESC, m4_audit_baseline.id DESC, limit input to 20 row(s) per chunk  (cost=1117.20 rows=10202) (actual time=3.484..3.484 rows=20 loops=1)\n        -> Filter: ((m4_audit_baseline.bookId = '4ede160d-d966-4bc3-8421-4af324bfa4cc') and ((m4_audit_baseline.createdAt,m4_audit_baseline.id) < ('2026-12-28 12:00:00.000','ffffffff-ffff-4fff-8fff-ffffffffffff')))  (cost=1117.20 rows=10202) (actual time=0.016..2.287 rows=10000 loops=1)\n            -> Table scan on m4_audit_baseline  (cost=1117.20 rows=10202) (actual time=0.015..1.354 rows=10000 loops=1)\n"
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "elapsedMs": 3.8155000000000427,
+          "plan": [
+            {
+              "EXPLAIN": "-> Limit: 20 row(s)  (cost=1117.20 rows=20) (actual time=3.260..3.262 rows=20 loops=1)\n    -> Sort: m4_audit_baseline.createdAt DESC, m4_audit_baseline.id DESC, limit input to 20 row(s) per chunk  (cost=1117.20 rows=10202) (actual time=3.260..3.261 rows=20 loops=1)\n        -> Filter: ((m4_audit_baseline.bookId = '4ede160d-d966-4bc3-8421-4af324bfa4cc') and ((m4_audit_baseline.createdAt,m4_audit_baseline.id) < ('2026-12-28 12:00:00.000','ffffffff-ffff-4fff-8fff-ffffffffffff')))  (cost=1117.20 rows=10202) (actual time=0.016..2.261 rows=10000 loops=1)\n            -> Table scan on m4_audit_baseline  (cost=1117.20 rows=10202) (actual time=0.015..1.347 rows=10000 loops=1)\n"
+            }
+          ]
+        },
+        {
+          "round": 5,
+          "elapsedMs": 3.6695000000000277,
+          "plan": [
+            {
+              "EXPLAIN": "-> Limit: 20 row(s)  (cost=1117.20 rows=20) (actual time=3.336..3.337 rows=20 loops=1)\n    -> Sort: m4_audit_baseline.createdAt DESC, m4_audit_baseline.id DESC, limit input to 20 row(s) per chunk  (cost=1117.20 rows=10202) (actual time=3.336..3.337 rows=20 loops=1)\n        -> Filter: ((m4_audit_baseline.bookId = '4ede160d-d966-4bc3-8421-4af324bfa4cc') and ((m4_audit_baseline.createdAt,m4_audit_baseline.id) < ('2026-12-28 12:00:00.000','ffffffff-ffff-4fff-8fff-ffffffffffff')))  (cost=1117.20 rows=10202) (actual time=0.017..2.322 rows=10000 loops=1)\n            -> Table scan on m4_audit_baseline  (cost=1117.20 rows=10202) (actual time=0.015..1.387 rows=10000 loops=1)\n"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "table": "m4_audit_indexed",
+      "sql": "SELECT id,bookId,createdAt FROM m4_audit_indexed WHERE bookId=? AND (createdAt,id)<(?,?) ORDER BY createdAt DESC,id DESC LIMIT 20",
+      "params": [
+        "4ede160d-d966-4bc3-8421-4af324bfa4cc",
+        "2026-12-28 12:00:00.000",
+        "ffffffff-ffff-4fff-8fff-ffffffffffff"
+      ],
+      "estimate": [
+        {
+          "EXPLAIN": "{\n  \"query_block\": {\n    \"select_id\": 1,\n    \"cost_info\": {\n      \"query_cost\": \"581.02\"\n    },\n    \"ordering_operation\": {\n      \"using_filesort\": false,\n      \"table\": {\n        \"table_name\": \"m4_audit_indexed\",\n        \"access_type\": \"ref\",\n        \"possible_keys\": [\n          \"ix_m4_book_time\"\n        ],\n        \"key\": \"ix_m4_book_time\",\n        \"used_key_parts\": [\n          \"bookId\"\n        ],\n        \"key_length\": \"36\",\n        \"ref\": [\n          \"const\"\n        ],\n        \"rows_examined_per_scan\": 5093,\n        \"rows_produced_per_join\": 5093,\n        \"filtered\": \"100.00\",\n        \"backward_index_scan\": true,\n        \"using_index\": true,\n        \"cost_info\": {\n          \"read_cost\": \"71.72\",\n          \"eval_cost\": \"509.30\",\n          \"prefix_cost\": \"581.02\",\n          \"data_read_per_join\": \"437K\"\n        },\n        \"used_columns\": [\n          \"id\",\n          \"bookId\",\n          \"createdAt\"\n        ],\n        \"attached_condition\": \"((`heji_m4_bench`.`m4_audit_indexed`.`createdAt`,`heji_m4_bench`.`m4_audit_indexed`.`id`) < ('2026-12-28 12:00:00.000','ffffffff-ffff-4fff-8fff-ffffffffffff'))\"\n      }\n    }\n  }\n}"
+        }
+      ],
+      "actual": [
+        {
+          "round": 1,
+          "elapsedMs": 0.5212999999999965,
+          "plan": [
+            {
+              "EXPLAIN": "-> Limit: 20 row(s)  (cost=581.02 rows=20) (actual time=0.023..0.026 rows=20 loops=1)\n    -> Filter: ((m4_audit_indexed.createdAt,m4_audit_indexed.id) < ('2026-12-28 12:00:00.000','ffffffff-ffff-4fff-8fff-ffffffffffff'))  (cost=581.02 rows=5093) (actual time=0.023..0.025 rows=20 loops=1)\n        -> Covering index lookup on m4_audit_indexed using ix_m4_book_time (bookId='4ede160d-d966-4bc3-8421-4af324bfa4cc') (reverse)  (cost=581.02 rows=5093) (actual time=0.021..0.023 rows=20 loops=1)\n"
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "elapsedMs": 0.2884999999999991,
+          "plan": [
+            {
+              "EXPLAIN": "-> Limit: 20 row(s)  (cost=581.02 rows=20) (actual time=0.021..0.025 rows=20 loops=1)\n    -> Filter: ((m4_audit_indexed.createdAt,m4_audit_indexed.id) < ('2026-12-28 12:00:00.000','ffffffff-ffff-4fff-8fff-ffffffffffff'))  (cost=581.02 rows=5093) (actual time=0.021..0.024 rows=20 loops=1)\n        -> Covering index lookup on m4_audit_indexed using ix_m4_book_time (bookId='4ede160d-d966-4bc3-8421-4af324bfa4cc') (reverse)  (cost=581.02 rows=5093) (actual time=0.020..0.021 rows=20 loops=1)\n"
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "elapsedMs": 0.29990000000003647,
+          "plan": [
+            {
+              "EXPLAIN": "-> Limit: 20 row(s)  (cost=581.02 rows=20) (actual time=0.021..0.025 rows=20 loops=1)\n    -> Filter: ((m4_audit_indexed.createdAt,m4_audit_indexed.id) < ('2026-12-28 12:00:00.000','ffffffff-ffff-4fff-8fff-ffffffffffff'))  (cost=581.02 rows=5093) (actual time=0.021..0.024 rows=20 loops=1)\n        -> Covering index lookup on m4_audit_indexed using ix_m4_book_time (bookId='4ede160d-d966-4bc3-8421-4af324bfa4cc') (reverse)  (cost=581.02 rows=5093) (actual time=0.019..0.021 rows=20 loops=1)\n"
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "elapsedMs": 0.32740000000001146,
+          "plan": [
+            {
+              "EXPLAIN": "-> Limit: 20 row(s)  (cost=581.02 rows=20) (actual time=0.022..0.026 rows=20 loops=1)\n    -> Filter: ((m4_audit_indexed.createdAt,m4_audit_indexed.id) < ('2026-12-28 12:00:00.000','ffffffff-ffff-4fff-8fff-ffffffffffff'))  (cost=581.02 rows=5093) (actual time=0.022..0.025 rows=20 loops=1)\n        -> Covering index lookup on m4_audit_indexed using ix_m4_book_time (bookId='4ede160d-d966-4bc3-8421-4af324bfa4cc') (reverse)  (cost=581.02 rows=5093) (actual time=0.021..0.023 rows=20 loops=1)\n"
+            }
+          ]
+        },
+        {
+          "round": 5,
+          "elapsedMs": 0.26429999999999154,
+          "plan": [
+            {
+              "EXPLAIN": "-> Limit: 20 row(s)  (cost=581.02 rows=20) (actual time=0.020..0.024 rows=20 loops=1)\n    -> Filter: ((m4_audit_indexed.createdAt,m4_audit_indexed.id) < ('2026-12-28 12:00:00.000','ffffffff-ffff-4fff-8fff-ffffffffffff'))  (cost=581.02 rows=5093) (actual time=0.020..0.023 rows=20 loops=1)\n        -> Covering index lookup on m4_audit_indexed using ix_m4_book_time (bookId='4ede160d-d966-4bc3-8421-4af324bfa4cc') (reverse)  (cost=581.02 rows=5093) (actual time=0.019..0.021 rows=20 loops=1)\n"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

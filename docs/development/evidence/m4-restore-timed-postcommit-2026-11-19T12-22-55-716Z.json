@@ -1,0 +1,185 @@
+{
+  "format": "heji-m4-restore-timed-postcommit-v1",
+  "at": "2026-11-19T12:21:49.346Z",
+  "completedAt": "2026-11-19T12:22:55.716Z",
+  "database": "heji_m4_restore_004_timed",
+  "backup": "heji-m4-1c2d9ba6-c94f-4936-9b80-f313596a14fc.jsonl.gz",
+  "counts": {
+    "audit_events": "260444",
+    "book_members": "300",
+    "books": "10",
+    "confirmed_transfers": "6963",
+    "expense_shares": "5345104",
+    "expense_versions": "233843",
+    "expenses": "230043",
+    "finance_daily_categories": "850",
+    "finance_daily_members": "25500",
+    "finance_member_totals": "300",
+    "financial_audit_details": "241444",
+    "idempotency_records": "241444",
+    "invitations": "0",
+    "m4_fixture_meta": "1",
+    "rate_limits": "0",
+    "schema_migrations": "4",
+    "sessions": "240",
+    "settlement_windows": "0",
+    "transfer_requests": "23438",
+    "users": "30"
+  },
+  "tableDigests": {
+    "audit_events": {
+      "rows": 260444,
+      "sha256": "323e2687cf5e3023b81b0294af08627f18e8a8a6369f06d7e13c77a3bd958327"
+    },
+    "book_members": {
+      "rows": 300,
+      "sha256": "ecfb83ce55b91e27bd2e6d027a62da26b9dfb4defcdbbfdff80135fc21605699"
+    },
+    "books": {
+      "rows": 10,
+      "sha256": "bfbaff16ce2730301021a1636d257facc536d1fa35c8726533736d2ac0eee59b"
+    },
+    "confirmed_transfers": {
+      "rows": 6963,
+      "sha256": "e1a0120bfa0e5ea3ea1dd8ab86a164600090ca477bbd20f89e03b90f0cec26d8"
+    },
+    "expense_shares": {
+      "rows": 5345104,
+      "sha256": "e65a8dceee1a2d0f7ce6be64323b8f740008752134b2b6ff9195e0f4a69f94bf"
+    },
+    "expense_versions": {
+      "rows": 233843,
+      "sha256": "16b8dea591902f53fe941128802bd3eb43d49134fdb09a5c929d3a8d0c196c10"
+    },
+    "expenses": {
+      "rows": 230043,
+      "sha256": "84a4a7b8755fa48805e0ab410b201d3aadf910dc68f071d8a00b7af27e3270d5"
+    },
+    "finance_daily_categories": {
+      "rows": 850,
+      "sha256": "0410d39f920f579b0a58781331967fb81064f21806ef8c67220e5a0371f4add3"
+    },
+    "finance_daily_members": {
+      "rows": 25500,
+      "sha256": "f01d68fdbc6503665d74af50d9d11e904e07c61cb7a65dc40aa1e4403c3531aa"
+    },
+    "finance_member_totals": {
+      "rows": 300,
+      "sha256": "d91cdcb9639e6417942490689f2bcc0ad4de69a0331000489b5f2ad2aa4530a6"
+    },
+    "financial_audit_details": {
+      "rows": 241444,
+      "sha256": "861370167372bbb0798d3131b9b6d8815008145ba59d6f0c61347b7f4a57bf79"
+    },
+    "idempotency_records": {
+      "rows": 241444,
+      "sha256": "31de52ea7ece6a881aca70945a0d4d001c1f277b8491fb7cc81d1f4a3430fa8a"
+    },
+    "invitations": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "m4_fixture_meta": {
+      "rows": 1,
+      "sha256": "292e9e98f5fabdb80b9ab63c5dfa2c272643edff2e6421b5bee1b86e3d585040"
+    },
+    "rate_limits": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "schema_migrations": {
+      "rows": 4,
+      "sha256": "700ea1a9dcd80d40f70e0723c7723142aec12c2f9f499b2314f0bfefdda11300"
+    },
+    "sessions": {
+      "rows": 240,
+      "sha256": "6c5d0a92959249f7915512662f36cdd85ce899b5a4f82ef183f7b0225ec20146"
+    },
+    "settlement_windows": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "transfer_requests": {
+      "rows": 23438,
+      "sha256": "d4c5bab2d490b2c7895c6beefea956341c8f843947dc894ad9e977e35856af91"
+    },
+    "users": {
+      "rows": 30,
+      "sha256": "07cdfaf21404a8cb2912b883c079290229131186a72229f4a03ad229f08a7531"
+    }
+  },
+  "migrations": [
+    {
+      "name": "001_m1.sql",
+      "checksum": "58cd31b090c5c7dd40fdcef9cc5f3dc46d24095960c2b2eda381a61297f218e1"
+    },
+    {
+      "name": "002_m2.sql",
+      "checksum": "fe252167e397ba27f3b738b3f540ce0977fb1992125520151577651556fa8286"
+    },
+    {
+      "name": "003_finance_summaries.sql",
+      "checksum": "0817f3f6a6ac2396509eb75aaa2bfdf3d6259088568743c1d3e3910ab278daff"
+    },
+    {
+      "name": "004_settlement_windows.sql",
+      "checksum": "6448464c6b7d1660911953f835505d2f1538d804a2e47273e1829cdf3026345f"
+    }
+  ],
+  "constraints": [
+    {
+      "type": "CHECK",
+      "count": "3"
+    },
+    {
+      "type": "FOREIGN KEY",
+      "count": "4"
+    },
+    {
+      "type": "PRIMARY KEY",
+      "count": "1"
+    },
+    {
+      "type": "UNIQUE",
+      "count": "1"
+    }
+  ],
+  "financialVersionHash": "031f6da4f7de472311c1ae748d2534ab905d94f36e4fa50c647650669bb0cc09",
+  "activeWindows": 0,
+  "memberComparison": {
+    "rows": 300,
+    "books": 10,
+    "matched": true,
+    "sha256": "71bf304bc641ebe8d08eb31e5d9440714146f62ae10db5c36290bde23aefecc1"
+  },
+  "balanceCheckMs": 15004.482799999998,
+  "environment": {
+    "version": "8.0.32",
+    "isolationLevel": "REPEATABLE-READ"
+  },
+  "preservedDatabases": [
+    {
+      "database": "heji_m4_bench",
+      "countsMatched": true,
+      "migrationsMatched": true,
+      "financialVersionHash": "031f6da4f7de472311c1ae748d2534ab905d94f36e4fa50c647650669bb0cc09"
+    },
+    {
+      "database": "heji_m4_restore_004",
+      "countsMatched": true,
+      "migrationsMatched": true,
+      "financialVersionHash": "031f6da4f7de472311c1ae748d2534ab905d94f36e4fa50c647650669bb0cc09"
+    }
+  ],
+  "restoreTargets": [
+    "heji_m4_restore",
+    "heji_m4_restore_003",
+    "heji_m4_restore_004",
+    "heji_m4_restore_004_timed"
+  ],
+  "verificationElapsedMs": 66368.09610000001,
+  "transaction": "independent connection; consistent read-only snapshots; rollback",
+  "localReport": "restore-4f09e676-f86c-489a-8491-9f8b32dce0d6.json",
+  "restoreElapsedMs": 503957.8391,
+  "within30Minutes": true
+}

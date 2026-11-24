@@ -1,0 +1,29 @@
+node_modules/
+dist/
+coverage/
+.env
+.env.*
+!.env.example
+*.log
+*.tsbuildinfo
+.DS_Store
+.local/
+
+# 本机工具状态、Python缓存及Office锁文件
+.superpowers/
+__pycache__/
+*.py[cod]
+~$*
+
+# 凭据及数据库备份不进入源码仓库
+*.pem
+*.key
+*.p12
+*.pfx
+*.sql.gz
+
+# 大体积原始负载样本保留本地；提交摘要和SHA-256索引
+/docs/development/evidence/m4-round-formal-*.json
+/docs/development/evidence/m4-round-participant-study-*.json
+/docs/development/evidence/m4-benchmark-formal-*.json
+/docs/development/evidence/m4-window-benchmark-*.jsonl

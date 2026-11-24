@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>合记 · 三种界面结构</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;color:#182a40;background:#e9eef5;font:14px/1.6 "Microsoft YaHei UI","Microsoft YaHei",sans-serif}button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid #2563b9;outline-offset:3px}.review{padding:17px 24px 13px;background:#fff;border-bottom:1px solid #dce4ee}.review-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:12px}h1{font-size:18px;margin:0;font-weight:700;letter-spacing:-.4px}.sub{font-size:12px;color:#6a7a8c;margin:3px 0 0}.device{display:flex;padding:3px;background:#f0f4f9;border-radius:7px}.device button{border:0;background:transparent;color:#617187;min-height:34px;padding:4px 14px;border-radius:5px}.device button[aria-pressed=true]{background:white;color:#182a40;box-shadow:0 1px 4px #152e4014}.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.tab{text-align:left;display:flex;align-items:center;gap:12px;padding:11px 15px;border:1px solid #e1e7ef;background:#fff;border-radius:8px;color:#52647a;min-height:57px}.tab>span:first-child{font:600 18px Bahnschrift,sans-serif;width:22px;color:#8190a3}.tab strong{display:block;font-size:13px}.tab small{font-size:11px;color:#6a7a8c}.tab[aria-selected=true]{border-color:#2563b9;background:#f0f5ff;color:#214e88}.tab[aria-selected=true]>span:first-child{color:#2563b9}.context{display:flex;justify-content:space-between;gap:16px;margin-top:10px;color:#6a7a8c;font-size:11px}.context p{margin:0}.stage{padding:18px;display:flex;justify-content:center;align-items:flex-start}.frame{background:white;border:1px solid #d5deea;border-radius:8px;width:100%;height:calc(100dvh - 205px);min-height:580px;box-shadow:0 8px 25px #2139570a}.stage.phone .frame{width:390px;height:780px;min-height:0;max-width:100%;border-radius:22px;border:6px solid #21354c;box-shadow:0 12px 32px #18365220}.stage.phone{padding-top:22px;padding-bottom:30px}@media(max-width:620px){.review{padding:12px}.review-top{gap:8px}h1{font-size:16px}.sub{font-size:10px}.device button{font-size:11px;padding:3px 10px}.tabs{gap:6px}.tab{padding:9px 8px;gap:6px}.tab strong{font-size:11px}.tab small{display:none}.context{font-size:10px}.context p:last-child{display:none}.stage{padding:8px}.frame{height:calc(100dvh - 175px);min-height:620px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+  <header class="review">
+    <div class="review-top"><div><h1>合记 · 三种界面结构</h1><p class="sub">同一份账目，比较不同的使用方式</p></div><div class="device" aria-label="预览尺寸"><button type="button" data-device="desktop" aria-pressed="true">桌面</button><button type="button" data-device="phone" aria-pressed="false">手机</button></div></div>
+    <div class="tabs" role="tablist" aria-label="界面方案">
+      <button class="tab" id="tab-workbench" role="tab" aria-selected="true" aria-controls="preview-panel" data-view="workbench"><span>A</span><span><strong>协作工作台</strong><small>待办优先 · 清楚处理收付款</small></span></button>
+      <button class="tab" id="tab-journey" role="tab" aria-selected="false" aria-controls="preview-panel" data-view="journey" tabindex="-1"><span>B</span><span><strong>行程账本</strong><small>日期时间线 · 随手记录消费</small></span></button>
+      <button class="tab" id="tab-reconcile" role="tab" aria-selected="false" aria-controls="preview-panel" data-view="reconcile" tabindex="-1"><span>C</span><span><strong>对账工作区</strong><small>明细与检查区 · 逐项核账</small></span></button>
+    </div>
+    <div class="context"><p id="direction-note">先处理待核对转账，再查看最近开销和成员余额。</p><p>草图使用模拟数据；看完可在聊天中告诉我 A / B / C。</p></div>
+  </header>
+  <main class="stage" id="preview-panel" role="tabpanel" aria-labelledby="tab-workbench"><iframe class="frame" title="A 协作工作台预览" src="workbench.html"></iframe></main>
+  <script>
+    const views={workbench:{title:'A 协作工作台预览',note:'先处理待核对转账，再查看最近开销和成员余额。'},journey:{title:'B 行程账本预览',note:'按日期浏览每一笔消费，成员和结算信息放在侧边。'},reconcile:{title:'C 对账工作区预览',note:'搜索费用并选择一行，在同屏详情中核对付款人、录入人和分摊。'}};
+    const tabs=[...document.querySelectorAll('[data-view]')];
+    const stage=document.querySelector('.stage');
+    const frame=document.querySelector('iframe');
+    function selectView(button){const view=button.dataset.view;for(const tab of tabs){const selected=tab===button;tab.setAttribute('aria-selected',String(selected));tab.tabIndex=selected?0:-1}stage.setAttribute('aria-labelledby',button.id);document.getElementById('direction-note').textContent=views[view].note;frame.title=views[view].title;frame.src=view+'.html'}
+    for(const [index,button] of tabs.entries()){button.addEventListener('click',()=>selectView(button));button.addEventListener('keydown',event=>{let next;if(event.key==='ArrowRight')next=(index+1)%tabs.length;else if(event.key==='ArrowLeft')next=(index+tabs.length-1)%tabs.length;else if(event.key==='Home')next=0;else if(event.key==='End')next=tabs.length-1;else return;event.preventDefault();tabs[next].focus();selectView(tabs[next])})}
+    for(const button of document.querySelectorAll('[data-device]'))button.addEventListener('click',()=>{stage.classList.toggle('phone',button.dataset.device==='phone');for(const item of document.querySelectorAll('[data-device]'))item.setAttribute('aria-pressed',String(item===button))});
+  </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "format": "heji-m4-restore-verification-v1",
+  "backup": "heji-m4-64e58668-ca05-427c-ae86-ae24ae7f45b3.jsonl.gz",
+  "rows": 1858851,
+  "checksum": "be379979cd962700b54f3a08a9f1b47804d6b21dbdb6ef1260dca9198655d945",
+  "restoredDatabase": "heji_m4_restore",
+  "restoredAt": "2026-11-18T03:17:58.332Z",
+  "elapsedMs": 166479.1719,
+  "within30Minutes": true,
+  "elapsedScope": "文件校验、架构创建、导入、逐表摘要、外键与余额检查；不含安装",
+  "report": {
+    "migrationChecksums": [
+      {
+        "name": "001_m1.sql",
+        "checksum": "58cd31b090c5c7dd40fdcef9cc5f3dc46d24095960c2b2eda381a61297f218e1"
+      },
+      {
+        "name": "002_m2.sql",
+        "checksum": "fe252167e397ba27f3b738b3f540ce0977fb1992125520151577651556fa8286"
+      }
+    ],
+    "counts": {
+      "books": "10",
+      "members": "300",
+      "currentExpenses": "50204",
+      "versions": "54004",
+      "transfers": "1897",
+      "reversals": "1"
+    }
+  }
+}

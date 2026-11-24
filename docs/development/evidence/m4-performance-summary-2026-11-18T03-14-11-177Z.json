@@ -1,0 +1,1031 @@
+{
+  "source": "m4-benchmark-formal-2026-11-17T16-14-30-235Z.json",
+  "createdAt": "2026-11-18T03:14:11.176Z",
+  "scope": "本机隔离HTTP应用基准，不含Nginx/TLS/WS扇出；不外推2核4GB",
+  "environment": {
+    "node": "v24.14.1",
+    "os": "win32 10.0.26200",
+    "cpu": "AMD Ryzen 9 7940HX with Radeon Graphics        ",
+    "logicalCpus": 32,
+    "memoryBytes": 16340414464,
+    "mysql": {
+      "version": "8.0.32",
+      "sqlMode": "IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION",
+      "isolationLevel": "REPEATABLE-READ"
+    },
+    "mysqlSettings": [
+      {
+        "bufferPoolBytes": "134217728",
+        "maxConnections": "151"
+      }
+    ],
+    "poolConnections": 8
+  },
+  "startedAt": "2026-11-17T16:14:30.228Z",
+  "completedAt": "2026-11-18T03:05:34.135Z",
+  "continuation": {
+    "resumed": true,
+    "resumedAt": null,
+    "resumeTimestampNote": "精确续跑启动时间未持久化；保留末轮完成时间与起点计数，不推造启动时间",
+    "previousCompletedAt": "2026-11-17T16:54:31.350Z",
+    "continuousRun": false,
+    "previousGroups": 11,
+    "unmeasuredInterruptedFinalRound": {
+      "previousCompletedAt": "2026-11-17T16:54:31.350Z",
+      "startedAt": "2026-11-17T16:54:31.389000Z",
+      "endedAt": "2026-11-17T16:55:24.395000Z",
+      "expenses": 1079,
+      "requests": 119,
+      "confirmed": 102,
+      "pending": 17,
+      "auditEvents": {
+        "expenseCreated": 1079,
+        "transferRequested": 119,
+        "transferConfirmed": 102,
+        "other": 0
+      },
+      "byBook": [
+        {
+          "book": 0,
+          "expenses": 108,
+          "requests": 12,
+          "confirmed": 1,
+          "pending": 11
+        },
+        {
+          "book": 1,
+          "expenses": 108,
+          "requests": 12,
+          "confirmed": 12,
+          "pending": 0
+        },
+        {
+          "book": 2,
+          "expenses": 108,
+          "requests": 12,
+          "confirmed": 12,
+          "pending": 0
+        },
+        {
+          "book": 3,
+          "expenses": 108,
+          "requests": 12,
+          "confirmed": 11,
+          "pending": 1
+        },
+        {
+          "book": 4,
+          "expenses": 108,
+          "requests": 12,
+          "confirmed": 11,
+          "pending": 1
+        },
+        {
+          "book": 5,
+          "expenses": 108,
+          "requests": 12,
+          "confirmed": 11,
+          "pending": 1
+        },
+        {
+          "book": 6,
+          "expenses": 108,
+          "requests": 12,
+          "confirmed": 11,
+          "pending": 1
+        },
+        {
+          "book": 7,
+          "expenses": 108,
+          "requests": 12,
+          "confirmed": 11,
+          "pending": 1
+        },
+        {
+          "book": 8,
+          "expenses": 108,
+          "requests": 12,
+          "confirmed": 11,
+          "pending": 1
+        },
+        {
+          "book": 9,
+          "expenses": 107,
+          "requests": 11,
+          "confirmed": 11,
+          "pending": 0
+        }
+      ]
+    },
+    "reportRecoveredFromSavedRounds": true
+  },
+  "actualScaleAtStart": {
+    "expenses": "19261",
+    "versions": "23061",
+    "shares": "691830",
+    "confirmed": "26",
+    "requests": "30"
+  },
+  "actualScaleAtResume": {
+    "expenses": "45463",
+    "versions": "49263",
+    "shares": "1477890",
+    "confirmed": "1422",
+    "requests": "2939"
+  },
+  "actualScaleAtEnd": {
+    "expenses": "50204",
+    "versions": "54004",
+    "shares": "1620120",
+    "confirmed": "1897",
+    "requests": "3465"
+  },
+  "complete": true,
+  "allWorkflowLatencyTargetsPassed": false,
+  "allHttpLatencyTargetsPassed": false,
+  "allFailureRateTargetsPassed": true,
+  "groups": [
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 1,
+      "workflows": {
+        "total": 1837,
+        "p50": 1650.0877000000037,
+        "p95": 3186.69200000001,
+        "max": 3287.722099999999,
+        "expectedConflicts": 0,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 16166
+      },
+      "httpReads": {
+        "total": 1837,
+        "p50": 1650.0845999999874,
+        "p95": 3186.689700000017,
+        "max": 3287.7190000000046,
+        "expectedConflicts": 0,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 16166
+      },
+      "httpWrites": null,
+      "operations": {
+        "page": {
+          "total": 920,
+          "p50": 1578.4704999999958,
+          "p95": 1690.6195000000007,
+          "max": 1745.8106999999945,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 8280,
+          "successes": 920,
+          "successRate": 1
+        },
+        "report": {
+          "total": 367,
+          "p50": 3101.909799999994,
+          "p95": 3200.3888000000006,
+          "max": 3275.4755000000005,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 2936,
+          "successes": 367,
+          "successRate": 1
+        },
+        "balance": {
+          "total": 550,
+          "p50": 3042.9021000000066,
+          "p95": 3213.3534999999974,
+          "max": 3287.722099999999,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 4950,
+          "successes": 550,
+          "successRate": 1
+        }
+      },
+      "workflowLatencyTargetMs": 500,
+      "workflowLatencyPass": false,
+      "failureRatePass": true,
+      "httpReadLatencyPass": false,
+      "httpWriteLatencyPass": null
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 2,
+      "workflows": {
+        "total": 1850,
+        "p50": 1637.6587999999756,
+        "p95": 3160.4008999999496,
+        "max": 3317.874300000025,
+        "expectedConflicts": 0,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 16280
+      },
+      "httpReads": {
+        "total": 1850,
+        "p50": 1637.6563000000315,
+        "p95": 3160.3979999999865,
+        "max": 3317.872399999993,
+        "expectedConflicts": 0,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 16280
+      },
+      "httpWrites": null,
+      "operations": {
+        "page": {
+          "total": 925,
+          "p50": 1560.2947999999742,
+          "p95": 1676.1414000000223,
+          "max": 1735.9559000000008,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 8325,
+          "successes": 925,
+          "successRate": 1
+        },
+        "report": {
+          "total": 370,
+          "p50": 3067.2362999999896,
+          "p95": 3171.0083999999915,
+          "max": 3317.2188000000315,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 2960,
+          "successes": 370,
+          "successRate": 1
+        },
+        "balance": {
+          "total": 555,
+          "p50": 3015.31170000002,
+          "p95": 3175.334200000041,
+          "max": 3317.874300000025,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 4995,
+          "successes": 555,
+          "successRate": 1
+        }
+      },
+      "workflowLatencyTargetMs": 500,
+      "workflowLatencyPass": false,
+      "failureRatePass": true,
+      "httpReadLatencyPass": false,
+      "httpWriteLatencyPass": null
+    },
+    {
+      "mode": "read",
+      "distribution": "same-book",
+      "round": 3,
+      "workflows": {
+        "total": 1852,
+        "p50": 1640.2011000000057,
+        "p95": 3161.6809999999823,
+        "max": 3241.330499999982,
+        "expectedConflicts": 0,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 16298
+      },
+      "httpReads": {
+        "total": 1852,
+        "p50": 1640.193499999994,
+        "p95": 3161.678600000043,
+        "max": 3241.3281000000425,
+        "expectedConflicts": 0,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 16298
+      },
+      "httpWrites": null,
+      "operations": {
+        "page": {
+          "total": 927,
+          "p50": 1559.496999999974,
+          "p95": 1674.0946000000113,
+          "max": 1717.7669999999925,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 8343,
+          "successes": 927,
+          "successRate": 1
+        },
+        "report": {
+          "total": 370,
+          "p50": 3070.7473000000464,
+          "p95": 3182.914999999921,
+          "max": 3234.7708000000566,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 2960,
+          "successes": 370,
+          "successRate": 1
+        },
+        "balance": {
+          "total": 555,
+          "p50": 3014.5702000000747,
+          "p95": 3182.7345000000205,
+          "max": 3241.330499999982,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 4995,
+          "successes": 555,
+          "successRate": 1
+        }
+      },
+      "workflowLatencyTargetMs": 500,
+      "workflowLatencyPass": false,
+      "failureRatePass": true,
+      "httpReadLatencyPass": false,
+      "httpWriteLatencyPass": null
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 1,
+      "workflows": {
+        "total": 11620,
+        "p50": 233.74849999998696,
+        "p95": 443.1827999999514,
+        "max": 1798.9625000000233,
+        "expectedConflicts": 0,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 102256
+      },
+      "httpReads": {
+        "total": 11620,
+        "p50": 233.7455000000773,
+        "p95": 443.1806000000797,
+        "max": 1798.9605000000447,
+        "expectedConflicts": 0,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 102256
+      },
+      "httpWrites": null,
+      "operations": {
+        "page": {
+          "total": 5810,
+          "p50": 195.64569999999367,
+          "p95": 234.36999999999534,
+          "max": 337.61060000001453,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 52290,
+          "successes": 5810,
+          "successRate": 1
+        },
+        "report": {
+          "total": 2324,
+          "p50": 326.69940000004135,
+          "p95": 1624.3496999999043,
+          "max": 1785.0149000000674,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 18592,
+          "successes": 2324,
+          "successRate": 1
+        },
+        "balance": {
+          "total": 3486,
+          "p50": 284.5063000000082,
+          "p95": 1631.2887999999803,
+          "max": 1798.9625000000233,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 31374,
+          "successes": 3486,
+          "successRate": 1
+        }
+      },
+      "workflowLatencyTargetMs": 500,
+      "workflowLatencyPass": true,
+      "failureRatePass": true,
+      "httpReadLatencyPass": true,
+      "httpWriteLatencyPass": null
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 2,
+      "workflows": {
+        "total": 11317,
+        "p50": 240.6176999999443,
+        "p95": 511.6392999999225,
+        "max": 1952.6460000000661,
+        "expectedConflicts": 0,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 99589
+      },
+      "httpReads": {
+        "total": 11317,
+        "p50": 240.61550000007264,
+        "p95": 511.63750000006985,
+        "max": 1952.6435999999521,
+        "expectedConflicts": 0,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 99589
+      },
+      "httpWrites": null,
+      "operations": {
+        "page": {
+          "total": 5657,
+          "p50": 200.29940000013448,
+          "p95": 244.51690000016242,
+          "max": 361.3386000000173,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 50913,
+          "successes": 5657,
+          "successRate": 1
+        },
+        "balance": {
+          "total": 3396,
+          "p50": 289.8170000000391,
+          "p95": 1675.3834000001661,
+          "max": 1952.6460000000661,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 30564,
+          "successes": 3396,
+          "successRate": 1
+        },
+        "report": {
+          "total": 2264,
+          "p50": 331.6716000000015,
+          "p95": 1666.7360000000335,
+          "max": 1943.4028000000399,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 18112,
+          "successes": 2264,
+          "successRate": 1
+        }
+      },
+      "workflowLatencyTargetMs": 500,
+      "workflowLatencyPass": false,
+      "failureRatePass": true,
+      "httpReadLatencyPass": false,
+      "httpWriteLatencyPass": null
+    },
+    {
+      "mode": "read",
+      "distribution": "spread-books",
+      "round": 3,
+      "workflows": {
+        "total": 11160,
+        "p50": 244.2043999999296,
+        "p95": 1576.3459999999031,
+        "max": 2050.9291000000667,
+        "expectedConflicts": 0,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 98208
+      },
+      "httpReads": {
+        "total": 11160,
+        "p50": 244.2001000000164,
+        "p95": 1576.343299999833,
+        "max": 2050.9269999999087,
+        "expectedConflicts": 0,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 98208
+      },
+      "httpWrites": null,
+      "operations": {
+        "page": {
+          "total": 5580,
+          "p50": 202.93570000003092,
+          "p95": 250.86559999990277,
+          "max": 381.2455000001937,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 50220,
+          "successes": 5580,
+          "successRate": 1
+        },
+        "balance": {
+          "total": 3348,
+          "p50": 293.8393999999389,
+          "p95": 1699.0904000001028,
+          "max": 2050.9291000000667,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 30132,
+          "successes": 3348,
+          "successRate": 1
+        },
+        "report": {
+          "total": 2232,
+          "p50": 337.780299999984,
+          "p95": 1692.1953000000212,
+          "max": 2033.1168000001926,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 17856,
+          "successes": 2232,
+          "successRate": 1
+        }
+      },
+      "workflowLatencyTargetMs": 500,
+      "workflowLatencyPass": false,
+      "failureRatePass": true,
+      "httpReadLatencyPass": false,
+      "httpWriteLatencyPass": null
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 1,
+      "workflows": {
+        "total": 4500,
+        "p50": 304.3800000001211,
+        "p95": 3219.1716000000015,
+        "max": 7501.642899999861,
+        "expectedConflicts": 449,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 193962
+      },
+      "httpReads": {
+        "total": 450,
+        "p50": 2645.9273000000976,
+        "p95": 4964.50959999999,
+        "max": 6565.412900000112,
+        "expectedConflicts": 0,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 4500
+      },
+      "httpWrites": {
+        "total": 4950,
+        "p50": 284.18779999995604,
+        "p95": 1898.9190999998245,
+        "max": 2894.340599999996,
+        "expectedConflicts": 449,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 199812
+      },
+      "operations": {
+        "exact": {
+          "total": 1350,
+          "p50": 297.45510000013746,
+          "p95": 1899.625400000019,
+          "max": 2868.404600000009,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 63450,
+          "successes": 1350,
+          "successRate": 1
+        },
+        "equal": {
+          "total": 2700,
+          "p50": 287.26430000015534,
+          "p95": 1961.0403999998234,
+          "max": 2894.4141999999993,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 126900,
+          "successes": 2700,
+          "successRate": 1
+        },
+        "confirm": {
+          "total": 450,
+          "p50": 3219.1716000000015,
+          "p95": 5713.946199999889,
+          "max": 7501.642899999861,
+          "expectedConflicts": 449,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 3612,
+          "successes": 1,
+          "successRate": 0.0022222222222222222
+        }
+      },
+      "workflowLatencyTargetMs": 800,
+      "workflowLatencyPass": false,
+      "failureRatePass": true,
+      "httpReadLatencyPass": false,
+      "httpWriteLatencyPass": false
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 2,
+      "workflows": {
+        "total": 3616,
+        "p50": 316.09410000010394,
+        "p95": 3967.2922999998555,
+        "max": 9077.33899999992,
+        "expectedConflicts": 361,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 155846
+      },
+      "httpReads": {
+        "total": 362,
+        "p50": 3398.971400000155,
+        "p95": 6421.320199999958,
+        "max": 7436.926600000123,
+        "expectedConflicts": 0,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 3620
+      },
+      "httpWrites": {
+        "total": 3978,
+        "p50": 297.18960000015795,
+        "p95": 2603.1208000001498,
+        "max": 3206.309300000081,
+        "expectedConflicts": 361,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 160552
+      },
+      "operations": {
+        "exact": {
+          "total": 1085,
+          "p50": 308.4759000001941,
+          "p95": 2593.7291000001132,
+          "max": 3197.9543000000995,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 50995,
+          "successes": 1085,
+          "successRate": 1
+        },
+        "equal": {
+          "total": 2169,
+          "p50": 303.96809999994,
+          "p95": 2650.853000000119,
+          "max": 3206.3945999999996,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 101943,
+          "successes": 2169,
+          "successRate": 1
+        },
+        "confirm": {
+          "total": 362,
+          "p50": 3965.618399999803,
+          "p95": 7071.542200000025,
+          "max": 9077.33899999992,
+          "expectedConflicts": 361,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 2908,
+          "successes": 1,
+          "successRate": 0.0027624309392265192
+        }
+      },
+      "workflowLatencyTargetMs": 800,
+      "workflowLatencyPass": false,
+      "failureRatePass": true,
+      "httpReadLatencyPass": false,
+      "httpWriteLatencyPass": false
+    },
+    {
+      "mode": "write",
+      "distribution": "same-book",
+      "round": 3,
+      "workflows": {
+        "total": 3210,
+        "p50": 318.780199999921,
+        "p95": 4479.898000000045,
+        "max": 8765.430500000017,
+        "expectedConflicts": 321,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 138351
+      },
+      "httpReads": {
+        "total": 321,
+        "p50": 3939.2675000000745,
+        "p95": 7570.352999999886,
+        "max": 8469.357499999925,
+        "expectedConflicts": 0,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 3210
+      },
+      "httpWrites": {
+        "total": 3531,
+        "p50": 300.5604000000749,
+        "p95": 3097.6073000000324,
+        "max": 4129.692000000039,
+        "expectedConflicts": 321,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 142524
+      },
+      "operations": {
+        "equal": {
+          "total": 1926,
+          "p50": 307.5670000000391,
+          "p95": 3206.0463000000454,
+          "max": 4129.788699999917,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 90522,
+          "successes": 1926,
+          "successRate": 1
+        },
+        "exact": {
+          "total": 963,
+          "p50": 308.4000999999698,
+          "p95": 3095.2047000001185,
+          "max": 4080.1774999999907,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 45261,
+          "successes": 963,
+          "successRate": 1
+        },
+        "confirm": {
+          "total": 321,
+          "p50": 4479.898000000045,
+          "p95": 8207.454899999779,
+          "max": 8765.430500000017,
+          "expectedConflicts": 321,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 2568,
+          "successes": 0,
+          "successRate": 0
+        }
+      },
+      "workflowLatencyTargetMs": 800,
+      "workflowLatencyPass": false,
+      "failureRatePass": true,
+      "httpReadLatencyPass": false,
+      "httpWriteLatencyPass": false
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 1,
+      "workflows": {
+        "total": 6570,
+        "p50": 318.5195999999996,
+        "p95": 2040.5728000001982,
+        "max": 9394.791100000031,
+        "expectedConflicts": 65,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 290271
+      },
+      "httpReads": {
+        "total": 657,
+        "p50": 883.3987000000197,
+        "p95": 6514.8535999997985,
+        "max": 7521.933100000024,
+        "expectedConflicts": 0,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 6570
+      },
+      "httpWrites": {
+        "total": 7227,
+        "p50": 315.6652999999933,
+        "p95": 778.4328000000678,
+        "max": 4246.429000000004,
+        "expectedConflicts": 65,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 298812
+      },
+      "operations": {
+        "equal": {
+          "total": 3942,
+          "p50": 306.05489999987185,
+          "p95": 462.8641000003554,
+          "max": 795.9547999999486,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 185274,
+          "successes": 3942,
+          "successRate": 1
+        },
+        "exact": {
+          "total": 1971,
+          "p50": 317.98640000028536,
+          "p95": 479.4547999999486,
+          "max": 973.9684000001289,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 92637,
+          "successes": 1971,
+          "successRate": 1
+        },
+        "confirm": {
+          "total": 657,
+          "p50": 2040.5728000001982,
+          "p95": 7215.411199999973,
+          "max": 9394.791100000031,
+          "expectedConflicts": 65,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 12360,
+          "successes": 592,
+          "successRate": 0.9010654490106544
+        }
+      },
+      "workflowLatencyTargetMs": 800,
+      "workflowLatencyPass": false,
+      "failureRatePass": true,
+      "httpReadLatencyPass": false,
+      "httpWriteLatencyPass": true
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 2,
+      "workflows": {
+        "total": 5358,
+        "p50": 379.42370000015944,
+        "p95": 2733.943800000008,
+        "max": 11514.393099999987,
+        "expectedConflicts": 52,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 236730
+      },
+      "httpReads": {
+        "total": 536,
+        "p50": 1187.4194000000134,
+        "p95": 7265.884700000286,
+        "max": 8177.094299999997,
+        "expectedConflicts": 0,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 5360
+      },
+      "httpWrites": {
+        "total": 5894,
+        "p50": 374.3430000003427,
+        "p95": 1114.1951999999583,
+        "max": 4887.841000000015,
+        "expectedConflicts": 52,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 243698
+      },
+      "operations": {
+        "equal": {
+          "total": 3214,
+          "p50": 361.5614999998361,
+          "p95": 570.7015000004321,
+          "max": 928.7059999997728,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 151058,
+          "successes": 3214,
+          "successRate": 1
+        },
+        "exact": {
+          "total": 1608,
+          "p50": 375.6280000000261,
+          "p95": 559.4662000001408,
+          "max": 819.7225999999791,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 75576,
+          "successes": 1608,
+          "successRate": 1
+        },
+        "confirm": {
+          "total": 536,
+          "p50": 2733.6950999996625,
+          "p95": 8089.282600000035,
+          "max": 11514.393099999987,
+          "expectedConflicts": 52,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 10096,
+          "successes": 484,
+          "successRate": 0.9029850746268657
+        }
+      },
+      "workflowLatencyTargetMs": 800,
+      "workflowLatencyPass": false,
+      "failureRatePass": true,
+      "httpReadLatencyPass": false,
+      "httpWriteLatencyPass": false
+    },
+    {
+      "mode": "write",
+      "distribution": "spread-books",
+      "round": 3,
+      "workflows": {
+        "total": 4271,
+        "p50": 453.0037000000011,
+        "p95": 3646.3812000000034,
+        "max": 13039.3407,
+        "expectedConflicts": 42,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 188704
+      },
+      "httpReads": {
+        "total": 427,
+        "p50": 1617.0964000000095,
+        "p95": 7833.214600000007,
+        "max": 10090.174299999999,
+        "expectedConflicts": 0,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 4270
+      },
+      "httpWrites": {
+        "total": 4698,
+        "p50": 443.26920000000973,
+        "p95": 1440.5924999999988,
+        "max": 5566.6529000000155,
+        "expectedConflicts": 42,
+        "failures": 0,
+        "failureRate": 0,
+        "sql": 194255
+      },
+      "operations": {
+        "exact": {
+          "total": 1282,
+          "p50": 426.60779999999795,
+          "p95": 826.516100000008,
+          "max": 1160.3824000000022,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 60254,
+          "successes": 1282,
+          "successRate": 1
+        },
+        "equal": {
+          "total": 2562,
+          "p50": 420.0800999999992,
+          "p95": 816.0385999999999,
+          "max": 1268.2785000000003,
+          "expectedConflicts": 0,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 120414,
+          "successes": 2562,
+          "successRate": 1
+        },
+        "confirm": {
+          "total": 427,
+          "p50": 3646.3812000000034,
+          "p95": 8662.359599999996,
+          "max": 13039.3407,
+          "expectedConflicts": 42,
+          "failures": 0,
+          "failureRate": 0,
+          "sql": 8036,
+          "successes": 385,
+          "successRate": 0.9016393442622951
+        }
+      },
+      "workflowLatencyTargetMs": 800,
+      "workflowLatencyPass": false,
+      "failureRatePass": true,
+      "httpReadLatencyPass": false,
+      "httpWriteLatencyPass": false
+    }
+  ]
+}

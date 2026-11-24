@@ -1,0 +1,526 @@
+{
+  "schemaVersion": 1,
+  "scope": "本机回环HTTPS/WSS功能验收，非生产发布或性能结论",
+  "startedAt": "2026-11-18T05:55:59.658Z",
+  "finishedAt": "2026-11-18T05:56:01.296Z",
+  "durationMs": 1638,
+  "targets": {
+    "https": "https://127.0.0.1:8443",
+    "http": "http://127.0.0.1:8088"
+  },
+  "node": "v24.14.1",
+  "publicCertificate": {
+    "subject": "CN=127.0.0.1",
+    "issuer": "CN=127.0.0.1",
+    "subjectAltName": "IP Address:127.0.0.1, DNS:localhost",
+    "validFrom": "Nov 18 05:14:51 2026 GMT",
+    "validTo": "Nov 25 05:14:51 2026 GMT",
+    "fingerprint256": "C2:55:6F:99:C1:80:CE:6F:95:3A:1D:D8:6C:00:8A:DA:F4:1F:58:6D:24:9E:E0:20:DE:06:02:3D:1E:0E:20:AB",
+    "selfSigned": true
+  },
+  "limitations": [
+    "未验证公网域名、受信CA、Linux生产部署或性能",
+    "未进行浏览器UI实测",
+    "跨账本无通知仅证明固定400ms观察窗口",
+    "不读取私钥或环境配置，不删除验收数据，不自动重试失败步骤"
+  ],
+  "counts": {
+    "passed": 32,
+    "failed": 0,
+    "notRun": 0
+  },
+  "steps": [
+    {
+      "id": "certificate",
+      "label": "公开证书SAN及七天有效期",
+      "status": "PASS",
+      "durationMs": 2,
+      "checks": [
+        "仅读取公开PEM",
+        "IP及DNS SAN匹配",
+        "七天有效期及公开密钥签名"
+      ],
+      "httpStatuses": []
+    },
+    {
+      "id": "tls12",
+      "label": "TLS1.2显式CA验证",
+      "status": "PASS",
+      "durationMs": 21,
+      "checks": [
+        "显式ca及服务端身份验证"
+      ],
+      "httpStatuses": [
+        200
+      ]
+    },
+    {
+      "id": "tls13",
+      "label": "TLS1.3显式CA验证",
+      "status": "PASS",
+      "durationMs": 9,
+      "checks": [
+        "显式ca及服务端身份验证"
+      ],
+      "httpStatuses": [
+        200
+      ]
+    },
+    {
+      "id": "redirect",
+      "label": "HTTP308保留路径查询",
+      "status": "PASS",
+      "durationMs": 1,
+      "checks": [
+        "未跟随重定向，Location精确匹配"
+      ],
+      "httpStatuses": [
+        308
+      ]
+    },
+    {
+      "id": "home",
+      "label": "首页HTML与缓存",
+      "status": "PASS",
+      "durationMs": 17,
+      "checks": [
+        "Vue挂载点及HTML MIME",
+        "首页禁止永久缓存"
+      ],
+      "httpStatuses": [
+        200
+      ]
+    },
+    {
+      "id": "spa",
+      "label": "SPA深路由回退",
+      "status": "PASS",
+      "durationMs": 11,
+      "checks": [
+        "深路由回退到相同HTML"
+      ],
+      "httpStatuses": [
+        200
+      ]
+    },
+    {
+      "id": "assets",
+      "label": "JS及CSS的MIME与长期缓存",
+      "status": "PASS",
+      "durationMs": 23,
+      "checks": [
+        "JS及CSS分别检查MIME",
+        "哈希资源一年immutable缓存"
+      ],
+      "httpStatuses": [
+        200,
+        200
+      ]
+    },
+    {
+      "id": "static404",
+      "label": "未知静态资源404",
+      "status": "PASS",
+      "durationMs": 9,
+      "checks": [
+        "缺失JS返回404"
+      ],
+      "httpStatuses": [
+        404
+      ]
+    },
+    {
+      "id": "api404",
+      "label": "未知API的JSON404",
+      "status": "PASS",
+      "durationMs": 9,
+      "checks": [
+        "JSON错误及非空requestId"
+      ],
+      "httpStatuses": [
+        404
+      ]
+    },
+    {
+      "id": "body413",
+      "label": "超过32KiB正文的Nginx JSON413",
+      "status": "PASS",
+      "durationMs": 9,
+      "checks": [
+        "JSON错误及非空requestId",
+        "33KiB公开占位正文触发上限",
+        "32位无连字符hex请求ID确认Nginx来源"
+      ],
+      "httpStatuses": [
+        413
+      ]
+    },
+    {
+      "id": "register",
+      "label": "注册A/B/O/C虚构账号",
+      "status": "PASS",
+      "durationMs": 162,
+      "checks": [
+        "随机虚构账号与随机密码",
+        "凭据只留内存"
+      ],
+      "httpStatuses": [
+        200,
+        201,
+        200,
+        201,
+        200,
+        201,
+        200,
+        201
+      ],
+      "details": {
+        "registeredAccounts": 4
+      }
+    },
+    {
+      "id": "login",
+      "label": "四账号注销再登录及会话轮换",
+      "status": "PASS",
+      "durationMs": 177,
+      "checks": [
+        "四账号依次logout204、csrf200及login200",
+        "仅布尔比较四阶段Cookie轮换，凭据不输出"
+      ],
+      "httpStatuses": [
+        204,
+        200,
+        200,
+        204,
+        200,
+        200,
+        204,
+        200,
+        200,
+        204,
+        200,
+        200
+      ],
+      "details": {
+        "successfulLogins": 4
+      }
+    },
+    {
+      "id": "cookies",
+      "label": "安全会话Cookie属性",
+      "status": "PASS",
+      "durationMs": 0,
+      "checks": [
+        "__Host-heji_sid",
+        "Secure HttpOnly SameSite=Lax Path=/ 无Domain"
+      ],
+      "httpStatuses": []
+    },
+    {
+      "id": "csrf",
+      "label": "错误CSRF与错误Origin拒绝",
+      "status": "PASS",
+      "durationMs": 29,
+      "checks": [
+        "JSON错误及非空requestId",
+        "JSON错误及非空requestId",
+        "403后权威读取未产生账本"
+      ],
+      "httpStatuses": [
+        403,
+        403,
+        200
+      ]
+    },
+    {
+      "id": "books",
+      "label": "创建账本及邀请成员",
+      "status": "PASS",
+      "durationMs": 100,
+      "checks": [],
+      "httpStatuses": [
+        201,
+        201,
+        200,
+        201,
+        200,
+        200,
+        201
+      ],
+      "details": {
+        "createdBooks": 2,
+        "joinedMembers": 2
+      }
+    },
+    {
+      "id": "wssOrigin",
+      "label": "错误Origin握手403",
+      "status": "PASS",
+      "durationMs": 10,
+      "checks": [
+        "升级之前拒绝请求"
+      ],
+      "httpStatuses": [
+        403
+      ]
+    },
+    {
+      "id": "wssAnonymous",
+      "label": "匿名握手401",
+      "status": "PASS",
+      "durationMs": 8,
+      "checks": [
+        "升级之前拒绝请求"
+      ],
+      "httpStatuses": [
+        401
+      ]
+    },
+    {
+      "id": "wssQuery",
+      "label": "URL查询握手400",
+      "status": "PASS",
+      "durationMs": 8,
+      "checks": [
+        "升级之前拒绝请求"
+      ],
+      "httpStatuses": [
+        400
+      ]
+    },
+    {
+      "id": "wssSubscribe",
+      "label": "真实101与合法订阅",
+      "status": "PASS",
+      "durationMs": 49,
+      "checks": [
+        "四个真实101连接",
+        "三个同账本订阅及一个隔离账本订阅"
+      ],
+      "httpStatuses": [
+        101,
+        101,
+        101,
+        101
+      ]
+    },
+    {
+      "id": "wssOutsider",
+      "label": "旁观者订阅及HTTP越权拒绝",
+      "status": "PASS",
+      "durationMs": 21,
+      "checks": [
+        "JSON错误及非空requestId",
+        "旁观者无订阅及HTTP账本权限"
+      ],
+      "httpStatuses": [
+        101,
+        404
+      ]
+    },
+    {
+      "id": "expenseEvent",
+      "label": "提交后最小通知不含备注",
+      "status": "PASS",
+      "durationMs": 37,
+      "checks": [
+        "触发HTTP前已注册收信Promise",
+        "201提交后收到最小支出失效通知"
+      ],
+      "httpStatuses": [
+        201
+      ]
+    },
+    {
+      "id": "isolation",
+      "label": "其他账本无串房通知",
+      "status": "PASS",
+      "durationMs": 402,
+      "checks": [
+        "隔离房间固定400ms观察无当前账本变更"
+      ],
+      "httpStatuses": [],
+      "details": {
+        "observationMs": 400
+      }
+    },
+    {
+      "id": "authority",
+      "label": "B通过HTTP读取余额与报表",
+      "status": "PASS",
+      "durationMs": 34,
+      "checks": [
+        "HTTP余额守恒及报表1000分"
+      ],
+      "httpStatuses": [
+        200,
+        200
+      ]
+    },
+    {
+      "id": "pending",
+      "label": "登记转账不影响余额",
+      "status": "PASS",
+      "durationMs": 49,
+      "checks": [
+        "登记后余额不变且无已确认转账"
+      ],
+      "httpStatuses": [
+        201,
+        200,
+        200
+      ]
+    },
+    {
+      "id": "confirm",
+      "label": "B预览后串行确认并权威核对",
+      "status": "PASS",
+      "durationMs": 72,
+      "checks": [
+        "B预览及串行确认200",
+        "余额结清且转账不计消费"
+      ],
+      "httpStatuses": [
+        200,
+        200,
+        200,
+        200,
+        200
+      ]
+    },
+    {
+      "id": "reconnect",
+      "label": "断线期间写入后重连与HTTP补查",
+      "status": "PASS",
+      "durationMs": 86,
+      "checks": [
+        "断线期间创建200分自担支出",
+        "重连后HTTP补查支出、余额与报表"
+      ],
+      "httpStatuses": [
+        201,
+        101,
+        200,
+        200,
+        200
+      ]
+    },
+    {
+      "id": "revoke",
+      "label": "零余额C退出撤销订阅与HTTP权限",
+      "status": "PASS",
+      "durationMs": 31,
+      "checks": [
+        "JSON错误及非空requestId",
+        "零余额成员退出后即时撤销订阅"
+      ],
+      "httpStatuses": [
+        200,
+        404
+      ]
+    },
+    {
+      "id": "remove",
+      "label": "C重新加入后被移除立即撤权",
+      "status": "PASS",
+      "durationMs": 81,
+      "checks": [
+        "JSON错误及非空requestId",
+        "重新邀请加入并新建WSS订阅",
+        "A移除后再次撤销订阅及HTTP权限"
+      ],
+      "httpStatuses": [
+        201,
+        200,
+        200,
+        101,
+        200,
+        404
+      ]
+    },
+    {
+      "id": "wssPayload",
+      "label": "WSS超过4KiB关闭1009",
+      "status": "PASS",
+      "durationMs": 12,
+      "checks": [
+        "4097字节公开占位消息触发4096上限"
+      ],
+      "httpStatuses": [
+        101
+      ]
+    },
+    {
+      "id": "wssRate",
+      "label": "有界31条消息触发1008",
+      "status": "PASS",
+      "durationMs": 9,
+      "checks": [
+        "单连接仅31条短消息，无重试"
+      ],
+      "httpStatuses": [
+        101
+      ],
+      "details": {
+        "messages": 31
+      }
+    },
+    {
+      "id": "logout",
+      "label": "注销关闭4401及旧会话401",
+      "status": "PASS",
+      "durationMs": 28,
+      "checks": [
+        "JSON错误及非空requestId",
+        "旧会话HTTP及WSS均拒绝"
+      ],
+      "httpStatuses": [
+        204,
+        401,
+        401
+      ]
+    },
+    {
+      "id": "login429",
+      "label": "末尾12个错误登录触发Nginx JSON429",
+      "status": "PASS",
+      "durationMs": 104,
+      "checks": [
+        "JSON错误及非空requestId",
+        "JSON错误及非空requestId",
+        "JSON错误及非空requestId",
+        "JSON错误及非空requestId",
+        "JSON错误及非空requestId",
+        "JSON错误及非空requestId",
+        "JSON错误及非空requestId",
+        "JSON错误及非空requestId",
+        "JSON错误及非空requestId",
+        "JSON错误及非空requestId",
+        "JSON错误及非空requestId",
+        "JSON错误及非空requestId",
+        "Nginx429 JSON及32位请求ID",
+        "无自动重试"
+      ],
+      "httpStatuses": [
+        200,
+        401,
+        401,
+        429,
+        429,
+        429,
+        429,
+        429,
+        429,
+        429,
+        429,
+        429,
+        429
+      ],
+      "details": {
+        "requests": 12,
+        "maxConcurrency": 12,
+        "nginx429": 10
+      }
+    }
+  ]
+}

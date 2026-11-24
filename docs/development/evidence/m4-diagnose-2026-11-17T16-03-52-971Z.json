@@ -1,0 +1,46 @@
+{
+  "environment": {
+    "version": "8.0.32",
+    "sqlMode": "IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION",
+    "isolationLevel": "REPEATABLE-READ"
+  },
+  "evidence": [
+    {
+      "view": "expenses",
+      "ms": 99.69799999999998
+    },
+    {
+      "view": "snapshot",
+      "ms": 16184.532
+    },
+    {
+      "view": "report",
+      "ms": 1163.9476000000031
+    },
+    {
+      "sql": "WITH current_expenses AS (SELECT v.* FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId WHERE e.bookId=? AND v.isVoided=0) SELECT category,SUM(amountFen) amountFen FROM current_expenses GROUP BY category",
+      "params": [
+        "4ede160d-d966-4bc3-8421-4af324bfa4cc"
+      ],
+      "ms": 83.84160000000338,
+      "plan": [
+        {
+          "EXPLAIN": "-> Table scan on <temporary>  (actual time=53.215..53.215 rows=4 loops=1)\n    -> Aggregate using temporary table  (actual time=53.214..53.214 rows=4 loops=1)\n        -> Nested loop inner join  (cost=976.36 rows=51) (actual time=0.167..46.418 rows=10036 loops=1)\n            -> Filter: (v.isVoided = 0)  (cost=619.53 rows=1020) (actual time=0.157..30.779 rows=12036 loops=1)\n                -> Index lookup on v using uq_version_book_expense_revision (bookId='4ede160d-d966-4bc3-8421-4af324bfa4cc')  (cost=619.53 rows=10195) (actual time=0.155..30.041 rows=12036 loops=1)\n            -> Filter: ((e.currentRevision = v.revision) and (e.bookId = '4ede160d-d966-4bc3-8421-4af324bfa4cc'))  (cost=0.25 rows=0.05) (actual time=0.001..0.001 rows=1 loops=12036)\n                -> Single-row index lookup on e using PRIMARY (id=v.expenseId)  (cost=0.25 rows=1) (actual time=0.001..0.001 rows=1 loops=12036)\n"
+        }
+      ]
+    },
+    {
+      "sql": "WITH current_expenses AS (SELECT v.* FROM expenses e JOIN expense_versions v ON v.expenseId=e.id AND v.revision=e.currentRevision AND v.bookId=e.bookId WHERE e.bookId=? AND v.isVoided=0),\n    shares AS (SELECT s.memberId,SUM(s.amountFen) shareFen FROM current_expenses v JOIN expense_shares s ON s.bookId=v.bookId AND s.expenseId=v.expenseId AND s.revision=v.revision GROUP BY s.memberId),\n    paid AS (SELECT paidByMemberId memberId,SUM(amountFen) paidFen FROM current_expenses GROUP BY paidByMemberId)\n    SELECT m.id memberId,COALESCE(p.paidFen,0) paidFen,COALESCE(s.shareFen,0) shareFen,\n      DENSE_RANK() OVER (ORDER BY COALESCE(s.shareFen,0) DESC) rankNo\n    FROM book_members m LEFT JOIN shares s ON s.memberId=m.id LEFT JOIN paid p ON p.memberId=m.id\n    WHERE m.bookId=? ORDER BY rankNo,m.id",
+      "params": [
+        "4ede160d-d966-4bc3-8421-4af324bfa4cc",
+        "4ede160d-d966-4bc3-8421-4af324bfa4cc"
+      ],
+      "ms": 1002.1742999999988,
+      "plan": [
+        {
+          "EXPLAIN": "-> Sort: rankNo, m.id  (actual time=1071.789..1071.790 rows=30 loops=1)\n    -> Table scan on <temporary>  (cost=2.50..2.50 rows=0) (actual time=1071.775..1071.777 rows=30 loops=1)\n        -> Temporary table  (cost=0.00..0.00 rows=0) (actual time=1071.774..1071.774 rows=30 loops=1)\n            -> Window aggregate: dense_rank() OVER (ORDER BY coalesce(s.shareFen,0) desc )   (actual time=1071.757..1071.764 rows=30 loops=1)\n                -> Sort: shareFen DESC  (actual time=1071.753..1071.755 rows=30 loops=1)\n                    -> Stream results  (cost=456.86 rows=0) (actual time=1071.154..1071.720 rows=30 loops=1)\n                        -> Nested loop left join  (cost=456.86 rows=0) (actual time=1071.150..1071.707 rows=30 loops=1)\n                            -> Nested loop left join  (cost=79.22 rows=0) (actual time=901.361..901.900 rows=30 loops=1)\n                                -> Covering index lookup on m using uq_member_user (bookId='4ede160d-d966-4bc3-8421-4af324bfa4cc')  (cost=3.69 rows=30) (actual time=0.016..0.534 rows=30 loops=1)\n                                -> Index lookup on s using <auto_key0> (memberId=m.id)  (cost=0.25..2.55 rows=10) (actual time=30.045..30.045 rows=1 loops=30)\n                                    -> Materialize CTE shares  (cost=0.00..0.00 rows=0) (actual time=901.343..901.343 rows=30 loops=1)\n                                        -> Table scan on <temporary>  (actual time=901.327..901.329 rows=30 loops=1)\n                                            -> Aggregate using temporary table  (actual time=901.326..901.326 rows=30 loops=1)\n                                                -> Nested loop inner join  (cost=1153.77 rows=715) (actual time=0.107..800.320 rows=301080 loops=1)\n                                                    -> Nested loop inner join  (cost=976.36 rows=51) (actual time=0.092..165.784 rows=10036 loops=1)\n                                                        -> Filter: (v.isVoided = 0)  (cost=619.53 rows=1020) (actual time=0.086..137.775 rows=12036 loops=1)\n                                                            -> Index lookup on v using uq_version_book_expense_revision (bookId='4ede160d-d966-4bc3-8421-4af324bfa4cc')  (cost=619.53 rows=10195) (actual time=0.086..136.224 rows=12036 loops=1)\n                                                        -> Filter: ((e.currentRevision = v.revision) and (e.bookId = '4ede160d-d966-4bc3-8421-4af324bfa4cc'))  (cost=0.25 rows=0.05) (actual time=0.002..0.002 rows=1 loops=12036)\n                                                            -> Single-row index lookup on e using PRIMARY (id=v.expenseId)  (cost=0.25 rows=1) (actual time=0.002..0.002 rows=1 loops=12036)\n                                                    -> Filter: (s.bookId = '4ede160d-d966-4bc3-8421-4af324bfa4cc')  (cost=0.70 rows=14) (actual time=0.055..0.062 rows=30 loops=10036)\n                                                        -> Index lookup on s using PRIMARY (expenseId=v.expenseId, revision=v.revision)  (cost=0.70 rows=28) (actual time=0.055..0.059 rows=30 loops=10036)\n                            -> Index lookup on p using <auto_key0> (memberId=m.id)  (cost=1043.26..1044.26 rows=5) (actual time=5.660..5.660 rows=1 loops=30)\n                                -> Materialize CTE paid  (cost=1043.01..1043.01 rows=7) (actual time=169.784..169.784 rows=30 loops=1)\n                                    -> Group aggregate: sum(v.amountFen)  (cost=1042.29 rows=7) (actual time=38.136..169.696 rows=30 loops=1)\n                                        -> Nested loop inner join  (cost=1037.20 rows=51) (actual time=2.727..168.180 rows=10036 loops=1)\n                                            -> Filter: (v.isVoided = 0)  (cost=680.37 rows=1020) (actual time=2.713..131.824 rows=12036 loops=1)\n                                                -> Index lookup on v using bookId (bookId='4ede160d-d966-4bc3-8421-4af324bfa4cc')  (cost=680.37 rows=10195) (actual time=2.712..130.925 rows=12036 loops=1)\n                                            -> Filter: ((e.currentRevision = v.revision) and (e.bookId = '4ede160d-d966-4bc3-8421-4af324bfa4cc'))  (cost=0.25 rows=0.05) (actual time=0.003..0.003 rows=1 loops=12036)\n                                                -> Single-row index lookup on e using PRIMARY (id=v.expenseId)  (cost=0.25 rows=1) (actual time=0.003..0.003 rows=1 loops=12036)\n"
+        }
+      ]
+    }
+  ]
+}

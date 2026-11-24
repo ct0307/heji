@@ -1,0 +1,13 @@
+{
+  "remoteNoteAndDraft": true,
+  "filterDraftRegression": true,
+  "apiRestartRecovery": true,
+  "periodSameDay": true,
+  "emptyPeriod": true,
+  "reversedDatesPreserveInput": true,
+  "pageTwoRemoteUpdateNotice": true,
+  "pageTwoDraftPreserved": true,
+  "pageTwoNewRowDeferred": true,
+  "explicitRefreshReadsNewRows": true,
+  "explicitRefreshPreservesDraft": true
+}

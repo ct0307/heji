@@ -1,0 +1,5755 @@
+{
+  "date": "2026-11-19",
+  "scope": "本机heji_dev，3个新虚构账号、3本账本及关联事实",
+  "tool": "现有Python Playwright / Chromium，内置浏览器检查匿名入口",
+  "cases": [
+    {
+      "name": "bootstrap",
+      "status": "passed",
+      "detail": {
+        "accounts": 3,
+        "books": 3,
+        "sessions": 3
+      }
+    },
+    {
+      "name": "normal_confirmation",
+      "status": "failed",
+      "errorType": "AssertionError"
+    },
+    {
+      "name": "normal_confirmation",
+      "status": "passed",
+      "detail": {
+        "confirmPosts": 1,
+        "transfers": 1,
+        "settled": true,
+        "bothVersionsAndWindowId": true
+      }
+    },
+    {
+      "name": "empty_responsive",
+      "status": "passed",
+      "detail": {
+        "emptyState": true,
+        "noAutomaticWindow": true,
+        "widths": [
+          {
+            "client": 360,
+            "scroll": 360
+          },
+          {
+            "client": 390,
+            "scroll": 390
+          },
+          {
+            "client": 768,
+            "scroll": 768
+          },
+          {
+            "client": 1440,
+            "scroll": 1440
+          }
+        ]
+      }
+    },
+    {
+      "name": "blocked_drafts_and_owner_close",
+      "status": "failed",
+      "errorType": "TimeoutError"
+    },
+    {
+      "name": "blocked_drafts_and_owner_close",
+      "status": "failed",
+      "errorType": "AssertionError"
+    },
+    {
+      "name": "blocked_drafts_and_owner_close",
+      "status": "failed",
+      "errorType": "AssertionError",
+      "frames": [
+        {
+          "function": "check",
+          "line": 32
+        },
+        {
+          "function": "blocked_drafts_and_owner_close",
+          "line": 210
+        },
+        {
+          "function": "to_be_visible",
+          "line": 20523
+        },
+        {
+          "function": "_sync",
+          "line": 115
+        },
+        {
+          "function": "to_be_visible",
+          "line": 765
+        },
+        {
+          "function": "_expect_impl",
+          "line": 85
+        }
+      ]
+    },
+    {
+      "name": "blocked_drafts_and_owner_close",
+      "status": "passed",
+      "detail": {
+        "expenseBlocked": 409,
+        "requestBlocked": 409,
+        "joinBlocked": 409,
+        "draftsRetained": true,
+        "ownerClosedOthersWindow": true,
+        "tabReturnInvalidated": true,
+        "explicitExpenseRetrySucceeded": true
+      }
+    },
+    {
+      "name": "expiry_network_and_refresh",
+      "status": "failed",
+      "errorType": "AssertionError",
+      "frames": [
+        {
+          "function": "check",
+          "line": 32
+        },
+        {
+          "function": "expiry_network_and_refresh",
+          "line": 294
+        },
+        {
+          "function": "not_to_be_checked",
+          "line": 20242
+        },
+        {
+          "function": "_sync",
+          "line": 115
+        },
+        {
+          "function": "not_to_be_checked",
+          "line": 644
+        },
+        {
+          "function": "to_be_checked",
+          "line": 623
+        },
+        {
+          "function": "_expect_impl",
+          "line": 85
+        }
+      ]
+    },
+    {
+      "name": "expiry_network_and_refresh",
+      "status": "passed",
+      "detail": {
+        "stateFailureDisabled": true,
+        "recoveryDidNotAcknowledge": true,
+        "crossTabNoRenewal": true,
+        "naturalExpiryDisabled": true,
+        "cooldownStatus": 409,
+        "ordinaryWriteResumed": true,
+        "refreshNoAutomaticPreview": true
+      }
+    },
+    {
+      "name": "lost_responses",
+      "status": "failed",
+      "errorType": "AssertionError",
+      "frames": [
+        {
+          "function": "check",
+          "line": 32
+        },
+        {
+          "function": "lost_responses",
+          "line": 352
+        },
+        {
+          "function": "data",
+          "line": 61
+        },
+        {
+          "function": "api",
+          "line": 56
+        }
+      ]
+    },
+    {
+      "name": "lost_responses",
+      "status": "passed",
+      "detail": {
+        "openRetrySameKeyIdExpiry": true,
+        "oldCloseIdDidNotAffectNew": true,
+        "doubleClickConfirmPosts": 1,
+        "confirmCommittedDespiteLostResponse": true,
+        "automaticConfirmRetries": 0,
+        "originalAndNewKeyReplayAddedTransfers": 0
+      }
+    },
+    {
+      "name": "retry_intents",
+      "status": "passed",
+      "detail": {
+        "requestRetrySameKey": true,
+        "expenseRetrySameKey": true,
+        "automaticPostLoop": false,
+        "bothDraftsPreserved": true,
+        "explicitRetriesSucceeded": true
+      }
+    },
+    {
+      "name": "final_state",
+      "status": "passed",
+      "detail": {
+        "retainedBooks": 3,
+        "activeWindows": 0,
+        "pageErrors": 0
+      }
+    }
+  ],
+  "screenshots": [
+    "m4-window-ui-active-desktop-2026-11-19.png",
+    "m4-window-ui-confirmed-2026-11-19.png",
+    "m4-window-ui-empty-360-2026-11-19.png",
+    "m4-window-ui-empty-390-2026-11-19.png",
+    "m4-window-ui-empty-768-2026-11-19.png",
+    "m4-window-ui-empty-1440-2026-11-19.png",
+    "m4-window-ui-blocked-draft-2026-11-19.png",
+    "m4-window-ui-blocked-draft-2026-11-19.png",
+    "m4-window-ui-active-360-2026-11-19.png",
+    "m4-window-ui-active-390-2026-11-19.png",
+    "m4-window-ui-active-768-2026-11-19.png",
+    "m4-window-ui-active-1440-2026-11-19.png",
+    "m4-window-ui-state-network-error-2026-11-19.png",
+    "m4-window-ui-active-360-2026-11-19.png",
+    "m4-window-ui-active-390-2026-11-19.png",
+    "m4-window-ui-active-768-2026-11-19.png",
+    "m4-window-ui-active-1440-2026-11-19.png",
+    "m4-window-ui-state-network-error-2026-11-19.png",
+    "m4-window-ui-expired-2026-11-19.png",
+    "m4-window-ui-confirm-response-lost-2026-11-19.png",
+    "m4-window-ui-result-mobile-2026-11-19.png"
+  ],
+  "requests": [
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/invitations",
+      "method": "POST"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/expenses",
+      "method": "POST"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "POST"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/invitations",
+      "method": "POST"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "POST"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "POST"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests/13cb5e8a-1a53-4383-9130-bd983ae40423/preview",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests/13cb5e8a-1a53-4383-9130-bd983ae40423/preview",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests/13cb5e8a-1a53-4383-9130-bd983ae40423/settlement-window",
+      "method": "POST"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests/13cb5e8a-1a53-4383-9130-bd983ae40423/confirm",
+      "method": "POST"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/invitations",
+      "method": "POST"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/invitations",
+      "method": "POST"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests/cddee5b3-e771-48a4-a1d7-17cdf269e835/preview",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests/cddee5b3-e771-48a4-a1d7-17cdf269e835/settlement-window",
+      "method": "POST"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "POST"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "POST"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-windows/f1307a0a-883d-4a07-9536-7239650cb34f/close",
+      "method": "POST"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/invitations",
+      "method": "POST"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/invitations",
+      "method": "POST"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests/cddee5b3-e771-48a4-a1d7-17cdf269e835/preview",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests/cddee5b3-e771-48a4-a1d7-17cdf269e835/settlement-window",
+      "method": "POST"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "POST"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "POST"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-windows/aad08f2e-7f2a-4c9b-85cf-fb082fb4ffa4/close",
+      "method": "POST"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "POST"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests/cddee5b3-e771-48a4-a1d7-17cdf269e835/preview",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests/cddee5b3-e771-48a4-a1d7-17cdf269e835/settlement-window",
+      "method": "POST"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests/cddee5b3-e771-48a4-a1d7-17cdf269e835/preview",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests/cddee5b3-e771-48a4-a1d7-17cdf269e835/settlement-window",
+      "method": "POST"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙-第二标签",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests/cddee5b3-e771-48a4-a1d7-17cdf269e835/preview",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests/cddee5b3-e771-48a4-a1d7-17cdf269e835/settlement-window",
+      "method": "POST"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "POST"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "POST"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests/0738a64f-a8d6-4266-b5fb-e8f8def51046/preview",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests/0738a64f-a8d6-4266-b5fb-e8f8def51046/settlement-window",
+      "method": "POST"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests/0738a64f-a8d6-4266-b5fb-e8f8def51046/settlement-window",
+      "method": "POST"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-windows/4e9b0d63-54ca-4e3b-840e-0da64bf43b36/close",
+      "method": "POST"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-windows/4e9b0d63-54ca-4e3b-840e-0da64bf43b36/close",
+      "method": "POST"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests/0738a64f-a8d6-4266-b5fb-e8f8def51046/preview",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests/0738a64f-a8d6-4266-b5fb-e8f8def51046/settlement-window",
+      "method": "POST"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests/0738a64f-a8d6-4266-b5fb-e8f8def51046/settlement-window",
+      "method": "POST"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-windows/4e9b0d63-54ca-4e3b-840e-0da64bf43b36/close",
+      "method": "POST"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests/0738a64f-a8d6-4266-b5fb-e8f8def51046/confirm",
+      "method": "POST"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests/0738a64f-a8d6-4266-b5fb-e8f8def51046/confirm",
+      "method": "POST"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests/0738a64f-a8d6-4266-b5fb-e8f8def51046/confirm",
+      "method": "POST"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests/cddee5b3-e771-48a4-a1d7-17cdf269e835/preview",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests/cddee5b3-e771-48a4-a1d7-17cdf269e835/settlement-window",
+      "method": "POST"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "POST"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "POST"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-windows/01228ec5-500f-4e77-a99d-8c529a9f32e3/close",
+      "method": "POST"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "POST"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "POST"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/a46c3de3-efd8-4e7d-be2a-6074a54c1196/members",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "甲",
+      "path": "/api/v1/books/f911d8e5-49eb-46ed-b268-4f2ab913bbc2/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/audit-events",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/members",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/balances",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/expenses",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfer-requests",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/transfers",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/settlement-window",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/reports",
+      "method": "GET"
+    },
+    {
+      "actor": "乙",
+      "path": "/api/v1/books/b71bf5dc-cc80-4bb3-b29f-ad4359282f00/audit-events",
+      "method": "GET"
+    }
+  ],
+  "pageErrors": [],
+  "newLoadExecuted": false,
+  "cleanupExecuted": false,
+  "accountsCreated": 3,
+  "booksCreated": [
+    {
+      "id": "b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "name": "窗口浏览器虚构验收·正常核对"
+    },
+    {
+      "id": "a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "name": "窗口浏览器虚构验收·到期及故障"
+    },
+    {
+      "id": "f911d8e5-49eb-46ed-b268-4f2ab913bbc2",
+      "name": "窗口浏览器虚构验收·空账本"
+    }
+  ],
+  "startedAt": "2026-11-19T02:21:46.936020+00:00",
+  "retainedBooks": [
+    {
+      "bookId": "b71bf5dc-cc80-4bb3-b29f-ad4359282f00",
+      "name": "窗口浏览器虚构验收·正常核对",
+      "members": 2,
+      "expenseCount": 1,
+      "requestCount": 2,
+      "confirmedTransferCount": 2,
+      "financialVersion": "4",
+      "settled": false,
+      "windowState": "CLOSED"
+    },
+    {
+      "bookId": "a46c3de3-efd8-4e7d-be2a-6074a54c1196",
+      "name": "窗口浏览器虚构验收·到期及故障",
+      "members": 2,
+      "expenseCount": 4,
+      "requestCount": 2,
+      "confirmedTransferCount": 0,
+      "financialVersion": "5",
+      "settled": false,
+      "windowState": "CLOSED"
+    },
+    {
+      "bookId": "f911d8e5-49eb-46ed-b268-4f2ab913bbc2",
+      "name": "窗口浏览器虚构验收·空账本",
+      "members": 1,
+      "expenseCount": 0,
+      "requestCount": 0,
+      "confirmedTransferCount": 0,
+      "financialVersion": "0",
+      "settled": true,
+      "windowState": "NONE"
+    }
+  ],
+  "activeWindowsInTestBooks": 0,
+  "attemptNotes": [
+    "初次NONE枚举误写AVAILABLE，只读断言失败后修正。",
+    "收款人/结算含选项和计数，选择器按真实DOM修正。",
+    "创建者关闭提示只在预览显示，改验窗口提示消失；重复join测试先返回books以重挂载。",
+    "无头标签不产生真实可见性切换，跨标签仅验证不续期；清勾选由内部页签流程单独验证。",
+    "旧关闭ID应返回409，已按契约修正。"
+  ],
+  "limitations": [
+    "跨标签未产生原生visibilitychange，未以该步骤声称真实桌面前后台切换通过。",
+    "丙的窗口内首次加入409已验证；重新加入分支未另做浏览器演示，数据库保护测试为既有独立证据。",
+    "控制台内置匿名入口无error，Playwright无pageerror；预期409/断网资源报错不当作框架异常。"
+  ],
+  "completedAt": "2026-11-19T02:34:04.928605+00:00",
+  "status": "passed",
+  "finalCases": [
+    {
+      "name": "bootstrap",
+      "status": "passed",
+      "detail": {
+        "accounts": 3,
+        "books": 3,
+        "sessions": 3
+      }
+    },
+    {
+      "name": "normal_confirmation",
+      "status": "passed",
+      "detail": {
+        "confirmPosts": 1,
+        "transfers": 1,
+        "settled": true,
+        "bothVersionsAndWindowId": true
+      }
+    },
+    {
+      "name": "empty_responsive",
+      "status": "passed",
+      "detail": {
+        "emptyState": true,
+        "noAutomaticWindow": true,
+        "widths": [
+          {
+            "client": 360,
+            "scroll": 360
+          },
+          {
+            "client": 390,
+            "scroll": 390
+          },
+          {
+            "client": 768,
+            "scroll": 768
+          },
+          {
+            "client": 1440,
+            "scroll": 1440
+          }
+        ]
+      }
+    },
+    {
+      "name": "blocked_drafts_and_owner_close",
+      "status": "passed",
+      "detail": {
+        "expenseBlocked": 409,
+        "requestBlocked": 409,
+        "joinBlocked": 409,
+        "draftsRetained": true,
+        "ownerClosedOthersWindow": true,
+        "tabReturnInvalidated": true,
+        "explicitExpenseRetrySucceeded": true
+      }
+    },
+    {
+      "name": "expiry_network_and_refresh",
+      "status": "passed",
+      "detail": {
+        "stateFailureDisabled": true,
+        "recoveryDidNotAcknowledge": true,
+        "crossTabNoRenewal": true,
+        "naturalExpiryDisabled": true,
+        "cooldownStatus": 409,
+        "ordinaryWriteResumed": true,
+        "refreshNoAutomaticPreview": true
+      }
+    },
+    {
+      "name": "lost_responses",
+      "status": "passed",
+      "detail": {
+        "openRetrySameKeyIdExpiry": true,
+        "oldCloseIdDidNotAffectNew": true,
+        "doubleClickConfirmPosts": 1,
+        "confirmCommittedDespiteLostResponse": true,
+        "automaticConfirmRetries": 0,
+        "originalAndNewKeyReplayAddedTransfers": 0
+      }
+    },
+    {
+      "name": "retry_intents",
+      "status": "passed",
+      "detail": {
+        "requestRetrySameKey": true,
+        "expenseRetrySameKey": true,
+        "automaticPostLoop": false,
+        "bothDraftsPreserved": true,
+        "explicitRetriesSucceeded": true
+      }
+    },
+    {
+      "name": "final_state",
+      "status": "passed",
+      "detail": {
+        "retainedBooks": 3,
+        "activeWindows": 0,
+        "pageErrors": 0
+      }
+    }
+  ],
+  "validation": {
+    "npmTest": {
+      "passed": 130,
+      "failed": 0,
+      "skipped": 0,
+      "durationMs": 1212.4056
+    },
+    "build": {
+      "passed": true,
+      "includesApiAndVueTypecheck": true
+    },
+    "browserScriptSha256": "fa98adb16601aa66bbddd9dd92d1965219aab749845b7ca0d80ba56352e1d911",
+    "sourceHashes": {
+      "apps/web/src/pending-invitation.ts": "22007a2f82f0c7e8bb711c21c358ca76b77904a09b1317a60160a4c214f11f49",
+      "apps/web/src/router.ts": "37d56d589373d8bb3e8361b95c77b866911fa437dc1b71eb8dd063e490289a6b",
+      "apps/web/src/views/JoinView.vue": "a9fa0b790a5f74e474875254ce65ddc61e65842738d8864994b856f9c37d3354"
+    }
+  },
+  "screenshotFileCount": 15,
+  "assertionAttemptFailureCount": 6,
+  "serviceCleanup": {
+    "projectListeningPorts": [],
+    "browserContextsClosed": 3,
+    "inAppTabClosed": true,
+    "temporaryViewportReset": true
+  },
+  "followupFix": {
+    "issue": "???????????",
+    "status": "fixed",
+    "evidenceFile": "m4-invitation-refresh-ui-2026-11-19.json",
+    "databaseWrites": false
+  }
+}

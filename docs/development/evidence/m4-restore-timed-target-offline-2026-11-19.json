@@ -1,0 +1,128 @@
+{
+  "format": "heji-m4-restore-timed-target-offline-v1",
+  "at": "2026-11-19T12:05:31.361Z",
+  "target": "heji_m4_restore_004_timed",
+  "restorePermissionGranted": false,
+  "mysqlConnected": false,
+  "backup": {
+    "file": "heji-m4-1c2d9ba6-c94f-4936-9b80-f313596a14fc.jsonl.gz",
+    "compressedBytes": 140840289,
+    "sha256": "73ca22949ff144dd7a6d0e69cfc8383aad74aa362698c126cfa63c4637933cfe",
+    "tables": 20,
+    "rows": 6609958,
+    "compressedHashAndManifestTotalsVerified": true,
+    "decompressedRows": false
+  },
+  "verification": {
+    "targetRegression": {
+      "red": {
+        "pass": 27,
+        "fail": 4
+      },
+      "green": {
+        "pass": 31,
+        "fail": 0
+      }
+    },
+    "npmTest": {
+      "exitCode": 0,
+      "pass": 163,
+      "fail": 0,
+      "skipped": 0,
+      "durationMs": 1181.1521
+    },
+    "build": {
+      "exitCode": 0,
+      "apiAndVueTypecheck": true,
+      "modules": 59
+    },
+    "offlinePlans": {
+      "m4ExitCode": 0,
+      "windowsExitCode": 0
+    },
+    "syntheticRestore": {
+      "pass": 3,
+      "expectedFailures": 16
+    },
+    "documentsChecked": 9,
+    "localLinksChecked": 42
+  },
+  "historicalRestore": {
+    "path": "docs/development/evidence/m4-restore-004-verified-2026-11-19T10-44-08-540Z.json",
+    "sha256": "343e1db9fdc252596f8fea100f7eea260e5f168500d1b733893c88503548d61c",
+    "elapsedMs": 2480515.1644,
+    "within30Minutes": false
+  },
+  "sourceHashes": [
+    {
+      "path": "tests/m4/policy.ts",
+      "sha256": "4583369e8fa78445a85b368ab043bb224424013aa2874dee1030bbef5250b6d1"
+    },
+    {
+      "path": "tests/m4/backup-format.ts",
+      "sha256": "ea08bdb4ac680a32c1ff6f2f01ccdc47f8ed52f8e59e462d679466b93a6bb02b"
+    },
+    {
+      "path": "tests/m4/cli.ts",
+      "sha256": "251c1999b626513abc63188f2076659ccc725c2c853e6b5db70b6447e0bebc32"
+    },
+    {
+      "path": "tests/m4/restore-timing-fixture.ts",
+      "sha256": "c3d8c2cd8027b5b52c7de65b1bc53f9a6481a6b4f8b7574ecd2712054bd7a85e"
+    },
+    {
+      "path": "tests/integration/m4-backup-format.test.ts",
+      "sha256": "b301a2920884704a1467197727b6256ce107119304cc2515cd2b84fe84fc1673"
+    },
+    {
+      "path": "tests/integration/m4-benchmark.test.ts",
+      "sha256": "284512b1c384317c4fdb35e4cccc40225f84a437f1d5e8439d5f0c05fdd80f35"
+    },
+    {
+      "path": "tests/integration/m4-restore-timing.test.ts",
+      "sha256": "98fd86672a37126e689297a24c60c384f98bb2d530302e7dd1785d625b0d1d68"
+    }
+  ],
+  "preservedHashes": [
+    {
+      "path": "tests/m4/backup.ts",
+      "sha256": "17cb10dad4ae24a6c64a4b1b36a645be86ef8d48b98e62cbd296f6833bd2de67"
+    },
+    {
+      "path": "tests/m4/balance-verification.ts",
+      "sha256": "0ffe4f1d20b4a078a19e47558cda43d2fa6d64b5989cd51bab363fdfbf254da6"
+    },
+    {
+      "path": "tests/m4/restore-timing.ts",
+      "sha256": "83049a3f790bb91c026f9112eefa98b44028c01a6905d710f177bd32e2f09025"
+    },
+    {
+      "path": "tests/integration/m4-balance-verification.test.ts",
+      "sha256": "b20cf0b625e9e768db4908bc023ff21c29b7c7595aa99185d945f8fc0ce55d1a"
+    },
+    {
+      "path": "database/migrations/001_m1.sql",
+      "sha256": "58cd31b090c5c7dd40fdcef9cc5f3dc46d24095960c2b2eda381a61297f218e1"
+    },
+    {
+      "path": "database/migrations/002_m2.sql",
+      "sha256": "fe252167e397ba27f3b738b3f540ce0977fb1992125520151577651556fa8286"
+    },
+    {
+      "path": "docs/development/proposals/003_finance_summaries.sql",
+      "sha256": "0817f3f6a6ac2396509eb75aaa2bfdf3d6259088568743c1d3e3910ab278daff"
+    },
+    {
+      "path": "docs/development/proposals/004_settlement_windows.sql",
+      "sha256": "6448464c6b7d1660911953f835505d2f1538d804a2e47273e1829cdf3026345f"
+    },
+    {
+      "path": "docs/development/evidence/m4-restore-004-verified-2026-11-19T10-44-08-540Z.json",
+      "sha256": "343e1db9fdc252596f8fea100f7eea260e5f168500d1b733893c88503548d61c"
+    },
+    {
+      "path": "docs/development/evidence/m4-balance-query-readonly-2026-11-19T11-06-46-253Z.json",
+      "sha256": "dbd07ffc9e8cfe6f10396722635a134c04d16f5232c804501c681ea4b4deaf87"
+    }
+  ]
+}

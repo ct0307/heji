@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>合记 · 两套视觉方案</title>
+  <link rel="stylesheet" href="comparison.css">
+</head>
+<body>
+  <a class="skip" href="#preview">跳到交互预览</a>
+  <header class="masthead"><a class="brand" href="index.html"><span class="brand-symbol">合</span>合记<span class="brand-sub">视觉深化</span></a><span class="status">设计预览 · 尚未替换正式页面</span></header>
+  <main>
+    <section class="intro"><div><p class="eyebrow">共享账本 / 第二轮视觉探索</p><h1>同一本账，两种新面貌。</h1><p class="intro-copy">从当前余额到每一笔收付，让重点更清楚，让核对更从容。</p></div><p class="scope-note">总览 × 结算<br>桌面 × 手机</p></section>
+    <section class="choices" aria-label="比较两个设计方向">
+      <button class="choice choice-a selected" data-concept="a" aria-pressed="true"><div class="choice-heading"><span class="letter">A</span><div><h2>雾青工作台</h2><p>侧栏导航 · 待办优先 · 日常协作</p></div><span class="choice-arrow">↗</span></div><img src="previews/a-overview-desktop.png" alt="A雾青工作台的账本总览截图"><span class="choice-caption">先看需要处理的事，再回看一起花的钱。</span></button>
+      <button class="choice choice-b" data-concept="b" aria-pressed="false"><div class="choice-heading"><span class="letter">B</span><div><h2>蓝墨账页</h2><p>顶部导航 · 账目阅读 · 收据核对</p></div><span class="choice-arrow">↗</span></div><img src="previews/b-overview-desktop.png" alt="B蓝墨账页的账本总览截图"><span class="choice-caption">账目有阅读的秩序，确认有独立的空间。</span></button>
+    </section>
+    <section id="preview" class="preview-section" aria-label="交互体验">
+      <div class="preview-heading"><div><p class="eyebrow">实际体验</p><h2 id="preview-title">A · 雾青工作台</h2></div><a id="open-page" href="a.html?page=overview&amp;state=normal" target="_blank" rel="noopener">独立打开此方案 ↗</a></div>
+      <div class="toolbar"><div class="segmented" aria-label="页面"><button data-page="overview" class="active" aria-pressed="true">账本总览</button><button data-page="settlement" aria-pressed="false">结算与确认</button></div><div class="preview-options"><label>查看状态<select id="state"><option value="normal">正常账目</option><option value="empty">空账本</option><option value="error">连接异常</option></select></label><div class="segmented device-switch" aria-label="尺寸"><button data-device="desktop" class="active" aria-pressed="true">桌面</button><button data-device="mobile" aria-pressed="false">手机</button></div></div></div>
+      <div class="frame-surround"><iframe id="concept-frame" src="a.html?page=overview&amp;state=normal" title="A雾青工作台交互预览" loading="eager"></iframe></div>
+      <p class="preview-footnote">使用同一组示例账目。预览中的确认仅改变页面演示状态，刷新后恢复；不会支付或写入真实账本。</p>
+    </section>
+    <footer>合记 · 界面设计探索<span>先选方向，再统一打磨正式应用。</span></footer>
+  </main>
+  <script src="comparison.js"></script>
+</body>
+</html>

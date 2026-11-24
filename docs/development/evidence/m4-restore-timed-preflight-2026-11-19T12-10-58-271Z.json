@@ -1,0 +1,87 @@
+{
+  "at": "2026-11-19T12:10:58.271Z",
+  "format": "heji-m4-restore-timed-preflight-v1",
+  "node": "v24.14.1",
+  "mysql": "8.0.32",
+  "logBin": true,
+  "target": "heji_m4_restore_004_timed",
+  "targetExists": false,
+  "backup": "heji-m4-1c2d9ba6-c94f-4936-9b80-f313596a14fc.jsonl.gz",
+  "backupSha256": "73ca22949ff144dd7a6d0e69cfc8383aad74aa362698c126cfa63c4637933cfe",
+  "compressedBytes": 140840289,
+  "tables": 20,
+  "rows": 6609958,
+  "otherM4Connections": 0,
+  "host": {
+    "cpuCount": 32,
+    "ramBytes": 16340414464,
+    "freeRamBytes": 4767531008,
+    "loadAverage": [
+      0,
+      0,
+      0
+    ]
+  },
+  "disk": {
+    "dataFreeBytes": "49984802816",
+    "tmpFreeBytes": "49984802816",
+    "artifactFreeBytes": "49984802816",
+    "oldRestoreEstimatedBytes": "3657990144"
+  },
+  "sourceState": {
+    "database": "heji_m4_bench",
+    "tables": 20,
+    "migrationCount": 4,
+    "financialVersionHash": "031f6da4f7de472311c1ae748d2534ab905d94f36e4fa50c647650669bb0cc09",
+    "counts": {
+      "audit_events": "260444",
+      "book_members": "300",
+      "books": "10",
+      "confirmed_transfers": "6963",
+      "expense_shares": "5345104",
+      "expense_versions": "233843",
+      "expenses": "230043",
+      "finance_daily_categories": "850",
+      "finance_daily_members": "25500",
+      "finance_member_totals": "300",
+      "financial_audit_details": "241444",
+      "idempotency_records": "241444",
+      "invitations": "0",
+      "m4_fixture_meta": "1",
+      "rate_limits": "0",
+      "schema_migrations": "4",
+      "sessions": "240",
+      "settlement_windows": "0",
+      "transfer_requests": "23438",
+      "users": "30"
+    }
+  },
+  "oldState": {
+    "database": "heji_m4_restore_004",
+    "tables": 20,
+    "migrationCount": 4,
+    "financialVersionHash": "031f6da4f7de472311c1ae748d2534ab905d94f36e4fa50c647650669bb0cc09",
+    "counts": {
+      "audit_events": "260444",
+      "book_members": "300",
+      "books": "10",
+      "confirmed_transfers": "6963",
+      "expense_shares": "5345104",
+      "expense_versions": "233843",
+      "expenses": "230043",
+      "finance_daily_categories": "850",
+      "finance_daily_members": "25500",
+      "finance_member_totals": "300",
+      "financial_audit_details": "241444",
+      "idempotency_records": "241444",
+      "invitations": "0",
+      "m4_fixture_meta": "1",
+      "rate_limits": "0",
+      "schema_migrations": "4",
+      "sessions": "240",
+      "settlement_windows": "0",
+      "transfer_requests": "23438",
+      "users": "30"
+    }
+  }
+}

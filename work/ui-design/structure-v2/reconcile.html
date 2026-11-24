@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>杭州周末 · 对账工作区 · 合记</title>
+  <link rel="stylesheet" href="demo.css">
+  <style>
+    :root{--accent:#2563b9;--ink:#182a40;--muted:#6a7a8c;--canvas:#f3f6fa;--line:#e1e7ef;--blue-soft:#edf4fd;--white:#fff;--radius:9px}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:90px}
+    body{margin:0;background:var(--canvas);color:var(--ink);font-family:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC",sans-serif;font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+    button,input{font:inherit}button,a,input{-webkit-tap-highlight-color:transparent}button{cursor:pointer}a{color:inherit;text-decoration:none}button{color:inherit}button:disabled{cursor:default}
+    button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:3px solid #2563b9;outline-offset:3px}
+    button,input{border-radius:5px}button{transition:background-color .15s,color .15s,border-color .15s}
+    svg{display:block;flex:none;width:18px;height:18px}h1,h2,h3,p{margin:0}h2{font-size:15px;font-weight:700}h3{font-size:14px}table{border-collapse:collapse;width:100%}th{text-align:left;font-size:12px;font-weight:500;color:var(--muted)}td,th{white-space:nowrap}
+    .amount{font-family:Bahnschrift,"DIN Alternate","Arial",sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.015em}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.skip-link{position:fixed;top:-80px;left:16px;z-index:1000;padding:8px 14px;background:var(--white);border:2px solid var(--accent)}.skip-link:focus{top:10px}
+    .app-bar{height:64px;background:var(--white);border-bottom:1px solid var(--line)}.app-bar-inner{height:100%;max-width:1560px;margin:auto;padding:0 36px;display:flex;align-items:center;gap:30px}.brand{display:flex;align-items:center;gap:9px;font-size:19px;font-weight:700;letter-spacing:1px}.brand-mark{position:relative;width:27px;height:27px;display:grid;place-items:center;background:var(--accent);color:white;border-radius:6px}.brand-mark svg{width:19px;height:19px}.bar-divider{height:22px;width:1px;background:var(--line)}.book-label{display:flex;gap:9px;align-items:center;color:var(--muted);font-size:12px}.book-label strong{font-size:14px;font-weight:500;color:var(--ink)}.main-nav{display:flex;align-self:stretch;gap:26px;margin-left:6px}.main-nav a{display:flex;align-items:center;border-bottom:2px solid transparent;color:var(--muted);font-size:14px;padding-top:2px}.main-nav a[aria-current]{color:var(--accent);border-bottom-color:var(--accent);font-weight:700}.main-nav a:hover{color:var(--accent)}.account{display:flex;align-items:center;gap:8px;margin-left:auto;font-size:12px}.avatar{width:28px;height:28px;display:inline-grid;place-items:center;flex:none;border-radius:50%;font-size:12px;font-weight:600;background:#e9eff8;color:#365d90}.avatar.yue{background:#edf0f3;color:#5f7283}.avatar.yu{background:#eaf1f1;color:#4c7272}.account .avatar{background:var(--ink);color:#fff}
+    .shell{max-width:1560px;margin:auto;padding:26px 36px 32px}.draft-note{font-size:12px;letter-spacing:.06em;color:var(--muted);display:flex;align-items:center;gap:6px;margin-bottom:13px}.draft-note::before{content:"";width:5px;height:5px;background:#8b9db0;border-radius:50%}.page-heading{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:26px}.title-line{display:flex;gap:12px;align-items:center}h1{font-size:27px;letter-spacing:-.04em;line-height:1.45;font-weight:700}.book-type{font-size:12px;color:var(--muted);border:1px solid #d7e0eb;border-radius:4px;padding:1px 6px}.book-meta{margin-top:7px;display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted)}.meta-divider{height:10px;width:1px;background:#cdd6e1}.heading-actions{display:flex;gap:9px;align-items:center}.btn{min-height:36px;padding:7px 13px;display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid #d4deea;background:var(--white);font-size:12px;font-weight:600;white-space:nowrap}.btn:hover{background:#f7f9fc;border-color:#b7c9df}.btn-primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn-primary:hover{background:#1d519c;border-color:#1d519c}.btn svg{width:15px;height:15px}.text-btn{background:transparent;border:0;color:var(--accent);padding:6px 0;font-size:12px;white-space:nowrap}.text-btn:hover{text-decoration:underline}
+    .workspace{display:grid;grid-template-columns:minmax(0,1fr) 306px;gap:20px;align-items:start}.main-column{min-width:0;display:grid;gap:18px}.panel{border:1px solid var(--line);border-radius:var(--radius);background:var(--white);min-width:0;overflow:hidden}.panel-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:17px 20px 14px}.panel-heading-title{display:flex;gap:9px;align-items:center}.sub-label{font-size:12px;color:var(--muted)}.heading-rule{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:12px}.heading-rule svg{width:13px;height:13px}.balance-table{table-layout:fixed}.balance-table th{padding:8px 20px;background:#fafbfd;border-top:1px solid var(--line);border-bottom:1px solid var(--line);line-height:1.6}.balance-table th:first-child{width:31%}.balance-table th:not(:first-child),.balance-table td:not(:first-child){text-align:right}.balance-table td{padding:10px 20px;border-bottom:1px solid #edf1f6}.balance-table tr:last-child td{border-bottom:none}.member-name{display:flex;align-items:center;gap:9px}.me-label{color:var(--muted);font-size:12px;border:1px solid var(--line);padding:0 4px;border-radius:3px;margin-left:1px}.balance-table td .amount{font-size:16px}.balance-table .is-me{background:#f7faff}.balance-table .is-me td:first-child{box-shadow:inset 3px 0 0 var(--accent)}.net-positive{color:var(--accent);font-weight:600}.net-negative{color:#4c5c6e}.balance-caption{padding:9px 20px 10px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:12px}.balance-caption strong{color:var(--ink);font-weight:500}.balance-caption .amount{font-size:12px}
+    .ledger-heading{padding-bottom:14px}.ledger-count{display:inline-flex;align-items:center;justify-content:center;min-width:21px;height:20px;border-radius:4px;background:#eff3f8;color:var(--muted);font-size:12px;font-family:Bahnschrift,Arial,sans-serif}.ledger-total{display:flex;align-items:baseline;gap:8px;font-size:12px;color:var(--muted)}.ledger-total .amount{font-size:22px;color:var(--ink)}.ledger-tools{display:flex;align-items:center;gap:12px;padding:0 20px 13px}.search-box{display:flex;align-items:center;gap:8px;height:34px;max-width:310px;width:100%;border:1px solid #dbe3ed;background:#fff;border-radius:5px;padding:0 10px}.search-box:focus-within{border-color:var(--accent);box-shadow:0 0 0 2px #2563b914}.search-box svg{color:#8796a8;width:15px;height:15px}.search-box input{width:100%;min-width:0;background:transparent;border:0;padding:0;color:var(--ink);font-size:12px;outline:none}.search-box input::placeholder{color:#8b98a8}.search-box input:focus-visible{outline:none}.search-result{margin-left:auto;color:var(--muted);font-size:12px;white-space:nowrap}.scroll-hint{display:none;padding:0 20px 9px;color:var(--muted);font-size:12px}.table-scroll{width:100%;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-color:#bac9dc #f0f4f8;scrollbar-width:thin}.expense-table{min-width:720px}.expense-table th{padding:9px 12px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#fafbfd}.expense-table th:first-child,.expense-table td:first-child{padding-left:20px}.expense-table th:last-child,.expense-table td:last-child{padding-right:20px}.expense-table th:nth-child(1){width:30%}.expense-table th:nth-child(2){width:14%}.expense-table th:nth-child(3),.expense-table th:nth-child(4){width:13%}.expense-table th:nth-child(5){text-align:right;width:20%}.expense-table td{height:71px;padding:11px 12px;border-bottom:1px solid #edf1f6;font-size:14px}.expense-table tbody tr{cursor:pointer}.expense-table tbody tr:hover{background:#f7faff}.expense-table tbody tr.is-selected{background:var(--blue-soft)}.expense-table tbody tr.is-selected td:first-child{box-shadow:inset 3px 0 0 var(--accent)}.expense-table tbody tr:last-child td{border-bottom:0}.expense-table td:nth-child(5){text-align:right}.expense-table td .amount{font-size:16px}.select-expense{display:flex;align-items:center;gap:10px;text-align:left;background:none;border:0;padding:3px 0;min-height:40px;font-size:14px;font-weight:600}.category-icon{display:grid;place-items:center;width:29px;height:29px;border:1px solid #dde5ef;background:#fff;border-radius:6px;color:#75889f}.category-icon svg{width:15px;height:15px}.is-selected .category-icon{border-color:#c6d9f3;color:var(--accent)}.expense-category{display:block;font-size:12px;color:var(--muted);font-weight:400;margin-top:1px}.row-detail{padding:6px;background:transparent;color:#657d9b;font-size:12px;border:0}.row-detail:hover{color:var(--accent);text-decoration:underline}.empty-state{padding:39px 20px;text-align:center;border-top:1px solid var(--line)}.empty-state p{font-size:14px;font-weight:600}.empty-state .empty-help{font-size:12px;color:var(--muted);font-weight:400;margin-top:5px}.empty-state button{margin-top:9px}.ledger-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 20px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}.selection-tip{display:flex;align-items:center;gap:5px}.selection-tip svg{width:13px;height:13px}.footer-total{display:flex;gap:9px;align-items:center}.footer-total strong{font-size:14px;font-weight:600;color:var(--ink)}
+    .transfer-panel{display:flex;align-items:center;gap:18px;padding:17px 20px;border:1px solid var(--line);border-radius:var(--radius);background:#fff}.transfer-symbol{width:32px;height:32px;display:grid;place-items:center;flex:none;border:1px solid var(--line);border-radius:6px;color:var(--muted)}.transfer-copy{flex:1;min-width:0}.transfer-title{display:flex;align-items:center;gap:9px;margin-bottom:4px}.transfer-title h2{font-size:14px}.pending-state{padding:1px 6px;border:1px solid #e8d7ac;color:#8b6b25;background:#fffaf0;border-radius:4px;font-size:12px;line-height:1.6;white-space:nowrap}.transfer-copy p{font-size:12px;color:var(--muted)}.transfer-copy p strong{font-weight:500;color:#53657b}.transfer-copy .amount{color:var(--ink);font-size:14px;margin:0 4px}.transfer-action{flex:none}
+    .inspector{position:sticky;top:20px}.inspector-bar{display:flex;align-items:center;justify-content:space-between;background:#f9fbfe;border-bottom:1px solid var(--line);padding:13px 18px}.inspector-caption{font-size:12px;font-weight:600;display:flex;align-items:center;gap:7px}.inspector-caption::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent)}.inspector-index{color:#8c9aab;font-size:12px}.inspector-body{padding:20px 19px 17px}.inspector-title-line{display:flex;align-items:center;gap:8px}.inspector-title-line .category-icon{width:31px;height:31px;color:var(--accent);background:#f6f9ff}.inspector-title-line h2{font-size:16px;letter-spacing:-.02em}.inspector-date{font-size:12px;color:var(--muted);margin-top:8px}.expense-amount{margin-top:21px}.expense-amount-label{display:block;color:var(--muted);font-size:12px}.expense-amount .amount{display:block;font-size:34px;line-height:1.5;color:var(--ink);letter-spacing:-.025em}.people-grid{display:grid;grid-template-columns:1fr 1fr;margin:18px 0 0;padding:15px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.people-grid>div+div{padding-left:17px;border-left:1px solid var(--line)}.people-grid dt{color:var(--muted);font-size:12px;margin-bottom:7px}.people-grid dd{display:flex;align-items:center;gap:7px;margin:0;font-size:14px}.people-grid .avatar{width:23px;height:23px;font-size:12px}.people-explanation{margin-top:10px;font-size:12px;line-height:1.8;color:#8492a4}.people-explanation strong{font-weight:500;color:#64758b}.split-section{margin-top:24px}.split-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:7px}.split-heading h3{font-size:14px}.split-type{font-size:12px;color:var(--muted)}.split-list{list-style:none;padding:0;margin:0}.split-list li{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;font-size:14px;border-bottom:1px solid #edf1f6}.split-person{display:flex;align-items:center;gap:6px}.split-person .me-label{font-size:12px}.split-list .amount{font-size:15px}.split-total{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--muted);padding-top:9px}.split-total .amount{font-size:14px;color:#51657e}.inspector-footer{margin-top:23px;padding-top:16px;border-top:1px solid var(--line)}.inspector-footer .btn{width:100%;font-weight:500;color:var(--accent);background:#f8fbff;border-color:#d5e3f6}.inspector-footer .btn:hover{background:var(--blue-soft)}.selection-empty{padding:44px 20px;color:var(--muted);font-size:12px;text-align:center}.my-position{padding:15px 19px 16px;margin-top:14px;background:#eef4fc;border:1px solid #d9e6f7;border-radius:var(--radius);display:flex;align-items:center;justify-content:space-between;gap:10px}.my-position p{font-size:12px;color:#5d7698}.my-position p strong{display:block;color:var(--accent);font-size:14px;font-weight:600;margin-bottom:2px}.my-position .amount{color:var(--accent);font-size:24px}.page-footer{margin-top:23px;display:flex;justify-content:space-between;gap:10px;color:#8a98aa;font-size:12px}.page-footer a:hover{color:var(--accent)}[hidden]{display:none!important}
+    .confirmed-transfer{display:block;color:var(--muted);font-size:12px;line-height:1.6;font-weight:400}.balance-table td .confirmed-transfer .amount{font-size:12px}
+    @media(min-width:1500px){.workspace{grid-template-columns:minmax(0,1fr) 330px}.inspector-body{padding-left:23px;padding-right:23px}.expense-table td{height:78px}.balance-table td{padding-top:12px;padding-bottom:12px}}
+    @media(max-width:1200px){.app-bar-inner,.shell{padding-left:24px;padding-right:24px}.workspace{gap:16px;grid-template-columns:minmax(0,1fr) 285px}.scroll-hint{display:block}.balance-table td,.balance-table th{padding-left:15px;padding-right:15px}.balance-table th:first-child{width:32%}.balance-table .avatar{display:none}.heading-rule{display:none}.main-nav{gap:20px}.app-bar-inner{gap:22px}}
+    @media(max-width:960px){.book-label,.bar-divider{display:none}.workspace{grid-template-columns:minmax(0,1fr) 270px;gap:12px}.shell{padding:22px 18px 28px}.app-bar-inner{padding:0 18px}.panel-heading,.ledger-tools{padding-left:15px;padding-right:15px}.balance-table td,.balance-table th{padding-left:12px;padding-right:12px}.member-name{gap:5px}.me-label{font-size:12px}.balance-table td .amount{font-size:14px}.balance-caption{padding-left:12px;padding-right:12px;display:block;font-size:12px}.balance-caption>span:last-child{display:none}.transfer-panel{padding:15px;gap:11px}.transfer-symbol{display:none}.transfer-copy p strong{display:block}.transfer-copy .amount{margin-left:0}.transfer-action{padding-left:10px;padding-right:10px}.inspector-body{padding-left:16px;padding-right:16px}}
+    @media(max-width:780px){.workspace{grid-template-columns:minmax(0,1fr)}.inspector{position:static;display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:14px;align-items:start}.my-position{margin-top:0}.inspector-body{padding:19px 20px}.people-grid{margin-top:15px}.split-section{margin-top:20px}.main-nav{margin-left:auto}.account{margin-left:6px}.account>span:last-child{display:none}.page-heading{margin-bottom:21px}.balance-table .avatar{display:inline-grid}.balance-table th:first-child{width:34%}.balance-table td .amount{font-size:16px}.balance-caption{display:flex}.balance-caption>span:last-child{display:inline}.heading-rule{display:flex}.expense-table{min-width:720px}.transfer-copy p strong{display:inline}.expense-amount{margin-top:16px}}
+    @media(max-width:560px){html{scroll-padding-top:20px}.app-bar{height:auto}.app-bar-inner{flex-wrap:wrap;gap:0;padding:13px 16px 0}.brand{font-size:17px}.brand-mark{width:25px;height:25px}.account{margin-left:auto}.account>span:last-child{display:inline}.main-nav{order:3;width:100%;margin:10px 0 0;gap:27px;height:37px}.main-nav a{font-size:12px}.shell{padding:18px 14px 24px}.draft-note{font-size:12px;margin-bottom:10px}.page-heading{align-items:flex-start;flex-direction:column;gap:16px;margin-bottom:18px}h1{font-size:25px}.book-meta{font-size:12px;gap:8px}.heading-actions{width:100%;gap:8px}.heading-actions .btn{flex:1;min-height:36px}.panel-heading{padding-top:14px;padding-bottom:12px}.panel-heading h2{font-size:14px}.heading-rule{display:none}.main-column{gap:14px}.balance-table th:first-child{width:31%}.balance-table .avatar{display:none}.balance-table th,.balance-table td{padding-left:9px;padding-right:9px}.balance-table th{font-size:12px}.balance-table td{font-size:14px;padding-top:12px;padding-bottom:12px}.balance-table td .amount{font-size:14px}.me-label{padding:0 3px;font-size:12px}.member-name{gap:4px}.balance-caption{display:block;font-size:12px;padding:9px 12px}.balance-caption>span:last-child{display:none}.ledger-total{gap:5px}.ledger-total .amount{font-size:19px}.ledger-tools{gap:7px;flex-wrap:wrap;padding-bottom:11px}.search-box{max-width:none;flex:1}.search-result{font-size:12px;margin:0}.scroll-hint{font-size:12px;padding-left:15px}.ledger-footer{padding:10px 15px;gap:7px;font-size:12px}.selection-tip svg{display:none}.footer-total strong{font-size:14px}.transfer-panel{align-items:flex-start;gap:9px;padding:14px}.transfer-title{gap:6px}.transfer-title h2{font-size:14px}.transfer-copy p{font-size:12px}.transfer-copy p strong{display:block}.transfer-action{font-size:12px;padding:6px 9px;min-height:33px;margin-top:2px}.inspector{display:flex;flex-direction:column;gap:12px;margin-top:2px}.inspector>.panel,.my-position{width:100%}.inspector-body{padding:18px 19px}.inspector-title-line h2{font-size:16px}.expense-amount .amount{font-size:32px}.people-explanation{font-size:12px}.split-type{font-size:12px}.split-heading h3{font-size:14px}.split-list li{font-size:14px}.my-position{padding:13px 17px}.my-position .amount{font-size:25px}.page-footer{margin-top:19px;font-size:12px;align-items:flex-start}.page-footer span{max-width:235px}.transfer-copy .amount{font-size:14px}}
+    /* 将表头中的无障碍文本定位在滚动容器内，避免宽表格撑开页面。 */
+    .table-scroll{position:relative}
+    @media(max-width:560px){.btn,.heading-actions .btn,.transfer-action,.main-nav a,.select-expense,.row-detail{min-height:44px}.search-box{height:44px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#expenses">跳到费用明细</a>
+  <header class="app-bar" id="top">
+    <div class="app-bar-inner">
+      <a class="brand" href="#top" aria-label="合记，返回顶部"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 5.5h14v14H5zM8 3v5M16 3v5M8 12h8M8 16h5"/></svg></span>合记</a>
+      <span class="bar-divider" aria-hidden="true"></span>
+      <div class="book-label">当前账本 <strong>杭州周末</strong></div>
+      <nav class="main-nav" aria-label="账本导航"><a href="#expenses" aria-current="page">费用明细</a><a href="#members">成员对账</a><a href="#transfers">转账核对</a></nav>
+      <div class="account"><span class="avatar" aria-hidden="true">宁</span><span>阿宁</span></div>
+    </div>
+  </header>
+  <main class="shell">
+    <p class="draft-note">交互草图 · 模拟数据</p>
+    <div class="page-heading">
+      <div>
+        <div class="title-line"><h1>杭州周末</h1><span class="book-type">旅行账本</span></div>
+        <p class="book-meta"><span class="amount">2026.11.08 — 11.10</span><span class="meta-divider" aria-hidden="true"></span><span>3 位成员</span><span class="meta-divider" aria-hidden="true"></span><span>人民币 CNY</span></p>
+      </div>
+      <div class="heading-actions">
+        <button class="btn" type="button" data-open="transfer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 8h15m-4-4 4 4-4 4M20 16H5m4-4-4 4 4 4"/></svg>转账核对</button>
+        <button class="btn btn-primary" type="button" data-open="entry"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>记一笔</button>
+      </div>
+    </div>
+    <div class="workspace">
+      <div class="main-column">
+        <section class="panel" id="members" aria-labelledby="members-heading">
+          <div class="panel-heading"><div class="panel-heading-title"><h2 id="members-heading">成员收支对照</h2><span class="sub-label">3 人</span></div><span class="heading-rule"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="M10 9v5m0-9v1"/></svg>净额含已确认转账</span></div>
+          <table class="balance-table"><caption class="sr-only">成员垫付款、费用承担和当前净额；正数应收，负数应付。</caption><thead><tr><th scope="col">成员</th><th scope="col">已垫付</th><th scope="col">应承担</th><th scope="col">当前净额</th></tr></thead><tbody>
+            <tr class="is-me"><td><span class="member-name"><span class="avatar" aria-hidden="true">宁</span>阿宁<span class="me-label">我</span></span></td><td><span class="amount">1,260.00</span></td><td><span class="amount">580.00</span></td><td><span class="amount net-positive" data-balance="ning">+680.00</span><span class="confirmed-transfer">已收 <span class="amount" data-transfer-in="ning">0.00</span></span></td></tr>
+            <tr><td><span class="member-name"><span class="avatar yue" aria-hidden="true">悦</span>林悦</span></td><td><span class="amount">368.00</span></td><td><span class="amount">572.00</span></td><td><span class="amount net-negative" data-balance="yue">−204.00</span><span class="confirmed-transfer">已付 <span class="amount" data-transfer-out="yue">0.00</span></span></td></tr>
+            <tr><td><span class="member-name"><span class="avatar yu" aria-hidden="true">屿</span>周屿</span></td><td><span class="amount">96.00</span></td><td><span class="amount">572.00</span></td><td><span class="amount net-negative" data-balance="yu">−476.00</span><span class="confirmed-transfer">暂无转账</span></td></tr>
+          </tbody></table>
+          <div class="balance-caption"><span>正数应收，负数应付；确认到账后抵扣应收</span><span>单位：元</span></div>
+        </section>
+        <section class="panel" id="expenses" aria-labelledby="expenses-heading">
+          <div class="panel-heading ledger-heading"><div class="panel-heading-title"><h2 id="expenses-heading">费用明细</h2><span class="ledger-count">03</span></div><div class="ledger-total"><span>累计支出</span><strong class="amount">¥1,724.00</strong></div></div>
+          <div class="ledger-tools"><label class="search-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg><span class="sr-only">搜索费用、分类、付款人或录入人</span><input id="expense-search" type="search" placeholder="搜索费用、成员或分类" autocomplete="off" aria-controls="expense-rows" aria-describedby="search-count"></label><span class="search-result" id="search-count" role="status" aria-live="polite">共 3 笔</span></div>
+          <p class="scroll-hint" id="scroll-hint">← 表格可左右滚动，查看付款人、录入人与金额 →</p>
+          <div class="table-scroll" tabindex="0" role="region" aria-label="费用明细表，可左右滚动" aria-describedby="scroll-hint">
+            <table class="expense-table"><caption class="sr-only">选择费用名称可更新下方或右侧检查区，点击详情可打开完整记录。</caption><thead><tr><th scope="col">费用</th><th scope="col">发生日期</th><th scope="col">付款人</th><th scope="col">录入人</th><th scope="col">金额 / 元</th><th scope="col"><span class="sr-only">查看详情</span></th></tr></thead><tbody id="expense-rows">
+              <tr class="is-selected" data-record-id="stay"><td><button class="select-expense" type="button" data-select-expense="stay" aria-pressed="true" aria-controls="expense-inspector"><span class="category-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V5h12v15M16 10h4v10M2 20h20M8 8h4M8 12h4M8 16h4"/></svg></span><span>民宿两晚<span class="expense-category">住宿</span></span></button></td><td class="amount">11 月 8 日</td><td>阿宁</td><td>阿宁</td><td><span class="amount">1,260.00</span></td><td><button class="row-detail" type="button" data-expense="stay" aria-label="查看民宿两晚完整详情">详情 ↗</button></td></tr>
+              <tr data-record-id="dinner"><td><button class="select-expense" type="button" data-select-expense="dinner" aria-pressed="false" aria-controls="expense-inspector"><span class="category-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 3v6c0 2 4 2 4 0V3M7 3v18M17 3c-2 2-3 6-2 9h4V3m0 9v9"/></svg></span><span>周六晚餐<span class="expense-category">餐饮</span></span></button></td><td class="amount">11 月 8 日</td><td>林悦</td><td>阿宁</td><td><span class="amount">368.00</span></td><td><button class="row-detail" type="button" data-expense="dinner" aria-label="查看周六晚餐完整详情">详情 ↗</button></td></tr>
+              <tr data-record-id="taxi"><td><button class="select-expense" type="button" data-select-expense="taxi" aria-pressed="false" aria-controls="expense-inspector"><span class="category-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m5 10 2-5h10l2 5M4 10h16v8H4zM7 18v3m10-3v3M7 14h2m6 0h2M10 3h4"/></svg></span><span>夜间打车<span class="expense-category">交通</span></span></button></td><td class="amount">11 月 9 日</td><td>周屿</td><td>周屿</td><td><span class="amount">96.00</span></td><td><button class="row-detail" type="button" data-expense="taxi" aria-label="查看夜间打车完整详情">详情 ↗</button></td></tr>
+            </tbody></table>
+          </div>
+          <div class="empty-state" id="empty-results" hidden><p>没有匹配的费用</p><p class="empty-help">试试“住宿”“林悦”，或清除搜索查看全部记录。</p><button type="button" class="text-btn" id="clear-search">清除搜索</button></div>
+          <div class="ledger-footer"><span class="selection-tip"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="m5 3 10 7-5 1-2 5z"/></svg>选择一笔，核对付款与分摊</span><span class="footer-total"><span id="filtered-total-label">3 笔合计</span><strong class="amount" id="filtered-total">¥1,724.00</strong></span></div>
+        </section>
+        <section class="transfer-panel" id="transfers" aria-labelledby="transfers-heading">
+          <span class="transfer-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 8h15m-4-4 4 4-4 4M20 16H5m4-4-4 4 4 4"/></svg></span>
+          <div class="transfer-copy"><div class="transfer-title"><h2 id="transfers-heading">转账核对</h2><span class="pending-state" data-pending-state>待确认</span></div><p><strong>林悦 → 阿宁 <span class="amount">¥204.00</span></strong><span data-pending-copy>确认前不影响余额</span></p></div>
+          <button class="btn transfer-action" type="button" data-open="transfer" data-pending-action>核对这笔转账</button>
+        </section>
+      </div>
+      <aside class="inspector" id="expense-inspector" aria-labelledby="inspector-title">
+        <section class="panel">
+          <div class="inspector-bar"><span class="inspector-caption">账目检查</span><span class="inspector-index amount" id="inspector-index">01 / 03</span></div>
+          <div class="inspector-body" id="inspector-content">
+            <div class="inspector-title-line"><span class="category-icon" id="inspector-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V5h12v15M16 10h4v10M2 20h20M8 8h4M8 12h4M8 16h4"/></svg></span><h2 id="inspector-title">民宿两晚</h2></div>
+            <p class="inspector-date" id="inspector-date">2026 年 11 月 8 日 · 住宿</p>
+            <div class="expense-amount"><span class="expense-amount-label">这笔费用</span><strong class="amount" id="inspector-amount">¥1,260.00</strong></div>
+            <dl class="people-grid"><div><dt>付款人</dt><dd><span class="avatar" id="payer-avatar" aria-hidden="true">宁</span><span id="inspector-payer">阿宁</span></dd></div><div><dt>录入人</dt><dd><span class="avatar" id="recorder-avatar" aria-hidden="true">宁</span><span id="inspector-recorder">阿宁</span></dd></div></dl>
+            <p class="people-explanation"><strong>付款人</strong>实际垫付费用；<strong>录入人</strong>负责记入账本。</p>
+            <section class="split-section" aria-labelledby="split-heading"><div class="split-heading"><h3 id="split-heading">分摊明细</h3><span class="split-type" id="inspector-split-type">平均分摊 · 3 人</span></div><ul class="split-list"><li><span class="split-person">阿宁 <span class="me-label">我</span></span><span class="amount" id="split-ning">¥420.00</span></li><li><span>林悦</span><span class="amount" id="split-yue">¥420.00</span></li><li><span>周屿</span><span class="amount" id="split-yu">¥420.00</span></li></ul><div class="split-total"><span>分摊合计</span><span class="amount" id="split-total">¥1,260.00</span></div></section>
+            <div class="inspector-footer"><button class="btn" id="inspector-detail" type="button" data-expense="stay">查看完整详情 <span aria-hidden="true">↗</span></button></div>
+          </div>
+          <p class="selection-empty" id="inspector-empty" hidden>当前没有匹配的账目。<br>清除搜索后继续核对。</p>
+        </section>
+        <div class="my-position"><p><strong>我的待收金额</strong>阿宁 · 根据当前净额</p><strong class="amount" data-my-balance>¥680.00</strong></div>
+      </aside>
+    </div>
+    <p class="sr-only" id="selection-live" role="status" aria-live="polite"></p>
+    <footer class="page-footer"><span>合记 · 对账工作区　/　费用与转账分开核对</span><a href="#top">回到顶部 ↑</a></footer>
+  </main>
+  <script>
+    (() => {
+      'use strict';
+      const records = {
+        stay: { title: '民宿两晚', category: '住宿', date: '2026 年 11 月 8 日', amount: 1260, payer: '阿宁', recorder: '阿宁', shares: [420, 420, 420], splitType: '平均分摊 · 3 人', index: '01' },
+        dinner: { title: '周六晚餐', category: '餐饮', date: '2026 年 11 月 8 日', amount: 368, payer: '林悦', recorder: '阿宁', shares: [128, 120, 120], splitType: '按金额分摊 · 3 人', index: '02' },
+        taxi: { title: '夜间打车', category: '交通', date: '2026 年 11 月 9 日', amount: 96, payer: '周屿', recorder: '周屿', shares: [32, 32, 32], splitType: '平均分摊 · 3 人', index: '03' }
+      };
+      const people = { '阿宁': { short: '宁', className: 'avatar' }, '林悦': { short: '悦', className: 'avatar yue' }, '周屿': { short: '屿', className: 'avatar yu' } };
+      const rows = Array.from(document.querySelectorAll('[data-record-id]'));
+      const searchInput = document.getElementById('expense-search');
+      const content = document.getElementById('inspector-content');
+      const emptyInspector = document.getElementById('inspector-empty');
+      const setText = (id, text) => { document.getElementById(id).textContent = text; };
+      const money = value => '¥' + value.toLocaleString('zh-CN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      let selectedId = 'stay';
+      function selectExpense(id, announce = true) {
+        const record = records[id];
+        if (!record) return;
+        selectedId = id;
+        content.hidden = false;
+        emptyInspector.hidden = true;
+        rows.forEach(row => {
+          const selected = row.dataset.recordId === id;
+          row.classList.toggle('is-selected', selected);
+          row.querySelector('[data-select-expense]').setAttribute('aria-pressed', String(selected));
+        });
+        setText('inspector-title', record.title);
+        setText('inspector-index', record.index + ' / 03');
+        setText('inspector-date', record.date + ' · ' + record.category);
+        setText('inspector-amount', money(record.amount));
+        setText('inspector-payer', record.payer);
+        setText('inspector-recorder', record.recorder);
+        setText('inspector-split-type', record.splitType);
+        ['ning', 'yue', 'yu'].forEach((member, index) => setText('split-' + member, money(record.shares[index])));
+        setText('split-total', money(record.amount));
+        ['payer', 'recorder'].forEach(role => {
+          const avatar = document.getElementById(role + '-avatar');
+          avatar.textContent = people[record[role]].short;
+          avatar.className = people[record[role]].className;
+        });
+        const rowIcon = document.querySelector('[data-record-id="' + id + '"] .category-icon svg');
+        document.getElementById('inspector-icon').replaceChildren(rowIcon.cloneNode(true));
+        document.getElementById('inspector-detail').dataset.expense = id;
+        document.getElementById('inspector-detail').setAttribute('aria-label', '查看' + record.title + '完整详情');
+        if (announce) setText('selection-live', '已选择' + record.title + '，账目检查区已更新。');
+      }
+      rows.forEach(row => {
+        row.addEventListener('click', event => {
+          if (event.target.closest('[data-expense]')) return;
+          selectExpense(row.dataset.recordId);
+        });
+      });
+      function filterExpenses() {
+        const query = searchInput.value.trim().toLocaleLowerCase('zh-CN');
+        const visible = [];
+        rows.forEach(row => {
+          const id = row.dataset.recordId;
+          const record = records[id];
+          const matches = [record.title, record.category, record.date, record.payer, record.recorder, String(record.amount)].join(' ').toLocaleLowerCase('zh-CN').includes(query);
+          row.hidden = !matches;
+          if (matches) visible.push(id);
+        });
+        const total = visible.reduce((sum, id) => sum + records[id].amount, 0);
+        setText('search-count', query ? '找到 ' + visible.length + ' 笔' : '共 3 笔');
+        setText('filtered-total-label', visible.length + ' 笔合计');
+        setText('filtered-total', money(total));
+        document.getElementById('empty-results').hidden = visible.length > 0;
+        if (!visible.length) {
+          content.hidden = true;
+          emptyInspector.hidden = false;
+          setText('inspector-index', '— / 03');
+          rows.forEach(row => {
+            row.classList.remove('is-selected');
+            row.querySelector('[data-select-expense]').setAttribute('aria-pressed', 'false');
+          });
+        } else {
+          selectExpense(visible.includes(selectedId) ? selectedId : visible[0], false);
+        }
+      }
+      searchInput.addEventListener('input', filterExpenses);
+      document.getElementById('clear-search').addEventListener('click', () => {
+        searchInput.value = '';
+        filterExpenses();
+        searchInput.focus();
+      });
+    })();
+  </script>
+  <script src="demo.js" defer></script>
+</body>
+</html>
+

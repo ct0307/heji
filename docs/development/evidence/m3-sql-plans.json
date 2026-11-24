@@ -1,0 +1,34 @@
+{
+  "environment": "本机heji_dev虚构小数据，非压力测试",
+  "version": [
+    {
+      "version": "8.0.32"
+    }
+  ],
+  "plans": [
+    {
+      "kind": "期间统计",
+      "plan": [
+        {
+          "EXPLAIN": "-> Table scan on <temporary>  (actual time=0.061..0.061 rows=2 loops=1)\n    -> Aggregate using temporary table  (actual time=0.060..0.060 rows=2 loops=1)\n        -> Nested loop inner join  (cost=1.78 rows=0.004) (actual time=0.040..0.045 rows=2 loops=1)\n            -> Filter: ((v.isVoided = 0) and (v.occurredOn >= DATE'2026-11-01') and (v.occurredOn < DATE'2026-12-01'))  (cost=1.76 rows=0.08) (actual time=0.029..0.032 rows=4 loops=1)\n                -> Index lookup on v using uq_version_book_expense_revision (bookId='e7a744a4-29e2-48d5-8d48-34ce8b5e6064')  (cost=1.76 rows=7) (actual time=0.028..0.029 rows=7 loops=1)\n            -> Filter: ((e.currentRevision = v.revision) and (e.bookId = 'e7a744a4-29e2-48d5-8d48-34ce8b5e6064'))  (cost=0.31 rows=0.05) (actual time=0.003..0.003 rows=0 loops=4)\n                -> Single-row index lookup on e using PRIMARY (id=v.expenseId)  (cost=0.31 rows=1) (actual time=0.003..0.003 rows=1 loops=4)\n"
+        }
+      ]
+    },
+    {
+      "kind": "期间统计",
+      "plan": [
+        {
+          "EXPLAIN": "-> Sort: rankNo, m.id  (actual time=0.219..0.219 rows=4 loops=1)\n    -> Table scan on <temporary>  (cost=2.50..2.50 rows=0) (actual time=0.212..0.212 rows=4 loops=1)\n        -> Temporary table  (cost=0.00..0.00 rows=0) (actual time=0.211..0.211 rows=4 loops=1)\n            -> Window aggregate: dense_rank() OVER (ORDER BY coalesce(s.shareFen,0) desc )   (actual time=0.203..0.204 rows=4 loops=1)\n                -> Sort: shareFen DESC  (actual time=0.201..0.201 rows=4 loops=1)\n                    -> Stream results  (cost=6.82 rows=0) (actual time=0.189..0.194 rows=4 loops=1)\n                        -> Left hash join (p.memberId = m.id)  (cost=6.82 rows=0) (actual time=0.188..0.192 rows=4 loops=1)\n                            -> Nested loop left join  (cost=2.66 rows=0) (actual time=0.104..0.107 rows=4 loops=1)\n                                -> Covering index lookup on m using uq_member_user (bookId='e7a744a4-29e2-48d5-8d48-34ce8b5e6064')  (cost=0.66 rows=4) (actual time=0.007..0.008 rows=4 loops=1)\n                                -> Index lookup on s using <auto_key0> (memberId=m.id)  (cost=0.28..0.55 rows=2) (actual time=0.024..0.025 rows=1 loops=4)\n                                    -> Materialize CTE shares  (cost=0.00..0.00 rows=0) (actual time=0.096..0.096 rows=3 loops=1)\n                                        -> Table scan on <temporary>  (actual time=0.092..0.092 rows=3 loops=1)\n                                            -> Aggregate using temporary table  (actual time=0.092..0.092 rows=3 loops=1)\n                                                -> Nested loop inner join  (cost=1.79 rows=0.0002) (actual time=0.063..0.082 rows=3 loops=1)\n                                                    -> Nested loop inner join  (cost=1.78 rows=0.004) (actual time=0.057..0.061 rows=2 loops=1)\n                                                        -> Filter: ((v.isVoided = 0) and (v.occurredOn >= DATE'2026-11-01') and (v.occurredOn < DATE'2026-12-01'))  (cost=1.76 rows=0.08) (actual time=0.051..0.053 rows=4 loops=1)\n                                                            -> Index lookup on v using uq_version_book_expense_revision (bookId='e7a744a4-29e2-48d5-8d48-34ce8b5e6064')  (cost=1.76 rows=7) (actual time=0.051..0.052 rows=7 loops=1)\n                                                        -> Filter: ((e.currentRevision = v.revision) and (e.bookId = 'e7a744a4-29e2-48d5-8d48-34ce8b5e6064'))  (cost=0.31 rows=0.05) (actual time=0.002..0.002 rows=0 loops=4)\n                                                            -> Single-row index lookup on e using PRIMARY (id=v.expenseId)  (cost=0.31 rows=1) (actual time=0.002..0.002 rows=1 loops=4)\n                                                    -> Filter: (s.bookId = 'e7a744a4-29e2-48d5-8d48-34ce8b5e6064')  (cost=1.79 rows=0.05) (actual time=0.009..0.010 rows=2 loops=2)\n                                                        -> Index lookup on s using PRIMARY (expenseId=v.expenseId, revision=v.revision)  (cost=1.79 rows=2) (actual time=0.009..0.010 rows=2 loops=2)\n                            -> Hash\n                                -> Table scan on p  (cost=4.29..4.29 rows=0.004) (actual time=0.054..0.055 rows=2 loops=1)\n                                    -> Materialize CTE paid  (cost=1.79..1.79 rows=0.004) (actual time=0.054..0.054 rows=2 loops=1)\n                                        -> Group aggregate: sum(v.amountFen)  (cost=1.79 rows=0.004) (actual time=0.045..0.047 rows=2 loops=1)\n                                            -> Nested loop inner join  (cost=1.78 rows=0.004) (actual time=0.039..0.043 rows=2 loops=1)\n                                                -> Filter: ((v.isVoided = 0) and (v.occurredOn >= DATE'2026-11-01') and (v.occurredOn < DATE'2026-12-01'))  (cost=1.76 rows=0.08) (actual time=0.029..0.031 rows=4 loops=1)\n                                                    -> Index lookup on v using bookId (bookId='e7a744a4-29e2-48d5-8d48-34ce8b5e6064')  (cost=1.76 rows=7) (actual time=0.028..0.029 rows=7 loops=1)\n                                                -> Filter: ((e.currentRevision = v.revision) and (e.bookId = 'e7a744a4-29e2-48d5-8d48-34ce8b5e6064'))  (cost=0.31 rows=0.05) (actual time=0.003..0.003 rows=0 loops=4)\n                                                    -> Single-row index lookup on e using PRIMARY (id=v.expenseId)  (cost=0.31 rows=1) (actual time=0.002..0.002 rows=1 loops=4)\n"
+        }
+      ]
+    },
+    {
+      "kind": "明细分页",
+      "plan": [
+        {
+          "EXPLAIN": "-> Limit: 3 row(s)  (actual time=0.031..0.031 rows=3 loops=1)\n    -> Sort: v.occurredOn DESC, e.id DESC, limit input to 3 row(s) per chunk  (actual time=0.031..0.031 rows=3 loops=1)\n        -> Stream results  (cost=3.42 rows=0.4) (actual time=0.013..0.025 rows=5 loops=1)\n            -> Nested loop inner join  (cost=3.42 rows=0.4) (actual time=0.012..0.023 rows=5 loops=1)\n                -> Covering index lookup on v using ix_version_book_date (bookId='e7a744a4-29e2-48d5-8d48-34ce8b5e6064')  (cost=0.97 rows=7) (actual time=0.007..0.009 rows=7 loops=1)\n                -> Filter: ((e.currentRevision = v.revision) and (e.bookId = 'e7a744a4-29e2-48d5-8d48-34ce8b5e6064'))  (cost=0.25 rows=0.05) (actual time=0.002..0.002 rows=1 loops=7)\n                    -> Single-row index lookup on e using PRIMARY (id=v.expenseId)  (cost=0.25 rows=1) (actual time=0.001..0.001 rows=1 loops=7)\n"
+        }
+      ]
+    }
+  ]
+}

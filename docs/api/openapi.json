@@ -1,0 +1,6001 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "合记 HTTP API",
+    "version": "1.0.0",
+    "description": "与当前M1–M4实现对齐。整数分/版本均为字符串；HTTP成功统一{data}，失败统一{error:{code,message,requestId}}。会话空闲12小时、绝对7天；每次写入精确校验Origin及会话绑定CSRF。财务写入须幂等键；支出修改/作废还须强If-Match。非成员资源统一404。WebSocket独立协议见README。"
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:5174/api/v1",
+      "description": "本机Vite同源代理；生产改成实际HTTPS来源/api/v1。"
+    }
+  ],
+  "security": [
+    {
+      "localSession": []
+    },
+    {
+      "secureSession": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "健康检查"
+    },
+    {
+      "name": "身份会话"
+    },
+    {
+      "name": "账本与成员"
+    },
+    {
+      "name": "支出与财务"
+    }
+  ],
+  "paths": {
+    "/health/live": {
+      "get": {
+        "summary": "进程存活",
+        "operationId": "get__health_live",
+        "tags": [
+          "健康检查"
+        ],
+        "description": "仅证明HTTP进程能响应，不检查数据库。",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "const": "ok"
+                        }
+                      },
+                      "required": [
+                        "status"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "security": []
+      }
+    },
+    "/health/ready": {
+      "get": {
+        "summary": "数据库与迁移就绪",
+        "operationId": "get__health_ready",
+        "tags": [
+          "健康检查"
+        ],
+        "description": "检查真实数据库和001/002迁移；不可用503。",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "const": "ready"
+                        }
+                      },
+                      "required": [
+                        "status"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "security": []
+      }
+    },
+    "/auth/csrf": {
+      "get": {
+        "summary": "取得或建立匿名会话及CSRF",
+        "operationId": "get__auth_csrf",
+        "tags": [
+          "身份会话"
+        ],
+        "description": "可匿名访问；设置HttpOnly Cookie，正文只给CSRF。保留Set-Cookie，不手动读取SID。",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/CsrfResult"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "security": []
+      }
+    },
+    "/auth/me": {
+      "get": {
+        "summary": "读取当前用户",
+        "operationId": "get__auth_me",
+        "tags": [
+          "身份会话"
+        ],
+        "description": "读取和写入均由服务端验证当前账本成员身份。",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/User"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        }
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "summary": "注册并轮换会话",
+        "operationId": "post__auth_register",
+        "tags": [
+          "身份会话"
+        ],
+        "description": "先取得匿名Cookie/CSRF；邮箱唯一，密码Argon2id。已经登录时409。",
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "必须精确匹配APP_ORIGIN。"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "先GET /auth/csrf；登录/注册轮换后使用新值。"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              },
+              "Location": {
+                "description": "创建结果资源或预览路径。",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/AuthResult"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "summary": "登录并轮换会话",
+        "operationId": "post__auth_login",
+        "tags": [
+          "身份会话"
+        ],
+        "description": "先取得匿名Cookie/CSRF；错误邮箱和密码统一401 LOGIN_FAILED；已有登录409。",
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "必须精确匹配APP_ORIGIN。"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "先GET /auth/csrf；登录/注册轮换后使用新值。"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/AuthResult"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "summary": "注销并撤销会话",
+        "operationId": "post__auth_logout",
+        "tags": [
+          "身份会话"
+        ],
+        "description": "读取和写入均由服务端验证当前账本成员身份。",
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "必须精确匹配APP_ORIGIN。"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "先GET /auth/csrf；登录/注册轮换后使用新值。"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "成功，无响应正文。"
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Empty"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books": {
+      "get": {
+        "summary": "列出当前有效成员账本",
+        "operationId": "get__books",
+        "tags": [
+          "账本与成员"
+        ],
+        "description": "读取和写入均由服务端验证当前账本成员身份。",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Book"
+                      }
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        }
+      },
+      "post": {
+        "summary": "创建账本",
+        "operationId": "post__books",
+        "tags": [
+          "账本与成员"
+        ],
+        "description": "读取和写入均由服务端验证当前账本成员身份。",
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "必须精确匹配APP_ORIGIN。"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "先GET /auth/csrf；登录/注册轮换后使用新值。"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              },
+              "Location": {
+                "description": "创建结果资源或预览路径。",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Book"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NameInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/{bookId}": {
+      "get": {
+        "summary": "读取账本",
+        "operationId": "get__books_bookId",
+        "tags": [
+          "账本与成员"
+        ],
+        "description": "读取和写入均由服务端验证当前账本成员身份。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Book"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        }
+      },
+      "patch": {
+        "summary": "创建者修改账本名称",
+        "operationId": "patch__books_bookId",
+        "tags": [
+          "账本与成员"
+        ],
+        "description": "只有创建者可改名。使用application/json，不要求财务幂等键或If-Match。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "必须精确匹配APP_ORIGIN。"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "先GET /auth/csrf；登录/注册轮换后使用新值。"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Book"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NameInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/{bookId}/members": {
+      "get": {
+        "summary": "读取含退出历史的成员",
+        "operationId": "get__books_bookId_members",
+        "tags": [
+          "账本与成员"
+        ],
+        "description": "读取和写入均由服务端验证当前账本成员身份。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Member"
+                      }
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        }
+      }
+    },
+    "/books/{bookId}/invitations": {
+      "post": {
+        "summary": "创建者生成24小时一次性邀请",
+        "operationId": "post__books_bookId_invitations",
+        "tags": [
+          "账本与成员"
+        ],
+        "description": "读取和写入均由服务端验证当前账本成员身份。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "必须精确匹配APP_ORIGIN。"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "先GET /auth/csrf；登录/注册轮换后使用新值。"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              },
+              "Location": {
+                "description": "创建结果资源或预览路径。",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Invitation"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Empty"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/{bookId}/invitations/{id}/revoke": {
+      "post": {
+        "summary": "创建者撤销未使用邀请",
+        "operationId": "post__books_bookId_invitations_id_revoke",
+        "tags": [
+          "账本与成员"
+        ],
+        "description": "读取和写入均由服务端验证当前账本成员身份。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "必须精确匹配APP_ORIGIN。"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "先GET /auth/csrf；登录/注册轮换后使用新值。"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "成功，无响应正文。"
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Empty"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/invitations/preview": {
+      "post": {
+        "summary": "匿名或登录会话预览邀请",
+        "operationId": "post__invitations_preview",
+        "tags": [
+          "账本与成员"
+        ],
+        "description": "需要Cookie/Origin/CSRF，可为匿名会话；不消费邀请。",
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "必须精确匹配APP_ORIGIN。"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "先GET /auth/csrf；登录/注册轮换后使用新值。"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/InvitationPreview"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvitationInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/invitations/accept": {
+      "post": {
+        "summary": "登录成员确认接受邀请",
+        "operationId": "post__invitations_accept",
+        "tags": [
+          "账本与成员"
+        ],
+        "description": "单次消费、有效成员最多30；原使用者可重试，已有成员不消费新邀请；退出成员重加复用身份。",
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "必须精确匹配APP_ORIGIN。"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "先GET /auth/csrf；登录/注册轮换后使用新值。"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Book"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvitationInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/{bookId}/balances": {
+      "get": {
+        "summary": "读取财务快照",
+        "operationId": "get__books_bookId_balances",
+        "tags": [
+          "账本与成员"
+        ],
+        "description": "读取和写入均由服务端验证当前账本成员身份。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Snapshot"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        }
+      }
+    },
+    "/books/{bookId}/suggestions": {
+      "get": {
+        "summary": "读取包含确定性结清建议的同一财务快照",
+        "operationId": "get__books_bookId_suggestions",
+        "tags": [
+          "账本与成员"
+        ],
+        "description": "实际返回完整Snapshot；建议不代表已经付款，只有确认转账才入账。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Snapshot"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        }
+      }
+    },
+    "/books/{bookId}/expenses": {
+      "get": {
+        "summary": "筛选并游标分页读取支出",
+        "operationId": "get__books_bookId_expenses",
+        "tags": [
+          "账本与成员"
+        ],
+        "description": "按发生日期和ID倒序；包括作废行以供追溯。日期边界均包含；未知/重复参数或无效游标拒绝。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "FOOD",
+                "TRANSPORT",
+                "HOUSING",
+                "OTHER"
+              ]
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "原样使用nextCursor，须保持相同账本与筛选条件。"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/ExpensePage"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        }
+      },
+      "post": {
+        "summary": "录入支出",
+        "operationId": "post__books_bookId_expenses",
+        "tags": [
+          "支出与财务"
+        ],
+        "description": "读取和写入均由服务端验证当前账本成员身份。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "必须精确匹配APP_ORIGIN。"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "先GET /auth/csrf；登录/注册轮换后使用新值。"
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{8,128}$"
+            },
+            "description": "同一操作重试复用原键及原参数；不同意图使用新键。当前授权始终重新校验。"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              },
+              "ETag": {
+                "description": "当前支出强ETag；条件修改必须原样使用。",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Location": {
+                "description": "创建结果资源或预览路径。",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Expense"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExpenseInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/{bookId}/expenses/{id}": {
+      "get": {
+        "summary": "读取当前支出版本",
+        "operationId": "get__books_bookId_expenses_id",
+        "tags": [
+          "账本与成员"
+        ],
+        "description": "读取和写入均由服务端验证当前账本成员身份。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              },
+              "ETag": {
+                "description": "当前支出强ETag；条件修改必须原样使用。",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Expense"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        }
+      },
+      "patch": {
+        "summary": "录入者条件修改支出",
+        "operationId": "patch__books_bookId_expenses_id",
+        "tags": [
+          "支出与财务"
+        ],
+        "description": "读取和写入均由服务端验证当前账本成员身份。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "必须精确匹配APP_ORIGIN。"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "先GET /auth/csrf；登录/注册轮换后使用新值。"
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{8,128}$"
+            },
+            "description": "同一操作重试复用原键及原参数；不同意图使用新键。当前授权始终重新校验。"
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "要求具体强ETag，支持列表，拒绝*；不匹配412、缺失428。"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              },
+              "ETag": {
+                "description": "当前支出强ETag；条件修改必须原样使用。",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Expense"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "415": {
+            "$ref": "#/components/responses/Error415"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/merge-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExpensePatch"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/{bookId}/expenses/{id}/history": {
+      "get": {
+        "summary": "按版本倒序读取不可变支出历史",
+        "operationId": "get__books_bookId_expenses_id_history",
+        "tags": [
+          "账本与成员"
+        ],
+        "description": "读取和写入均由服务端验证当前账本成员身份。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Expense"
+                      }
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        }
+      }
+    },
+    "/books/{bookId}/expenses/{id}/void": {
+      "post": {
+        "summary": "录入者条件作废支出",
+        "operationId": "post__books_bookId_expenses_id_void",
+        "tags": [
+          "支出与财务"
+        ],
+        "description": "保留历史；使用application/json及If-Match，支出涉及退出成员时冻结。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "必须精确匹配APP_ORIGIN。"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "先GET /auth/csrf；登录/注册轮换后使用新值。"
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{8,128}$"
+            },
+            "description": "同一操作重试复用原键及原参数；不同意图使用新键。当前授权始终重新校验。"
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "要求具体强ETag，支持列表，拒绝*；不匹配412、缺失428。"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              },
+              "ETag": {
+                "description": "当前支出强ETag；条件修改必须原样使用。",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Expense"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "412": {
+            "$ref": "#/components/responses/Error412"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "415": {
+            "$ref": "#/components/responses/Error415"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "428": {
+            "$ref": "#/components/responses/Error428"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "note": {
+                    "type": "string",
+                    "maxLength": 1000,
+                    "default": ""
+                  }
+                },
+                "required": [],
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/{bookId}/transfer-requests": {
+      "get": {
+        "summary": "读取转账请求（含终态）",
+        "operationId": "get__books_bookId_transfer_requests",
+        "tags": [
+          "账本与成员"
+        ],
+        "description": "读取和写入均由服务端验证当前账本成员身份。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TransferRequest"
+                      }
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        }
+      },
+      "post": {
+        "summary": "登记待确认普通转账",
+        "operationId": "post__books_bookId_transfer_requests",
+        "tags": [
+          "支出与财务"
+        ],
+        "description": "读取和写入均由服务端验证当前账本成员身份。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "必须精确匹配APP_ORIGIN。"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "先GET /auth/csrf；登录/注册轮换后使用新值。"
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{8,128}$"
+            },
+            "description": "同一操作重试复用原键及原参数；不同意图使用新键。当前授权始终重新校验。"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              },
+              "Location": {
+                "description": "创建结果资源或预览路径。",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/TransferRequest"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransferInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/{bookId}/transfer-requests/{id}/preview": {
+      "get": {
+        "summary": "读取当前版本确认预览",
+        "operationId": "get__books_bookId_transfer_requests_id_preview",
+        "tags": [
+          "账本与成员"
+        ],
+        "description": "账本成员可读；只模拟待确认的增量。warnings提示超额付款或误登记冲正，不能据此声称已入账。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Preview"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        }
+      }
+    },
+    "/books/{bookId}/settlement-window": {
+      "get": {
+        "summary": "查询当前短时结算窗口",
+        "operationId": "get__books_bookId_settlement_window",
+        "tags": [
+          "账本与成员"
+        ],
+        "description": "004未激活返回503 SETTLEMENT_WINDOW_UNAVAILABLE。其他成员不返回绑定请求内容；canClose只提供提示，服务端仍校验权限。serverTime为数据库UTC时间。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/SettlementWindow"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        }
+      }
+    },
+    "/books/{bookId}/transfer-requests/{id}/settlement-window": {
+      "post": {
+        "summary": "指定确认者显式申请30秒结算窗口",
+        "operationId": "post__books_bookId_transfer_requests_id_settlement_window",
+        "tags": [
+          "支出与财务"
+        ],
+        "description": "同事务返回最新预览。结束后冷却30秒。原键重放返回首次窗口及实际状态，不续租；活跃409 SETTLEMENT_WINDOW_ACTIVE，冷却409 SETTLEMENT_WINDOW_COOLDOWN。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "必须精确匹配APP_ORIGIN。"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "先GET /auth/csrf；登录/注册轮换后使用新值。"
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{8,128}$"
+            },
+            "description": "同一操作重试复用原键及原参数；不同意图使用新键。当前授权始终重新校验。"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              },
+              "Location": {
+                "description": "创建结果资源或预览路径。",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/SettlementWindowPreview"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Empty"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/{bookId}/settlement-windows/{id}/close": {
+      "post": {
+        "summary": "持有人或创建者关闭指定窗口",
+        "operationId": "post__books_bookId_settlement_windows_id_close",
+        "tags": [
+          "支出与财务"
+        ],
+        "description": "必须匹配当前窗口ID，旧ID返回409 SETTLEMENT_WINDOW_EXPIRED，不影响新窗口；成功重放重新鉴权后返回原关闭事实。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "必须精确匹配APP_ORIGIN。"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "先GET /auth/csrf；登录/注册轮换后使用新值。"
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{8,128}$"
+            },
+            "description": "同一操作重试复用原键及原参数；不同意图使用新键。当前授权始终重新校验。"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/SettlementWindow"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Empty"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/{bookId}/transfer-requests/{id}/confirm": {
+      "post": {
+        "summary": "对方依据最新预览确认入账",
+        "operationId": "post__books_bookId_transfer_requests_id_confirm",
+        "tags": [
+          "支出与财务"
+        ],
+        "description": "仅counterparty可确认。完整financialVersion和revision门禁始终保留；版本过期409 PREVIEW_STALE。活跃窗口必须绑定该请求/确认者且携expectedWindowId，到期409 SETTLEMENT_WINDOW_EXPIRED，不回退普通确认。已确认重复请求不重复入账。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "必须精确匹配APP_ORIGIN。"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "先GET /auth/csrf；登录/注册轮换后使用新值。"
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{8,128}$"
+            },
+            "description": "同一操作重试复用原键及原参数；不同意图使用新键。当前授权始终重新校验。"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Confirmation"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfirmationInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/{bookId}/transfer-requests/{id}/reject": {
+      "post": {
+        "summary": "对方拒绝待确认请求",
+        "operationId": "post__books_bookId_transfer_requests_id_reject",
+        "tags": [
+          "支出与财务"
+        ],
+        "description": "读取和写入均由服务端验证当前账本成员身份。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "必须精确匹配APP_ORIGIN。"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "先GET /auth/csrf；登录/注册轮换后使用新值。"
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{8,128}$"
+            },
+            "description": "同一操作重试复用原键及原参数；不同意图使用新键。当前授权始终重新校验。"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/TransferRequest"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActionInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/{bookId}/transfer-requests/{id}/cancel": {
+      "post": {
+        "summary": "发起者取消待确认请求",
+        "operationId": "post__books_bookId_transfer_requests_id_cancel",
+        "tags": [
+          "支出与财务"
+        ],
+        "description": "读取和写入均由服务端验证当前账本成员身份。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "必须精确匹配APP_ORIGIN。"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "先GET /auth/csrf；登录/注册轮换后使用新值。"
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{8,128}$"
+            },
+            "description": "同一操作重试复用原键及原参数；不同意图使用新键。当前授权始终重新校验。"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/TransferRequest"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActionInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/{bookId}/transfers": {
+      "get": {
+        "summary": "读取已确认普通转账及冲正",
+        "operationId": "get__books_bookId_transfers",
+        "tags": [
+          "账本与成员"
+        ],
+        "description": "读取和写入均由服务端验证当前账本成员身份。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Transfer"
+                      }
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        }
+      }
+    },
+    "/books/{bookId}/transfers/{id}/reversals": {
+      "post": {
+        "summary": "原双方发起误登记冲正",
+        "operationId": "post__books_bookId_transfers_id_reversals",
+        "tags": [
+          "支出与财务"
+        ],
+        "description": "仅原双方之一可发起，由另一方确认；最多一个待确认和一次成功冲正，原记录不删除，不代表实际退款。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "必须精确匹配APP_ORIGIN。"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "先GET /auth/csrf；登录/注册轮换后使用新值。"
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{8,128}$"
+            },
+            "description": "同一操作重试复用原键及原参数；不同意图使用新键。当前授权始终重新校验。"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              },
+              "Location": {
+                "description": "创建结果资源或预览路径。",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/TransferRequest"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReversalInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/{bookId}/reports": {
+      "get": {
+        "summary": "读取期间消费及承担排行",
+        "operationId": "get__books_bookId_reports",
+        "tags": [
+          "账本与成员"
+        ],
+        "description": "当前未作废支出，含结束日；排除转账/冲正和旧版本。保留历史/零消费成员，DENSE_RANK并列不跳名次。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Report"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        }
+      }
+    },
+    "/books/{bookId}/audit-events": {
+      "get": {
+        "summary": "读取账本操作审计",
+        "operationId": "get__books_bookId_audit_events",
+        "tags": [
+          "账本与成员"
+        ],
+        "description": "当前为完整列表，尚未分页；不包含会话、密码或邀请明文。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AuditEvent"
+                      }
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        }
+      }
+    },
+    "/books/{bookId}/members/me/leave": {
+      "post": {
+        "summary": "非创建者结清后退出",
+        "operationId": "post__books_bookId_members_me_leave",
+        "tags": [
+          "支出与财务"
+        ],
+        "description": "当前余额必须0且无涉及该成员的待确认请求；历史身份保留。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "必须精确匹配APP_ORIGIN。"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "先GET /auth/csrf；登录/注册轮换后使用新值。"
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{8,128}$"
+            },
+            "description": "同一操作重试复用原键及原参数；不同意图使用新键。当前授权始终重新校验。"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/LeaveResult"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Empty"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/{bookId}/members/{id}/remove": {
+      "post": {
+        "summary": "创建者移除结清成员",
+        "operationId": "post__books_bookId_members_id_remove",
+        "tags": [
+          "支出与财务"
+        ],
+        "description": "读取和写入均由服务端验证当前账本成员身份。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "必须精确匹配APP_ORIGIN。"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "先GET /auth/csrf；登录/注册轮换后使用新值。"
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{8,128}$"
+            },
+            "description": "同一操作重试复用原键及原参数；不同意图使用新键。当前授权始终重新校验。"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/LeaveResult"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Empty"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/{bookId}/archive": {
+      "post": {
+        "summary": "创建者结清账本后归档",
+        "operationId": "post__books_bookId_archive",
+        "tags": [
+          "支出与财务"
+        ],
+        "description": "所有余额0且无待确认请求；归档禁止新增业务写入。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "必须精确匹配APP_ORIGIN。"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "先GET /auth/csrf；登录/注册轮换后使用新值。"
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{8,128}$"
+            },
+            "description": "同一操作重试复用原键及原参数；不同意图使用新键。当前授权始终重新校验。"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Book"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Empty"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/{bookId}/restore": {
+      "post": {
+        "summary": "创建者恢复归档账本",
+        "operationId": "post__books_bookId_restore",
+        "tags": [
+          "支出与财务"
+        ],
+        "description": "读取和写入均由服务端验证当前账本成员身份。",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            },
+            "description": "必须精确匹配APP_ORIGIN。"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "先GET /auth/csrf；登录/注册轮换后使用新值。"
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_-]{8,128}$"
+            },
+            "description": "同一操作重试复用原键及原参数；不同意图使用新键。当前授权始终重新校验。"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功。",
+            "headers": {
+              "X-Request-Id": {
+                "description": "本次API请求标识；错误正文requestId与此一致。",
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Book"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "413": {
+            "$ref": "#/components/responses/Error413"
+          },
+          "422": {
+            "$ref": "#/components/responses/Error422"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "$ref": "#/components/responses/Error503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Empty"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              },
+              "requestId": {
+                "type": "string",
+                "format": "uuid"
+              }
+            },
+            "required": [
+              "code",
+              "message",
+              "requestId"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "additionalProperties": false
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "displayName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "displayName"
+        ],
+        "additionalProperties": false
+      },
+      "Book": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "createdByUserId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "isArchived": {
+            "type": "boolean"
+          },
+          "financialVersion": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,19})$",
+            "description": "0至18446744073709551615的规范版本字符串。"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "createdByUserId",
+          "isArchived",
+          "financialVersion"
+        ],
+        "additionalProperties": false
+      },
+      "Member": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "userId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "ACTIVE",
+              "LEFT"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "userId",
+          "displayName",
+          "status"
+        ],
+        "additionalProperties": false
+      },
+      "NameInput": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false
+      },
+      "LoginInput": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "maxLength": 254
+          },
+          "password": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "writeOnly": true
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "additionalProperties": false
+      },
+      "RegisterInput": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "maxLength": 254
+          },
+          "password": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 128,
+            "writeOnly": true
+          },
+          "displayName": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          }
+        },
+        "required": [
+          "email",
+          "password",
+          "displayName"
+        ],
+        "additionalProperties": false
+      },
+      "AuthResult": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "csrfToken": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "user",
+          "csrfToken"
+        ],
+        "additionalProperties": false
+      },
+      "CsrfResult": {
+        "type": "object",
+        "properties": {
+          "csrfToken": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "csrfToken"
+        ],
+        "additionalProperties": false
+      },
+      "Invitation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expiresInHours": {
+            "type": "integer",
+            "const": 24
+          },
+          "token": {
+            "type": "string",
+            "description": "只在创建响应返回明文；页面链接放fragment，不写日志。"
+          }
+        },
+        "required": [
+          "id",
+          "expiresInHours",
+          "token"
+        ],
+        "additionalProperties": false
+      },
+      "InvitationPreview": {
+        "type": "object",
+        "properties": {
+          "bookId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "bookName": {
+            "type": "string"
+          },
+          "alreadyJoined": {
+            "type": "boolean"
+          },
+          "rejoining": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "bookId",
+          "bookName",
+          "alreadyJoined",
+          "rejoining"
+        ],
+        "additionalProperties": false
+      },
+      "InvitationInput": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "minLength": 43,
+            "maxLength": 43,
+            "writeOnly": true
+          }
+        },
+        "required": [
+          "token"
+        ],
+        "additionalProperties": false
+      },
+      "Share": {
+        "type": "object",
+        "properties": {
+          "memberId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "amountFen": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "description": "非负整数分字符串，累计汇总可超过单笔上限。"
+          }
+        },
+        "required": [
+          "memberId",
+          "amountFen"
+        ],
+        "additionalProperties": false
+      },
+      "Expense": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "bookId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdByMemberId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "revision": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,19})$",
+            "description": "0至18446744073709551615的规范版本字符串。"
+          },
+          "etag": {
+            "type": "string"
+          },
+          "paidByMemberId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "amountFen": {
+            "type": "string",
+            "pattern": "^(?:[1-9][0-9]{0,7}|100000000)$",
+            "description": "整数分字符串，范围1至100000000；禁止浮点、科学计数和前导零。",
+            "examples": [
+              "10001"
+            ]
+          },
+          "splitMode": {
+            "enum": [
+              "EQUAL",
+              "EXACT"
+            ]
+          },
+          "shares": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Share"
+            }
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "FOOD",
+              "TRANSPORT",
+              "HOUSING",
+              "OTHER"
+            ]
+          },
+          "occurredOn": {
+            "type": "string",
+            "format": "date"
+          },
+          "note": {
+            "type": "string",
+            "maxLength": 1000,
+            "default": ""
+          },
+          "isVoided": {
+            "type": "boolean"
+          },
+          "changedByMemberId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "bookId",
+          "createdByMemberId",
+          "revision",
+          "etag",
+          "paidByMemberId",
+          "amountFen",
+          "splitMode",
+          "shares",
+          "category",
+          "occurredOn",
+          "note",
+          "isVoided",
+          "changedByMemberId",
+          "createdAt"
+        ],
+        "additionalProperties": false
+      },
+      "ExpensePage": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Expense"
+            }
+          },
+          "nextCursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "nextCursor"
+        ],
+        "additionalProperties": false
+      },
+      "Balance": {
+        "type": "object",
+        "properties": {
+          "memberId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "paidFen": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "description": "非负整数分字符串，累计汇总可超过单笔上限。"
+          },
+          "shareFen": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "description": "非负整数分字符串，累计汇总可超过单笔上限。"
+          },
+          "incomingFen": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "description": "非负整数分字符串，累计汇总可超过单笔上限。"
+          },
+          "outgoingFen": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "description": "非负整数分字符串，累计汇总可超过单笔上限。"
+          },
+          "balanceFen": {
+            "type": "string",
+            "pattern": "^-?(0|[1-9][0-9]*)$"
+          }
+        },
+        "required": [
+          "memberId",
+          "paidFen",
+          "shareFen",
+          "incomingFen",
+          "outgoingFen",
+          "balanceFen"
+        ],
+        "additionalProperties": false
+      },
+      "Suggestion": {
+        "type": "object",
+        "properties": {
+          "fromMemberId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "toMemberId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "amountFen": {
+            "type": "string",
+            "pattern": "^(?:[1-9][0-9]{0,7}|100000000)$",
+            "description": "整数分字符串，范围1至100000000；禁止浮点、科学计数和前导零。",
+            "examples": [
+              "10001"
+            ]
+          }
+        },
+        "required": [
+          "fromMemberId",
+          "toMemberId",
+          "amountFen"
+        ],
+        "additionalProperties": false
+      },
+      "Snapshot": {
+        "type": "object",
+        "properties": {
+          "financialVersion": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,19})$",
+            "description": "0至18446744073709551615的规范版本字符串。"
+          },
+          "memberId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "balances": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Balance"
+            }
+          },
+          "suggestions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Suggestion"
+            }
+          },
+          "expenseTotalFen": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "description": "非负整数分字符串，累计汇总可超过单笔上限。"
+          },
+          "pendingCount": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "isSettled": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "financialVersion",
+          "memberId",
+          "balances",
+          "suggestions",
+          "expenseTotalFen",
+          "pendingCount",
+          "isSettled"
+        ],
+        "additionalProperties": false
+      },
+      "TransferRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "bookId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "kind": {
+            "enum": [
+              "NORMAL",
+              "REVERSAL"
+            ]
+          },
+          "fromMemberId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "toMemberId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "amountFen": {
+            "type": "string",
+            "pattern": "^(?:[1-9][0-9]{0,7}|100000000)$",
+            "description": "整数分字符串，范围1至100000000；禁止浮点、科学计数和前导零。",
+            "examples": [
+              "10001"
+            ]
+          },
+          "occurredOn": {
+            "type": "string",
+            "format": "date"
+          },
+          "note": {
+            "type": "string",
+            "maxLength": 1000,
+            "default": ""
+          },
+          "initiatorMemberId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "counterpartyMemberId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "enum": [
+              "PENDING",
+              "CONFIRMED",
+              "REJECTED",
+              "CANCELLED"
+            ]
+          },
+          "revision": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,19})$",
+            "description": "0至18446744073709551615的规范版本字符串。"
+          },
+          "reversalOfTransferId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "confirmedTransferId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "bookId",
+          "kind",
+          "fromMemberId",
+          "toMemberId",
+          "amountFen",
+          "occurredOn",
+          "note",
+          "initiatorMemberId",
+          "counterpartyMemberId",
+          "status",
+          "revision",
+          "reversalOfTransferId",
+          "confirmedTransferId",
+          "createdAt"
+        ],
+        "additionalProperties": false
+      },
+      "Transfer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "bookId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "requestId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "kind": {
+            "enum": [
+              "NORMAL",
+              "REVERSAL"
+            ]
+          },
+          "fromMemberId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "toMemberId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "amountFen": {
+            "type": "string",
+            "pattern": "^(?:[1-9][0-9]{0,7}|100000000)$",
+            "description": "整数分字符串，范围1至100000000；禁止浮点、科学计数和前导零。",
+            "examples": [
+              "10001"
+            ]
+          },
+          "occurredOn": {
+            "type": "string",
+            "format": "date"
+          },
+          "confirmedByMemberId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "confirmedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "reversalOfTransferId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "bookId",
+          "requestId",
+          "kind",
+          "fromMemberId",
+          "toMemberId",
+          "amountFen",
+          "occurredOn",
+          "confirmedByMemberId",
+          "confirmedAt",
+          "reversalOfTransferId"
+        ],
+        "additionalProperties": false
+      },
+      "Preview": {
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/TransferRequest"
+          },
+          "expectedFinancialVersion": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,19})$",
+            "description": "0至18446744073709551615的规范版本字符串。"
+          },
+          "expectedRequestRevision": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,19})$",
+            "description": "0至18446744073709551615的规范版本字符串。"
+          },
+          "beforeBalances": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Balance"
+            }
+          },
+          "afterBalances": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Balance"
+            }
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "request",
+          "expectedFinancialVersion",
+          "expectedRequestRevision",
+          "beforeBalances",
+          "afterBalances",
+          "warnings"
+        ],
+        "additionalProperties": false
+      },
+      "Confirmation": {
+        "type": "object",
+        "properties": {
+          "request": {
+            "$ref": "#/components/schemas/TransferRequest"
+          },
+          "transfer": {
+            "$ref": "#/components/schemas/Transfer"
+          },
+          "snapshot": {
+            "$ref": "#/components/schemas/Snapshot"
+          }
+        },
+        "required": [
+          "request",
+          "transfer",
+          "snapshot"
+        ],
+        "additionalProperties": false
+      },
+      "TransferInput": {
+        "type": "object",
+        "properties": {
+          "toMemberId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "amountFen": {
+            "type": "string",
+            "pattern": "^(?:[1-9][0-9]{0,7}|100000000)$",
+            "description": "整数分字符串，范围1至100000000；禁止浮点、科学计数和前导零。",
+            "examples": [
+              "10001"
+            ]
+          },
+          "occurredOn": {
+            "type": "string",
+            "format": "date"
+          },
+          "note": {
+            "type": "string",
+            "maxLength": 1000,
+            "default": ""
+          }
+        },
+        "required": [
+          "toMemberId",
+          "amountFen",
+          "occurredOn"
+        ],
+        "additionalProperties": false
+      },
+      "ConfirmationInput": {
+        "type": "object",
+        "properties": {
+          "expectedFinancialVersion": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,19})$",
+            "description": "0至18446744073709551615的规范版本字符串。"
+          },
+          "expectedRequestRevision": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,19})$",
+            "description": "0至18446744073709551615的规范版本字符串。"
+          },
+          "expectedWindowId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "required": [
+          "expectedFinancialVersion",
+          "expectedRequestRevision"
+        ],
+        "additionalProperties": false
+      },
+      "SettlementWindow": {
+        "type": "object",
+        "properties": {
+          "supported": {
+            "type": "boolean"
+          },
+          "state": {
+            "enum": [
+              "NONE",
+              "ACTIVE",
+              "CLOSED",
+              "EXPIRED"
+            ]
+          },
+          "serverTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "windowId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "requestId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "createdAt": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "expiresAt": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "closedAt": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "cooldownUntil": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "mine": {
+            "type": "boolean"
+          },
+          "canClose": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "supported",
+          "state",
+          "serverTime",
+          "windowId",
+          "requestId",
+          "createdAt",
+          "expiresAt",
+          "closedAt",
+          "cooldownUntil",
+          "mine",
+          "canClose"
+        ],
+        "additionalProperties": false
+      },
+      "SettlementWindowPreview": {
+        "type": "object",
+        "properties": {
+          "window": {
+            "$ref": "#/components/schemas/SettlementWindow"
+          },
+          "preview": {
+            "$ref": "#/components/schemas/Preview"
+          }
+        },
+        "required": [
+          "window",
+          "preview"
+        ],
+        "additionalProperties": false
+      },
+      "ActionInput": {
+        "type": "object",
+        "properties": {
+          "expectedRequestRevision": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,19})$",
+            "description": "0至18446744073709551615的规范版本字符串。"
+          }
+        },
+        "required": [
+          "expectedRequestRevision"
+        ],
+        "additionalProperties": false
+      },
+      "ReversalInput": {
+        "type": "object",
+        "properties": {
+          "occurredOn": {
+            "type": "string",
+            "format": "date"
+          },
+          "note": {
+            "type": "string",
+            "maxLength": 1000,
+            "default": ""
+          }
+        },
+        "required": [
+          "occurredOn"
+        ],
+        "additionalProperties": false
+      },
+      "LeaveResult": {
+        "type": "object",
+        "properties": {
+          "memberId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "const": "LEFT"
+          },
+          "financialVersion": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,19})$",
+            "description": "0至18446744073709551615的规范版本字符串。"
+          }
+        },
+        "required": [
+          "memberId",
+          "status",
+          "financialVersion"
+        ],
+        "additionalProperties": false
+      },
+      "Report": {
+        "type": "object",
+        "properties": {
+          "expenseTotalFen": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]*)$",
+            "description": "非负整数分字符串，累计汇总可超过单笔上限。"
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "category": {
+                  "type": "string",
+                  "enum": [
+                    "FOOD",
+                    "TRANSPORT",
+                    "HOUSING",
+                    "OTHER"
+                  ]
+                },
+                "amountFen": {
+                  "type": "string",
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "description": "非负整数分字符串，累计汇总可超过单笔上限。"
+                }
+              },
+              "required": [
+                "category",
+                "amountFen"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "members": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "memberId": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "paidFen": {
+                  "type": "string",
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "description": "非负整数分字符串，累计汇总可超过单笔上限。"
+                },
+                "shareFen": {
+                  "type": "string",
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "description": "非负整数分字符串，累计汇总可超过单笔上限。"
+                }
+              },
+              "required": [
+                "memberId",
+                "paidFen",
+                "shareFen"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "period": {
+            "type": "object",
+            "properties": {
+              "from": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "to": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "from",
+              "to"
+            ],
+            "additionalProperties": false
+          },
+          "ranking": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "memberId": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "amountFen": {
+                  "type": "string",
+                  "pattern": "^(0|[1-9][0-9]*)$",
+                  "description": "非负整数分字符串，累计汇总可超过单笔上限。"
+                },
+                "rankNo": {
+                  "type": "string",
+                  "pattern": "^(0|[1-9][0-9]{0,19})$",
+                  "description": "0至18446744073709551615的规范版本字符串。"
+                }
+              },
+              "required": [
+                "memberId",
+                "amountFen",
+                "rankNo"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "expenseTotalFen",
+          "categories",
+          "members",
+          "period",
+          "ranking"
+        ],
+        "additionalProperties": false
+      },
+      "AuditEvent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "actorUserId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "eventType": {
+            "type": "string"
+          },
+          "entityId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "revision": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]{0,19})$",
+                "description": "0至18446744073709551615的规范版本字符串。"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "changeSummary": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "id",
+          "actorUserId",
+          "eventType",
+          "entityId",
+          "createdAt",
+          "revision",
+          "changeSummary"
+        ],
+        "additionalProperties": false
+      },
+      "Empty": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "ExpenseInput": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "paidByMemberId": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "amountFen": {
+                "type": "string",
+                "pattern": "^(?:[1-9][0-9]{0,7}|100000000)$",
+                "description": "整数分字符串，范围1至100000000；禁止浮点、科学计数和前导零。",
+                "examples": [
+                  "10001"
+                ]
+              },
+              "category": {
+                "type": "string",
+                "enum": [
+                  "FOOD",
+                  "TRANSPORT",
+                  "HOUSING",
+                  "OTHER"
+                ]
+              },
+              "occurredOn": {
+                "type": "string",
+                "format": "date"
+              },
+              "note": {
+                "type": "string",
+                "maxLength": 1000,
+                "default": ""
+              },
+              "splitMode": {
+                "const": "EQUAL"
+              },
+              "participantMemberIds": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "minItems": 1,
+                "maxItems": 30,
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "paidByMemberId",
+              "amountFen",
+              "splitMode",
+              "participantMemberIds",
+              "category",
+              "occurredOn"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "paidByMemberId": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "amountFen": {
+                "type": "string",
+                "pattern": "^(?:[1-9][0-9]{0,7}|100000000)$",
+                "description": "整数分字符串，范围1至100000000；禁止浮点、科学计数和前导零。",
+                "examples": [
+                  "10001"
+                ]
+              },
+              "category": {
+                "type": "string",
+                "enum": [
+                  "FOOD",
+                  "TRANSPORT",
+                  "HOUSING",
+                  "OTHER"
+                ]
+              },
+              "occurredOn": {
+                "type": "string",
+                "format": "date"
+              },
+              "note": {
+                "type": "string",
+                "maxLength": 1000,
+                "default": ""
+              },
+              "splitMode": {
+                "const": "EXACT"
+              },
+              "shares": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Share"
+                },
+                "minItems": 1,
+                "maxItems": 30
+              }
+            },
+            "required": [
+              "paidByMemberId",
+              "amountFen",
+              "splitMode",
+              "shares",
+              "category",
+              "occurredOn"
+            ],
+            "additionalProperties": false
+          }
+        ],
+        "description": "均分和指定金额二选一。指定金额合计必须等于总额，成员必须属于当前账本且有效；0份额合法。"
+      },
+      "ExpensePatch": {
+        "type": "object",
+        "properties": {
+          "paidByMemberId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "amountFen": {
+            "type": "string",
+            "pattern": "^(?:[1-9][0-9]{0,7}|100000000)$",
+            "description": "整数分字符串，范围1至100000000；禁止浮点、科学计数和前导零。",
+            "examples": [
+              "10001"
+            ]
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "FOOD",
+              "TRANSPORT",
+              "HOUSING",
+              "OTHER"
+            ]
+          },
+          "occurredOn": {
+            "type": "string",
+            "format": "date"
+          },
+          "note": {
+            "type": "string",
+            "maxLength": 1000,
+            "default": ""
+          },
+          "splitMode": {
+            "enum": [
+              "EQUAL",
+              "EXACT"
+            ]
+          },
+          "participantMemberIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "minItems": 1,
+            "maxItems": 30,
+            "uniqueItems": true
+          },
+          "shares": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Share"
+            },
+            "minItems": 1,
+            "maxItems": 30
+          }
+        },
+        "required": [],
+        "additionalProperties": false,
+        "minProperties": 1,
+        "description": "JSON Merge Patch的受限字段集；不接受null。均分不能传shares，指定金额不能传participantMemberIds；切换模式须传对应成员/份额。历史退出成员参与的支出仅可改note。"
+      }
+    },
+    "securitySchemes": {
+      "localSession": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "heji_sid",
+        "description": "开发HTTP会话；生产HTTPS改用__Host-heji_sid。HttpOnly，SameSite=Lax，生产Secure；不在URL或正文传SID。"
+      },
+      "secureSession": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "__Host-heji_sid",
+        "description": "生产HTTPS会话；与开发Cookie二选一。"
+      }
+    },
+    "responses": {
+      "Error400": {
+        "description": "请求格式/条件头/幂等键无效",
+        "headers": {
+          "X-Request-Id": {
+            "description": "本次API请求标识；错误正文requestId与此一致。",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Error401": {
+        "description": "未登录、会话失效或登录失败",
+        "headers": {
+          "X-Request-Id": {
+            "description": "本次API请求标识；错误正文requestId与此一致。",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Error403": {
+        "description": "来源/CSRF无效或操作权限不足",
+        "headers": {
+          "X-Request-Id": {
+            "description": "本次API请求标识；错误正文requestId与此一致。",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Error404": {
+        "description": "资源不存在或当前用户不是有效成员",
+        "headers": {
+          "X-Request-Id": {
+            "description": "本次API请求标识；错误正文requestId与此一致。",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Error409": {
+        "description": "业务状态冲突、预览过期、幂等键参数变化或邀请失效",
+        "headers": {
+          "X-Request-Id": {
+            "description": "本次API请求标识；错误正文requestId与此一致。",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Error412": {
+        "description": "强ETag不匹配，须重新读取支出",
+        "headers": {
+          "X-Request-Id": {
+            "description": "本次API请求标识；错误正文requestId与此一致。",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Error413": {
+        "description": "正文超过32KiB",
+        "headers": {
+          "X-Request-Id": {
+            "description": "本次API请求标识；错误正文requestId与此一致。",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Error415": {
+        "description": "修改支出须使用application/merge-patch+json",
+        "headers": {
+          "X-Request-Id": {
+            "description": "本次API请求标识；错误正文requestId与此一致。",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Error422": {
+        "description": "字段/日期/金额/分摊/筛选无效",
+        "headers": {
+          "X-Request-Id": {
+            "description": "本次API请求标识；错误正文requestId与此一致。",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Error428": {
+        "description": "缺失If-Match",
+        "headers": {
+          "X-Request-Id": {
+            "description": "本次API请求标识；错误正文requestId与此一致。",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Error429": {
+        "description": "限流，参见Retry-After",
+        "headers": {
+          "X-Request-Id": {
+            "description": "本次API请求标识；错误正文requestId与此一致。",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "Retry-After": {
+            "schema": {
+              "type": "string"
+            },
+            "description": "应用限流通常900秒；代理层以实际响应为准。"
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Error500": {
+        "description": "内部错误，客户端只显示安全提示",
+        "headers": {
+          "X-Request-Id": {
+            "description": "本次API请求标识；错误正文requestId与此一致。",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "Error503": {
+        "description": "依赖未就绪或事务重试要求",
+        "headers": {
+          "X-Request-Id": {
+            "description": "本次API请求标识；错误正文requestId与此一致。",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "Retry-After": {
+            "schema": {
+              "type": "string"
+            },
+            "description": "TRANSACTION_RETRY_REQUIRED时为1秒。"
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    }
+  }
+}

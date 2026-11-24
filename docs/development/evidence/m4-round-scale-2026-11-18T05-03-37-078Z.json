@@ -1,0 +1,30 @@
+{
+  "scope": "heji_m4_bench只读实际终点计数与分轮推算值对账",
+  "runId": "2026-11-18T05-03-37-078Z",
+  "observed": {
+    "expenses": "131938",
+    "versions": "135738",
+    "shares": "4072140",
+    "confirmed": "6962",
+    "requests": "12542"
+  },
+  "inferred": {
+    "expenses": "131938",
+    "versions": "135738",
+    "shares": "4072140",
+    "confirmed": "6962",
+    "requests": "12542"
+  },
+  "matches": {
+    "expenses": true,
+    "versions": true,
+    "shares": true,
+    "confirmed": true,
+    "requests": true
+  },
+  "allMatch": true,
+  "sourceReport": "m4-performance-round-summary-2026-11-18T05-03-37-078Z.json",
+  "sourceReportSha256": "848ae70a025be4202c9a55e39684aab7fe08afe1c67835b696f1e57d6930f2c5",
+  "recordedAt": "2026-11-18T05:53:19.711Z",
+  "noDatabaseWrites": true
+}

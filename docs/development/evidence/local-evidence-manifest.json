@@ -1,0 +1,225 @@
+{
+  "format": "heji-local-evidence-manifest-v1",
+  "recordedOn": "2026-11-24",
+  "description": "原始负载样本保留本地，不进入GitHub源码提交；摘要验收报告继续入库。索引不含数据库备份、原始业务行或凭据。",
+  "fileCount": 36,
+  "totalBytes": 792824214,
+  "files": [
+    {
+      "path": "docs/development/evidence/m4-benchmark-formal-2026-11-17T16-14-30-235Z.json",
+      "bytes": 40876165,
+      "sha256": "373bbba02ee07b2bf339dd200ac7056e2026d769b41a13d851791e48a38b69db",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-formal-2026-11-17T16-14-30-235Z-read-same-book-1.json",
+      "bytes": 1048685,
+      "sha256": "d76e8c6f270ea82dc612941e5c6dbf73f45c171a35574f2db59a8160282384d1",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-formal-2026-11-17T16-14-30-235Z-read-same-book-2.json",
+      "bytes": 1062270,
+      "sha256": "48cd068488c28775606ad8b72668cbd5ee110753401cb694bad2928d0007668a",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-formal-2026-11-17T16-14-30-235Z-read-same-book-3.json",
+      "bytes": 1062801,
+      "sha256": "cfff4e9f7d445f91ff902cbb8efbf1c6ac4db02207e4e1e51ba2cd3f3abd3c54",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-formal-2026-11-17T16-14-30-235Z-read-spread-books-1.json",
+      "bytes": 6645177,
+      "sha256": "e76063ccabd06706adf3217ec705e5b8d06c3dc48ae981a19629375ff9e02c42",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-formal-2026-11-17T16-14-30-235Z-read-spread-books-2.json",
+      "bytes": 6492652,
+      "sha256": "d90c9621f9c1bcb3f8a4d3f2afc80586c690f787de7ce1be1a5d6d10a3046eba",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-formal-2026-11-17T16-14-30-235Z-read-spread-books-3.json",
+      "bytes": 6428389,
+      "sha256": "3cfeb02a63ef59ec1028f1bdadd5bf18952fa2a40d2e969134bee3a0a0ed1925",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-formal-2026-11-17T16-14-30-235Z-write-same-book-1.json",
+      "bytes": 2996378,
+      "sha256": "a256ac88bc6e4df05e7361493eb977e3335759fdae19d424dfd0765d5bb4e74b",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-formal-2026-11-17T16-14-30-235Z-write-same-book-2.json",
+      "bytes": 2367780,
+      "sha256": "17c1e7a3f924dd11575406485a888b13d57afa5f7da2f22eae6204c1237b253d",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-formal-2026-11-17T16-14-30-235Z-write-same-book-3.json",
+      "bytes": 2072444,
+      "sha256": "b6ab12f41da46d5c1a72871ae34bd7e068506b7eebafd7c596aec9fc7cb636be",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-formal-2026-11-17T16-14-30-235Z-write-spread-books-1.json",
+      "bytes": 4333692,
+      "sha256": "5b60c8caaed5a5274cad5ecc76f648358a09ccc5310a5b70134082846a035318",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-formal-2026-11-17T16-14-30-235Z-write-spread-books-2.json",
+      "bytes": 3490454,
+      "sha256": "ccde5ec9fc7d6989baba748d207df66b897cdce8be75e649cb867e9131c488d3",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-formal-2026-11-17T16-14-30-235Z-write-spread-books-3.json",
+      "bytes": 2878636,
+      "sha256": "f8d827bce651d31b7d38fbf4ee781b455ba450df2349372e2a6c083108733409",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-formal-2026-11-18T05-03-37-078Z-read-same-book-1.json",
+      "bytes": 38481643,
+      "sha256": "e04b0124b2ffeb16473b75db691af98b6b0f85cdc353bda4639249f3c71d60ef",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-formal-2026-11-18T05-03-37-078Z-read-same-book-2.json",
+      "bytes": 36752523,
+      "sha256": "ef0bfc29c5c47bf525b644f30e250f9792df3799186a072b0b87a8334e5c2d43",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-formal-2026-11-18T05-03-37-078Z-read-same-book-3.json",
+      "bytes": 37627279,
+      "sha256": "7f6a657202e57fe88729407578baae9b36a959bcdf78031e810d87676042890a",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-formal-2026-11-18T05-03-37-078Z-read-spread-books-1.json",
+      "bytes": 106455559,
+      "sha256": "856db61f424b4520375754bcadc5e2bc4b11f8bfbfa6eac87cc59c78c46760b6",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-formal-2026-11-18T05-03-37-078Z-read-spread-books-2.json",
+      "bytes": 106945159,
+      "sha256": "426f695bf6c5532aa79195102f51f568e92a9ad0b0d13deec9256d16aefd7fba",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-formal-2026-11-18T05-03-37-078Z-read-spread-books-3.json",
+      "bytes": 102568513,
+      "sha256": "0a8ed1bc0bac8ff951c5d19f3c6de2323db2daa6753caa967180f1b36aeb2631",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-formal-2026-11-18T05-03-37-078Z-write-same-book-1.json",
+      "bytes": 18388169,
+      "sha256": "e5f18e7a5fa1c3d612682ab7422950752fbacbbe1d74d720cade29e6b62276e5",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-formal-2026-11-18T05-03-37-078Z-write-same-book-2.json",
+      "bytes": 17069068,
+      "sha256": "43b40d1ff2ce10d6b646dae02c472c94ee0ed34ac2f064cf12e88f5fd708f0ab",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-formal-2026-11-18T05-03-37-078Z-write-same-book-3.json",
+      "bytes": 16024278,
+      "sha256": "2ff0bc5fbd63934958d1e8e69fd6737e882d5709a36e68806804a05aadf10457",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-formal-2026-11-18T05-03-37-078Z-write-spread-books-1.json",
+      "bytes": 23504151,
+      "sha256": "a7a1aac8473e8638cc085342ad1bec92bdbf613abbcffd50dc00940db4994de0",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-formal-2026-11-18T05-03-37-078Z-write-spread-books-2.json",
+      "bytes": 21425655,
+      "sha256": "eb6f5a9de6ddc2c2dbcfb3c629602ac0d61a09e798e418f00c2ed201a7ab1bff",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-formal-2026-11-18T05-03-37-078Z-write-spread-books-3.json",
+      "bytes": 20025584,
+      "sha256": "c2292133355372dafe42b3e27b6f7afb37299b78fc628d09f33c5eceb10bab82",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-participant-study-2026-11-18T11-27-06-199Z-p30-1.json",
+      "bytes": 14576216,
+      "sha256": "e0c98eda5bb3a4cd792d25fc00e5d6785670429ba06b2ed8113ec6fbbfb98919",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-participant-study-2026-11-18T11-27-06-199Z-p30-2.json",
+      "bytes": 13704256,
+      "sha256": "d85580eb7de241332b1ce2109d7680ad3fe96a2cb20772cc30d38260ba692c03",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-participant-study-2026-11-18T11-27-06-199Z-p30-3.json",
+      "bytes": 13269423,
+      "sha256": "3c52fcd1310ec9873031b646c591926ec458ab298f0d510489b3dafaf535cdde",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-participant-study-2026-11-18T11-27-06-199Z-p4-1.json",
+      "bytes": 18362761,
+      "sha256": "9c360b4e76b7621ab0e8dd789418290d3163f5b36b3ec96ad6cc79526c0dc134",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-participant-study-2026-11-18T11-27-06-199Z-p4-2.json",
+      "bytes": 17153512,
+      "sha256": "5e299d12f832cfe82f4c670ce485f488abfb07d7d3401717f53ad87ffc57f5f3",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-participant-study-2026-11-18T11-27-06-199Z-p4-3.json",
+      "bytes": 17603435,
+      "sha256": "ba7340c0b8f76eb593f9369fc34c0b6162f339b44ecea55343334684d4a20688",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-participant-study-2026-11-18T11-27-06-199Z-p8-1.json",
+      "bytes": 16085939,
+      "sha256": "e2fb91581d2de9130f7730b4660a883e60f910b35d583cc7c4db392c2d79f15a",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-participant-study-2026-11-18T11-27-06-199Z-p8-2.json",
+      "bytes": 15598020,
+      "sha256": "83ddc573ac392b93ce22ab5659a732a2044838b5316dbb994b04d069b53139b5",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-round-participant-study-2026-11-18T11-27-06-199Z-p8-3.json",
+      "bytes": 14904771,
+      "sha256": "188dd360c3ce4d49213a76348ddb502d5c15d2296842c5283b1f297648f5858d",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-window-benchmark-2026-11-19T14-33-09-734Z.jsonl",
+      "bytes": 8373190,
+      "sha256": "d8864498e628d95d0d25787dc6e39726eda9b758792a7c24b2180154af8dd781",
+      "availability": "local-only"
+    },
+    {
+      "path": "docs/development/evidence/m4-window-benchmark-2026-11-20T11-39-24-152Z.jsonl",
+      "bytes": 16169587,
+      "sha256": "9cfeb66c572a3d970d0b74fe9a24a0b00239580d66285bd52fce6c684acf4cc3",
+      "availability": "local-only"
+    }
+  ]
+}

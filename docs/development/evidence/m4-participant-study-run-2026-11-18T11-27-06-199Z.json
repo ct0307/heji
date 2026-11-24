@@ -1,0 +1,63 @@
+{
+  "kind": "m4-participant-study",
+  "runId": "2026-11-18T11-27-06-199Z",
+  "startedAt": "2026-11-18T11:27:10.529Z",
+  "completedAt": "2026-11-18T11:59:47.033Z",
+  "environment": {
+    "node": "v24.14.1",
+    "os": "win32 10.0.26200",
+    "cpu": "AMD Ryzen 9 7940HX with Radeon Graphics        ",
+    "logicalCpus": 32,
+    "memoryBytes": 16340414464,
+    "mysql": {
+      "version": "8.0.32",
+      "sqlMode": "IGNORE_SPACE,ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION",
+      "isolationLevel": "REPEATABLE-READ"
+    },
+    "mysqlSettings": [
+      {
+        "bufferPoolBytes": "134217728",
+        "maxConnections": "151"
+      }
+    ],
+    "poolConnections": 8
+  },
+  "options": {
+    "users": 20,
+    "warmupMs": 30000,
+    "durationMs": 180000,
+    "rounds": 3,
+    "smoke": false,
+    "participantStudy": true,
+    "participantCounts": [
+      30,
+      4,
+      8
+    ]
+  },
+  "actualScaleAtStart": {
+    "expenses": "131938",
+    "versions": "135738",
+    "shares": "4072140",
+    "confirmed": "6962",
+    "requests": "12542"
+  },
+  "actualScaleAtEnd": {
+    "expenses": "230043",
+    "versions": "233843",
+    "shares": "5345104",
+    "confirmed": "6963",
+    "requests": "23438"
+  },
+  "roundFiles": [
+    "m4-round-participant-study-2026-11-18T11-27-06-199Z-p30-1.json",
+    "m4-round-participant-study-2026-11-18T11-27-06-199Z-p30-2.json",
+    "m4-round-participant-study-2026-11-18T11-27-06-199Z-p30-3.json",
+    "m4-round-participant-study-2026-11-18T11-27-06-199Z-p4-1.json",
+    "m4-round-participant-study-2026-11-18T11-27-06-199Z-p4-2.json",
+    "m4-round-participant-study-2026-11-18T11-27-06-199Z-p4-3.json",
+    "m4-round-participant-study-2026-11-18T11-27-06-199Z-p8-1.json",
+    "m4-round-participant-study-2026-11-18T11-27-06-199Z-p8-2.json",
+    "m4-round-participant-study-2026-11-18T11-27-06-199Z-p8-3.json"
+  ]
+}

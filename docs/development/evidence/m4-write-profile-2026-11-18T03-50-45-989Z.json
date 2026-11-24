@@ -1,0 +1,97 @@
+{
+  "scope": "30人单请求，5组交替新旧路径；均回滚，不代表20用户HTTP正式达标",
+  "before": {
+    "financialVersion": "26296",
+    "expenses": "50294",
+    "versions": "54094",
+    "shares": "1622820"
+  },
+  "after": {
+    "financialVersion": "26296",
+    "expenses": "50294",
+    "versions": "54094",
+    "shares": "1622820"
+  },
+  "evidence": [
+    {
+      "round": 1,
+      "mode": "legacy",
+      "totalMs": 54.33499999999981,
+      "shareInsertMs": 14.915399999999863,
+      "bookLockHeldMs": 51.17059999999992,
+      "sqlCount": 43
+    },
+    {
+      "round": 1,
+      "mode": "batch",
+      "totalMs": 24.02299999999991,
+      "shareInsertMs": 7.650899999999865,
+      "bookLockHeldMs": 22.773300000000063,
+      "sqlCount": 14
+    },
+    {
+      "round": 2,
+      "mode": "batch",
+      "totalMs": 20.842200000000048,
+      "shareInsertMs": 2.65969999999993,
+      "bookLockHeldMs": 19.763500000000022,
+      "sqlCount": 14
+    },
+    {
+      "round": 2,
+      "mode": "legacy",
+      "totalMs": 30.73160000000007,
+      "shareInsertMs": 14.427600000000211,
+      "bookLockHeldMs": 29.83660000000009,
+      "sqlCount": 43
+    },
+    {
+      "round": 3,
+      "mode": "legacy",
+      "totalMs": 24.3420000000001,
+      "shareInsertMs": 9.471599999999853,
+      "bookLockHeldMs": 23.42599999999993,
+      "sqlCount": 43
+    },
+    {
+      "round": 3,
+      "mode": "batch",
+      "totalMs": 19.139999999999873,
+      "shareInsertMs": 4.395499999999856,
+      "bookLockHeldMs": 18.251199999999926,
+      "sqlCount": 14
+    },
+    {
+      "round": 4,
+      "mode": "batch",
+      "totalMs": 16.407400000000052,
+      "shareInsertMs": 1.9384000000000015,
+      "bookLockHeldMs": 15.555399999999963,
+      "sqlCount": 14
+    },
+    {
+      "round": 4,
+      "mode": "legacy",
+      "totalMs": 23.842499999999973,
+      "shareInsertMs": 8.335600000000113,
+      "bookLockHeldMs": 22.957799999999907,
+      "sqlCount": 43
+    },
+    {
+      "round": 5,
+      "mode": "legacy",
+      "totalMs": 23.55750000000012,
+      "shareInsertMs": 8.707200000000057,
+      "bookLockHeldMs": 22.694400000000087,
+      "sqlCount": 43
+    },
+    {
+      "round": 5,
+      "mode": "batch",
+      "totalMs": 17.163800000000037,
+      "shareInsertMs": 3.6001000000001113,
+      "bookLockHeldMs": 16.35850000000005,
+      "sqlCount": 14
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#182741" />
+    <title>杭州周末 · 合记</title>
+    <link rel="stylesheet" href="./b.css" />
+    <script src="./b.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="?page=overview&state=normal" data-page="overview" aria-label="合记，账本总览">
+          <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M6 7h8c3 0 4 2 4 4v16c0-3-2-4-5-4H6V7Z" stroke="currentColor" stroke-width="1.8"/><path d="M26 5h-6c-4 0-6 2-6 6v16c0-3 2-5 6-5h6V5Z" fill="currentColor"/><path d="M19 11h3M19 15h3" stroke="white" stroke-width="1.4"/></svg>
+          <span>合记</span>
+        </a>
+        <nav class="main-nav" aria-label="账本导航">
+          <a href="?page=overview&state=normal" data-page="overview">账本总览</a>
+          <a href="?page=settlement&state=normal" data-page="settlement">收款与结算<span class="nav-dot" id="nav-pending" aria-label="1 笔待确认"></span></a>
+        </nav>
+        <div class="identity"><span class="avatar avatar-ning" aria-hidden="true">宁</span><span>阿宁</span><span class="identity-note">我</span></div>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <div class="book-heading">
+        <div class="book-caption"><span class="tiny-book" aria-hidden="true"></span>共同账本<span class="caption-slash">/</span>2026 年 11 月</div>
+        <div class="book-heading-row">
+          <div><h1>杭州周末<span class="title-dot">。</span></h1><p class="book-meta">旅行<span>·</span>3 位成员<span>·</span>人民币</p></div>
+          <button class="button button-primary add-entry" type="button" data-action="open-entry"><span aria-hidden="true">＋</span>记一笔</button>
+        </div>
+      </div>
+
+      <div id="page-content"></div>
+
+      <footer class="preview-footer">
+        <span class="preview-label"><span aria-hidden="true">B</span> 蓝墨账页 <i>·</i> 交互预览 · 示例数据</span>
+        <div class="preview-states" role="group" aria-label="预览状态">
+          <button type="button" data-state="normal">正常</button><button type="button" data-state="empty">空账本</button><button type="button" data-state="error">加载异常</button>
+        </div>
+        <button class="reset-preview" type="button" data-action="reset">重置演示</button>
+      </footer>
+    </main>
+
+    <dialog id="entry-dialog" class="app-dialog" aria-labelledby="entry-dialog-title">
+      <form id="entry-form">
+        <div class="dialog-heading"><div><p class="eyebrow">随手记，慢慢分</p><h2 id="entry-dialog-title">记一笔 <span class="dialog-label">演示</span></h2></div><button type="button" class="icon-button" data-action="close-entry" aria-label="关闭记账表单">×</button></div>
+        <div class="form-amount"><label for="entry-amount">支出金额</label><div><span>¥</span><input id="entry-amount" name="amount" inputmode="decimal" type="number" min="0.01" max="999999.99" step="0.01" placeholder="0.00" required /></div></div>
+        <label class="form-field" for="entry-title">花在了哪里<input id="entry-title" name="title" maxlength="30" placeholder="如：西湖边的午餐" required /></label>
+        <div class="form-grid"><label class="form-field" for="entry-payer">谁付款<select id="entry-payer" name="payer"><option>阿宁</option><option>林悦</option><option>周然</option></select></label><label class="form-field" for="entry-category">分类<select id="entry-category" name="category"><option>餐饮</option><option>住宿</option><option>交通</option><option>其他</option></select></label></div>
+        <p class="form-note">阿宁、林悦、周然共同分摊</p>
+        <div id="entry-result" class="entry-result" hidden aria-live="polite"></div>
+        <div class="dialog-actions"><button type="button" class="button button-secondary" data-action="close-entry">取消</button><button type="submit" class="button button-primary">预览这笔账</button></div>
+      </form>
+    </dialog>
+
+    <dialog id="confirm-dialog" class="app-dialog confirm-dialog" aria-labelledby="confirm-dialog-title">
+      <div class="dialog-heading"><div><p class="eyebrow">收款核对</p><h2 id="confirm-dialog-title">确认这笔收款？</h2></div><button type="button" class="icon-button" data-action="close-confirm" aria-label="关闭收款确认">×</button></div>
+      <div class="confirm-transfer"><span class="avatar avatar-yue">悦</span><span>林悦</span><span class="transfer-line" aria-hidden="true">→</span><span class="avatar avatar-ning">宁</span><span>阿宁</span></div>
+      <p class="confirm-amount"><span>¥</span>204.00</p><p class="confirm-description">将模拟确认这笔收款，阿宁的待收金额变为 ¥476.00。本次操作不会执行转账。</p>
+      <div class="dialog-actions"><button type="button" class="button button-secondary" data-action="close-confirm">再核对一下</button><button type="button" class="button button-primary" data-action="complete-confirm">模拟确认收款</button></div>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "scope": "仅真实Vue页面/模拟接口，无数据库写入",
+  "passed": [
+    "同页新邀请替换旧错误及预览",
+    "旧410延迟响应不覆盖新预览或清除新邀请",
+    "刷新保留当前邀请且地址栏无token",
+    "旧加入响应不清新邀请或跳转旧账本"
+  ],
+  "status": "passed",
+  "mobileWidth": 390,
+  "redGreen": {
+    "beforeFix": "?????B???????exit1",
+    "afterFix": "4???????390px???exit0"
+  },
+  "scriptSha256": "4786fb0aac8c25b11806e789293a0785d44872fd9e7385613db2116fcdf967c5"
+}

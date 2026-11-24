@@ -1,0 +1,542 @@
+{
+  "scope": "独立静态视觉预览",
+  "startedAt": "2026-11-19T03:07:54.751412+00:00",
+  "layouts": [
+    {
+      "concept": "a",
+      "page": "overview",
+      "state": "normal",
+      "width": 360,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "overview",
+      "state": "normal",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "overview",
+      "state": "normal",
+      "width": 600,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "overview",
+      "state": "normal",
+      "width": 760,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "overview",
+      "state": "normal",
+      "width": 768,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "overview",
+      "state": "normal",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "overview",
+      "state": "empty",
+      "width": 360,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "overview",
+      "state": "empty",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "overview",
+      "state": "empty",
+      "width": 600,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "overview",
+      "state": "empty",
+      "width": 760,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "overview",
+      "state": "empty",
+      "width": 768,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "overview",
+      "state": "empty",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "overview",
+      "state": "error",
+      "width": 360,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "overview",
+      "state": "error",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "overview",
+      "state": "error",
+      "width": 600,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "overview",
+      "state": "error",
+      "width": 760,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "overview",
+      "state": "error",
+      "width": 768,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "overview",
+      "state": "error",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "settlement",
+      "state": "normal",
+      "width": 360,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "settlement",
+      "state": "normal",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "settlement",
+      "state": "normal",
+      "width": 600,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "settlement",
+      "state": "normal",
+      "width": 760,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "settlement",
+      "state": "normal",
+      "width": 768,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "settlement",
+      "state": "normal",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "settlement",
+      "state": "empty",
+      "width": 360,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "settlement",
+      "state": "empty",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "settlement",
+      "state": "empty",
+      "width": 600,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "settlement",
+      "state": "empty",
+      "width": 760,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "settlement",
+      "state": "empty",
+      "width": 768,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "settlement",
+      "state": "empty",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "settlement",
+      "state": "error",
+      "width": 360,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "settlement",
+      "state": "error",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "settlement",
+      "state": "error",
+      "width": 600,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "settlement",
+      "state": "error",
+      "width": 760,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "settlement",
+      "state": "error",
+      "width": 768,
+      "passed": true
+    },
+    {
+      "concept": "a",
+      "page": "settlement",
+      "state": "error",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "overview",
+      "state": "normal",
+      "width": 360,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "overview",
+      "state": "normal",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "overview",
+      "state": "normal",
+      "width": 600,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "overview",
+      "state": "normal",
+      "width": 760,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "overview",
+      "state": "normal",
+      "width": 768,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "overview",
+      "state": "normal",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "overview",
+      "state": "empty",
+      "width": 360,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "overview",
+      "state": "empty",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "overview",
+      "state": "empty",
+      "width": 600,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "overview",
+      "state": "empty",
+      "width": 760,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "overview",
+      "state": "empty",
+      "width": 768,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "overview",
+      "state": "empty",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "overview",
+      "state": "error",
+      "width": 360,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "overview",
+      "state": "error",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "overview",
+      "state": "error",
+      "width": 600,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "overview",
+      "state": "error",
+      "width": 760,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "overview",
+      "state": "error",
+      "width": 768,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "overview",
+      "state": "error",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "settlement",
+      "state": "normal",
+      "width": 360,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "settlement",
+      "state": "normal",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "settlement",
+      "state": "normal",
+      "width": 600,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "settlement",
+      "state": "normal",
+      "width": 760,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "settlement",
+      "state": "normal",
+      "width": 768,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "settlement",
+      "state": "normal",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "settlement",
+      "state": "empty",
+      "width": 360,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "settlement",
+      "state": "empty",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "settlement",
+      "state": "empty",
+      "width": 600,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "settlement",
+      "state": "empty",
+      "width": 760,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "settlement",
+      "state": "empty",
+      "width": 768,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "settlement",
+      "state": "empty",
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "settlement",
+      "state": "error",
+      "width": 360,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "settlement",
+      "state": "error",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "settlement",
+      "state": "error",
+      "width": 600,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "settlement",
+      "state": "error",
+      "width": 760,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "settlement",
+      "state": "error",
+      "width": 768,
+      "passed": true
+    },
+    {
+      "concept": "b",
+      "page": "settlement",
+      "state": "error",
+      "width": 1440,
+      "passed": true
+    }
+  ],
+  "comparisonLayouts": [
+    {
+      "width": 360,
+      "passed": true
+    },
+    {
+      "width": 390,
+      "passed": true
+    },
+    {
+      "width": 768,
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "passed": true
+    }
+  ],
+  "pageErrors": [],
+  "apiRequests": [],
+  "screenshots": [
+    "previews/a-overview-mobile.png",
+    "previews/a-overview-desktop.png",
+    "previews/a-settlement-mobile.png",
+    "previews/a-settlement-desktop.png",
+    "previews/b-overview-mobile.png",
+    "previews/b-overview-desktop.png",
+    "previews/b-settlement-mobile.png",
+    "previews/b-settlement-desktop.png"
+  ],
+  "status": "passed",
+  "completedAt": "2026-11-19T03:08:37.082459+00:00"
+}

@@ -1,0 +1,196 @@
+{
+  "scope": "独立静态视觉预览，非正式应用验收",
+  "method": "内置浏览器实际点击、填写、键盘及DOM读取",
+  "completedAt": "2026-11-19T03:08:22.032Z",
+  "checks": [
+    {
+      "case": "A-首页核对默认门禁",
+      "actual": {
+        "balance": "680",
+        "checked": false,
+        "disabled": true,
+        "open": true
+      },
+      "passed": true
+    },
+    {
+      "case": "A-首页模拟确认",
+      "actual": {
+        "balance": "476",
+        "dialogOpen": false,
+        "focus": "view-settlement",
+        "members": [
+          "+476",
+          "0",
+          "−476"
+        ],
+        "total": "1,724.00"
+      },
+      "passed": true
+    },
+    {
+      "case": "A-确认结果跨页保持",
+      "actual": "476.00",
+      "passed": true
+    },
+    {
+      "case": "A-刷新恢复与结算默认门禁",
+      "actual": {
+        "balance": "680.00",
+        "checked": false,
+        "disabled": true
+      },
+      "passed": true
+    },
+    {
+      "case": "A-结算页确认与焦点",
+      "actual": {
+        "balance": "476.00",
+        "focus": "focused-review"
+      },
+      "passed": true
+    },
+    {
+      "case": "A-错误与空状态恢复",
+      "actual": {
+        "balance": "680.00",
+        "state": "normal"
+      },
+      "passed": true
+    },
+    {
+      "case": "A-记账仅预览",
+      "actual": {
+        "dialogOpen": false,
+        "toast": "记账流程已体验完毕，预览内容未保存。",
+        "total": "1,724.00"
+      },
+      "passed": true
+    },
+    {
+      "case": "A-Escape关闭弹层",
+      "actual": {
+        "focus": "add-expense",
+        "open": false
+      },
+      "passed": true
+    },
+    {
+      "case": "B-默认确认门禁",
+      "actual": {
+        "checked": false,
+        "disabled": true
+      },
+      "passed": true
+    },
+    {
+      "case": "B-二次确认前余额未改",
+      "actual": {
+        "dialogOpen": true,
+        "still680": true
+      },
+      "passed": true
+    },
+    {
+      "case": "B-模拟确认与焦点",
+      "actual": {
+        "total": "¥ 1,724.00",
+        "has476": true,
+        "focus": "receipt",
+        "dialogOpen": false
+      },
+      "passed": true
+    },
+    {
+      "case": "B-跨页余额与总消费",
+      "actual": {
+        "members": [
+          "+476.00待收",
+          "0.00已结清",
+          "−476.00待付"
+        ],
+        "total": "¥ 1,724.00"
+      },
+      "passed": true
+    },
+    {
+      "case": "B-输入预览安全与账本不变",
+      "actual": {
+        "insertedMarkup": false,
+        "result": "<b>湖边咖啡</b> · ¥36.50 · 阿宁付款填写预览已生成，示例账本不添加记录。",
+        "total": "¥ 1,724.00"
+      },
+      "passed": true
+    },
+    {
+      "case": "B-Escape关闭弹层",
+      "actual": {
+        "focus": "open-entry",
+        "open": false
+      },
+      "passed": true
+    },
+    {
+      "case": "B-错误恢复与空状态重置",
+      "actual": {
+        "members": [
+          "+680.00待收",
+          "−204.00待付",
+          "−476.00待付"
+        ],
+        "total": "¥ 1,724.00"
+      },
+      "passed": true
+    },
+    {
+      "case": "对比入口-设备切换保留确认结果",
+      "actual": {
+        "src": "a.html?page=overview&state=normal",
+        "view": "frame-surround mobile",
+        "width": 378,
+        "balance": "476"
+      },
+      "passed": true,
+      "assertionCorrection": {
+        "initialExpectedContentWidth": 390,
+        "reason": "max-width390按border-box含左右各6px边框；实际内容区378px，初始测试口径错误",
+        "verifiedMetrics": {
+          "borderLeft": "6px",
+          "borderRight": "6px",
+          "contentWidth": 378,
+          "outerWidth": 390
+        }
+      }
+    },
+    {
+      "case": "对比入口-方案页面状态切换",
+      "actual": {
+        "heading": "账清，心也轻",
+        "src": "b.html?page=settlement&state=empty"
+      },
+      "passed": true
+    },
+    {
+      "case": "B-重新加载恢复初始数据",
+      "actual": {
+        "members": [
+          "+680.00待收",
+          "−204.00待付",
+          "−476.00待付"
+        ],
+        "total": "¥ 1,724.00"
+      },
+      "passed": true
+    },
+    {
+      "case": "对比入口-错误状态切换",
+      "actual": "这页账目还没加载出来",
+      "passed": true
+    }
+  ],
+  "status": "passed",
+  "toolNotes": [
+    "首次尝试通过受限DOM桥读取iframe.contentDocument不受支持，改用frameLocator读取实际页面；页面无业务异常。",
+    "手机尺寸首次误按内容区390px断言；依据CSS与实际尺寸改为含边框390px、内容378px，保留原始测量及更正说明。"
+  ]
+}

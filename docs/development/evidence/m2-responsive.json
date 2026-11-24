@@ -1,0 +1,114 @@
+[
+  {
+    "viewport": 360,
+    "tab": "明细",
+    "clientWidth": 345,
+    "overflow": false,
+    "pageWidth": 345
+  },
+  {
+    "viewport": 360,
+    "tab": "结算",
+    "clientWidth": 345,
+    "overflow": false,
+    "pageWidth": 345
+  },
+  {
+    "viewport": 360,
+    "tab": "统计",
+    "clientWidth": 345,
+    "overflow": false,
+    "pageWidth": 345
+  },
+  {
+    "viewport": 360,
+    "tab": "成员",
+    "clientWidth": 345,
+    "overflow": false,
+    "pageWidth": 345
+  },
+  {
+    "viewport": 390,
+    "tab": "明细",
+    "clientWidth": 375,
+    "overflow": false,
+    "pageWidth": 375
+  },
+  {
+    "viewport": 390,
+    "tab": "结算",
+    "clientWidth": 375,
+    "overflow": false,
+    "pageWidth": 375
+  },
+  {
+    "viewport": 390,
+    "tab": "统计",
+    "clientWidth": 375,
+    "overflow": false,
+    "pageWidth": 375
+  },
+  {
+    "viewport": 390,
+    "tab": "成员",
+    "clientWidth": 375,
+    "overflow": false,
+    "pageWidth": 375
+  },
+  {
+    "viewport": 768,
+    "tab": "明细",
+    "clientWidth": 753,
+    "overflow": false,
+    "pageWidth": 753
+  },
+  {
+    "viewport": 768,
+    "tab": "结算",
+    "clientWidth": 753,
+    "overflow": false,
+    "pageWidth": 753
+  },
+  {
+    "viewport": 768,
+    "tab": "统计",
+    "clientWidth": 753,
+    "overflow": false,
+    "pageWidth": 753
+  },
+  {
+    "viewport": 768,
+    "tab": "成员",
+    "clientWidth": 753,
+    "overflow": false,
+    "pageWidth": 753
+  },
+  {
+    "viewport": 1440,
+    "tab": "明细",
+    "clientWidth": 1440,
+    "overflow": false,
+    "pageWidth": 1440
+  },
+  {
+    "viewport": 1440,
+    "tab": "结算",
+    "clientWidth": 1425,
+    "overflow": false,
+    "pageWidth": 1425
+  },
+  {
+    "viewport": 1440,
+    "tab": "统计",
+    "clientWidth": 1425,
+    "overflow": false,
+    "pageWidth": 1425
+  },
+  {
+    "viewport": 1440,
+    "tab": "成员",
+    "clientWidth": 1425,
+    "overflow": false,
+    "pageWidth": 1425
+  }
+]

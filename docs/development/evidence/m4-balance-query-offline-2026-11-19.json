@@ -1,0 +1,42 @@
+{
+  "format": "heji-m4-balance-query-offline-v1",
+  "at": "2026-11-19T11:14:12.879Z",
+  "readonlyEvidence": "docs/development/evidence/m4-balance-query-readonly-2026-11-19T11-06-46-253Z.json",
+  "matchedSourceHashes": 4,
+  "unchangedMigrations": 4,
+  "changedHistoricalSources": [
+    "tests/m4/backup.ts"
+  ],
+  "documentsChecked": 9,
+  "localLinksChecked": 68,
+  "verification": {
+    "regression": {
+      "red": {
+        "pass": 7,
+        "fail": 2
+      },
+      "green": {
+        "pass": 9,
+        "fail": 0
+      }
+    },
+    "npmTest": {
+      "exitCode": 0,
+      "pass": 153,
+      "fail": 0,
+      "skip": 0,
+      "durationMs": 1164.5027
+    },
+    "build": {
+      "exitCode": 0,
+      "typecheck": "API and Vue",
+      "modules": 59
+    },
+    "plans": {
+      "readonly": 0,
+      "m4": 0,
+      "windowMigration": 0
+    }
+  },
+  "scope": "Offline source, evidence and documentation verification. No restore, migration, backup, workload or database mutation."
+}

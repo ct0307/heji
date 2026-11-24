@@ -1,0 +1,84 @@
+{
+  "format": "heji-m4-delivery-offline-check-v1",
+  "checkedAt": "2026-11-19T01:22:46.283228+00:00",
+  "scope": "离线材料与已有摘要核对；不连接数据库、不重新运行基准、不代表浏览器或生产验收",
+  "checks": {
+    "localLinks": 37,
+    "httpOperations": 38,
+    "localOpenApiReferences": 466,
+    "routeCoverage": "PASS",
+    "formalGroups": 12,
+    "participantGroups": 9,
+    "formalConfirmation": {
+      "same-book": {
+        "successes": 0,
+        "total": 3364
+      },
+      "spread-books": {
+        "successes": 4259,
+        "total": 4259
+      }
+    },
+    "participantConfirmation": {
+      "4": {
+        "successes": 0,
+        "total": 3501
+      },
+      "8": {
+        "successes": 1,
+        "total": 3058
+      },
+      "30": {
+        "successes": 0,
+        "total": 2700
+      }
+    },
+    "historicalHttpsCounts": {
+      "passed": 32,
+      "failed": 0,
+      "notRun": 0
+    }
+  },
+  "freshCommands": {
+    "npm test": {
+      "pass": 104,
+      "fail": 0,
+      "skipped": 0
+    },
+    "npm run test:m4": {
+      "pass": 72,
+      "fail": 0,
+      "skipped": 0,
+      "subsetOf": "npm test"
+    },
+    "npm run build": {
+      "typecheck": "PASS",
+      "viteBuild": "PASS"
+    }
+  },
+  "sourceSummaries": [
+    {
+      "filename": "m4-performance-round-summary-2026-11-18T05-03-37-078Z.json",
+      "sha256": "848ae70a025be4202c9a55e39684aab7fe08afe1c67835b696f1e57d6930f2c5"
+    },
+    {
+      "filename": "m4-participant-study-summary-2026-11-18T11-27-06-199Z.json",
+      "sha256": "c1a9448fb2cec415a88bf370f203fd5a964d5fb5e8e43ad83167595e6d713de7"
+    },
+    {
+      "filename": "m4-local-https-2026-11-18T05-56-01-296Z.json",
+      "sha256": "f8cb7599a3a0d133194865ab9c0838d2105ba024b5ce92faf78d495d6ca497fc"
+    },
+    {
+      "filename": "m4-browser-https-ui-2026-11-18.json",
+      "sha256": "9260f13a59e1b931ad2aeb3c141256d7548b96ee37eb125e3d319fee50f0deb1"
+    }
+  ],
+  "limitations": [
+    "只核对已保存摘要，未重新读取全部原始HTTP样本",
+    "热点确认P1未关闭",
+    "现场全流程串演未执行",
+    "结算窗口仅有待审核设计，未实现或迁移",
+    "公网/生产未验收"
+  ]
+}

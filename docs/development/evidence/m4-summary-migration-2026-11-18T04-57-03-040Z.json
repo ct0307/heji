@@ -1,0 +1,65 @@
+{
+  "scope": "M4 finance summaries initial migration",
+  "database": "heji_dev",
+  "startedAt": "2026-11-18T04:57:00.862Z",
+  "completedAt": "2026-11-18T04:57:03.040Z",
+  "elapsedMs": 2176.9386000000004,
+  "proposal": {
+    "name": "003_finance_summaries.sql",
+    "checksum": "0817f3f6a6ac2396509eb75aaa2bfdf3d6259088568743c1d3e3910ab278daff"
+  },
+  "baseline": [
+    {
+      "name": "001_m1.sql",
+      "checksum": "58cd31b090c5c7dd40fdcef9cc5f3dc46d24095960c2b2eda381a61297f218e1"
+    },
+    {
+      "name": "002_m2.sql",
+      "checksum": "fe252167e397ba27f3b738b3f540ce0977fb1992125520151577651556fa8286"
+    }
+  ],
+  "factsBefore": {
+    "counts": {
+      "books": "434",
+      "book_members": "1427",
+      "expenses": "460",
+      "expense_versions": "655",
+      "expense_shares": "1255",
+      "transfer_requests": "276",
+      "confirmed_transfers": "245",
+      "audit_events": "3123",
+      "financial_audit_details": "1296",
+      "idempotency_records": "2986"
+    },
+    "financialVersionHash": "df2d777ec5f1d38704b558290194afd89eceaa3ed3197c7ec584ca046c20294d"
+  },
+  "factsAfter": {
+    "counts": {
+      "books": "434",
+      "book_members": "1427",
+      "expenses": "460",
+      "expense_versions": "655",
+      "expense_shares": "1255",
+      "transfer_requests": "276",
+      "confirmed_transfers": "245",
+      "audit_events": "3123",
+      "financial_audit_details": "1296",
+      "idempotency_records": "2986"
+    },
+    "financialVersionHash": "df2d777ec5f1d38704b558290194afd89eceaa3ed3197c7ec584ca046c20294d"
+  },
+  "summaryCounts": {
+    "finance_member_totals": "714",
+    "finance_daily_members": "558",
+    "finance_daily_categories": "302"
+  },
+  "reconciliation": {
+    "checkedBooks": 434,
+    "checkedPeriods": 890,
+    "balancesEqual": true,
+    "periodReportsEqual": true,
+    "conservation": true,
+    "nonnegative": true
+  },
+  "retainedOnFailure": true
+}

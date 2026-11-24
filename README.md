@@ -2,6 +2,8 @@
 
 多人共享账本与费用分摊系统，Web服务器课程期末项目。用来记录一起花的钱，计算每个人该承担多少，再由双方确认转账。
 
+项目源码：[ct0307/heji](https://github.com/ct0307/heji)（公开仓库，默认分支 `master`）。
+
 前端使用 Vue 3、TypeScript 和 Vite，后端使用 Express 5，数据存储在 MySQL 8。
 
 ## 功能

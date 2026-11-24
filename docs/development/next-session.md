@@ -1,12 +1,14 @@
 # 新对话接续入口
 
-## 2026-11-24 当前目标：提交GitHub源码仓库
+## 2026-11-24 GitHub源码仓库已提交
 
 用户明确“不需要答辩，暂时不需要部署，可以提交到我的GitHub上”。本轮范围为整理源码提交、验证并推送GitHub；不执行答辩串演、录屏、部署、安装、迁移、恢复、真实负载或数据库写入。下文历史阶段的答辩/部署待办不再阻断本次源码交付，保留原验收结果与限制。
 
-本轮开始时本地仓库位于master且尚无提交，Git提交身份已配置，未配置远程仓库；GitHub CLI未登录。用户已选择新建私有`heji`仓库并完成浏览器登录，CLI检查仍未授权，因此启动官方`gh auth login --web --git-protocol https --hostname github.com`设备授权；不读取或传递密码、token或Cookie。
+用户已完成GitHub CLI官方设备授权；私有仓库为`https://github.com/ct0307/heji`，默认分支`master`，本地`origin`已配置。首版提交`2c2ab3aefff05ca6feaa86720ff2517e63b662fe`包含457文件，远端提交哈希与目录树`36e73ab816c47636b3719b5b7aee6de63820e489`均与本地一致。普通172/172及包含前后端类型检查的build已通过；未重跑真实数据库、浏览器或压力实验。
 
-提交保留正式源码、测试、设计文档/原型及摘要证据。原始大体积负载样本保留本地并通过`evidence/local-evidence-manifest.json`记录大小与SHA-256；排除本地敏感配置、备份、密钥、依赖/构建产物、工具状态及Office锁文件。具体完成状态见[计划](task_plan.md)与[进度](progress.md)。GitHub推送须以远端核对结果为准，不能把本地准备当作上传成功。
+本机原生Git HTTPS上传多次遭遇TLS握手错误；通过既有本地代理调用官方Git对象API，逐个校验二进制blob及完整tree/commit哈希，完成相同Git历史上传，没有强推、重置或关闭证书校验。空仓库须先用现有README初始化，保留自动产生的`main`初始化分支；完整源码在默认`master`。`.local/github-upload.mjs`及检查点仅留本地，不含凭据，也不提交。原生`git push`的网络问题仍未解决，不能声称该传输路径已修好；后续使用先确认网络，不修改全局设置。
+
+提交保留正式源码、测试、设计文档/原型及摘要证据。36份原始负载样本共756.10MiB保留本地，通过`evidence/local-evidence-manifest.json`记录大小与SHA-256；排除本地敏感配置、备份、密钥、依赖/构建产物、工具状态及Office锁文件。具体记录见[计划](task_plan.md)与[进度](progress.md)；任何后续文档提交仍以远端ref与本地HEAD一致为验收依据。
 
 ## 2026-11-20 窗口等待负载验收通过（最新）
 
